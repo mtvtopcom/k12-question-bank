@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""合并所有已完成册 → 统一知识点清单，接入题目生成管道。
+"""合并所有已完成册 → 统一知识点清单，作为题目生成管道的唯一数据源。
 
-输出 knowledge-map/output/knowledge_points.jsonl，字段与 question-bank/src/cleaner.py
-产出的 topics.jsonl 兼容（topic_id/grade/subject/topic/explanation/engine 等），
-让现有 pipeline 可以直接消费。
+输出 knowledge-map/output/knowledge_points.jsonl，字段包含
+topic_id/grade/subject/topic/explanation/engine 等，供 pipeline 直接消费。
 
 同时输出一份校验报告：知识点总数、分科分布、学段覆盖、engine分流。
 """

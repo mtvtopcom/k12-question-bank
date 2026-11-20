@@ -52,7 +52,7 @@ def export_csv(rows: List[Dict[str, Any]], path: str) -> int:
 
 
 def export_app_json(rows: List[Dict[str, Any]], out_dir: str) -> int:
-    """参考项目 App 导入格式：按 年级/科目/知识点 分目录，一个知识点一个 JSON。"""
+    """学习 App 导入格式：按 年级/科目/知识点 分目录，一个知识点一个 JSON。"""
     grouped: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
     meta: Dict[str, Dict[str, str]] = {}
     for d in rows:

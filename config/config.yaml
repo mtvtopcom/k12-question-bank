@@ -1,12 +1,8 @@
 # 题库生成管道 - 配置
-
-# 知识点来源：参考项目克隆路径（清洗阶段读取）
-source:
-  repo_path: /tmp/learning-content-ref
-  use_graph: true          # 读 knowledge_graph_complete.json
-  use_output: true         # 读 output/**/*.json
-  min_explanation_len: 60  # 讲解文本过短判定为空壳，丢弃
-  drop_cross_subject: true # 丢弃串科脏数据（如"语文-数学广角"）
+#
+# 知识点来源为项目自建的 knowledge-map/（2022 版国家课标体系），
+# 由 knowledge-map/tools/merge.py 产出 knowledge-map/output/knowledge_points.jsonl。
+# 本管道不依赖任何外部项目的数据。
 
 # 分流规则：哪些走模板引擎，哪些走 LLM
 routing:
@@ -76,5 +72,5 @@ storage:
 # 导出器（两者都要）
 exporters:
   - jsonl            # 通用题库，一行一题
-  - app_json         # 参考项目 App 导入格式
+  - app_json         # 学习 App 导入格式（按年级/科目/知识点分目录）
   - csv              # Excel 可打开

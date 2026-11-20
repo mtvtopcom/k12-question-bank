@@ -51,7 +51,7 @@ class Pipeline:
 
     def load_topics(self, path: Optional[str] = None, subject_filter: Optional[str] = None,
                     limit: Optional[int] = None) -> List[Dict[str, Any]]:
-        path = path or os.path.join(PROJECT_ROOT, "data", "topics.jsonl")
+        path = path or os.path.join(PROJECT_ROOT, "knowledge-map", "output", "knowledge_points.jsonl")
         topics = []
         with open(path, "r", encoding="utf-8") as f:
             for line in f:
