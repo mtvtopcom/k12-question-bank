@@ -1,0 +1,104 @@
+{
+  "id": "小班_math_对应配对：找一样的",
+  "grade": "小班",
+  "subject": "math",
+  "topic": "对应配对：找一样的",
+  "chapter": "感知一一对应",
+  "practice": [
+    {
+      "id": "8a84770707a926f193a0",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "6 × 10 = ?",
+      "options": [
+        "54",
+        "60",
+        "16",
+        "66"
+      ],
+      "answer": "B",
+      "answer_text": "60",
+      "explanation": "6 × 10 = 60",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 60"
+      }
+    },
+    {
+      "id": "8a8d98665880370833e3",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "7676 - 3930 = ?",
+      "options": [
+        "3755",
+        "3746",
+        "3745",
+        "11606"
+      ],
+      "answer": "B",
+      "answer_text": "3746",
+      "explanation": "7676 - 3930 = 3746",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 3746"
+      }
+    },
+    {
+      "id": "a2b6453bb4a61eabf2a6",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "4 × 6 = ?",
+      "options": [
+        "10",
+        "28",
+        "20",
+        "24"
+      ],
+      "answer": "D",
+      "answer_text": "24",
+      "explanation": "4 × 6 = 24",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 24"
+      }
+    },
+    {
+      "id": "df4c64332b3fb7ac2428",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "7 × 5 = ?",
+      "options": [
+        "42",
+        "12",
+        "35",
+        "28"
+      ],
+      "answer": "C",
+      "answer_text": "35",
+      "explanation": "7 × 5 = 35",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 35"
+      }
+    },
+    {
+      "id": "dffec9ede89101dc59ea",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "15281 - 10184 = ?",
+      "options": [
+        "5102",
+        "25465",
+        "5089",
+        "5097"
+      ],
+      "answer": "D",
+      "answer_text": "5097",
+      "explanation": "15281 - 10184 = 5097",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 5097"
+      }
+    }
+  ]
+}

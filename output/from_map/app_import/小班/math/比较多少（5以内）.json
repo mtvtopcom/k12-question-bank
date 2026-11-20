@@ -1,0 +1,123 @@
+{
+  "id": "小班_math_比较多少（5以内）",
+  "grade": "小班",
+  "subject": "math",
+  "topic": "比较多少（5以内）",
+  "chapter": "感知大小多少",
+  "practice": [
+    {
+      "id": "49db6dda80aaaee9aa68",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "10786 - 1608 = ?",
+      "options": [
+        "9177",
+        "9178",
+        "9185",
+        "12394"
+      ],
+      "answer": "B",
+      "answer_text": "9178",
+      "explanation": "10786 - 1608 = 9178",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 9178"
+      }
+    },
+    {
+      "id": "98aa8e6e2d29f6803f91",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "6 × 3 = ?",
+      "options": [
+        "9",
+        "18",
+        "12",
+        "24"
+      ],
+      "answer": "B",
+      "answer_text": "18",
+      "explanation": "6 × 3 = 18",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 18"
+      }
+    },
+    {
+      "id": "a1f49a51f34448e3553b",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "小明有8017个苹果，又买了7545个，现在一共有多少个苹果？",
+      "options": [
+        "15562",
+        "15565",
+        "7545",
+        "8017"
+      ],
+      "answer": "A",
+      "answer_text": "15562",
+      "explanation": "8017 + 7545 = 15562",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 15562"
+      }
+    },
+    {
+      "id": "ab706df281f05201a1e0",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "18213 - 16632 = ?",
+      "options": [
+        "34845",
+        "1587",
+        "1581",
+        "1574"
+      ],
+      "answer": "C",
+      "answer_text": "1581",
+      "explanation": "18213 - 16632 = 1581",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 1581"
+      }
+    },
+    {
+      "id": "b2b02b92f00b775cad7f",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "3 × 11 = ?",
+      "options": [
+        "33",
+        "36",
+        "14",
+        "30"
+      ],
+      "answer": "A",
+      "answer_text": "33",
+      "explanation": "3 × 11 = 33",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 33"
+      }
+    },
+    {
+      "id": "ede87e820ad8a229c06d",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "3 × 6 = ?",
+      "options": [
+        "15",
+        "18",
+        "21",
+        "9"
+      ],
+      "answer": "B",
+      "answer_text": "18",
+      "explanation": "3 × 6 = 18",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 18"
+      }
+    }
+  ]
+}

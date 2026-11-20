@@ -1,0 +1,484 @@
+{
+  "id": "六年级上_数学_分数乘法",
+  "grade": "六年级上",
+  "subject": "数学",
+  "topic": "分数乘法",
+  "chapter": "",
+  "practice": [
+    {
+      "id": "0f266897e6ffeb772f0f",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "计算 5/3 + 6/2 的结果是？",
+      "options": [
+        "25/6",
+        "14/3",
+        "17/3",
+        "31/6"
+      ],
+      "answer": "B",
+      "answer_text": "14/3",
+      "explanation": "5/3 + 6/2 = 14/3",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 14/3"
+      }
+    },
+    {
+      "id": "1d8b48d9818a88a899bd",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "计算 6/2 + 9/5 的结果是？",
+      "options": [
+        "43/10",
+        "24/5",
+        "53/10",
+        "29/5"
+      ],
+      "answer": "B",
+      "answer_text": "24/5",
+      "explanation": "6/2 + 9/5 = 24/5",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 24/5"
+      }
+    },
+    {
+      "id": "341df22a289f1cad7bfa",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "计算 2/9 - 2/6 的结果是？",
+      "options": [
+        "7/18",
+        "8/9",
+        "11/18",
+        "-1/9"
+      ],
+      "answer": "D",
+      "answer_text": "-1/9",
+      "explanation": "2/9 - 2/6 = -1/9",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. -1/9"
+      }
+    },
+    {
+      "id": "386871c49c8c5f64d72c",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "计算 8/8 + 5/5 的结果是？",
+      "options": [
+        "5/2",
+        "3/2",
+        "3/1",
+        "2/1"
+      ],
+      "answer": "D",
+      "answer_text": "2/1",
+      "explanation": "8/8 + 5/5 = 2/1",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 2/1"
+      }
+    },
+    {
+      "id": "3e2ebc4a0b5f439b8430",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "计算 3/5 + 2/9 的结果是？",
+      "options": [
+        "119/90",
+        "82/45",
+        "29/90",
+        "37/45"
+      ],
+      "answer": "D",
+      "answer_text": "37/45",
+      "explanation": "3/5 + 2/9 = 37/45",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 37/45"
+      }
+    },
+    {
+      "id": "41cf9b9ccc412e1f7f13",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "计算 7/3 + 6/8 的结果是？",
+      "options": [
+        "31/12",
+        "37/12",
+        "49/12",
+        "43/12"
+      ],
+      "answer": "B",
+      "answer_text": "37/12",
+      "explanation": "7/3 + 6/8 = 37/12",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 37/12"
+      }
+    },
+    {
+      "id": "4f05ddfc66f31fa159bb",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "一个三角形底 11 厘米、高 13 厘米，面积是多少平方厘米？",
+      "options": [
+        "71平方厘米",
+        "143平方厘米",
+        "142平方厘米",
+        "24平方厘米"
+      ],
+      "answer": "A",
+      "answer_text": "71平方厘米",
+      "explanation": "三角形面积 = 底 × 高 ÷ 2 = 11 × 13 ÷ 2 = 71 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 71平方厘米"
+      }
+    },
+    {
+      "id": "4fea9fb18dfc5578408b",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "计算 6/8 + 5/3 的结果是？",
+      "options": [
+        "35/12",
+        "23/12",
+        "41/12",
+        "29/12"
+      ],
+      "answer": "D",
+      "answer_text": "29/12",
+      "explanation": "6/8 + 5/3 = 29/12",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 29/12"
+      }
+    },
+    {
+      "id": "553b136f96192aecd39d",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "计算 9/4 - 6/5 的结果是？",
+      "options": [
+        "11/20",
+        "21/20",
+        "31/20",
+        "41/20"
+      ],
+      "answer": "B",
+      "answer_text": "21/20",
+      "explanation": "9/4 - 6/5 = 21/20",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 21/20"
+      }
+    },
+    {
+      "id": "64fed962690286a266dd",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 7/3 + 5/2 的结果是？",
+      "options": [
+        "29/6",
+        "13/3",
+        "35/6",
+        "16/3"
+      ],
+      "answer": "A",
+      "answer_text": "29/6",
+      "explanation": "7/3 + 5/2 = 29/6",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 29/6"
+      }
+    },
+    {
+      "id": "6ef680ca8b28c5488128",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "15144 + 2138 = ?",
+      "options": [
+        "17285",
+        "17282",
+        "17274",
+        "13006"
+      ],
+      "answer": "B",
+      "answer_text": "17282",
+      "explanation": "15144 + 2138 = 17282",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 17282"
+      }
+    },
+    {
+      "id": "73e99466ea67322257dc",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 5/7 + 5/9 的结果是？",
+      "options": [
+        "80/63",
+        "97/126",
+        "143/63",
+        "223/126"
+      ],
+      "answer": "A",
+      "answer_text": "80/63",
+      "explanation": "5/7 + 5/9 = 80/63",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 80/63"
+      }
+    },
+    {
+      "id": "7c82844c78dfec9db883",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 6/2 - 2/4 的结果是？",
+      "options": [
+        "7/2",
+        "2/1",
+        "3/1",
+        "5/2"
+      ],
+      "answer": "D",
+      "answer_text": "5/2",
+      "explanation": "6/2 - 2/4 = 5/2",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 5/2"
+      }
+    },
+    {
+      "id": "841afb4518d6a7009d5a",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 5/8 + 1/5 的结果是？",
+      "options": [
+        "33/40",
+        "53/40",
+        "13/40",
+        "73/40"
+      ],
+      "answer": "A",
+      "answer_text": "33/40",
+      "explanation": "5/8 + 1/5 = 33/40",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 33/40"
+      }
+    },
+    {
+      "id": "84cb5255d08d9ec06623",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "计算 1/4 - 2/5 的结果是？",
+      "options": [
+        "17/20",
+        "13/20",
+        "-3/20",
+        "7/20"
+      ],
+      "answer": "C",
+      "answer_text": "-3/20",
+      "explanation": "1/4 - 2/5 = -3/20",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. -3/20"
+      }
+    },
+    {
+      "id": "864aa6b173951f04c736",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "计算 6/6 - 9/4 的结果是？",
+      "options": [
+        "-1/4",
+        "-5/4",
+        "-3/4",
+        "7/4"
+      ],
+      "answer": "B",
+      "answer_text": "-5/4",
+      "explanation": "6/6 - 9/4 = -5/4",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. -5/4"
+      }
+    },
+    {
+      "id": "895d5380f8c151e5c927",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "计算 8/3 - 9/8 的结果是？",
+      "options": [
+        "37/24",
+        "25/24",
+        "49/24",
+        "61/24"
+      ],
+      "answer": "A",
+      "answer_text": "37/24",
+      "explanation": "8/3 - 9/8 = 37/24",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 37/24"
+      }
+    },
+    {
+      "id": "9406e209e10abecf910c",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "计算 4/7 + 9/3 的结果是？",
+      "options": [
+        "25/7",
+        "57/14",
+        "43/14",
+        "32/7"
+      ],
+      "answer": "A",
+      "answer_text": "25/7",
+      "explanation": "4/7 + 9/3 = 25/7",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 25/7"
+      }
+    },
+    {
+      "id": "9a177554569d49e3f702",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 1/8 + 4/9 的结果是？",
+      "options": [
+        "5/72",
+        "113/72",
+        "77/72",
+        "41/72"
+      ],
+      "answer": "D",
+      "answer_text": "41/72",
+      "explanation": "1/8 + 4/9 = 41/72",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 41/72"
+      }
+    },
+    {
+      "id": "b8a235c2c0e1659cd6c0",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "计算 2/8 - 8/8 的结果是？",
+      "options": [
+        "1/4",
+        "-1/4",
+        "5/4",
+        "-3/4"
+      ],
+      "answer": "D",
+      "answer_text": "-3/4",
+      "explanation": "2/8 - 8/8 = -3/4",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. -3/4"
+      }
+    },
+    {
+      "id": "be5f0c0037ecfa910fce",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "计算 2/9 - 7/7 的结果是？",
+      "options": [
+        "23/18",
+        "-7/9",
+        "2/9",
+        "-5/18"
+      ],
+      "answer": "B",
+      "answer_text": "-7/9",
+      "explanation": "2/9 - 7/7 = -7/9",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. -7/9"
+      }
+    },
+    {
+      "id": "c7ba6fef362b941fa055",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 2/7 - 9/3 的结果是？",
+      "options": [
+        "-19/7",
+        "-31/14",
+        "-12/7",
+        "45/14"
+      ],
+      "answer": "A",
+      "answer_text": "-19/7",
+      "explanation": "2/7 - 9/3 = -19/7",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. -19/7"
+      }
+    },
+    {
+      "id": "d81345e7f19d02d7c4cd",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "计算 5/4 - 2/7 的结果是？",
+      "options": [
+        "41/28",
+        "55/28",
+        "27/28",
+        "13/28"
+      ],
+      "answer": "C",
+      "answer_text": "27/28",
+      "explanation": "5/4 - 2/7 = 27/28",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 27/28"
+      }
+    },
+    {
+      "id": "f8442994d5e614ecb6bf",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 8/8 - 2/8 的结果是？",
+      "options": [
+        "3/4",
+        "5/4",
+        "7/4",
+        "1/4"
+      ],
+      "answer": "A",
+      "answer_text": "3/4",
+      "explanation": "8/8 - 2/8 = 3/4",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 3/4"
+      }
+    },
+    {
+      "id": "fd065f2f46824844b4dd",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 1/6 - 8/7 的结果是？",
+      "options": [
+        "31/21",
+        "-10/21",
+        "1/42",
+        "-41/42"
+      ],
+      "answer": "D",
+      "answer_text": "-41/42",
+      "explanation": "1/6 - 8/7 = -41/42",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. -41/42"
+      }
+    }
+  ]
+}

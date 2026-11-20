@@ -1,0 +1,199 @@
+{
+  "id": "六年级上_数学_应用：扇形统计图",
+  "grade": "六年级上",
+  "subject": "数学",
+  "topic": "应用：扇形统计图",
+  "chapter": "应用",
+  "practice": [
+    {
+      "id": "3ec21476df0bf580b5bd",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "一个长方形长 15 厘米、宽 14 厘米，面积是多少平方厘米？",
+      "options": [
+        "210平方厘米",
+        "29平方厘米",
+        "420平方厘米",
+        "58平方厘米"
+      ],
+      "answer": "A",
+      "answer_text": "210平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 15 × 14 = 210 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 210平方厘米"
+      }
+    },
+    {
+      "id": "420bc4e286de0dfcb21d",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个长方形长 14 厘米、宽 7 厘米，面积是多少平方厘米？",
+      "options": [
+        "42平方厘米",
+        "21平方厘米",
+        "98平方厘米",
+        "196平方厘米"
+      ],
+      "answer": "C",
+      "answer_text": "98平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 14 × 7 = 98 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 98平方厘米"
+      }
+    },
+    {
+      "id": "5e9dbba9013726b53cdb",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个长方形长 14 厘米、宽 8 厘米，面积是多少平方厘米？",
+      "options": [
+        "224平方厘米",
+        "44平方厘米",
+        "22平方厘米",
+        "112平方厘米"
+      ],
+      "answer": "D",
+      "answer_text": "112平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 14 × 8 = 112 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 112平方厘米"
+      }
+    },
+    {
+      "id": "770fc491dfba9736bdb5",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "一个长方形长 16 厘米、宽 9 厘米，面积是多少平方厘米？",
+      "options": [
+        "50平方厘米",
+        "288平方厘米",
+        "144平方厘米",
+        "25平方厘米"
+      ],
+      "answer": "C",
+      "answer_text": "144平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 16 × 9 = 144 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 144平方厘米"
+      }
+    },
+    {
+      "id": "aac45e1b1ba5d4cd0ac5",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "一个长方形长 7 厘米、宽 18 厘米，面积是多少平方厘米？",
+      "options": [
+        "252平方厘米",
+        "126平方厘米",
+        "25平方厘米",
+        "50平方厘米"
+      ],
+      "answer": "B",
+      "answer_text": "126平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 7 × 18 = 126 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 126平方厘米"
+      }
+    },
+    {
+      "id": "af740f817b530f759146",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个长方形长 20 厘米、宽 6 厘米，面积是多少平方厘米？",
+      "options": [
+        "240平方厘米",
+        "52平方厘米",
+        "120平方厘米",
+        "26平方厘米"
+      ],
+      "answer": "C",
+      "answer_text": "120平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 20 × 6 = 120 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 120平方厘米"
+      }
+    },
+    {
+      "id": "d7f3aac6acfa0520c25b",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "一个长方形长 13 厘米、宽 18 厘米，面积是多少平方厘米？",
+      "options": [
+        "62平方厘米",
+        "31平方厘米",
+        "234平方厘米",
+        "468平方厘米"
+      ],
+      "answer": "C",
+      "answer_text": "234平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 13 × 18 = 234 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 234平方厘米"
+      }
+    },
+    {
+      "id": "e31993fed0982db52d6e",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 1/2 - 3/5 的结果是？",
+      "options": [
+        "-1/10",
+        "9/10",
+        "3/5",
+        "2/5"
+      ],
+      "answer": "A",
+      "answer_text": "-1/10",
+      "explanation": "1/2 - 3/5 = -1/10",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. -1/10"
+      }
+    },
+    {
+      "id": "e8a40280f12c52926516",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个三角形底 11 厘米、高 3 厘米，面积是多少平方厘米？",
+      "options": [
+        "14平方厘米",
+        "16平方厘米",
+        "33平方厘米",
+        "32平方厘米"
+      ],
+      "answer": "B",
+      "answer_text": "16平方厘米",
+      "explanation": "三角形面积 = 底 × 高 ÷ 2 = 11 × 3 ÷ 2 = 16 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 16平方厘米"
+      }
+    },
+    {
+      "id": "ed7bb366bc9aae1b15d0",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "14000 - 6881 = ?",
+      "options": [
+        "20881",
+        "7119",
+        "7123",
+        "7110"
+      ],
+      "answer": "B",
+      "answer_text": "7119",
+      "explanation": "14000 - 6881 = 7119",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 7119"
+      }
+    }
+  ]
+}

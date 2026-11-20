@@ -1,0 +1,218 @@
+{
+  "id": "六年级上_数学_几何：数学广角",
+  "grade": "六年级上",
+  "subject": "数学",
+  "topic": "几何：数学广角",
+  "chapter": "几何",
+  "practice": [
+    {
+      "id": "062f7190c046fabafea2",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 8/6 - 3/9 的结果是？",
+      "options": [
+        "1/2",
+        "3/2",
+        "1/1",
+        "2/1"
+      ],
+      "answer": "C",
+      "answer_text": "1/1",
+      "explanation": "8/6 - 3/9 = 1/1",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 1/1"
+      }
+    },
+    {
+      "id": "12f3f32d8926e6b37d44",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "一个长方形长 15 厘米、宽 13 厘米，面积是多少平方厘米？",
+      "options": [
+        "195平方厘米",
+        "28平方厘米",
+        "390平方厘米",
+        "56平方厘米"
+      ],
+      "answer": "A",
+      "answer_text": "195平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 15 × 13 = 195 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 195平方厘米"
+      }
+    },
+    {
+      "id": "1913ce3bffee548cfbe1",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个长方形长 11 厘米、宽 4 厘米，面积是多少平方厘米？",
+      "options": [
+        "30平方厘米",
+        "88平方厘米",
+        "44平方厘米",
+        "15平方厘米"
+      ],
+      "answer": "C",
+      "answer_text": "44平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 11 × 4 = 44 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 44平方厘米"
+      }
+    },
+    {
+      "id": "1be438112b4177803714",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "一个长方形长 20 厘米、宽 13 厘米，面积是多少平方厘米？",
+      "options": [
+        "260平方厘米",
+        "520平方厘米",
+        "33平方厘米",
+        "66平方厘米"
+      ],
+      "answer": "A",
+      "answer_text": "260平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 20 × 13 = 260 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 260平方厘米"
+      }
+    },
+    {
+      "id": "2bd57f010985c53aafaf",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个长方形长 14 厘米、宽 3 厘米，面积是多少平方厘米？",
+      "options": [
+        "42平方厘米",
+        "84平方厘米",
+        "34平方厘米",
+        "17平方厘米"
+      ],
+      "answer": "A",
+      "answer_text": "42平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 14 × 3 = 42 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 42平方厘米"
+      }
+    },
+    {
+      "id": "59bfaa30cfd2b840403e",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "一个长方形长 14 厘米、宽 17 厘米，面积是多少平方厘米？",
+      "options": [
+        "62平方厘米",
+        "238平方厘米",
+        "476平方厘米",
+        "31平方厘米"
+      ],
+      "answer": "B",
+      "answer_text": "238平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 14 × 17 = 238 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 238平方厘米"
+      }
+    },
+    {
+      "id": "662c2c70e76904328154",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "商店运来12142箱牛奶，下午又运来2180箱，全天共运来多少箱？",
+      "options": [
+        "12142",
+        "14325",
+        "14322",
+        "2180"
+      ],
+      "answer": "C",
+      "answer_text": "14322",
+      "explanation": "12142 + 2180 = 14322",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 14322"
+      }
+    },
+    {
+      "id": "8b3a3f99afc87d0395a1",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "一个长方形长 16 厘米、宽 10 厘米，面积是多少平方厘米？",
+      "options": [
+        "52平方厘米",
+        "26平方厘米",
+        "320平方厘米",
+        "160平方厘米"
+      ],
+      "answer": "D",
+      "answer_text": "160平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 16 × 10 = 160 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 160平方厘米"
+      }
+    },
+    {
+      "id": "ab09ab3419d7fd248471",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个长方形长 19 厘米、宽 3 厘米，面积是多少平方厘米？",
+      "options": [
+        "44平方厘米",
+        "57平方厘米",
+        "22平方厘米",
+        "114平方厘米"
+      ],
+      "answer": "B",
+      "answer_text": "57平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 19 × 3 = 57 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 57平方厘米"
+      }
+    },
+    {
+      "id": "ad7af455c23dc2229967",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个长方形长 19 厘米、宽 16 厘米，面积是多少平方厘米？",
+      "options": [
+        "35平方厘米",
+        "304平方厘米",
+        "70平方厘米",
+        "608平方厘米"
+      ],
+      "answer": "B",
+      "answer_text": "304平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 19 × 16 = 304 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 304平方厘米"
+      }
+    },
+    {
+      "id": "b8712d2e98232e12a293",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个长方形长 16 厘米、宽 16 厘米，面积是多少平方厘米？",
+      "options": [
+        "512平方厘米",
+        "256平方厘米",
+        "32平方厘米",
+        "64平方厘米"
+      ],
+      "answer": "B",
+      "answer_text": "256平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 16 × 16 = 256 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 256平方厘米"
+      }
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "id": "六年级上_数学_几何：比",
+  "grade": "六年级上",
+  "subject": "数学",
+  "topic": "几何：比",
+  "chapter": "几何",
+  "practice": [
+    {
+      "id": "1d199d769a8b875c504e",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个长方形长 5 厘米、宽 17 厘米，面积是多少平方厘米？",
+      "options": [
+        "85平方厘米",
+        "44平方厘米",
+        "22平方厘米",
+        "170平方厘米"
+      ],
+      "answer": "A",
+      "answer_text": "85平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 5 × 17 = 85 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 85平方厘米"
+      }
+    },
+    {
+      "id": "574c59cd61207222db3a",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "9735 + 5539 = ?",
+      "options": [
+        "15279",
+        "15265",
+        "4196",
+        "15274"
+      ],
+      "answer": "D",
+      "answer_text": "15274",
+      "explanation": "9735 + 5539 = 15274",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 15274"
+      }
+    },
+    {
+      "id": "662a297ab4fd84cf1089",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "一个长方形长 3 厘米、宽 7 厘米，面积是多少平方厘米？",
+      "options": [
+        "10平方厘米",
+        "20平方厘米",
+        "42平方厘米",
+        "21平方厘米"
+      ],
+      "answer": "D",
+      "answer_text": "21平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 3 × 7 = 21 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 21平方厘米"
+      }
+    },
+    {
+      "id": "70c12f8e2a90fa25db32",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 9/3 + 3/4 的结果是？",
+      "options": [
+        "19/4",
+        "15/4",
+        "17/4",
+        "13/4"
+      ],
+      "answer": "B",
+      "answer_text": "15/4",
+      "explanation": "9/3 + 3/4 = 15/4",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 15/4"
+      }
+    },
+    {
+      "id": "74a6a27700d9666b6283",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "一个长方形长 11 厘米、宽 17 厘米，面积是多少平方厘米？",
+      "options": [
+        "28平方厘米",
+        "187平方厘米",
+        "56平方厘米",
+        "374平方厘米"
+      ],
+      "answer": "B",
+      "answer_text": "187平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 11 × 17 = 187 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 187平方厘米"
+      }
+    },
+    {
+      "id": "8c6f86157285bac5fcbf",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个长方形长 7 厘米、宽 9 厘米，面积是多少平方厘米？",
+      "options": [
+        "126平方厘米",
+        "32平方厘米",
+        "16平方厘米",
+        "63平方厘米"
+      ],
+      "answer": "D",
+      "answer_text": "63平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 7 × 9 = 63 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 63平方厘米"
+      }
+    },
+    {
+      "id": "a8084b06f785dc5f3101",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "一个长方形长 20 厘米、宽 15 厘米，面积是多少平方厘米？",
+      "options": [
+        "35平方厘米",
+        "300平方厘米",
+        "70平方厘米",
+        "600平方厘米"
+      ],
+      "answer": "B",
+      "answer_text": "300平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 20 × 15 = 300 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 300平方厘米"
+      }
+    },
+    {
+      "id": "afbc592b00f67fb1a32d",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "一个圆半径 4 厘米，面积约是多少平方厘米？（π取3.14）",
+      "options": [
+        "50.24平方厘米",
+        "16平方厘米",
+        "25.12平方厘米",
+        "12.56平方厘米"
+      ],
+      "answer": "A",
+      "answer_text": "50.24平方厘米",
+      "explanation": "圆面积 = πr² = 3.14 × 4² = 50.24 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 50.24平方厘米"
+      }
+    },
+    {
+      "id": "c33ff34b0a31e4778a20",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "一个长方形长 18 厘米、宽 5 厘米，面积是多少平方厘米？",
+      "options": [
+        "180平方厘米",
+        "90平方厘米",
+        "23平方厘米",
+        "46平方厘米"
+      ],
+      "answer": "B",
+      "answer_text": "90平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 18 × 5 = 90 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 90平方厘米"
+      }
+    },
+    {
+      "id": "e659815091a1ab07ac38",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "一个长方形长 15 厘米、宽 4 厘米，面积是多少平方厘米？",
+      "options": [
+        "120平方厘米",
+        "19平方厘米",
+        "60平方厘米",
+        "38平方厘米"
+      ],
+      "answer": "C",
+      "answer_text": "60平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 15 × 4 = 60 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 60平方厘米"
+      }
+    },
+    {
+      "id": "f42da03a8a9931478b2e",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个圆半径 7 厘米，面积约是多少平方厘米？（π取3.14）",
+      "options": [
+        "153.86平方厘米",
+        "43.96平方厘米",
+        "49平方厘米",
+        "21.98平方厘米"
+      ],
+      "answer": "A",
+      "answer_text": "153.86平方厘米",
+      "explanation": "圆面积 = πr² = 3.14 × 7² = 153.86 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 153.86平方厘米"
+      }
+    }
+  ]
+}

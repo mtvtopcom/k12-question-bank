@@ -1,0 +1,104 @@
+{
+  "id": "六年级上_数学_计算：百分数",
+  "grade": "六年级上",
+  "subject": "数学",
+  "topic": "计算：百分数",
+  "chapter": "计算",
+  "practice": [
+    {
+      "id": "0c66bf9b10a8f82053d4",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "11 × 7 = ?",
+      "options": [
+        "88",
+        "77",
+        "66",
+        "18"
+      ],
+      "answer": "B",
+      "answer_text": "77",
+      "explanation": "11 × 7 = 77",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 77"
+      }
+    },
+    {
+      "id": "4c3d2a984cf44ab87361",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 9/9 + 2/4 的结果是？",
+      "options": [
+        "3/2",
+        "2/1",
+        "1/1",
+        "5/2"
+      ],
+      "answer": "A",
+      "answer_text": "3/2",
+      "explanation": "9/9 + 2/4 = 3/2",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 3/2"
+      }
+    },
+    {
+      "id": "8334eb72dbbe4a8b166e",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "200 的 75% 是多少？",
+      "options": [
+        "50",
+        "150",
+        "300",
+        "75"
+      ],
+      "answer": "B",
+      "answer_text": "150",
+      "explanation": "200 × 75% = 200 × 0.75 = 150",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 150"
+      }
+    },
+    {
+      "id": "8c5e273cc20c0478906f",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "200 的 50% 是多少？",
+      "options": [
+        "200",
+        "100",
+        "4",
+        "50"
+      ],
+      "answer": "B",
+      "answer_text": "100",
+      "explanation": "200 × 50% = 200 × 0.5 = 100",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 100"
+      }
+    },
+    {
+      "id": "edcd1b12b7fa08c45460",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "200 的 25% 是多少？",
+      "options": [
+        "50",
+        "100",
+        "25",
+        "150"
+      ],
+      "answer": "A",
+      "answer_text": "50",
+      "explanation": "200 × 25% = 200 × 0.25 = 50",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 50"
+      }
+    }
+  ]
+}

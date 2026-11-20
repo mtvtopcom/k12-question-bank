@@ -1,0 +1,80 @@
+# 题库生成管道 - 配置
+
+# 知识点来源：参考项目克隆路径（清洗阶段读取）
+source:
+  repo_path: /tmp/learning-content-ref
+  use_graph: true          # 读 knowledge_graph_complete.json
+  use_output: true         # 读 output/**/*.json
+  min_explanation_len: 60  # 讲解文本过短判定为空壳，丢弃
+  drop_cross_subject: true # 丢弃串科脏数据（如"语文-数学广角"）
+
+# 分流规则：哪些走模板引擎，哪些走 LLM
+routing:
+  engine_by_subject:
+    数学: template
+    英语: template
+    语文: template
+    科学: template
+    default: llm
+  # 覆盖规则：命中这些关键词的故事/阅读类题目强制走 LLM
+  force_llm_keywords:
+    - 阅读
+    - 作文
+    - 古诗
+    - 文言文
+    - 写作
+    - 赏析
+
+# 每个知识点的题目配额（难度分层）
+quota:
+  per_topic: 33
+  difficulty_mix:
+    基础: 0.45
+    中等: 0.35
+    提高: 0.20
+
+# 模板引擎（规则类题目）
+template:
+  seed: 20261120
+  # 各科目启用的题型生成器
+  generators:
+    数学: [arithmetic, fraction, geometry, percentage, equation]
+    英语: [vocabulary, grammar]
+    语文: [pinyin, idiom, characters]
+    科学: [science_basic]
+
+# LLM 引擎（语义类题目）
+llm:
+  provider: deepseek                    # 可选 deepseek / qwen / douban / 任意 OpenAI 兼容
+  base_url: https://api.deepseek.com/v1/chat/completions
+  model: deepseek-chat
+  api_key_env: DEEPSEEK_API_KEY         # 从环境变量读取密钥，不落盘
+  temperature: 0.85
+  max_tokens: 2000
+  rpm: 20                                # 每分钟请求数上限
+  batch_mothers: 1                       # 每次调用生成几条母题
+  variants_per_mother: 8                 # 每条母题扩展几道变体
+  timeout: 60
+  max_retries: 3
+
+# 质量门禁
+quality:
+  min_options: 4
+  max_options: 4
+  require_explanation: true
+  min_explanation_chars: 8
+  dedup_jaccard_threshold: 0.85
+  check_answer_in_options: true
+  cross_model_verify: false              # 开启后调用第二个模型复核事实（有成本）
+  spot_check_rate: 0.05                  # 人工抽检比例
+
+# 存储
+storage:
+  db_path: data/bank.db
+  wal_mode: true
+
+# 导出器（两者都要）
+exporters:
+  - jsonl            # 通用题库，一行一题
+  - app_json         # 参考项目 App 导入格式
+  - csv              # Excel 可打开

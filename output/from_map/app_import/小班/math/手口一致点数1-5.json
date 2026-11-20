@@ -1,0 +1,104 @@
+{
+  "id": "小班_math_手口一致点数1-5",
+  "grade": "小班",
+  "subject": "math",
+  "topic": "手口一致点数1-5",
+  "chapter": "感知数量",
+  "practice": [
+    {
+      "id": "0b72c2726ada41fef5e7",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "停车场原有17156辆车，开来了15086辆，现有多少辆车？",
+      "options": [
+        "32242",
+        "15086",
+        "17156",
+        "32245"
+      ],
+      "answer": "A",
+      "answer_text": "32242",
+      "explanation": "17156 + 15086 = 32242",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 32242"
+      }
+    },
+    {
+      "id": "137644386875c3640e2e",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "书架上有11114本书，又放上15655本，共有多少本书？",
+      "options": [
+        "15655",
+        "11114",
+        "26774",
+        "26769"
+      ],
+      "answer": "D",
+      "answer_text": "26769",
+      "explanation": "11114 + 15655 = 26769",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 26769"
+      }
+    },
+    {
+      "id": "2e4b57d383b6e960fd69",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "停车场原有13001辆车，开来了2812辆，现有多少辆车？",
+      "options": [
+        "2812",
+        "13001",
+        "15814",
+        "15813"
+      ],
+      "answer": "D",
+      "answer_text": "15813",
+      "explanation": "13001 + 2812 = 15813",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 15813"
+      }
+    },
+    {
+      "id": "506b4f118e86923c44a2",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "13260 - 2385 = ?",
+      "options": [
+        "10872",
+        "10883",
+        "15645",
+        "10875"
+      ],
+      "answer": "D",
+      "answer_text": "10875",
+      "explanation": "13260 - 2385 = 10875",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 10875"
+      }
+    },
+    {
+      "id": "de8faef1a51df4743d56",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "停车场原有5559辆车，开来了4775辆，现有多少辆车？",
+      "options": [
+        "5559",
+        "4775",
+        "10337",
+        "10334"
+      ],
+      "answer": "D",
+      "answer_text": "10334",
+      "explanation": "5559 + 4775 = 10334",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 10334"
+      }
+    }
+  ]
+}

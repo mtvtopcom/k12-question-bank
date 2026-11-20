@@ -1,0 +1,104 @@
+{
+  "id": "小班_math_图形配对与分类",
+  "grade": "小班",
+  "subject": "math",
+  "topic": "图形配对与分类",
+  "chapter": "感知图形",
+  "practice": [
+    {
+      "id": "017f8f86d86b3c5311a7",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "8 × 3 = ?",
+      "options": [
+        "16",
+        "11",
+        "24",
+        "32"
+      ],
+      "answer": "C",
+      "answer_text": "24",
+      "explanation": "8 × 3 = 24",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 24"
+      }
+    },
+    {
+      "id": "345ab10b16d884a92f0d",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "书架上有6383本书，又放上470本，共有多少本书？",
+      "options": [
+        "6853",
+        "6383",
+        "470",
+        "6858"
+      ],
+      "answer": "A",
+      "answer_text": "6853",
+      "explanation": "6383 + 470 = 6853",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 6853"
+      }
+    },
+    {
+      "id": "5cfe68ee70cefc3f30b6",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "停车场原有5468辆车，开来了18140辆，现有多少辆车？",
+      "options": [
+        "23612",
+        "23608",
+        "18140",
+        "5468"
+      ],
+      "answer": "B",
+      "answer_text": "23608",
+      "explanation": "5468 + 18140 = 23608",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 23608"
+      }
+    },
+    {
+      "id": "7af3de02445ab96114a0",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "小明有17171个苹果，又买了13967个，现在一共有多少个苹果？",
+      "options": [
+        "17171",
+        "13967",
+        "31138",
+        "31139"
+      ],
+      "answer": "C",
+      "answer_text": "31138",
+      "explanation": "17171 + 13967 = 31138",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 31138"
+      }
+    },
+    {
+      "id": "cb472334b6adaa195d68",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "商店运来17060箱牛奶，下午又运来5757箱，全天共运来多少箱？",
+      "options": [
+        "17060",
+        "5757",
+        "22821",
+        "22817"
+      ],
+      "answer": "D",
+      "answer_text": "22817",
+      "explanation": "17060 + 5757 = 22817",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 22817"
+      }
+    }
+  ]
+}

@@ -1,0 +1,351 @@
+{
+  "id": "六年级上_数学_计算：数学广角",
+  "grade": "六年级上",
+  "subject": "数学",
+  "topic": "计算：数学广角",
+  "chapter": "计算",
+  "practice": [
+    {
+      "id": "128ffae2e099ecae4240",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "12292 - 734 = ?",
+      "options": [
+        "11558",
+        "13026",
+        "11567",
+        "11556"
+      ],
+      "answer": "A",
+      "answer_text": "11558",
+      "explanation": "12292 - 734 = 11558",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 11558"
+      }
+    },
+    {
+      "id": "3198b9c4d689c182506f",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "6 × 12 = ?",
+      "options": [
+        "78",
+        "18",
+        "66",
+        "72"
+      ],
+      "answer": "D",
+      "answer_text": "72",
+      "explanation": "6 × 12 = 72",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 72"
+      }
+    },
+    {
+      "id": "60dd28b90209a970e96d",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "11 × 5 = ?",
+      "options": [
+        "16",
+        "44",
+        "55",
+        "66"
+      ],
+      "answer": "C",
+      "answer_text": "55",
+      "explanation": "11 × 5 = 55",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 55"
+      }
+    },
+    {
+      "id": "65385922ed4c08946346",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "商店运来17851箱牛奶，下午又运来14379箱，全天共运来多少箱？",
+      "options": [
+        "17851",
+        "32230",
+        "14379",
+        "32236"
+      ],
+      "answer": "B",
+      "answer_text": "32230",
+      "explanation": "17851 + 14379 = 32230",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 32230"
+      }
+    },
+    {
+      "id": "658b840443914c517e90",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "书架上有14769本书，又放上7401本，共有多少本书？",
+      "options": [
+        "14769",
+        "22177",
+        "7401",
+        "22170"
+      ],
+      "answer": "D",
+      "answer_text": "22170",
+      "explanation": "14769 + 7401 = 22170",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 22170"
+      }
+    },
+    {
+      "id": "7f10f562de2838807eef",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "5 × 9 = ?",
+      "options": [
+        "14",
+        "40",
+        "50",
+        "45"
+      ],
+      "answer": "D",
+      "answer_text": "45",
+      "explanation": "5 × 9 = 45",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 45"
+      }
+    },
+    {
+      "id": "9655d02b2f1d6cdcfdf7",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "19455 + 17920 = ?",
+      "options": [
+        "37383",
+        "37375",
+        "1535",
+        "37373"
+      ],
+      "answer": "B",
+      "answer_text": "37375",
+      "explanation": "19455 + 17920 = 37375",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 37375"
+      }
+    },
+    {
+      "id": "a7bf5e1b2ac18632f824",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "15284 - 13230 = ?",
+      "options": [
+        "28514",
+        "2055",
+        "2054",
+        "2053"
+      ],
+      "answer": "C",
+      "answer_text": "2054",
+      "explanation": "15284 - 13230 = 2054",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 2054"
+      }
+    },
+    {
+      "id": "a88c4e96e154b1b8c890",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "商店运来687箱牛奶，下午又运来13788箱，全天共运来多少箱？",
+      "options": [
+        "687",
+        "14475",
+        "14483",
+        "13788"
+      ],
+      "answer": "B",
+      "answer_text": "14475",
+      "explanation": "687 + 13788 = 14475",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 14475"
+      }
+    },
+    {
+      "id": "b1d96ae50447fd7996b8",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "商店运来3282箱牛奶，下午又运来15222箱，全天共运来多少箱？",
+      "options": [
+        "18504",
+        "3282",
+        "18506",
+        "15222"
+      ],
+      "answer": "A",
+      "answer_text": "18504",
+      "explanation": "3282 + 15222 = 18504",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 18504"
+      }
+    },
+    {
+      "id": "ba2f40cecff4caa3a381",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "17439 + 2798 = ?",
+      "options": [
+        "20235",
+        "20237",
+        "14641",
+        "20243"
+      ],
+      "answer": "B",
+      "answer_text": "20237",
+      "explanation": "17439 + 2798 = 20237",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 20237"
+      }
+    },
+    {
+      "id": "ca9db8294c318d29b066",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "商店运来7620箱牛奶，下午又运来18648箱，全天共运来多少箱？",
+      "options": [
+        "26273",
+        "26268",
+        "18648",
+        "7620"
+      ],
+      "answer": "B",
+      "answer_text": "26268",
+      "explanation": "7620 + 18648 = 26268",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 26268"
+      }
+    },
+    {
+      "id": "d5641e17d7c90f7b980b",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "计算 6/6 + 4/4 的结果是？",
+      "options": [
+        "3/1",
+        "3/2",
+        "2/1",
+        "5/2"
+      ],
+      "answer": "C",
+      "answer_text": "2/1",
+      "explanation": "6/6 + 4/4 = 2/1",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 2/1"
+      }
+    },
+    {
+      "id": "d7b76801f86a8160ca34",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "小明有10517个苹果，又买了6004个，现在一共有多少个苹果？",
+      "options": [
+        "16521",
+        "16529",
+        "6004",
+        "10517"
+      ],
+      "answer": "A",
+      "answer_text": "16521",
+      "explanation": "10517 + 6004 = 16521",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 16521"
+      }
+    },
+    {
+      "id": "e383b28e37b1f0ab18a3",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "14754 - 12015 = ?",
+      "options": [
+        "2733",
+        "2739",
+        "2745",
+        "26769"
+      ],
+      "answer": "B",
+      "answer_text": "2739",
+      "explanation": "14754 - 12015 = 2739",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 2739"
+      }
+    },
+    {
+      "id": "e3cbcbbd35321a31c197",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "书架上有18685本书，又放上18951本，共有多少本书？",
+      "options": [
+        "18951",
+        "37639",
+        "18685",
+        "37636"
+      ],
+      "answer": "D",
+      "answer_text": "37636",
+      "explanation": "18685 + 18951 = 37636",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 37636"
+      }
+    },
+    {
+      "id": "ee3af9c9ef997dca02d5",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "5 × 10 = ?",
+      "options": [
+        "50",
+        "55",
+        "45",
+        "15"
+      ],
+      "answer": "A",
+      "answer_text": "50",
+      "explanation": "5 × 10 = 50",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 50"
+      }
+    },
+    {
+      "id": "f191b50d3266a811d97b",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "8282 - 6813 = ?",
+      "options": [
+        "1469",
+        "1465",
+        "15095",
+        "1478"
+      ],
+      "answer": "A",
+      "answer_text": "1469",
+      "explanation": "8282 - 6813 = 1469",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 1469"
+      }
+    }
+  ]
+}

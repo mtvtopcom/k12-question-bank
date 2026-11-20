@@ -1,0 +1,408 @@
+{
+  "id": "六年级上_数学_百分数(一)",
+  "grade": "六年级上",
+  "subject": "数学",
+  "topic": "百分数(一)",
+  "chapter": "",
+  "practice": [
+    {
+      "id": "08db608f78bce7401ecc",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 7/9 + 2/7 的结果是？",
+      "options": [
+        "130/63",
+        "67/63",
+        "197/126",
+        "71/126"
+      ],
+      "answer": "B",
+      "answer_text": "67/63",
+      "explanation": "7/9 + 2/7 = 67/63",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 67/63"
+      }
+    },
+    {
+      "id": "38490973d2e1853b6721",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "500 的 75% 是多少？",
+      "options": [
+        "375",
+        "750",
+        "125",
+        "75"
+      ],
+      "answer": "A",
+      "answer_text": "375",
+      "explanation": "500 × 75% = 500 × 0.75 = 375",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 375"
+      }
+    },
+    {
+      "id": "3d5559aadd100db62677",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "400 的 75% 是多少？",
+      "options": [
+        "75",
+        "300",
+        "600",
+        "100"
+      ],
+      "answer": "B",
+      "answer_text": "300",
+      "explanation": "400 × 75% = 400 × 0.75 = 300",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 300"
+      }
+    },
+    {
+      "id": "56644d83bf6deb09c10a",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "400 的 40% 是多少？",
+      "options": [
+        "160",
+        "240",
+        "320",
+        "40"
+      ],
+      "answer": "A",
+      "answer_text": "160",
+      "explanation": "400 × 40% = 400 × 0.4 = 160",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 160"
+      }
+    },
+    {
+      "id": "61fa6c65ee1c6020134a",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "100 的 25% 是多少？",
+      "options": [
+        "75",
+        "4",
+        "25",
+        "50"
+      ],
+      "answer": "C",
+      "answer_text": "25",
+      "explanation": "100 × 25% = 100 × 0.25 = 25",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 25"
+      }
+    },
+    {
+      "id": "64fe130a0abb3b55bdc3",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "100 的 40% 是多少？",
+      "options": [
+        "40",
+        "60",
+        "80",
+        "2"
+      ],
+      "answer": "A",
+      "answer_text": "40",
+      "explanation": "100 × 40% = 100 × 0.4 = 40",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 40"
+      }
+    },
+    {
+      "id": "83f16cf30b7d931d6f8c",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "19424 - 2116 = ?",
+      "options": [
+        "17308",
+        "17313",
+        "21540",
+        "17301"
+      ],
+      "answer": "A",
+      "answer_text": "17308",
+      "explanation": "19424 - 2116 = 17308",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 17308"
+      }
+    },
+    {
+      "id": "8c70e86073b0a5865214",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "500 的 40% 是多少？",
+      "options": [
+        "300",
+        "40",
+        "400",
+        "200"
+      ],
+      "answer": "D",
+      "answer_text": "200",
+      "explanation": "500 × 40% = 500 × 0.4 = 200",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 200"
+      }
+    },
+    {
+      "id": "95eb88d92949d1154b82",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "400 的 30% 是多少？",
+      "options": [
+        "30",
+        "120",
+        "240",
+        "280"
+      ],
+      "answer": "B",
+      "answer_text": "120",
+      "explanation": "400 × 30% = 400 × 0.3 = 120",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 120"
+      }
+    },
+    {
+      "id": "a15fc9b983f2aa40027a",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "400 的 80% 是多少？",
+      "options": [
+        "640",
+        "5",
+        "320",
+        "80"
+      ],
+      "answer": "C",
+      "answer_text": "320",
+      "explanation": "400 × 80% = 400 × 0.8 = 320",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 320"
+      }
+    },
+    {
+      "id": "a7b457cca48559378101",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "400 的 60% 是多少？",
+      "options": [
+        "480",
+        "240",
+        "60",
+        "160"
+      ],
+      "answer": "B",
+      "answer_text": "240",
+      "explanation": "400 × 60% = 400 × 0.6 = 240",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 240"
+      }
+    },
+    {
+      "id": "ab6835d324ea9b7f7e33",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "250 的 10% 是多少？",
+      "options": [
+        "50",
+        "25",
+        "225",
+        "10"
+      ],
+      "answer": "B",
+      "answer_text": "25",
+      "explanation": "250 × 10% = 250 × 0.1 = 25",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 25"
+      }
+    },
+    {
+      "id": "adf4a8faeeb29befdbb5",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "200 的 80% 是多少？",
+      "options": [
+        "80",
+        "160",
+        "40",
+        "320"
+      ],
+      "answer": "B",
+      "answer_text": "160",
+      "explanation": "200 × 80% = 200 × 0.8 = 160",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 160"
+      }
+    },
+    {
+      "id": "ae119576d664942cc4e9",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "400 的 25% 是多少？",
+      "options": [
+        "25",
+        "100",
+        "200",
+        "300"
+      ],
+      "answer": "B",
+      "answer_text": "100",
+      "explanation": "400 × 25% = 400 × 0.25 = 100",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 100"
+      }
+    },
+    {
+      "id": "b8c57bd172d36cf04321",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "400 的 50% 是多少？",
+      "options": [
+        "50",
+        "200",
+        "400",
+        "8"
+      ],
+      "answer": "B",
+      "answer_text": "200",
+      "explanation": "400 × 50% = 400 × 0.5 = 200",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 200"
+      }
+    },
+    {
+      "id": "c29a292bf5b7cb5cc85c",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "100 的 80% 是多少？",
+      "options": [
+        "160",
+        "80",
+        "20",
+        "1"
+      ],
+      "answer": "B",
+      "answer_text": "80",
+      "explanation": "100 × 80% = 100 × 0.8 = 80",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 80"
+      }
+    },
+    {
+      "id": "cfa2c813d44f8b3e3b5f",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "400 的 20% 是多少？",
+      "options": [
+        "20",
+        "320",
+        "80",
+        "160"
+      ],
+      "answer": "C",
+      "answer_text": "80",
+      "explanation": "400 × 20% = 400 × 0.2 = 80",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 80"
+      }
+    },
+    {
+      "id": "d4c9d354240435ee9420",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "250 的 75% 是多少？",
+      "options": [
+        "187",
+        "374",
+        "63",
+        "75"
+      ],
+      "answer": "A",
+      "answer_text": "187",
+      "explanation": "250 × 75% = 250 × 0.75 = 187",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 187"
+      }
+    },
+    {
+      "id": "d97f854337ca802bfcb0",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "500 的 60% 是多少？",
+      "options": [
+        "60",
+        "200",
+        "300",
+        "600"
+      ],
+      "answer": "C",
+      "answer_text": "300",
+      "explanation": "500 × 60% = 500 × 0.6 = 300",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 300"
+      }
+    },
+    {
+      "id": "f23a5b7e6bb15bcf4ade",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "100 的 20% 是多少？",
+      "options": [
+        "40",
+        "20",
+        "5",
+        "80"
+      ],
+      "answer": "B",
+      "answer_text": "20",
+      "explanation": "100 × 20% = 100 × 0.2 = 20",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 20"
+      }
+    },
+    {
+      "id": "f30fa2b2b4ac5c2e389e",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "200 的 40% 是多少？",
+      "options": [
+        "120",
+        "160",
+        "80",
+        "40"
+      ],
+      "answer": "C",
+      "answer_text": "80",
+      "explanation": "200 × 40% = 200 × 0.4 = 80",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 80"
+      }
+    }
+  ]
+}

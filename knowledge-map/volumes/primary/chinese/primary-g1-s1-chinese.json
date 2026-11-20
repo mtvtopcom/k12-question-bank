@@ -1,0 +1,12 @@
+{
+  "volume_id": "primary-g1-s1-chinese",
+  "title": "g1语文上册",
+  "stage": "primary",
+  "grade": "g1",
+  "term": "s1",
+  "subject": "chinese",
+  "school_stage": "S1",
+  "status": "todo",
+  "source_basis": "",
+  "knowledge_points": []
+}

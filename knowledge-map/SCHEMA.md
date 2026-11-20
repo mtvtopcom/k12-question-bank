@@ -1,0 +1,87 @@
+# 知识点字段规范（SCHEMA）
+
+每个册次文件 `volumes/<stage>/<subject>/<volume_id>.json` 的结构如下。
+这是 WorkBuddy 逐册梳理时必须遵守的"合同"，校验工具会按此检查。
+
+## 册文件结构
+
+```json
+{
+  "volume_id": "primary-g1-s1-math",
+  "title": "一年级上册数学",
+  "stage": "primary",
+  "grade": "g1",
+  "term": "s1",
+  "subject": "math",
+  "school_stage": "S1",
+  "status": "done",
+  "source_basis": "人教版一年级上册数学教材目录；2022版数学课标第一学段",
+  "knowledge_points": [ /* 知识点数组，见下 */ ]
+}
+```
+
+`status`: `todo` / `doing` / `done`。梳理完成改为 `done`。
+
+## 知识点（knowledge_point）字段
+
+```json
+{
+  "id": "primary-g1-s1-math-K001",
+  "index": 1,
+  "domain": "数与代数",
+  "theme": "数与运算",
+  "unit": "准备课",
+  "name": "1-10各数的认识",
+  "objective": "能正确认、读、写1-10各数，理解数的基数含义",
+  "difficulty": 1,
+  "bloom": "记忆",
+  "prerequisites": [],
+  "concept": "数是表示数量的符号；1-10每个数对应相应数量的物体",
+  "common_mistakes": ["把6和9写反", "数数时漏数或重复"],
+  "suggested_types": ["识别", "数数", "选择"],
+  "grade_range": ["g1"],
+  "source": "人教版一上数学 P2-16",
+  "engine_hint": "template"
+}
+```
+
+### 字段说明
+
+| 字段 | 必填 | 说明 |
+|---|---|---|
+| `id` | ✅ | 稳定ID = `{volume_id}-K{3位序号}`，如 `primary-g1-s1-math-K001` |
+| `index` | ✅ | 册内序号，从 1 递增 |
+| `domain` | ✅ | 必须取自 standards.json 对应学科的 domains.items（见下方"领域取值"） |
+| `theme` | ⭕ | 课标主题；数学取自 themes_by_stage，语文填任务群，英语填要素/主题范畴 |
+| `unit` | ✅ | 教材单元名（如"认识图形（一）""汉语拼音"） |
+| `name` | ✅ | 知识点名称，最小颗粒度，一个点只讲一件事 |
+| `objective` | ✅ | 学习目标，动词开头，可观测（能说出/能计算/能区分…） |
+| `difficulty` | ✅ | 1基础识记 / 2理解应用 / 3分析综合 / 4挑战探究 |
+| `bloom` | ✅ | 记忆/理解/应用/分析/评价/创造 |
+| `prerequisites` | ✅ | 前置知识点ID数组，跨册引用（如 `["primary-g1-s1-math-K001"]`），无则 `[]` |
+| `concept` | ✅ | 核心概念，1-3句话，自己的话表述 |
+| `common_mistakes` | ✅ | 常见易错点，1-3条 |
+| `suggested_types` | ✅ | 建议出题类型 |
+| `grade_range` | ✅ | 适用年级数组 |
+| `source` | ✅ | 权威来源：教材版本+页码 或 课标条款 |
+| `engine_hint` | ✅ | `template`（规则可枚举）/ `llm`（需语义理解），生成阶段据此分流 |
+
+## 领域取值（domain 合法值）
+
+- **数学**：`数与代数` / `图形与几何` / `统计与概率` / `综合与实践`
+- **语文**：`语言文字积累与梳理` / `实用性阅读与交流` / `文学阅读与创意表达` / `思辨性阅读与表达` / `整本书阅读` / `跨学科学习`
+- **英语**：`主题` / `语篇` / `语言知识` / `文化知识` / `语言技能` / `学习策略`
+- **幼儿园**：可填 `健康` / `语言` / `社会` / `科学` / `艺术`（《指南》五大领域），或对应学科的启蒙领域
+
+## 颗粒度标准
+
+- 一个知识点 = 一节课能讲清、能独立出题的最小单元
+- 太粗 ❌：「分数」→ 拆成「分数的意义」「分数与除法」「真分数与假分数」「分数的基本性质」…
+- 太细 ❌：「2加3等于5」→ 这属于题目，不是知识点
+- 每册知识点数量参考 standards.json 的 `recommended_kp_per_volume`（幼儿园10-14 / 小学16-22 / 初中20-26）
+
+## 先修关系（prerequisites）
+
+- 只引用真实存在的知识点ID，跨册也可以
+- 组内基础知识点 prerequisites 通常为 `[]`
+- 递进知识点引用本册或前册的前置点，形成知识链

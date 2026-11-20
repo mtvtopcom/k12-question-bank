@@ -1,0 +1,12 @@
+{
+  "volume_id": "primary-g3-s1-math",
+  "title": "g3数学上册",
+  "stage": "primary",
+  "grade": "g3",
+  "term": "s1",
+  "subject": "math",
+  "school_stage": "S2",
+  "status": "todo",
+  "source_basis": "",
+  "knowledge_points": []
+}

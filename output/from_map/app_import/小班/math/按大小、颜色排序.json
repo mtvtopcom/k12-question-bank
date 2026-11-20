@@ -1,0 +1,123 @@
+{
+  "id": "小班_math_按大小、颜色排序",
+  "grade": "小班",
+  "subject": "math",
+  "topic": "按大小、颜色排序",
+  "chapter": "感知大小多少",
+  "practice": [
+    {
+      "id": "046d9ff5ef1f95dbb006",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "6746 - 5371 = ?",
+      "options": [
+        "1377",
+        "1375",
+        "1372",
+        "12117"
+      ],
+      "answer": "B",
+      "answer_text": "1375",
+      "explanation": "6746 - 5371 = 1375",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 1375"
+      }
+    },
+    {
+      "id": "8a8b912d7dee039a6d6c",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "3 × 5 = ?",
+      "options": [
+        "8",
+        "15",
+        "12",
+        "18"
+      ],
+      "answer": "B",
+      "answer_text": "15",
+      "explanation": "3 × 5 = 15",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 15"
+      }
+    },
+    {
+      "id": "977acc4a07ec2e2d7260",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "6022 + 1731 = ?",
+      "options": [
+        "4291",
+        "7754",
+        "7753",
+        "7750"
+      ],
+      "answer": "C",
+      "answer_text": "7753",
+      "explanation": "6022 + 1731 = 7753",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 7753"
+      }
+    },
+    {
+      "id": "beddbec5e935337de348",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "8 × 8 = ?",
+      "options": [
+        "16",
+        "56",
+        "72",
+        "64"
+      ],
+      "answer": "D",
+      "answer_text": "64",
+      "explanation": "8 × 8 = 64",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 64"
+      }
+    },
+    {
+      "id": "f7d263cb5ec697eb5613",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "6 × 11 = ?",
+      "options": [
+        "72",
+        "66",
+        "60",
+        "17"
+      ],
+      "answer": "B",
+      "answer_text": "66",
+      "explanation": "6 × 11 = 66",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 66"
+      }
+    },
+    {
+      "id": "fcb98c20d873f8bb457b",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "书架上有5248本书，又放上13941本，共有多少本书？",
+      "options": [
+        "13941",
+        "5248",
+        "19190",
+        "19189"
+      ],
+      "answer": "D",
+      "answer_text": "19189",
+      "explanation": "5248 + 13941 = 19189",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 19189"
+      }
+    }
+  ]
+}

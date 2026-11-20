@@ -1,0 +1,370 @@
+{
+  "id": "六年级上_数学_位置与方向",
+  "grade": "六年级上",
+  "subject": "数学",
+  "topic": "位置与方向",
+  "chapter": "",
+  "practice": [
+    {
+      "id": "05a928148b65e69eb43f",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "解方程：5x + 10 = 85，x 等于多少？",
+      "options": [
+        "85",
+        "16",
+        "15",
+        "14"
+      ],
+      "answer": "C",
+      "answer_text": "15",
+      "explanation": "5x = 85 - 10 = 75，所以 x = 15",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 15"
+      }
+    },
+    {
+      "id": "23091534a737d9ee18e1",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 9/7 - 4/7 的结果是？",
+      "options": [
+        "3/14",
+        "12/7",
+        "17/14",
+        "5/7"
+      ],
+      "answer": "D",
+      "answer_text": "5/7",
+      "explanation": "9/7 - 4/7 = 5/7",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 5/7"
+      }
+    },
+    {
+      "id": "3402e572f7d020b48659",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "小明有10944个苹果，又买了8958个，现在一共有多少个苹果？",
+      "options": [
+        "8958",
+        "19908",
+        "10944",
+        "19902"
+      ],
+      "answer": "D",
+      "answer_text": "19902",
+      "explanation": "10944 + 8958 = 19902",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 19902"
+      }
+    },
+    {
+      "id": "3c8aa58efac7344f7c40",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "250 的 20% 是多少？",
+      "options": [
+        "100",
+        "50",
+        "20",
+        "200"
+      ],
+      "answer": "B",
+      "answer_text": "50",
+      "explanation": "250 × 20% = 250 × 0.2 = 50",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 50"
+      }
+    },
+    {
+      "id": "7129fdee7f95bf6e2925",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "计算 4/2 + 5/7 的结果是？",
+      "options": [
+        "45/14",
+        "26/7",
+        "19/7",
+        "31/14"
+      ],
+      "answer": "C",
+      "answer_text": "19/7",
+      "explanation": "4/2 + 5/7 = 19/7",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 19/7"
+      }
+    },
+    {
+      "id": "7fce85d6f68bc5308146",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "解方程：7x + 8 = 85，x 等于多少？",
+      "options": [
+        "12",
+        "85",
+        "11",
+        "10"
+      ],
+      "answer": "C",
+      "answer_text": "11",
+      "explanation": "7x = 85 - 8 = 77，所以 x = 11",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 11"
+      }
+    },
+    {
+      "id": "7fd5303b0b05308e6625",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "一个长方形长 5 厘米、宽 14 厘米，面积是多少平方厘米？",
+      "options": [
+        "38平方厘米",
+        "19平方厘米",
+        "140平方厘米",
+        "70平方厘米"
+      ],
+      "answer": "D",
+      "answer_text": "70平方厘米",
+      "explanation": "长方形面积 = 长 × 宽 = 5 × 14 = 70 平方厘米",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 70平方厘米"
+      }
+    },
+    {
+      "id": "968a1d138aa5c6d7b1de",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "解方程：4x + 5 = 49，x 等于多少？",
+      "options": [
+        "11",
+        "10",
+        "49",
+        "12"
+      ],
+      "answer": "A",
+      "answer_text": "11",
+      "explanation": "4x = 49 - 5 = 44，所以 x = 11",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 11"
+      }
+    },
+    {
+      "id": "a3fb32a2da1c49ca8586",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "计算 1/4 - 1/7 的结果是？",
+      "options": [
+        "11/28",
+        "31/28",
+        "3/28",
+        "17/28"
+      ],
+      "answer": "C",
+      "answer_text": "3/28",
+      "explanation": "1/4 - 1/7 = 3/28",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 3/28"
+      }
+    },
+    {
+      "id": "a6e842aa86edf37628a4",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "4071 - 690 = ?",
+      "options": [
+        "3381",
+        "4761",
+        "3382",
+        "3378"
+      ],
+      "answer": "A",
+      "answer_text": "3381",
+      "explanation": "4071 - 690 = 3381",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 3381"
+      }
+    },
+    {
+      "id": "be6f432cb3803a8a3904",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "18975 + 5070 = ?",
+      "options": [
+        "24042",
+        "24045",
+        "24052",
+        "13905"
+      ],
+      "answer": "B",
+      "answer_text": "24045",
+      "explanation": "18975 + 5070 = 24045",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 24045"
+      }
+    },
+    {
+      "id": "cbdec5af3c11fc23a6f5",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "计算 5/4 - 9/3 的结果是？",
+      "options": [
+        "-5/4",
+        "-7/4",
+        "-3/4",
+        "9/4"
+      ],
+      "answer": "B",
+      "answer_text": "-7/4",
+      "explanation": "5/4 - 9/3 = -7/4",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. -7/4"
+      }
+    },
+    {
+      "id": "cc3cb1655751d036b40f",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "书架上有7908本书，又放上15212本，共有多少本书？",
+      "options": [
+        "23120",
+        "23128",
+        "15212",
+        "7908"
+      ],
+      "answer": "A",
+      "answer_text": "23120",
+      "explanation": "7908 + 15212 = 23120",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 A. 23120"
+      }
+    },
+    {
+      "id": "ccd62755b8284ee67f98",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "解方程：6x + 2 = 44，x 等于多少？",
+      "options": [
+        "8",
+        "6",
+        "7",
+        "44"
+      ],
+      "answer": "C",
+      "answer_text": "7",
+      "explanation": "6x = 44 - 2 = 42，所以 x = 7",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 7"
+      }
+    },
+    {
+      "id": "d03733a76b952c963f85",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "250 的 40% 是多少？",
+      "options": [
+        "200",
+        "40",
+        "100",
+        "150"
+      ],
+      "answer": "C",
+      "answer_text": "100",
+      "explanation": "250 × 40% = 250 × 0.4 = 100",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 100"
+      }
+    },
+    {
+      "id": "eb64976e54576203d1ed",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "解方程：7x + 8 = 71，x 等于多少？",
+      "options": [
+        "10",
+        "8",
+        "9",
+        "71"
+      ],
+      "answer": "C",
+      "answer_text": "9",
+      "explanation": "7x = 71 - 8 = 63，所以 x = 9",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 9"
+      }
+    },
+    {
+      "id": "ebb4a7175ad6ac98363e",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "100 的 60% 是多少？",
+      "options": [
+        "120",
+        "40",
+        "60",
+        "1"
+      ],
+      "answer": "C",
+      "answer_text": "60",
+      "explanation": "100 × 60% = 100 × 0.6 = 60",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 C. 60"
+      }
+    },
+    {
+      "id": "f1c38a48eeabe849dfc0",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "计算 6/5 - 6/8 的结果是？",
+      "options": [
+        "1/20",
+        "9/20",
+        "19/20",
+        "29/20"
+      ],
+      "answer": "B",
+      "answer_text": "9/20",
+      "explanation": "6/5 - 6/8 = 9/20",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 B. 9/20"
+      }
+    },
+    {
+      "id": "f227f378bedac6a51380",
+      "type": "multiple_choice",
+      "difficulty": 1,
+      "question": "7760 + 6781 = ?",
+      "options": [
+        "14543",
+        "14534",
+        "979",
+        "14541"
+      ],
+      "answer": "D",
+      "answer_text": "14541",
+      "explanation": "7760 + 6781 = 14541",
+      "feedback": {
+        "correct": "回答正确，继续保持！",
+        "incorrect": "再想想，正确答案是 D. 14541"
+      }
+    }
+  ]
+}
