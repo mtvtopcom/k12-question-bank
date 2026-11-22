@@ -1,12 +1,361 @@
 {
   "volume_id": "kg-k3-full-chinese",
-  "title": "大班语文全年",
+  "title": "大班语文全年（语言领域）",
   "stage": "kg",
   "grade": "k3",
   "term": "full",
   "subject": "chinese",
   "school_stage": "S0",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "《3-6岁儿童学习与发展指南》语言领域（大班目标）；《关于大力推进幼儿园与小学科学衔接的指导意见》",
+  "knowledge_points": [
+    {
+      "id": "kg-k3-full-chinese-K001",
+      "index": 1,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "倾听",
+      "name": "倾听中抓住关键信息",
+      "objective": "能在集体谈话中听出他人表达的主要意思，并作出相关回应",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k2-full-chinese-K001"
+      ],
+      "concept": "大班倾听的发展点是「抓要点」与「有回应」；可通过「复述同伴说了什么」的游戏加以训练",
+      "common_mistakes": [
+        "只关注自己要说的话",
+        "回应与对方话题无关"
+      ],
+      "suggested_types": [
+        "倾听",
+        "复述",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》语言·倾听（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-chinese-K002",
+      "index": 2,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "表达",
+      "name": "完整、有条理地讲述见闻",
+      "objective": "能按时间或因果顺序完整讲述一件事，语言基本连贯",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k2-full-chinese-K002"
+      ],
+      "concept": "大班讲述应具备「开头—经过—结尾」的完整结构，并开始使用「因为」「后来」等连接词",
+      "common_mistakes": [
+        "顺序颠倒",
+        "缺少连接词导致跳跃"
+      ],
+      "suggested_types": [
+        "讲述",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》语言·表达（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-chinese-K003",
+      "index": 3,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "词汇",
+      "name": "近义词辨析与量词的正确使用",
+      "objective": "能区分常见近义词的细微差别，正确使用常见量词",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k2-full-chinese-K003"
+      ],
+      "concept": "近义词差异在程度与用法（看/瞧/望、高兴/兴奋）；量词须与名词搭配（一匹马、一朵花、一条鱼）",
+      "common_mistakes": [
+        "量词一律用「个」",
+        "近义词随意替换改变语义"
+      ],
+      "suggested_types": [
+        "辨析",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》语言·词汇（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-chinese-K004",
+      "index": 4,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "创造表达",
+      "name": "故事创编与想象表达",
+      "objective": "能改编或续编故事，说出有情节的想象内容",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "kg-k3-full-chinese-K002"
+      ],
+      "concept": "创编以「如果……会怎样」为起点，成人应接纳幼儿的奇思妙想，不急于纠正「不合常理」之处",
+      "common_mistakes": [
+        "以成人逻辑否定幼儿想象",
+        "创编无情节仅为词语堆砌"
+      ],
+      "suggested_types": [
+        "创编",
+        "讲述",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》语言·文学（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-chinese-K005",
+      "index": 5,
+      "domain": "语言",
+      "theme": "阅读与书写准备",
+      "unit": "语音意识",
+      "name": "汉语拼音的声母韵母感知（不要求书写）",
+      "objective": "能感知汉字的音节结构，分辨声母与韵母的读音，不要求书写拼音",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k2-full-chinese-K005"
+      ],
+      "concept": "拼音感知属于「语音意识」而非拼音教学：通过听辨首音、押韵、拆音节游戏培养，避免提前进行系统的拼音读写训练",
+      "common_mistakes": [
+        "提前进行拼音书写训练",
+        "以拼读正确率作为评价标准"
+      ],
+      "suggested_types": [
+        "听辨",
+        "辨音",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》语言·书写准备（大班）；幼小衔接指导意见",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-chinese-K006",
+      "index": 6,
+      "domain": "语言",
+      "theme": "阅读与书写准备",
+      "unit": "前书写",
+      "name": "正确握笔与书写自己的名字",
+      "objective": "能用正确姿势握笔，能尝试书写自己的名字",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k2-full-chinese-K008"
+      ],
+      "concept": "前书写重点是姿势与运笔，而非字形规范；「三指执笔、一拳一尺一寸」应在日常绘画中自然养成",
+      "common_mistakes": [
+        "握笔姿势错误（拳握）",
+        "过早要求字迹工整"
+      ],
+      "suggested_types": [
+        "操作",
+        "书写",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》语言·书写准备（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-chinese-K007",
+      "index": 7,
+      "domain": "语言",
+      "theme": "阅读与书写准备",
+      "unit": "阅读",
+      "name": "图画书深度阅读：人物与情节分析",
+      "objective": "能分析故事人物的想法与感受，说出情节的前后联系",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k2-full-chinese-K006"
+      ],
+      "concept": "深度阅读的核心是「心理理论」：由人物的行为推测其想法与情绪，理解因果而非仅复述事件",
+      "common_mistakes": [
+        "只记情节不体会人物心理",
+        "以成人立场评判人物"
+      ],
+      "suggested_types": [
+        "分析",
+        "讨论",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》语言·阅读（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-chinese-K008",
+      "index": 8,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "朗诵",
+      "name": "朗诵与当众表达观点",
+      "objective": "能在集体面前清楚朗诵，并说出自己的看法与理由",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k3-full-chinese-K007"
+      ],
+      "concept": "当众表达要「说清楚、有理由」；成人应创造安全的表达氛围，允许不同意见，不急于评判对错",
+      "common_mistakes": [
+        "声音过小听不清",
+        "只有观点没有理由"
+      ],
+      "suggested_types": [
+        "朗诵",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》语言·表达（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-chinese-K009",
+      "index": 9,
+      "domain": "社会",
+      "theme": "社会适应",
+      "unit": "规则与合作",
+      "name": "讨论并共同遵守约定",
+      "objective": "能参与讨论并共同制定规则，愿意遵守集体约定",
+      "difficulty": 3,
+      "bloom": "评价",
+      "prerequisites": [
+        "kg-k2-full-chinese-K009"
+      ],
+      "concept": "「共同制定」比「被动接受」更能形成规则意识；规则应少而明确、可视化呈现、定期回顾修订",
+      "common_mistakes": [
+        "规则由成人单方面制定",
+        "规则过多无法执行"
+      ],
+      "suggested_types": [
+        "讨论",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》社会·社会适应（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-chinese-K010",
+      "index": 10,
+      "domain": "社会",
+      "theme": "社会适应",
+      "unit": "任务意识",
+      "name": "入学准备中的任务意识",
+      "objective": "能记住并完成简单的任务，能对完成任务的情况作简单说明",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k3-full-chinese-K009"
+      ],
+      "concept": "任务意识是幼小衔接的关键素质：从「记住一件事并完成」开始，逐步延长任务周期，避免提前进行学科训练",
+      "common_mistakes": [
+        "任务由成人反复提醒",
+        "任务难度超出幼儿能力"
+      ],
+      "suggested_types": [
+        "执行",
+        "说明",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》社会·社会适应（大班）；幼小衔接指导意见",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-chinese-K011",
+      "index": 11,
+      "domain": "艺术",
+      "theme": "表现与创造",
+      "unit": "戏剧",
+      "name": "童话剧的创编与表演",
+      "objective": "能参与童话剧的角色分配、台词创编与表演",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "kg-k3-full-chinese-K004"
+      ],
+      "concept": "童话剧整合语言、动作、美术与音乐；重点在幼儿的创编与协商过程，而非演出成果的完美",
+      "common_mistakes": [
+        "以成人剧本取代幼儿创编",
+        "反复排练消耗兴趣"
+      ],
+      "suggested_types": [
+        "创编",
+        "表演",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》艺术·表现（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-chinese-K012",
+      "index": 12,
+      "domain": "健康",
+      "theme": "身心状况",
+      "unit": "情绪管理",
+      "name": "表达情绪并寻求帮助",
+      "objective": "能识别自己的情绪变化，用语言表达并主动寻求支持",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k2-full-chinese-K010"
+      ],
+      "concept": "情绪管理包含「识别—表达—调节—求助」四步；成人应先接纳情绪，再与幼儿一起想办法",
+      "common_mistakes": [
+        "压抑情绪不表达",
+        "以奖惩压制负面情绪"
+      ],
+      "suggested_types": [
+        "表达",
+        "情境应对",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》健康·身心状况（大班）",
+      "engine_hint": "template"
+    }
+  ]
 }

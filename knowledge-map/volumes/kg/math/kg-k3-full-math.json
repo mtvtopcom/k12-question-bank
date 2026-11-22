@@ -1,12 +1,419 @@
 {
   "volume_id": "kg-k3-full-math",
-  "title": "大班数学全年",
+  "title": "大班数学全年（数学认知）",
   "stage": "kg",
   "grade": "k3",
   "term": "full",
   "subject": "math",
   "school_stage": "S0",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "《3-6岁儿童学习与发展指南》科学领域·数学认知（大班目标）；《关于大力推进幼儿园与小学科学衔接的指导意见》",
+  "knowledge_points": [
+    {
+      "id": "kg-k3-full-math-K001",
+      "index": 1,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "数概念",
+      "name": "10 以内数的实际意义与倒数",
+      "objective": "理解 10 以内数的实际意义，能顺数、倒数并说出相邻数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k2-full-math-K001"
+      ],
+      "concept": "倒数与相邻数是数序感的标志；「比 7 多 1 是几、少 1 是几」比单纯背诵更有效",
+      "common_mistakes": [
+        "倒数时跳数",
+        "相邻数只记不推"
+      ],
+      "suggested_types": [
+        "数数",
+        "回答",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·数学认知（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K002",
+      "index": 2,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "数运算",
+      "name": "10 以内加减法的情境意义",
+      "objective": "能在生活情境中理解「合起来」「拿走」「还剩」的意义并得出结果，不要求书写算式",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k3-full-math-K001"
+      ],
+      "concept": "大班只要求「情境中的口头运算」，借助实物、手指或数轴思考；不进行竖式与算式书写训练",
+      "common_mistakes": [
+        "提前进行算式书写训练",
+        "脱离情境机械记忆答案"
+      ],
+      "suggested_types": [
+        "情境运算",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·数学认知（大班）；幼小衔接指导意见",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K003",
+      "index": 3,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "形状",
+      "name": "认识球体、正方体、圆柱体",
+      "objective": "能辨认球体、正方体、圆柱体，并说出其滚动或堆叠的特点",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k2-full-math-K002"
+      ],
+      "concept": "立体图形认知从「能不能滚、能不能叠」入手：球体到处滚、正方体只能推、圆柱体一个方向滚",
+      "common_mistakes": [
+        "把正方体与正方形混淆",
+        "只认名称不感知特征"
+      ],
+      "suggested_types": [
+        "辨认",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·数学认知（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K004",
+      "index": 4,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "图形关系",
+      "name": "图形之间的关系与旋转",
+      "objective": "能发现图形经过旋转、翻转后仍是同一图形，能进行图形分合",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k2-full-math-K010"
+      ],
+      "concept": "图形守恒（旋转翻转后形状不变）是空间认知的重要里程碑，可通过七巧板、拼图游戏培养",
+      "common_mistakes": [
+        "认为转个方向就变了图形",
+        "分合时忽略面积不变"
+      ],
+      "suggested_types": [
+        "操作",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·数学认知（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K005",
+      "index": 5,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "量的守恒",
+      "name": "量的守恒初步：长短与多少",
+      "objective": "能理解物体排列方式改变而数量、长度不变",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k2-full-math-K005"
+      ],
+      "concept": "守恒是前运算阶段向具体运算过渡的标志：把一排积木间距拉大，幼儿若仍说「变多了」，说明尚未获得守恒",
+      "common_mistakes": [
+        "以排列长度判断数量",
+        "以容器形状判断液体多少"
+      ],
+      "suggested_types": [
+        "判断",
+        "解释",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·数学认知（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K006",
+      "index": 6,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "分类",
+      "name": "按多重特征分类与集合",
+      "objective": "能按两个以上特征分类，并理解「整体与部分」的集合关系",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k2-full-math-K004"
+      ],
+      "concept": "集合经验包括「求同」「分类」「包含」；「红花多还是花多」这类问题可检验包含关系理解",
+      "common_mistakes": [
+        "分类标准中途改变",
+        "部分与整体颠倒"
+      ],
+      "suggested_types": [
+        "分类",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·数学认知（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K007",
+      "index": 7,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "模式",
+      "name": "发现并创造规律（ABB、AAB）",
+      "objective": "能发现较复杂的重复规律并自己创造规律",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "kg-k2-full-math-K006"
+      ],
+      "concept": "从「延续他人规律」到「创造自己的规律」是模式能力的高阶表现，可用声音、动作、图形多通道表达",
+      "common_mistakes": [
+        "创造时无稳定单元",
+        "延续中断后无法自纠"
+      ],
+      "suggested_types": [
+        "创造",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·数学认知（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K008",
+      "index": 8,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "空间方位",
+      "name": "认识左右",
+      "objective": "能以自身或他人为中心判断左右",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k2-full-math-K007"
+      ],
+      "concept": "左右是方位认知中最难的，通常 6 岁左右才稳定；先以自身为中心，再过渡到以他人为中心",
+      "common_mistakes": [
+        "左右混淆",
+        "只能以自身为中心判断"
+      ],
+      "suggested_types": [
+        "判断",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·数学认知（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K009",
+      "index": 9,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "时间",
+      "name": "认识整点与半点",
+      "objective": "能看钟表认读整点与半点，初步理解时间的流逝",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k2-full-math-K008"
+      ],
+      "concept": "认识钟表从「长针指 12、短针指几就是几点」开始，半点则长针指 6；重点是与生活作息的对应",
+      "common_mistakes": [
+        "长短针混淆",
+        "半点读成整点"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·数学认知（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K010",
+      "index": 10,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "时间",
+      "name": "星期与月历的初步经验",
+      "objective": "能说出星期顺序，能在月历上找到指定日期",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k3-full-math-K009"
+      ],
+      "concept": "星期与月历把「时序」扩展为「周期」；可用「今天星期几、昨天、明天」的每日播报积累经验",
+      "common_mistakes": [
+        "星期顺序颠倒",
+        "月历上找不到对应格"
+      ],
+      "suggested_types": [
+        "认读",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·数学认知（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K011",
+      "index": 11,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "统计",
+      "name": "简单统计：用图形记录数量",
+      "objective": "能用贴纸、画圈等方式记录并比较数量多少",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k3-full-math-K006"
+      ],
+      "concept": "图形记录是统计的萌芽：用「一个格子一个标记」的方式呈现数据，再比较长短得出多少",
+      "common_mistakes": [
+        "记录与实物不对应",
+        "比较时按格子宽窄判断"
+      ],
+      "suggested_types": [
+        "记录",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·数学认知（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K012",
+      "index": 12,
+      "domain": "健康",
+      "theme": "生活习惯与生活能力",
+      "unit": "生活测量",
+      "name": "测量与比较中的数学经验",
+      "objective": "能用标准与非标准单位测量身高、体重并记录",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k2-full-math-K011"
+      ],
+      "concept": "把测量与「我的成长」结合，既积累测量经验，也建立自我认识；记录可用身高尺、成长册",
+      "common_mistakes": [
+        "测量方法不规范（不从头到脚）",
+        "记录单位缺失"
+      ],
+      "suggested_types": [
+        "测量",
+        "记录",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·数学认知（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K013",
+      "index": 13,
+      "domain": "艺术",
+      "theme": "表现与创造",
+      "unit": "立体建构",
+      "name": "立体建构与空间想象",
+      "objective": "能用积木、纸盒等材料建构立体造型，并说出所用形状",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "kg-k3-full-math-K003"
+      ],
+      "concept": "建构游戏让幼儿在「搭得稳不稳」中体会重心、支撑与空间关系，是几何与工程的启蒙",
+      "common_mistakes": [
+        "只追求高度忽视稳定",
+        "建构后无法描述结构"
+      ],
+      "suggested_types": [
+        "建构",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》艺术·表现（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-math-K014",
+      "index": 14,
+      "domain": "科学",
+      "theme": "科学探究",
+      "unit": "问题解决",
+      "name": "数学游戏中的问题解决与表达",
+      "objective": "能在数学游戏中尝试多种方法解决问题，并说清自己的思路",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "kg-k3-full-math-K012"
+      ],
+      "concept": "「一题多解」与「说清思路」是大班数学思维的核心目标，比算得快更重要",
+      "common_mistakes": [
+        "只求答案不讲过程",
+        "一种方法失败即放弃"
+      ],
+      "suggested_types": [
+        "问题解决",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》科学·科学探究（大班）",
+      "engine_hint": "template"
+    }
+  ]
 }

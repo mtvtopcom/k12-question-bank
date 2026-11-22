@@ -1,12 +1,301 @@
 {
   "volume_id": "kg-k1-full-english",
-  "title": "小班英语全年",
+  "title": "小班英语全年（英语启蒙）",
   "stage": "kg",
   "grade": "k1",
   "term": "full",
   "subject": "english",
   "school_stage": "S0",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "《3-6岁儿童学习与发展指南》语言领域（小班）；幼儿园英语启蒙经验（非学科课程）",
+  "knowledge_points": [
+    {
+      "id": "kg-k1-full-english-K001",
+      "index": 1,
+      "domain": "语言",
+      "theme": "语音意识",
+      "unit": "语音",
+      "name": "听辨英语的节奏与语调",
+      "objective": "愿意听英语，能感受英语与汉语在语音、语调上的不同",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "英语启蒙的第一步是「愿意听」，而非「开口说」；英语的重音节奏与汉语的声调系统差异明显，多听即在学习",
+      "common_mistakes": [
+        "要求立刻跟读造成压力",
+        "用汉语拼音标注英语发音"
+      ],
+      "suggested_types": [
+        "聆听",
+        "辨听",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》语言·倾听（小班）；英语启蒙",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-english-K002",
+      "index": 2,
+      "domain": "语言",
+      "theme": "听说经验",
+      "unit": "问候",
+      "name": "问候语 Hello / Goodbye",
+      "objective": "能在情境中使用 Hello、Goodbye 问候与告别",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-english-K001"
+      ],
+      "concept": "问候语是最自然的英语切入点：每天入园、离园时使用，在真实情境中习得而非课堂教学",
+      "common_mistakes": [
+        "只在课堂上说，生活中不用",
+        "发音含糊不清"
+      ],
+      "suggested_types": [
+        "情境应对",
+        "跟读",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "英语启蒙·日常用语（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-english-K003",
+      "index": 3,
+      "domain": "语言",
+      "theme": "听说经验",
+      "unit": "自我介绍",
+      "name": "自我介绍 I'm ...",
+      "objective": "能用 I'm ... 说出自己的英文名或中文名",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-english-K002"
+      ],
+      "concept": "自我介绍把「我」与英语联结起来，是最有个人意义的表达；不要求语法完整，能说出名字即可",
+      "common_mistakes": [
+        "用 My name 后接名字但漏 is",
+        "不敢在他人面前说"
+      ],
+      "suggested_types": [
+        "表达",
+        "跟读",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "英语启蒙·日常用语（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-english-K004",
+      "index": 4,
+      "domain": "语言",
+      "theme": "词汇经验",
+      "unit": "颜色",
+      "name": "颜色词 red / blue / yellow",
+      "objective": "能听辨并说出 red、blue、yellow 三种颜色",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k1-full-english-K001"
+      ],
+      "concept": "颜色词依托视觉经验最易习得：在涂色、找颜色、分类游戏中反复出现，无需中文翻译",
+      "common_mistakes": [
+        "用中文解释代替直接感知",
+        "三种颜色混淆"
+      ],
+      "suggested_types": [
+        "指认",
+        "命名",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "英语启蒙·词汇（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-english-K005",
+      "index": 5,
+      "domain": "语言",
+      "theme": "词汇经验",
+      "unit": "数字",
+      "name": "数字 one—five",
+      "objective": "能听辨并说出 one 到 five",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k1-full-english-K004"
+      ],
+      "concept": "数字歌与点数游戏是主要途径；小班只要求「听着数、跟着数」，不要求认读数字符号",
+      "common_mistakes": [
+        "要求认读阿拉伯数字",
+        "数与量不对应"
+      ],
+      "suggested_types": [
+        "点数",
+        "跟读",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "英语启蒙·词汇（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-english-K006",
+      "index": 6,
+      "domain": "语言",
+      "theme": "词汇经验",
+      "unit": "动物",
+      "name": "动物词 cat / dog / duck",
+      "objective": "能听辨并说出 cat、dog、duck 等常见动物词",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k1-full-english-K001"
+      ],
+      "concept": "动物词配合叫声与动作最易记忆；「声音+动作+词」三通道输入效果优于单纯重复",
+      "common_mistakes": [
+        "只模仿叫声不说词",
+        "动物词与叫声错配"
+      ],
+      "suggested_types": [
+        "命名",
+        "模仿",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "英语启蒙·词汇（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-english-K007",
+      "index": 7,
+      "domain": "语言",
+      "theme": "词汇经验",
+      "unit": "身体",
+      "name": "身体部位 head / shoulders / knees / toes",
+      "objective": "能跟随歌谣指认 head、shoulders、knees、toes",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k1-full-english-K001"
+      ],
+      "concept": "身体部位歌（Head, Shoulders, Knees and Toes）通过动作记忆，速度变化增加趣味",
+      "common_mistakes": [
+        "指认部位与词不对应",
+        "只跟动作不听词"
+      ],
+      "suggested_types": [
+        "指认",
+        "律动",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "英语启蒙·歌谣（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-english-K008",
+      "index": 8,
+      "domain": "语言",
+      "theme": "语感培养",
+      "unit": "歌谣",
+      "name": "英语儿歌与韵律活动",
+      "objective": "喜欢听英语儿歌，能跟随节奏做动作",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k1-full-english-K001"
+      ],
+      "concept": "儿歌的押韵与节奏是语感的基础；小班以「听+动」为主，不要求完整唱出",
+      "common_mistakes": [
+        "要求完整演唱造成压力",
+        "只放音频无互动"
+      ],
+      "suggested_types": [
+        "律动",
+        "跟唱",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "英语启蒙·歌谣（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-english-K009",
+      "index": 9,
+      "domain": "语言",
+      "theme": "听说经验",
+      "unit": "指令",
+      "name": "简单指令 Sit down / Stand up",
+      "objective": "能听懂并执行 Sit down、Stand up 等简单英语指令",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-english-K001"
+      ],
+      "concept": "全身反应法（TPR）让小班幼儿「用身体听懂英语」，不要求口头回应",
+      "common_mistakes": [
+        "指令过快无示范",
+        "同时给多个指令"
+      ],
+      "suggested_types": [
+        "听指令",
+        "做动作",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "英语启蒙·日常用语（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-english-K010",
+      "index": 10,
+      "domain": "语言",
+      "theme": "阅读准备",
+      "unit": "绘本",
+      "name": "英语绘本共读的兴趣",
+      "objective": "愿意与成人一起看英语绘本，能指认画面中的熟悉形象",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k1-full-english-K008"
+      ],
+      "concept": "英语绘本共读重在「图」而非「字」：先看图讲故事，再听英语，不逐词翻译",
+      "common_mistakes": [
+        "逐词翻译破坏语感",
+        "以识字为目标"
+      ],
+      "suggested_types": [
+        "共读",
+        "指认",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》语言·阅读（小班）；英语启蒙",
+      "engine_hint": "template"
+    }
+  ]
 }

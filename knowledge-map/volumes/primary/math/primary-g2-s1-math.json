@@ -1,12 +1,585 @@
 {
   "volume_id": "primary-g2-s1-math",
-  "title": "g2数学上册",
+  "title": "二年级上册数学",
   "stage": "primary",
   "grade": "g2",
   "term": "s1",
   "subject": "math",
   "school_stage": "S1",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版二年级上册共有内容；2022版数学课标第一学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g2-s1-math-K001",
+      "index": 1,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "长度单位",
+      "name": "厘米的认识与测量",
+      "objective": "认识长度单位厘米，会用尺子测量物体长度",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "厘米是长度单位，用字母cm表示；测量时物体一端要对准尺子的0刻度",
+      "common_mistakes": [
+        "没有从0刻度开始量",
+        "读数时视线不垂直"
+      ],
+      "suggested_types": [
+        "测量",
+        "读数",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·长度单位；北师大二上·测量",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-math-K002",
+      "index": 2,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "长度单位",
+      "name": "米的认识与米、厘米换算",
+      "objective": "认识长度单位米，知道1米=100厘米",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-math-K001"
+      ],
+      "concept": "量较长物体用米（m）；1米=100厘米",
+      "common_mistakes": [
+        "认为1米=10厘米",
+        "单位选择不当"
+      ],
+      "suggested_types": [
+        "换算",
+        "选择",
+        "估计"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·长度单位",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-math-K003",
+      "index": 3,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "长度单位",
+      "name": "估测与选择合适的长度单位",
+      "objective": "能估测物体长度并选择合适的长度单位",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-math-K002"
+      ],
+      "concept": "估测可借助已知长度作参照；单位选择要看物体实际长短",
+      "common_mistakes": [
+        "估测值与实际差距过大",
+        "测量结果不写单位"
+      ],
+      "suggested_types": [
+        "估计",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·长度单位",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-math-K004",
+      "index": 4,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "100以内的加法和减法（二）",
+      "name": "两位数加两位数（进位加）",
+      "objective": "能笔算两位数加两位数的进位加法",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g1-s2-math-K012"
+      ],
+      "concept": "相同数位对齐，从个位加起，个位满十向十位进1",
+      "common_mistakes": [
+        "忘记加进位的1",
+        "数位没有对齐"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·100以内的加法和减法（二）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-math-K005",
+      "index": 5,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "100以内的加法和减法（二）",
+      "name": "两位数减两位数（退位减）",
+      "objective": "能笔算两位数减两位数的退位减法",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-math-K004"
+      ],
+      "concept": "相同数位对齐，从个位减起，个位不够减从十位退1当10",
+      "common_mistakes": [
+        "退位后十位忘记减1",
+        "个位不够减时倒过来减"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·100以内的加法和减法（二）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-math-K006",
+      "index": 6,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "100以内的加法和减法（二）",
+      "name": "连加、连减和加减混合",
+      "objective": "能笔算连加、连减和加减混合式题",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-math-K005"
+      ],
+      "concept": "按从左到右顺序计算，可以写两个竖式，也可以用简便写法",
+      "common_mistakes": [
+        "运算顺序错误",
+        "进位退位遗漏"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·100以内的加法和减法（二）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-math-K007",
+      "index": 7,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "100以内的加法和减法（二）",
+      "name": "求比一个数多（少）几的数",
+      "objective": "能解决求比一个数多几或少几的实际问题",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g2-s1-math-K006"
+      ],
+      "concept": "求比a多b的数用a+b；求比a少b的数用a-b；关键是找准谁是与谁比",
+      "common_mistakes": [
+        "看到多就加、看到少就减而不分析",
+        "把比较的标准量弄反"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·100以内的加法和减法（二）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-math-K008",
+      "index": 8,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "角的初步认识",
+      "name": "角的组成与角的大小",
+      "objective": "认识角的顶点和两条边，理解角的大小与边长无关",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "角由一个顶点和两条边组成；角的大小取决于两边张开的程度，与边的长短无关",
+      "common_mistakes": [
+        "认为边画得越长角越大",
+        "数角时漏数或重复"
+      ],
+      "suggested_types": [
+        "识别",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·角的初步认识；北师大二下·认识角",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-math-K009",
+      "index": 9,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "角的初步认识",
+      "name": "直角、锐角、钝角的辨认",
+      "objective": "能辨认直角、锐角和钝角，会用三角尺比一比",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-math-K008"
+      ],
+      "concept": "直角是90°；比直角小的是锐角，比直角大的是钝角；可用三角尺上的直角去比对",
+      "common_mistakes": [
+        "只凭肉眼判断不比对三角尺",
+        "锐角与钝角混淆"
+      ],
+      "suggested_types": [
+        "识别",
+        "分类",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·角的初步认识",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-math-K010",
+      "index": 10,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "角的初步认识",
+      "name": "用三角尺画角和拼角",
+      "objective": "能用三角尺画直角，并用三角尺拼出不同的角",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-math-K009"
+      ],
+      "concept": "画角先画顶点再画两条边；两块三角尺可以拼出更大的角",
+      "common_mistakes": [
+        "画角时顶点没有对准",
+        "拼角时方向弄错"
+      ],
+      "suggested_types": [
+        "操作",
+        "画图",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·角的初步认识",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-math-K011",
+      "index": 11,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "表内乘法（一）",
+      "name": "乘法的意义：求几个相同加数的和",
+      "objective": "理解乘法是求几个相同加数和的简便运算",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-math-K006"
+      ],
+      "concept": "乘法是相同加数连加的简便写法，如3+3+3+3写成3×4",
+      "common_mistakes": [
+        "把不同加数也写成乘法",
+        "混淆乘数与积"
+      ],
+      "suggested_types": [
+        "理解",
+        "看图列式",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·表内乘法（一）；北师大二上·数一数与乘法",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-math-K012",
+      "index": 12,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "表内乘法（一）",
+      "name": "乘法算式各部分名称与读写",
+      "objective": "知道乘数、积的名称，能正确读写乘法算式",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g2-s1-math-K011"
+      ],
+      "concept": "乘数×乘数=积；算式读作几乘几等于几",
+      "common_mistakes": [
+        "把积说成和",
+        "把乘号写成加号"
+      ],
+      "suggested_types": [
+        "识别",
+        "读写",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·表内乘法（一）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-math-K013",
+      "index": 13,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "表内乘法（一）",
+      "name": "2-6的乘法口诀",
+      "objective": "熟记2-6的乘法口诀，理解口诀的编排规律",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g2-s1-math-K012"
+      ],
+      "concept": "口诀按小数在前、大数在后编排；除相同数相乘外，一句口诀对应两个乘法算式",
+      "common_mistakes": [
+        "口诀顺序颠倒",
+        "漏记或错记口诀"
+      ],
+      "suggested_types": [
+        "记忆",
+        "口算",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·表内乘法（一）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-math-K014",
+      "index": 14,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "表内乘法（一）",
+      "name": "用2-6的乘法口诀求积",
+      "objective": "能用2-6的乘法口诀正确求积",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-math-K013"
+      ],
+      "concept": "一个乘法算式对应一句口诀，用口诀直接得出积",
+      "common_mistakes": [
+        "用错口诀",
+        "积记错"
+      ],
+      "suggested_types": [
+        "计算",
+        "口算",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·表内乘法（一）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-math-K015",
+      "index": 15,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "观察物体（一）",
+      "name": "从不同位置观察物体",
+      "objective": "能辨认从不同位置观察简单物体看到的形状",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "同一物体从不同位置观察，看到的形状可能不同",
+      "common_mistakes": [
+        "认为各位置看到的都一样",
+        "左右视图混淆"
+      ],
+      "suggested_types": [
+        "观察",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·观察物体（一）；北师大三上·观察物体",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-math-K016",
+      "index": 16,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "表内乘法（二）",
+      "name": "7-9的乘法口诀",
+      "objective": "熟记7、8、9的乘法口诀",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g2-s1-math-K014"
+      ],
+      "concept": "7-9的口诀可用相邻口诀推算，如7×8=7×7+7",
+      "common_mistakes": [
+        "口诀之间混淆",
+        "8×9记错"
+      ],
+      "suggested_types": [
+        "记忆",
+        "口算",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·表内乘法（二）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-math-K017",
+      "index": 17,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "表内乘法（二）",
+      "name": "用7-9的乘法口诀解决问题",
+      "objective": "能用乘法解决求几个几的实际问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-math-K016"
+      ],
+      "concept": "求几个相同加数的和用乘法；先判断是不是求几个几",
+      "common_mistakes": [
+        "看到数字就相乘",
+        "单位名称写错"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·表内乘法（二）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-math-K018",
+      "index": 18,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "认识时间",
+      "name": "认识时、分及时分关系",
+      "objective": "认识时间单位时和分，知道1时=60分",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-math-K019"
+      ],
+      "concept": "钟面有12个大格、60个小格；分针走1小格是1分，走1大格是5分；1时=60分",
+      "common_mistakes": [
+        "认为1时=100分",
+        "分针读数错误"
+      ],
+      "suggested_types": [
+        "识别",
+        "换算",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·认识时间；北师大二上·时、分、秒",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-math-K019",
+      "index": 19,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "认识时间",
+      "name": "认读几时几分",
+      "objective": "能正确认读钟面上的几时几分",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-math-K018"
+      ],
+      "concept": "先看时针走过哪个数就是几时，再看分针从12起走过多少小格就是多少分",
+      "common_mistakes": [
+        "时针与分针看反",
+        "接近整点时读错"
+      ],
+      "suggested_types": [
+        "读时间",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·认识时间",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-math-K020",
+      "index": 20,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "数学广角—搭配（一）",
+      "name": "简单的排列与组合",
+      "objective": "能有序地找出简单的排列数和组合数",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [],
+      "concept": "排列与顺序有关，组合与顺序无关；按一定顺序列举才能不重不漏",
+      "common_mistakes": [
+        "列举时遗漏或重复",
+        "分不清排列与组合"
+      ],
+      "suggested_types": [
+        "列举",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二上·数学广角—搭配（一）",
+      "engine_hint": "llm"
+    }
+  ]
 }

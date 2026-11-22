@@ -1,12 +1,707 @@
 {
   "volume_id": "junior-g7-s2-math",
-  "title": "g7数学下册",
+  "title": "七年级下册数学",
   "stage": "junior",
   "grade": "g7",
   "term": "s2",
   "subject": "math",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版七年级下册共有内容；2022版数学课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g7-s2-math-K001",
+      "index": 1,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "相交线与平行线",
+      "name": "邻补角与对顶角",
+      "objective": "理解邻补角、对顶角的概念及性质",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-math-K021"
+      ],
+      "concept": "两条直线相交形成四个角，相邻两角互补，相对两角相等",
+      "common_mistakes": [
+        "邻补角与对顶角混淆",
+        "对顶角相等误用于邻补角"
+      ],
+      "suggested_types": [
+        "计算",
+        "推理",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第五章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K002",
+      "index": 2,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "相交线与平行线",
+      "name": "垂线与点到直线的距离",
+      "objective": "理解垂线的性质与点到直线距离的意义",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s2-math-K001"
+      ],
+      "concept": "过一点有且只有一条直线与已知直线垂直；垂线段最短，其长度即点到直线的距离",
+      "common_mistakes": [
+        "距离指垂线段长度而非垂线段本身",
+        "垂线唯一性条件遗漏"
+      ],
+      "suggested_types": [
+        "理解",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第五章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K003",
+      "index": 3,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "相交线与平行线",
+      "name": "平行线的判定",
+      "objective": "掌握平行线的判定方法并能推理",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-math-K002"
+      ],
+      "concept": "同位角相等、内错角相等、同旁内角互补，都能判定两直线平行",
+      "common_mistakes": [
+        "判定条件与性质混淆",
+        "角的关系识别错"
+      ],
+      "suggested_types": [
+        "推理",
+        "证明",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第五章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K004",
+      "index": 4,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "相交线与平行线",
+      "name": "平行线的性质",
+      "objective": "掌握平行线的性质并能应用",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-math-K003"
+      ],
+      "concept": "两直线平行则同位角相等、内错角相等、同旁内角互补",
+      "common_mistakes": [
+        "把性质当判定使用",
+        "同旁内角互补记成相等"
+      ],
+      "suggested_types": [
+        "推理",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第五章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K005",
+      "index": 5,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "相交线与平行线",
+      "name": "命题与定理",
+      "objective": "能区分命题的条件与结论，判断真假命题",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s2-math-K004"
+      ],
+      "concept": "命题由条件和结论两部分组成；经过推理证实的真命题叫定理",
+      "common_mistakes": [
+        "条件结论颠倒",
+        "把假命题当定理"
+      ],
+      "suggested_types": [
+        "判断",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第五章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K006",
+      "index": 6,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "平移",
+      "name": "平移的性质与作图",
+      "objective": "掌握平移的性质并能作出平移后的图形",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-math-K005"
+      ],
+      "concept": "平移后图形的形状、大小不变，对应点连线平行且相等",
+      "common_mistakes": [
+        "平移距离判断错",
+        "对应点找错"
+      ],
+      "suggested_types": [
+        "作图",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第五章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K007",
+      "index": 7,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "实数",
+      "name": "平方根与算术平方根",
+      "objective": "理解平方根、算术平方根的概念并能求值",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-math-K006"
+      ],
+      "concept": "若x²=a，则x是a的平方根；正数有两个平方根，算术平方根是其中正的一个",
+      "common_mistakes": [
+        "平方根与算术平方根混淆",
+        "负数有平方根"
+      ],
+      "suggested_types": [
+        "计算",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第六章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-math-K008",
+      "index": 8,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "实数",
+      "name": "立方根",
+      "objective": "理解立方根的概念并能求值",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s2-math-K007"
+      ],
+      "concept": "若x³=a，则x是a的立方根；任何数都有唯一的立方根，负数立方根为负",
+      "common_mistakes": [
+        "负数没有立方根",
+        "立方根符号写错"
+      ],
+      "suggested_types": [
+        "计算",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第六章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-math-K009",
+      "index": 9,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "实数",
+      "name": "无理数与实数",
+      "objective": "理解无理数的意义，会对实数分类",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s2-math-K008"
+      ],
+      "concept": "无限不循环小数是无理数；有理数和无理数统称实数，实数与数轴上的点一一对应",
+      "common_mistakes": [
+        "把无限循环小数当无理数",
+        "把 π 的近似值当有理数"
+      ],
+      "suggested_types": [
+        "分类",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第六章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K010",
+      "index": 10,
+      "domain": "图形与几何",
+      "theme": "图形与坐标",
+      "unit": "平面直角坐标系",
+      "name": "平面直角坐标系",
+      "objective": "理解平面直角坐标系，能由点写坐标、由坐标描点",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-math-K002"
+      ],
+      "concept": "平面直角坐标系由两条互相垂直且有公共原点的数轴构成，点的坐标是有序实数对",
+      "common_mistakes": [
+        "横纵坐标顺序颠倒",
+        "各象限符号判断错"
+      ],
+      "suggested_types": [
+        "作图",
+        "读写",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第七章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K011",
+      "index": 11,
+      "domain": "图形与几何",
+      "theme": "图形与坐标",
+      "unit": "平面直角坐标系",
+      "name": "用坐标表示位置与平移",
+      "objective": "能用坐标表示地理位置和点的平移",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-math-K010"
+      ],
+      "concept": "点向右平移横坐标加，向上平移纵坐标加；左右改变横坐标，上下改变纵坐标",
+      "common_mistakes": [
+        "平移方向与坐标变化对应错",
+        "只改一个坐标"
+      ],
+      "suggested_types": [
+        "应用",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第七章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K012",
+      "index": 12,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "二元一次方程组",
+      "name": "二元一次方程组的概念",
+      "objective": "理解二元一次方程（组）及其解的意义",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-math-K013"
+      ],
+      "concept": "含有两个未知数且未知项次数为1的方程叫二元一次方程；两个二元一次方程合起来是方程组",
+      "common_mistakes": [
+        "方程组的解与单个方程的解混淆",
+        "次数判断错"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第八章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K013",
+      "index": 13,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "二元一次方程组",
+      "name": "代入消元法",
+      "objective": "能用代入消元法解二元一次方程组",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-math-K012"
+      ],
+      "concept": "把一个方程中的一个未知数用另一个未知数表示，代入另一方程实现消元",
+      "common_mistakes": [
+        "代入时表达式错误",
+        "回代求另一未知数遗漏"
+      ],
+      "suggested_types": [
+        "解方程",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第八章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-math-K014",
+      "index": 14,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "二元一次方程组",
+      "name": "加减消元法",
+      "objective": "能用加减消元法解二元一次方程组",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-math-K013"
+      ],
+      "concept": "把两个方程相加或相减消去一个未知数，必要时先乘系数使某个未知数系数相同或相反",
+      "common_mistakes": [
+        "系数化同向错误",
+        "加减符号出错"
+      ],
+      "suggested_types": [
+        "解方程",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第八章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-math-K015",
+      "index": 15,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "二元一次方程组",
+      "name": "二元一次方程组的应用",
+      "objective": "能用二元一次方程组解决实际问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-math-K014"
+      ],
+      "concept": "先设两个未知数，再找两个等量关系列方程组，解后检验是否符合实际",
+      "common_mistakes": [
+        "等量关系只找到一个",
+        "解不符合实际意义"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第八章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K016",
+      "index": 16,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "不等式与不等式组",
+      "name": "不等式及其解集",
+      "objective": "理解不等式的意义和解集的概念",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s2-math-K015"
+      ],
+      "concept": "用不等号连接的式子叫不等式；使不等式成立的未知数的值组成解集",
+      "common_mistakes": [
+        "解集与解混淆",
+        "不等号方向写错"
+      ],
+      "suggested_types": [
+        "理解",
+        "表示",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第九章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K017",
+      "index": 17,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "不等式与不等式组",
+      "name": "不等式的性质",
+      "objective": "掌握不等式的基本性质",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s2-math-K016"
+      ],
+      "concept": "不等式两边同乘或同除以同一个负数，不等号方向要改变",
+      "common_mistakes": [
+        "乘除负数不变号",
+        "加减与乘除性质混淆"
+      ],
+      "suggested_types": [
+        "判断",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第九章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K018",
+      "index": 18,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "不等式与不等式组",
+      "name": "解一元一次不等式",
+      "objective": "能解一元一次不等式并在数轴上表示解集",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-math-K017"
+      ],
+      "concept": "解法与解方程类似，但系数化为1时若除以负数要变号",
+      "common_mistakes": [
+        "最后一步忘记变号",
+        "数轴表示实心空心点用错"
+      ],
+      "suggested_types": [
+        "解不等式",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第九章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-math-K019",
+      "index": 19,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "不等式与不等式组",
+      "name": "一元一次不等式组",
+      "objective": "会解一元一次不等式组并确定解集",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-math-K018"
+      ],
+      "concept": "分别解每个不等式，再取公共部分；口诀：同大取大、同小取小、大小小大中间找、大大小小无解",
+      "common_mistakes": [
+        "公共部分取错",
+        "端点取舍错误"
+      ],
+      "suggested_types": [
+        "解不等式",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第九章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-math-K020",
+      "index": 20,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "不等式与不等式组",
+      "name": "不等式组的应用",
+      "objective": "能用一元一次不等式组解决实际问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-math-K019"
+      ],
+      "concept": "根据题意列出不等关系，注意取值范围的整数解等实际限制",
+      "common_mistakes": [
+        "不等关系列成等式",
+        "忽略整数解限制"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第九章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K021",
+      "index": 21,
+      "domain": "统计与概率",
+      "theme": "抽样与数据分析",
+      "unit": "数据的收集整理与描述",
+      "name": "全面调查与抽样调查",
+      "objective": "能区分全面调查和抽样调查并说明适用情形",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "全面调查结果准确但费时费力；抽样调查省时但存在误差，样本要有代表性",
+      "common_mistakes": [
+        "两种调查方式适用情形混淆",
+        "样本代表性判断错"
+      ],
+      "suggested_types": [
+        "判断",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第十章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K022",
+      "index": 22,
+      "domain": "统计与概率",
+      "theme": "抽样与数据分析",
+      "unit": "数据的收集整理与描述",
+      "name": "扇形统计图与频数分布",
+      "objective": "能读懂并绘制扇形统计图，理解频数与频率",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-math-K021"
+      ],
+      "concept": "扇形统计图反映各部分占总体的百分比；频数是某数据出现的次数，频率=频数÷总数",
+      "common_mistakes": [
+        "百分比与具体数量混淆",
+        "频率与频数混淆"
+      ],
+      "suggested_types": [
+        "读图",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第十章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K023",
+      "index": 23,
+      "domain": "统计与概率",
+      "theme": "抽样与数据分析",
+      "unit": "数据的收集整理与描述",
+      "name": "直方图",
+      "objective": "能读懂并绘制频数分布直方图",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-math-K022"
+      ],
+      "concept": "直方图用矩形面积表示频数，组距与组数要合理确定",
+      "common_mistakes": [
+        "组距组数确定不当",
+        "矩形高度与频数不对应"
+      ],
+      "suggested_types": [
+        "读图",
+        "绘图",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·第十章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-math-K024",
+      "index": 24,
+      "domain": "综合与实践",
+      "theme": "项目式学习",
+      "unit": "综合与实践",
+      "name": "数据统计活动",
+      "objective": "能设计并实施简单的数据统计活动",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g7-s2-math-K023"
+      ],
+      "concept": "完整统计活动包括提出问题、收集数据、整理描述、分析结论",
+      "common_mistakes": [
+        "问题不明确",
+        "结论与数据脱节"
+      ],
+      "suggested_types": [
+        "实践",
+        "探究",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·综合与实践",
+      "engine_hint": "llm"
+    }
+  ]
 }

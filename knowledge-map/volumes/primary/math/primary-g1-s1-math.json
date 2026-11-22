@@ -7,78 +7,118 @@
   "subject": "math",
   "school_stage": "S1",
   "status": "done",
-  "source_basis": "人教版一年级上册数学教材目录（2024审定）；2022版数学课程标准第一学段",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版一年级上册共有内容；2022版数学课标第一学段",
   "knowledge_points": [
     {
       "id": "primary-g1-s1-math-K001",
       "index": 1,
       "domain": "数与代数",
       "theme": "数与运算",
-      "unit": "准备课",
-      "name": "数一数：1-10各数的认识",
-      "objective": "能正确数出10以内物体的个数，认、读1-10各数",
+      "unit": "数一数",
+      "name": "1-10各数的认识",
+      "objective": "能按顺序数出1-10个物体，认、读1-10各数",
       "difficulty": 1,
       "bloom": "记忆",
       "prerequisites": [],
-      "concept": "数是表示物体个数的符号，1到10每个数对应相应数量的物体。数数时按顺序一个一个点，做到不漏不重。",
-      "common_mistakes": ["数数时漏数或重复", "把数字6和9写反"],
-      "suggested_types": ["数数", "看图认数", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P2-5",
+      "concept": "数是表示物体个数的符号，数数时手口一致、一一对应",
+      "common_mistakes": [
+        "数数时漏数或重复",
+        "把6和9写反"
+      ],
+      "suggested_types": [
+        "数数",
+        "识别",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·准备课；北师大一上·生活中的数",
       "engine_hint": "template"
     },
     {
       "id": "primary-g1-s1-math-K002",
       "index": 2,
       "domain": "数与代数",
-      "theme": "数与运算",
-      "unit": "准备课",
-      "name": "比多少：一一对应比较",
-      "objective": "能用一一对应的方法比较两个集合的多少，会用多、少、同样多描述",
+      "theme": "数量关系",
+      "unit": "比多少",
+      "name": "一一对应比较多少",
+      "objective": "能用一一对应的方法比较两组物体的多少",
       "difficulty": 1,
       "bloom": "理解",
-      "prerequisites": ["primary-g1-s1-math-K001"],
-      "concept": "把两组物体一个对着一个排列，若能全部配对就是同样多，有剩余的那组多，不够的那组少。",
-      "common_mistakes": ["只看排列长短判断多少", "忽略一一对应直接猜"],
-      "suggested_types": ["看图比较", "选择", "连线"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P6-7",
+      "prerequisites": [
+        "primary-g1-s1-math-K001"
+      ],
+      "concept": "一一对应后有多余物体的那一组更多，这是比较多少的基本方法",
+      "common_mistakes": [
+        "凭物体大小判断多少而不数数量",
+        "一一对应时配对错误"
+      ],
+      "suggested_types": [
+        "比较",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·准备课；苏教一上·数一数",
       "engine_hint": "template"
     },
     {
       "id": "primary-g1-s1-math-K003",
       "index": 3,
       "domain": "图形与几何",
-      "theme": "图形的认识与测量",
+      "theme": "图形的位置与运动",
       "unit": "位置",
-      "name": "上、下、前、后",
-      "objective": "能根据参照物判断物体的上下前后位置关系",
+      "name": "上、下、前、后的位置关系",
+      "objective": "能用上、下、前、后描述物体的相对位置",
       "difficulty": 1,
       "bloom": "理解",
       "prerequisites": [],
-      "concept": "位置是相对的，需要先确定参照物，再判断目标在参照物的上面、下面、前面还是后面。",
-      "common_mistakes": ["混淆前后方向", "不先确定参照物"],
-      "suggested_types": ["看图判断", "选择", "填空"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P9",
+      "concept": "位置是相对的，描述位置时必须说明以什么为参照物",
+      "common_mistakes": [
+        "参照物改变后位置描述没跟着变",
+        "把前与左混淆"
+      ],
+      "suggested_types": [
+        "描述",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·位置；北师大一上·位置与顺序",
       "engine_hint": "llm"
     },
     {
       "id": "primary-g1-s1-math-K004",
       "index": 4,
       "domain": "图形与几何",
-      "theme": "图形的认识与测量",
+      "theme": "图形的位置与运动",
       "unit": "位置",
-      "name": "左、右",
-      "objective": "能用自己的左右判断物体的左右位置，建立左右方位感",
-      "difficulty": 2,
+      "name": "左、右的位置关系",
+      "objective": "能区分左右，并用左、右描述物体位置",
+      "difficulty": 1,
       "bloom": "理解",
-      "prerequisites": ["primary-g1-s1-math-K003"],
-      "concept": "左右以观察者自身为标准，左手边是左，右手边是右。面对别人时，对方的左右与自己相反。",
-      "common_mistakes": ["把对面人的左右当成自己的左右", "左右混淆"],
-      "suggested_types": ["看图判断", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P10",
+      "prerequisites": [
+        "primary-g1-s1-math-K003"
+      ],
+      "concept": "左右以观察者自身为判断标准，面对面时两人的左右相反",
+      "common_mistakes": [
+        "把对方的左右当成自己的左右",
+        "左右判断颠倒"
+      ],
+      "suggested_types": [
+        "判断",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·位置；苏教一上·认位置",
       "engine_hint": "llm"
     },
     {
@@ -87,52 +127,85 @@
       "domain": "数与代数",
       "theme": "数与运算",
       "unit": "1-5的认识和加减法",
-      "name": "1-5各数的认识",
-      "objective": "能认、读、写1-5各数，理解数的顺序和基数、序数含义",
+      "name": "1-5各数的认识与书写",
+      "objective": "能认、读、写1-5，理解每个数的基数与序数含义",
       "difficulty": 1,
       "bloom": "记忆",
-      "prerequisites": ["primary-g1-s1-math-K001"],
-      "concept": "1-5各数既可以表示数量（如3个苹果），也可以表示第几（如第3名）。数从1开始，依次多1。",
-      "common_mistakes": ["基数与序数混淆", "书写笔顺错误"],
-      "suggested_types": ["看图写数", "选择", "数数"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P11-14",
+      "prerequisites": [
+        "primary-g1-s1-math-K001"
+      ],
+      "concept": "1-5各数既可表示数量（基数），也可表示顺序（序数）",
+      "common_mistakes": [
+        "数字书写不规范，如3写成ε",
+        "混淆基数与序数的含义"
+      ],
+      "suggested_types": [
+        "识别",
+        "书写",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·1-5的认识",
       "engine_hint": "template"
     },
     {
       "id": "primary-g1-s1-math-K006",
       "index": 6,
       "domain": "数与代数",
-      "theme": "数与运算",
+      "theme": "数量关系",
       "unit": "1-5的认识和加减法",
-      "name": "比大小：＞、＜、＝",
-      "objective": "认识大于、小于、等于号，能比较5以内数的大小",
+      "name": "比大小：>、<、=的认识",
+      "objective": "能用>、<、=比较5以内两个数的大小",
       "difficulty": 1,
-      "bloom": "应用",
-      "prerequisites": ["primary-g1-s1-math-K005"],
-      "concept": "大口朝大数，尖角朝小数。两数相等用等号。一位数中后面的数比前面的大。",
-      "common_mistakes": ["大于小于号方向写反", "把等号写成减号"],
-      "suggested_types": ["填符号", "选择", "判断"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P17",
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-math-K005"
+      ],
+      "concept": "符号开口朝大数、尖角朝小数；相等时用等号",
+      "common_mistakes": [
+        "把>和<用反",
+        "认为3>5"
+      ],
+      "suggested_types": [
+        "比较",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·1-5的认识；北师大一上·比较",
       "engine_hint": "template"
     },
     {
       "id": "primary-g1-s1-math-K007",
       "index": 7,
       "domain": "数与代数",
-      "theme": "数与运算",
+      "theme": "数量关系",
       "unit": "1-5的认识和加减法",
-      "name": "第几（序数）",
-      "objective": "能区分几个（基数）和第几（序数），确定物体排列中的位置",
+      "name": "第几：序数的含义",
+      "objective": "能区分几个和第几，理解序数表示位置顺序",
       "difficulty": 2,
       "bloom": "理解",
-      "prerequisites": ["primary-g1-s1-math-K005"],
-      "concept": "「几个」表示总数，「第几」表示其中某一个的位置。数第几时要先确定数数的方向。",
-      "common_mistakes": ["不先确定方向就数第几", "把第几当成几个"],
-      "suggested_types": ["看图填空", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P20",
+      "prerequisites": [
+        "primary-g1-s1-math-K005"
+      ],
+      "concept": "几个表示总数，第几表示所在位置，从规定方向数起",
+      "common_mistakes": [
+        "把第3个当成一共3个",
+        "数序号时从0开始"
+      ],
+      "suggested_types": [
+        "判断",
+        "选择",
+        "应用"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·1-5的认识",
       "engine_hint": "llm"
     },
     {
@@ -141,16 +214,27 @@
       "domain": "数与代数",
       "theme": "数与运算",
       "unit": "1-5的认识和加减法",
-      "name": "分与合",
-      "objective": "能把5以内的数分成两部分，理解数的组成",
-      "difficulty": 2,
+      "name": "加法的意义与5以内的加法",
+      "objective": "理解加法表示把两部分合起来，能计算5以内的加法",
+      "difficulty": 1,
       "bloom": "理解",
-      "prerequisites": ["primary-g1-s1-math-K005"],
-      "concept": "一个数可以分成两个数，两个数也可以合成一个数。如5可以分成1和4、2和3。分与合是加减法的基础。",
-      "common_mistakes": ["分解时有遗漏", "分合对应混乱"],
-      "suggested_types": ["填数", "选择", "连线"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P21-24",
+      "prerequisites": [
+        "primary-g1-s1-math-K005"
+      ],
+      "concept": "加法表示合起来，加号两边的数是要合并的两部分，结果是总数",
+      "common_mistakes": [
+        "把加法当减法算",
+        "数数时多算一个"
+      ],
+      "suggested_types": [
+        "计算",
+        "看图列式",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·加法",
       "engine_hint": "template"
     },
     {
@@ -159,16 +243,27 @@
       "domain": "数与代数",
       "theme": "数与运算",
       "unit": "1-5的认识和加减法",
-      "name": "加法的初步认识",
-      "objective": "理解加法的含义，能读、写加法算式，计算5以内加法",
-      "difficulty": 2,
-      "bloom": "应用",
-      "prerequisites": ["primary-g1-s1-math-K008"],
-      "concept": "把两部分合起来用加法计算。加号「+」表示合起来，等号「=」表示结果相等。",
-      "common_mistakes": ["不理解合起来的含义死记", "算式书写不规范"],
-      "suggested_types": ["看图列式", "计算", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P24-25",
+      "name": "减法的意义与5以内的减法",
+      "objective": "理解减法表示从整体中去掉一部分，能计算5以内的减法",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-math-K008"
+      ],
+      "concept": "减法表示去掉，被减数是原来的整体，减数是去掉的部分",
+      "common_mistakes": [
+        "被减数与减数位置颠倒",
+        "结果算成负数"
+      ],
+      "suggested_types": [
+        "计算",
+        "看图列式",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·减法",
       "engine_hint": "template"
     },
     {
@@ -177,53 +272,84 @@
       "domain": "数与代数",
       "theme": "数与运算",
       "unit": "1-5的认识和加减法",
-      "name": "减法的初步认识",
-      "objective": "理解减法的含义，能读、写减法算式，计算5以内减法",
-      "difficulty": 2,
-      "bloom": "应用",
-      "prerequisites": ["primary-g1-s1-math-K008"],
-      "concept": "从总数里去掉一部分用减法计算。减号「-」表示去掉。",
-      "common_mistakes": ["混淆加减法含义", "减法算式写反"],
-      "suggested_types": ["看图列式", "计算", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P26-29",
+      "name": "0的认识与有关0的加减法",
+      "objective": "理解0表示没有，能计算有关0的加减法",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-math-K009"
+      ],
+      "concept": "0表示一个也没有；任何数加0或减0都得原数，相同两数相减得0",
+      "common_mistakes": [
+        "认为0不是数",
+        "把0+3算成0"
+      ],
+      "suggested_types": [
+        "计算",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·0的认识",
       "engine_hint": "template"
     },
     {
       "id": "primary-g1-s1-math-K011",
       "index": 11,
-      "domain": "数与代数",
-      "theme": "数与运算",
-      "unit": "1-5的认识和加减法",
-      "name": "0的认识和加减法",
-      "objective": "理解0表示没有，会读、写0，会计算有关0的加减法",
-      "difficulty": 2,
-      "bloom": "理解",
-      "prerequisites": ["primary-g1-s1-math-K010"],
-      "concept": "0表示一个也没有，也可以表示起点。任何数加0或减0还得原数，两个相同的数相减得0。",
-      "common_mistakes": ["认为0表示有", "有关0的减法算错"],
-      "suggested_types": ["计算", "填空", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P30",
-      "engine_hint": "template"
-    },
-    {
-      "id": "primary-g1-s1-math-K012",
-      "index": 12,
       "domain": "图形与几何",
       "theme": "图形的认识与测量",
       "unit": "认识图形（一）",
       "name": "认识立体图形：长方体、正方体、圆柱、球",
-      "objective": "能直观认识长方体、正方体、圆柱、球，能辨认这些形状的物体",
+      "objective": "能辨认长方体、正方体、圆柱和球，说出各自特征",
       "difficulty": 1,
       "bloom": "记忆",
       "prerequisites": [],
-      "concept": "生活中物体有不同形状：长方体像盒子，正方体各面一样大，圆柱像罐子能滚动，球到处都能滚。",
-      "common_mistakes": ["混淆长方体与正方体", "把圆柱当球"],
-      "suggested_types": ["看图辨认", "连线", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P35",
+      "concept": "长方体6个面通常是长方形；正方体6个面都是正方形；圆柱上下底面是圆；球没有平面",
+      "common_mistakes": [
+        "把正方体与长方体混淆",
+        "把圆柱当成球"
+      ],
+      "suggested_types": [
+        "识别",
+        "分类",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·认识图形（一）；北师大一上·认识图形",
       "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-math-K012",
+      "index": 12,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "6-10的认识和加减法",
+      "name": "6和7的认识与加减法",
+      "objective": "能认、读、写6和7，计算6、7的加减法",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-math-K010"
+      ],
+      "concept": "6和7的组成（如6分成1和5、2和4、3和3）是计算加减法的基础",
+      "common_mistakes": [
+        "6和9写反",
+        "7的组成只记住一种分法"
+      ],
+      "suggested_types": [
+        "计算",
+        "组成",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·6-10的认识和加减法",
+      "engine_hint": "template"
     },
     {
       "id": "primary-g1-s1-math-K013",
@@ -231,16 +357,27 @@
       "domain": "数与代数",
       "theme": "数与运算",
       "unit": "6-10的认识和加减法",
-      "name": "6-10各数的认识",
-      "objective": "能认、读、写6-10各数，掌握数的顺序和大小比较",
+      "name": "8和9的认识与加减法",
+      "objective": "能认、读、写8和9，计算8、9的加减法",
       "difficulty": 1,
-      "bloom": "记忆",
-      "prerequisites": ["primary-g1-s1-math-K005", "primary-g1-s1-math-K006"],
-      "concept": "6到10是在1到5基础上继续数数得到的数，10是一个重要的数，表示10个一。",
-      "common_mistakes": ["8和9顺序颠倒", "10的书写不规范"],
-      "suggested_types": ["看图写数", "比较大小", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P42-45",
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-math-K012"
+      ],
+      "concept": "8、9的组成与分解是计算8、9加减法的基础",
+      "common_mistakes": [
+        "8的书写两个圈不规范",
+        "9的组成漏项"
+      ],
+      "suggested_types": [
+        "计算",
+        "组成",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·6-10的认识和加减法",
       "engine_hint": "template"
     },
     {
@@ -249,16 +386,27 @@
       "domain": "数与代数",
       "theme": "数与运算",
       "unit": "6-10的认识和加减法",
-      "name": "6、7的加减法",
-      "objective": "能根据6、7的分与合正确计算6、7的加减法",
-      "difficulty": 2,
-      "bloom": "应用",
-      "prerequisites": ["primary-g1-s1-math-K008", "primary-g1-s1-math-K013"],
-      "concept": "利用6和7的分与合，一图可写出两道加法和两道减法算式（一图四式）。",
-      "common_mistakes": ["一图四式写不全", "分合与算式不对应"],
-      "suggested_types": ["计算", "看图列式", "一图四式"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P46-48",
+      "name": "10的认识与加减法",
+      "objective": "理解10的组成，熟练计算10的加减法",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-math-K013"
+      ],
+      "concept": "10由1个十和0个一组成；10的组成（1和9、2和8等）是凑十法的核心基础",
+      "common_mistakes": [
+        "把10拆成1和0两部分的数字来理解",
+        "10的组成只记住一半"
+      ],
+      "suggested_types": [
+        "计算",
+        "组成",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·10的认识",
       "engine_hint": "template"
     },
     {
@@ -267,16 +415,27 @@
       "domain": "数与代数",
       "theme": "数与运算",
       "unit": "6-10的认识和加减法",
-      "name": "8、9的加减法",
-      "objective": "能根据8、9的分与合正确计算8、9的加减法",
+      "name": "连加、连减",
+      "objective": "能按从左到右的顺序计算连加、连减式题",
       "difficulty": 2,
       "bloom": "应用",
-      "prerequisites": ["primary-g1-s1-math-K014"],
-      "concept": "8和9可以分成不同的两部分，利用分与合能快速算出对应的加减法。",
-      "common_mistakes": ["8、9的分合记忆不全", "计算速度慢易错"],
-      "suggested_types": ["计算", "看图列式", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P52-53",
+      "prerequisites": [
+        "primary-g1-s1-math-K014"
+      ],
+      "concept": "连加连减按从左到右依次计算，第一步的结果要参与第二步运算",
+      "common_mistakes": [
+        "跳过第一步直接算",
+        "运算顺序颠倒"
+      ],
+      "suggested_types": [
+        "计算",
+        "看图列式",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·连加连减",
       "engine_hint": "template"
     },
     {
@@ -285,71 +444,113 @@
       "domain": "数与代数",
       "theme": "数与运算",
       "unit": "6-10的认识和加减法",
-      "name": "10的加减法",
-      "objective": "掌握10的分与合，能熟练计算10的加减法",
+      "name": "加减混合运算",
+      "objective": "能按从左到右的顺序计算加减混合式题",
       "difficulty": 2,
       "bloom": "应用",
-      "prerequisites": ["primary-g1-s1-math-K015"],
-      "concept": "10可以分成1和9、2和8、3和7、4和6、5和5。10的加减法是20以内进位加法的基础，要非常熟练。",
-      "common_mistakes": ["10的分合不熟", "凑十错误"],
-      "suggested_types": ["计算", "凑十填空", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P57-58",
+      "prerequisites": [
+        "primary-g1-s1-math-K015"
+      ],
+      "concept": "加减混合按从左到右计算，每一步要先看清运算符号",
+      "common_mistakes": [
+        "看到减号就先减",
+        "运算顺序错误"
+      ],
+      "suggested_types": [
+        "计算",
+        "看图列式",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·加减混合",
       "engine_hint": "template"
     },
     {
       "id": "primary-g1-s1-math-K017",
       "index": 17,
       "domain": "数与代数",
-      "theme": "数量关系",
-      "unit": "6-10的认识和加减法",
-      "name": "解决简单的实际问题（加减法）",
-      "objective": "能看懂图意，用加减法解决简单的实际问题",
-      "difficulty": 3,
-      "bloom": "应用",
-      "prerequisites": ["primary-g1-s1-math-K016"],
-      "concept": "先读懂题目讲了一件什么事，弄清已知什么、求什么，合起来用加法，去掉用减法。",
-      "common_mistakes": ["读不懂图意就列式", "加减法选错"],
-      "suggested_types": ["看图列式", "应用题选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P47、P59",
-      "engine_hint": "llm"
+      "theme": "数与运算",
+      "unit": "11-20各数的认识",
+      "name": "11-20各数的认识与组成",
+      "objective": "理解11-20各数由1个十和几个一组成",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-math-K014"
+      ],
+      "concept": "11-20各数由1个十和几个一组成，如15是1个十和5个一",
+      "common_mistakes": [
+        "把13读成「一三」",
+        "不理解十位与个位的关系"
+      ],
+      "suggested_types": [
+        "识别",
+        "组成",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·11-20各数的认识；北师大一上·20以内数的认识",
+      "engine_hint": "template"
     },
     {
       "id": "primary-g1-s1-math-K018",
       "index": 18,
       "domain": "数与代数",
       "theme": "数与运算",
-      "unit": "认识钟表",
-      "name": "认识整时",
-      "objective": "认识钟面，能认读整时，会用两种方式表示整时",
-      "difficulty": 2,
-      "bloom": "理解",
-      "prerequisites": [],
-      "concept": "钟面上有12个数字，分针指向12时，时针指向几就是几时。如8时也可写作8:00。",
-      "common_mistakes": ["分针时针看反", "整时表示法写错"],
-      "suggested_types": ["看钟认时", "连线", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P84-85",
-      "engine_hint": "llm"
+      "unit": "11-20各数的认识",
+      "name": "10加几与相应的减法",
+      "objective": "能计算10加几及相应的减法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g1-s1-math-K017"
+      ],
+      "concept": "10加几得十几；十几减几得10，十几减10得几",
+      "common_mistakes": [
+        "15-5算成11",
+        "把10+5当成1+5"
+      ],
+      "suggested_types": [
+        "计算",
+        "口算",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·11-20各数的认识",
+      "engine_hint": "template"
     },
     {
       "id": "primary-g1-s1-math-K019",
       "index": 19,
-      "domain": "数与代数",
-      "theme": "数与运算",
-      "unit": "20以内的进位加法",
-      "name": "9加几（凑十法）",
-      "objective": "理解凑十法，能正确计算9加几的进位加法",
-      "difficulty": 3,
-      "bloom": "应用",
-      "prerequisites": ["primary-g1-s1-math-K016"],
-      "concept": "计算9加几时，把另一个数分成1和几，先用9加1凑成10，再加剩下的数。如9+5=9+1+4=14。",
-      "common_mistakes": ["不会拆数凑十", "忘记加剩下的数"],
-      "suggested_types": ["计算", "凑十过程填空", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P88-89",
-      "engine_hint": "template"
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "认识钟表",
+      "name": "认识钟表：整时与半时",
+      "objective": "能认读钟面上的整时和半时，会用两种方式记录时间",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "分针指12、时针指几就是几时；分针指6、时针过几就是几时半",
+      "common_mistakes": [
+        "把时针和分针看反",
+        "半时错写成整时"
+      ],
+      "suggested_types": [
+        "识别",
+        "读时间",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·认识钟表；北师大一上·小明的一天",
+      "engine_hint": "llm"
     },
     {
       "id": "primary-g1-s1-math-K020",
@@ -357,16 +558,27 @@
       "domain": "数与代数",
       "theme": "数与运算",
       "unit": "20以内的进位加法",
-      "name": "8、7、6加几",
-      "objective": "能用凑十法正确计算8、7、6加几的进位加法",
-      "difficulty": 3,
+      "name": "20以内的进位加法（凑十法）",
+      "objective": "能用凑十法计算9加几、8加几等20以内进位加法",
+      "difficulty": 2,
       "bloom": "应用",
-      "prerequisites": ["primary-g1-s1-math-K019"],
-      "concept": "看大数拆小数，把大数凑成10。如8+7，把7分成2和5，8+2=10，10+5=15。",
-      "common_mistakes": ["凑十对象选错", "拆数错误"],
-      "suggested_types": ["计算", "凑十填空", "选择"],
-      "grade_range": ["g1"],
-      "source": "人教版一上数学 P91-93",
+      "prerequisites": [
+        "primary-g1-s1-math-K018"
+      ],
+      "concept": "凑十法：把较小数拆成两部分，先与较大数凑成10，再加剩余部分",
+      "common_mistakes": [
+        "凑十时拆分错误",
+        "凑成10后忘记加剩余部分"
+      ],
+      "suggested_types": [
+        "计算",
+        "口算",
+        "应用"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教一上·20以内的进位加法；北师大一上·加与减（二）",
       "engine_hint": "template"
     }
   ]

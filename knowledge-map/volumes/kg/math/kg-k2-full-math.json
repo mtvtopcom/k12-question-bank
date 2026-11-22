@@ -1,12 +1,419 @@
 {
   "volume_id": "kg-k2-full-math",
-  "title": "中班数学全年",
+  "title": "中班数学全年（数学认知）",
   "stage": "kg",
   "grade": "k2",
   "term": "full",
   "subject": "math",
   "school_stage": "S0",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "《3-6岁儿童学习与发展指南》科学领域·数学认知（中班目标）；《幼儿园教育指导纲要（试行）》",
+  "knowledge_points": [
+    {
+      "id": "kg-k2-full-math-K001",
+      "index": 1,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "数概念",
+      "name": "点数 1—10 并说出总数",
+      "objective": "能手口一致点数 10 以内物体并说出总数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k1-full-math-K001"
+      ],
+      "concept": "中班点数扩展到 10，并开始脱离手指、用眼看数（目测数群）；「说出总数」仍是关键指标",
+      "common_mistakes": [
+        "点数超过 10 后总数说错",
+        "重复数同一物体"
+      ],
+      "suggested_types": [
+        "点数",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·数学认知（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K002",
+      "index": 2,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "形状",
+      "name": "认识长方形、椭圆形、半圆形",
+      "objective": "能辨认长方形、椭圆形、半圆形并与已知图形区分",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k1-full-math-K002"
+      ],
+      "concept": "中班形状学习重在「比较中的辨别」：长方形与正方形的差别在邻边是否相等，半圆形与圆形的差别在是否完整",
+      "common_mistakes": [
+        "长方形与正方形混淆",
+        "椭圆形与圆形混淆"
+      ],
+      "suggested_types": [
+        "辨认",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·数学认知（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K003",
+      "index": 3,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "量的比较",
+      "name": "比较宽窄、厚薄、粗细",
+      "objective": "能比较物体的宽窄、厚薄、粗细并说出结果",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k1-full-math-K003"
+      ],
+      "concept": "宽窄、厚薄、粗细是「同一维度不同方向」的比较，须让幼儿在操作中体会差异，避免只背词语",
+      "common_mistakes": [
+        "宽窄与长短混淆",
+        "厚薄与大小混淆"
+      ],
+      "suggested_types": [
+        "比较",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·数学认知（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K004",
+      "index": 4,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "分类",
+      "name": "按两个特征分类",
+      "objective": "能同时按两个特征（如颜色和形状）给物体分类",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-math-K007"
+      ],
+      "concept": "双特征分类对中班是挑战：可先用「二维表格」铺开，让幼儿把物体放到交叉格里",
+      "common_mistakes": [
+        "只能顾及一个特征",
+        "分类中途更换标准"
+      ],
+      "suggested_types": [
+        "分类",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·数学认知（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K005",
+      "index": 5,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "排序",
+      "name": "5 个物体按大小、长短排序",
+      "objective": "能把 5 个物体按大小或长短排出序列",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-math-K008"
+      ],
+      "concept": "数量增加后须用「两两比较、逐步插入」的策略；可提供「排序板」作为支架",
+      "common_mistakes": [
+        "只排相邻两个整体错序",
+        "排序后无法说出最大最小"
+      ],
+      "suggested_types": [
+        "排序",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·数学认知（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K006",
+      "index": 6,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "模式",
+      "name": "发现并延续 ABC 模式",
+      "objective": "能发现三种元素循环重复的规律并延续",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k1-full-math-K009"
+      ],
+      "concept": "ABC 模式比 AB 模式复杂，需幼儿把握「循环单元」；可用声音、动作、颜色多种通道呈现",
+      "common_mistakes": [
+        "把 ABC 当作 AB 处理",
+        "延续时漏掉一个元素"
+      ],
+      "suggested_types": [
+        "发现",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·数学认知（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K007",
+      "index": 7,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "空间方位",
+      "name": "认识前后、远近",
+      "objective": "能判断物体的前后位置与远近关系",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k1-full-math-K006"
+      ],
+      "concept": "前后判断开始脱离自我中心，能站在他人视角判断；远近则与距离经验相关",
+      "common_mistakes": [
+        "始终以自我为中心判断前后",
+        "远近判断受物体大小干扰"
+      ],
+      "suggested_types": [
+        "判断",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·数学认知（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K008",
+      "index": 8,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "时间",
+      "name": "认识昨天、今天、明天",
+      "objective": "能正确使用昨天、今天、明天描述事件时序",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k1-full-math-K011"
+      ],
+      "concept": "三个时间词构成「时序三角」，须结合具体事件反复练习（昨天我们去了公园，今天……）",
+      "common_mistakes": [
+        "昨天与明天颠倒",
+        "把「今天」用于过去的时刻"
+      ],
+      "suggested_types": [
+        "判断",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·数学认知（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K009",
+      "index": 9,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "数概念",
+      "name": "10 以内数与量的对应",
+      "objective": "能把 10 以内的数量与数字对应，会按数取物",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k2-full-math-K001"
+      ],
+      "concept": "按数取物要求「先看数字—再数出相应数量」，是数符号与数量关系的联结",
+      "common_mistakes": [
+        "看数字后随意抓取",
+        "数量与数字反向对应"
+      ],
+      "suggested_types": [
+        "操作",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·数学认知（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K010",
+      "index": 10,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "图形关系",
+      "name": "图形的组合与分解",
+      "objective": "能用两个或多个图形拼成一个新图形，也能把一个图形分成几部分",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k2-full-math-K002"
+      ],
+      "concept": "图形分合是空间推理的基础：两个半圆合成一个圆、两个三角形合成一个正方形，在拼摆中自然获得",
+      "common_mistakes": [
+        "拼摆无目的随意堆放",
+        "分合后不验证是否完全重合"
+      ],
+      "suggested_types": [
+        "操作",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·数学认知（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K011",
+      "index": 11,
+      "domain": "健康",
+      "theme": "生活习惯与生活能力",
+      "unit": "生活测量",
+      "name": "生活与游戏中的测量经验",
+      "objective": "能用自然物（手、脚、积木）作为单位比较长短",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k2-full-math-K005"
+      ],
+      "concept": "非标准单位测量是「测量概念」的萌芽：用几块积木长、几步远来描述长度",
+      "common_mistakes": [
+        "测量时单位不统一（一会儿手一会儿脚）",
+        "测量有重叠或空隙"
+      ],
+      "suggested_types": [
+        "测量",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·数学认知（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K012",
+      "index": 12,
+      "domain": "艺术",
+      "theme": "表现与创造",
+      "unit": "图形创意",
+      "name": "几何图形创意拼贴",
+      "objective": "能用几何图形拼贴出有意义的图案并讲述",
+      "difficulty": 3,
+      "bloom": "创造",
+      "prerequisites": [
+        "kg-k2-full-math-K010"
+      ],
+      "concept": "拼贴把图形认知与想象表达结合：同一个三角形可以是屋顶、帆或小鸟的翅膀",
+      "common_mistakes": [
+        "只贴不讲缺少表达",
+        "追求像不像限制想象"
+      ],
+      "suggested_types": [
+        "创作",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》艺术·表现（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K013",
+      "index": 13,
+      "domain": "科学",
+      "theme": "数学认知",
+      "unit": "规律与对称",
+      "name": "规律与对称的初步感知",
+      "objective": "能发现生活中的对称现象并说出「两边一样」",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k2-full-math-K006"
+      ],
+      "concept": "对称感知从身体（两只手）、图形（蝴蝶翅膀）、建筑三个层次展开，重在「发现」而非定义",
+      "common_mistakes": [
+        "把「相似」当作「对称」",
+        "只认左右对称不认其他方向"
+      ],
+      "suggested_types": [
+        "发现",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·数学认知（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-math-K014",
+      "index": 14,
+      "domain": "科学",
+      "theme": "科学探究",
+      "unit": "推理验证",
+      "name": "益智游戏中的推理与验证",
+      "objective": "能在益智游戏中提出猜测、尝试验证并说出理由",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k2-full-math-K013"
+      ],
+      "concept": "「猜—试—说」是科学思维的微循环；成人应多问「你为什么这样想」而非直接给答案",
+      "common_mistakes": [
+        "只试不想，缺少猜测环节",
+        "失败后立即放弃"
+      ],
+      "suggested_types": [
+        "推理",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》科学·科学探究（中班）",
+      "engine_hint": "template"
+    }
+  ]
 }

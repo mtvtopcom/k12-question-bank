@@ -1,12 +1,589 @@
 {
   "volume_id": "primary-g4-s1-math",
-  "title": "g4数学上册",
+  "title": "四年级上册数学",
   "stage": "primary",
   "grade": "g4",
   "term": "s1",
   "subject": "math",
   "school_stage": "S2",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版四年级上册共有内容；2022版数学课标第二学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g4-s1-math-K001",
+      "index": 1,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "大数的认识",
+      "name": "亿以内数的认识与数位顺序",
+      "objective": "认识计数单位万、十万、百万、千万、亿，掌握数位顺序",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-math-K017"
+      ],
+      "concept": "每相邻两个计数单位之间的进率都是10；数位与计数单位是两个不同概念",
+      "common_mistakes": [
+        "数位与计数单位混淆",
+        "数中间有0时读写出错"
+      ],
+      "suggested_types": [
+        "识别",
+        "组成",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·大数的认识",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s1-math-K002",
+      "index": 2,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "大数的认识",
+      "name": "亿以内数的读写",
+      "objective": "能按分级的方法正确读写亿以内的数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s1-math-K001"
+      ],
+      "concept": "读数写数先分级（每四位一级），从高位起；每级末尾的0不读，中间连续的0只读一个",
+      "common_mistakes": [
+        "分级错误导致读错",
+        "0的读法出错"
+      ],
+      "suggested_types": [
+        "读写",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·大数的认识",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s1-math-K003",
+      "index": 3,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "大数的认识",
+      "name": "亿以内数的大小比较与改写",
+      "objective": "能比较亿以内数的大小，会把整万数改写成用万作单位",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s1-math-K002"
+      ],
+      "concept": "比较先看位数，位数相同从最高位比；改写用万作单位要去掉末尾4个0",
+      "common_mistakes": [
+        "改写时漏写「万」字",
+        "比较方法错误"
+      ],
+      "suggested_types": [
+        "比较",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·大数的认识",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s1-math-K004",
+      "index": 4,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "大数的认识",
+      "name": "近似数与四舍五入法",
+      "objective": "能用四舍五入法求一个数的近似数",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s1-math-K003"
+      ],
+      "concept": "四舍五入到某一位，要看它后一位上的数字：小于5舍去，大于等于5进1",
+      "common_mistakes": [
+        "舍入方向判断错误",
+        "近似数末尾的0处理不当"
+      ],
+      "suggested_types": [
+        "近似",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·大数的认识",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s1-math-K005",
+      "index": 5,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "大数的认识",
+      "name": "十进制计数法",
+      "objective": "理解十进制计数法的基本原理",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s1-math-K001"
+      ],
+      "concept": "十进制计数法即满十进一，是全世界通用的计数方法",
+      "common_mistakes": [
+        "进制概念不清",
+        "与其他进制混淆"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·大数的认识",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K006",
+      "index": 6,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "公顷和平方千米",
+      "name": "公顷和平方千米的认识与换算",
+      "objective": "认识面积单位公顷、平方千米，掌握其换算关系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-math-K011"
+      ],
+      "concept": "1公顷=10000平方米；1平方千米=100公顷=1000000平方米",
+      "common_mistakes": [
+        "公顷与平方米进率记错",
+        "面积单位选择错误"
+      ],
+      "suggested_types": [
+        "换算",
+        "选择",
+        "估计"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·公顷和平方千米",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K007",
+      "index": 7,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "角的度量",
+      "name": "直线、射线、线段的认识",
+      "objective": "能区分直线、射线和线段，说出各自特征",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "直线没有端点、可向两端无限延伸；射线有一个端点；线段有两个端点、可以度量长度",
+      "common_mistakes": [
+        "端点个数记错",
+        "认为射线可以度量长度"
+      ],
+      "suggested_types": [
+        "识别",
+        "区分",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·角的度量；北师大四上·线与角",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K008",
+      "index": 8,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "角的度量",
+      "name": "角的度量与量角器的使用",
+      "objective": "会用量角器量角的度数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s1-math-K007"
+      ],
+      "concept": "量角时量角器中心对准角的顶点，0刻度线与角的一边重合，读另一边所指刻度",
+      "common_mistakes": [
+        "内外圈刻度读错",
+        "中心没有对准顶点"
+      ],
+      "suggested_types": [
+        "测量",
+        "读数",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·角的度量",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K009",
+      "index": 9,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "角的度量",
+      "name": "角的分类",
+      "objective": "能按度数给角分类",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s1-math-K008"
+      ],
+      "concept": "锐角小于90°，直角等于90°，钝角大于90°小于180°，平角180°，周角360°",
+      "common_mistakes": [
+        "平角与周角混淆",
+        "钝角范围记错"
+      ],
+      "suggested_types": [
+        "分类",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·角的度量",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K010",
+      "index": 10,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "角的度量",
+      "name": "画指定度数的角",
+      "objective": "能用量角器画出指定度数的角",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s1-math-K009"
+      ],
+      "concept": "画角步骤：画射线、量角器中心对顶点、0刻度对射线、找刻度点、连线",
+      "common_mistakes": [
+        "刻度找错",
+        "内外圈混用"
+      ],
+      "suggested_types": [
+        "操作",
+        "画图",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·角的度量",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K011",
+      "index": 11,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "三位数乘两位数",
+      "name": "三位数乘两位数的笔算",
+      "objective": "能笔算三位数乘两位数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-math-K010"
+      ],
+      "concept": "用两位数的个位和十位分别去乘三位数，再把两次积相加，注意第二部分积的末位与十位对齐",
+      "common_mistakes": [
+        "第二部分积的位置写错",
+        "进位遗漏"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·三位数乘两位数",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s1-math-K012",
+      "index": 12,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "三位数乘两位数",
+      "name": "积的变化规律",
+      "objective": "掌握积随因数变化的规律",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s1-math-K011"
+      ],
+      "concept": "一个因数不变，另一个因数乘几（或除以几），积也乘几（或除以几）",
+      "common_mistakes": [
+        "规律的变化方向搞反",
+        "两个因数同时变化时判断错误"
+      ],
+      "suggested_types": [
+        "发现规律",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·三位数乘两位数",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K013",
+      "index": 13,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "三位数乘两位数",
+      "name": "单价、数量、总价的关系",
+      "objective": "理解并运用单价×数量=总价解决实际问题",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s1-math-K011"
+      ],
+      "concept": "总价=单价×数量；单价=总价÷数量；数量=总价÷单价",
+      "common_mistakes": [
+        "三个量的关系混淆",
+        "单位名称写错"
+      ],
+      "suggested_types": [
+        "应用",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·三位数乘两位数",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K014",
+      "index": 14,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "三位数乘两位数",
+      "name": "速度、时间、路程的关系",
+      "objective": "理解并运用速度×时间=路程解决问题",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s1-math-K013"
+      ],
+      "concept": "路程=速度×时间；速度单位是复合单位，如千米/时",
+      "common_mistakes": [
+        "速度单位写错",
+        "三个量关系混淆"
+      ],
+      "suggested_types": [
+        "应用",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·三位数乘两位数",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K015",
+      "index": 15,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "平行四边形和梯形",
+      "name": "平行与垂直的认识",
+      "objective": "理解同一平面内两条直线的平行与垂直关系，会画垂线和平行线",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s1-math-K007"
+      ],
+      "concept": "同一平面内不相交的两条直线互相平行；两条直线相交成直角时互相垂直",
+      "common_mistakes": [
+        "忽略「同一平面内」这一前提",
+        "垂线画法错误"
+      ],
+      "suggested_types": [
+        "理解",
+        "画图",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·平行四边形和梯形",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K016",
+      "index": 16,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "平行四边形和梯形",
+      "name": "平行四边形和梯形的特征",
+      "objective": "掌握平行四边形和梯形的特征，会画高",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s1-math-K015"
+      ],
+      "concept": "平行四边形两组对边分别平行且相等；梯形只有一组对边平行；高是从一条边到对边的垂线段",
+      "common_mistakes": [
+        "梯形与平行四边形混淆",
+        "高的画法错误"
+      ],
+      "suggested_types": [
+        "识别",
+        "画图",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·平行四边形和梯形",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K017",
+      "index": 17,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "除数是两位数的除法",
+      "name": "口算除法与除数是两位数的笔算",
+      "objective": "能笔算除数是两位数的除法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-math-K006"
+      ],
+      "concept": "先看被除数的前两位，不够除再看前三位；用四舍五入法把除数看作整十数试商",
+      "common_mistakes": [
+        "试商偏大或偏小后不会调整",
+        "商的数位写错"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·除数是两位数的除法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s1-math-K018",
+      "index": 18,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "除数是两位数的除法",
+      "name": "商不变的性质",
+      "objective": "理解并运用商不变的性质",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s1-math-K017"
+      ],
+      "concept": "被除数和除数同时乘或除以相同的数（0除外），商不变",
+      "common_mistakes": [
+        "忽略余数会随被除数和除数的变化而变化",
+        "0除外这一条件被忽略"
+      ],
+      "suggested_types": [
+        "发现规律",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·除数是两位数的除法",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K019",
+      "index": 19,
+      "domain": "统计与概率",
+      "theme": "数据的收集、整理与表达",
+      "unit": "条形统计图",
+      "name": "条形统计图的认识与绘制",
+      "objective": "认识条形统计图，能读取信息并补全统计图",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-math-K008"
+      ],
+      "concept": "条形统计图用直条的长短表示数量多少，便于直观比较；纵轴每格代表的数量要看清",
+      "common_mistakes": [
+        "纵轴每格代表的数量理解错误",
+        "直条高度与数据不符"
+      ],
+      "suggested_types": [
+        "读图",
+        "绘图",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·条形统计图",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-math-K020",
+      "index": 20,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "数学广角—优化",
+      "name": "优化问题：沏茶与烙饼",
+      "objective": "能用统筹方法安排工序，使总时间最短",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [],
+      "concept": "能同时进行的事情同时做；合理安排工序顺序可以减少总耗时",
+      "common_mistakes": [
+        "工序顺序安排不当",
+        "忽略可以并行的任务"
+      ],
+      "suggested_types": [
+        "分析",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四上·数学广角—优化",
+      "engine_hint": "llm"
+    }
+  ]
 }

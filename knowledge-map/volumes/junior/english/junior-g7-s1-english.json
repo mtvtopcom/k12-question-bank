@@ -1,12 +1,568 @@
 {
   "volume_id": "junior-g7-s1-english",
-  "title": "g7英语上册",
+  "title": "七年级上册英语",
   "stage": "junior",
   "grade": "g7",
   "term": "s1",
   "subject": "english",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）七年级上册/外研版/译林版共有内容；2022版英语课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g7-s1-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "语音",
+      "name": "元音字母在开闭音节中的读音",
+      "objective": "能根据开音节、闭音节规则读出元音字母的基本读音",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g6-s1-english-K001"
+      ],
+      "concept": "元音字母在开音节中读字母本音，在闭音节中读短音；这是「见词能读」的核心规则",
+      "common_mistakes": [
+        "开闭音节判断错误",
+        "把例外词套用规则"
+      ],
+      "suggested_types": [
+        "朗读",
+        "辨音",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Starter",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "语音",
+      "name": "句子语调、连读与失去爆破",
+      "objective": "能使用降调、升调朗读不同句类，初步掌握连读与失去爆破",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K001"
+      ],
+      "concept": "陈述句、特殊疑问句用降调，一般疑问句用升调；前词辅音结尾接后词元音开头可连读；爆破音后接爆破音时前者只成阻不除阻",
+      "common_mistakes": [
+        "句类与语调不匹配",
+        "该连读处断读"
+      ],
+      "suggested_types": [
+        "朗读",
+        "听辨",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·语音",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "个人、家庭与学校话题词汇",
+      "objective": "能认读并拼写个人信息、家庭成员、学校设施与学科相关词汇",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g6-s2-english-K002"
+      ],
+      "concept": "本册词汇围绕「我—我的家—我的学校」三个同心圆展开，学习时按语义场归类记忆",
+      "common_mistakes": [
+        "拼写错误（如 friend、family）",
+        "词性与用法混淆"
+      ],
+      "suggested_types": [
+        "认读",
+        "拼写",
+        "匹配"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Unit 1—3",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "构词法初步：派生与合成",
+      "objective": "能借助常见前缀、后缀及合成规律推测生词词义",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g7-s1-english-K003"
+      ],
+      "concept": "常见后缀 -er/-or 表人、-ful 表充满、-less 表没有；合成词由两词组合，如 classroom、blackboard",
+      "common_mistakes": [
+        "后缀意义混淆",
+        "合成词拆分错误"
+      ],
+      "suggested_types": [
+        "猜词",
+        "构词",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·词汇学习",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般现在时",
+      "name": "be 动词与一般现在时",
+      "objective": "能正确使用 be 动词和实义动词的一般现在时表达事实与习惯",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s2-english-K006"
+      ],
+      "concept": "be 动词随人称变化 am/is/are；实义动词第三人称单数加 -s/-es；否定与疑问借助 do/does",
+      "common_mistakes": [
+        "第三人称单数漏加 -s",
+        "否定句误加 not 于实义动词后",
+        "does 后动词仍用三单"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Unit 1—6",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-english-K006",
+      "index": 6,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "名词",
+      "name": "名词单复数与不可数名词",
+      "objective": "能正确构成名词复数，区分可数与不可数名词并选用恰当量词",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K003"
+      ],
+      "concept": "复数规则：一般加 -s；以 s/x/ch/sh 结尾加 -es；辅音字母+y 变 y 为 i 加 -es；不规则如 man→men、child→children；不可数名词用 a piece of 等量化",
+      "common_mistakes": [
+        "-es 规则遗漏",
+        "不规则复数误加 -s",
+        "不可数名词加 -s"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Unit 2",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "代词",
+      "name": "人称代词与物主代词",
+      "objective": "能区分主格、宾格、形容词性物主代词与名词性物主代词",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-english-K005"
+      ],
+      "concept": "主格作主语、宾格作宾语；形容词性物主代词后须接名词，名词性物主代词独立使用（mine=my+名词）",
+      "common_mistakes": [
+        "主格宾格混用",
+        "形容词性与名词性物主代词混用"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Unit 1",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-english-K008",
+      "index": 8,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "冠词",
+      "name": "不定冠词与定冠词",
+      "objective": "能正确使用 a/an/the 及零冠词",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K006"
+      ],
+      "concept": "a 用于辅音音素前、an 用于元音音素前（看读音不看字母）；the 表特指或独一无二；复数泛指、专有名词前常用零冠词",
+      "common_mistakes": [
+        "按字母而非音素选 a/an",
+        "特指处漏用 the",
+        "三餐球类前误加 the"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Unit 3",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "数词",
+      "name": "基数词与序数词",
+      "objective": "能读写 1—100 的基数词并正确构成序数词",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g7-s1-english-K006"
+      ],
+      "concept": "序数词一般加 -th；first/second/third 不规则；以 y 结尾变 y 为 ie 加 -th；两位数只把个位变序数词",
+      "common_mistakes": [
+        "序数词缩写错误（2th）",
+        "两位数两位都变序数词"
+      ],
+      "suggested_types": [
+        "拼写",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Unit 7",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-english-K010",
+      "index": 10,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "疑问句",
+      "name": "一般疑问句与特殊疑问句",
+      "objective": "能构造并回答一般疑问句，用 what/who/where/when/how 提问",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K005"
+      ],
+      "concept": "一般疑问句以 be/助动词/情态动词开头，用 Yes/No 回答；特殊疑问句「疑问词+一般疑问句语序」，答句不用 Yes/No",
+      "common_mistakes": [
+        "特殊疑问句语序颠倒",
+        "用 Yes/No 回答特殊疑问句",
+        "疑问词选择错误"
+      ],
+      "suggested_types": [
+        "改写",
+        "问答",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Unit 4—6",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-english-K011",
+      "index": 11,
+      "domain": "语篇",
+      "theme": "语篇类型",
+      "unit": "语篇",
+      "name": "自我介绍类语篇的结构",
+      "objective": "能读懂并仿写结构清晰的自我介绍短文",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K010"
+      ],
+      "concept": "自我介绍通常按「基本信息—家庭—学校生活—兴趣爱好」展开，用一般现在时，段首用主题句统领",
+      "common_mistakes": [
+        "内容跳跃无层次",
+        "时态混用"
+      ],
+      "suggested_types": [
+        "阅读",
+        "写作",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Unit 1",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-english-K012",
+      "index": 12,
+      "domain": "语篇",
+      "theme": "语篇类型",
+      "unit": "语篇",
+      "name": "便条、卡片与电子邮件的格式",
+      "objective": "能按英语格式书写便条、生日卡片与简短电子邮件",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K011"
+      ],
+      "concept": "便条含称呼、正文、署名与日期；卡片重祝福语；电子邮件含称呼、正文、结束语与署名，语言简明口语化",
+      "common_mistakes": [
+        "称呼后标点错误",
+        "署名与结束语位置颠倒"
+      ],
+      "suggested_types": [
+        "写作",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Unit 7",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-english-K013",
+      "index": 13,
+      "domain": "语言知识",
+      "theme": "语用",
+      "unit": "语用",
+      "name": "问候、介绍与告别的功能表达",
+      "objective": "能在真实情境中得体地问候、自我介绍与告别",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K010"
+      ],
+      "concept": "问候分正式（Good morning）与非正式（Hi/Hello）；介绍他人用 This is...；告别用 Goodbye/See you，语气随场合调整",
+      "common_mistakes": [
+        "正式与非正式场合混用",
+        "介绍他人误用 He is my friend 而不用 This is"
+      ],
+      "suggested_types": [
+        "对话",
+        "情景应答",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Unit 1",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-english-K014",
+      "index": 14,
+      "domain": "主题",
+      "theme": "人与自我",
+      "unit": "主题",
+      "name": "个人、家庭与生活习惯",
+      "objective": "能围绕个人与家庭话题进行简单的口头与书面表达",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K003"
+      ],
+      "concept": "该主题聚焦「我是谁—我的家人—我的日常」，是英语学习的基础语义场，也是跨文化比较的起点",
+      "common_mistakes": [
+        "表达停留在单词层面",
+        "缺少细节支撑"
+      ],
+      "suggested_types": [
+        "表达",
+        "写作",
+        "综合"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Unit 1—2",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-english-K015",
+      "index": 15,
+      "domain": "主题",
+      "theme": "人与社会",
+      "unit": "主题",
+      "name": "学校生活与课程安排",
+      "objective": "能用英语介绍学校设施、课程表与校园活动",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K014"
+      ],
+      "concept": "学校主题涉及场所名词、学科名词与时间表达，常结合一般现在时与时间介词 at/in/on 使用",
+      "common_mistakes": [
+        "时间介词误用",
+        "课程名称表达不地道"
+      ],
+      "suggested_types": [
+        "表达",
+        "写作",
+        "综合"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·Unit 3—4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-english-K016",
+      "index": 16,
+      "domain": "语言技能",
+      "theme": "听",
+      "unit": "语言技能",
+      "name": "听关键词获取具体信息",
+      "objective": "能在听力材料中捕捉人名、数字、时间、地点等关键信息",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K002"
+      ],
+      "concept": "听前预测（看题干定信息类型）、听中速记（用缩写与符号）、听后核对，是听力获取细节的三步法",
+      "common_mistakes": [
+        "逐词听导致跟不上",
+        "不做速记导致遗忘"
+      ],
+      "suggested_types": [
+        "听力",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·听力训练",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-english-K017",
+      "index": 17,
+      "domain": "语言技能",
+      "theme": "读",
+      "unit": "语言技能",
+      "name": "读图、读表与信息转换",
+      "objective": "能从图表、课表、价目表等非连续性文本中提取并转述信息",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K016"
+      ],
+      "concept": "非连续性文本阅读要「先看结构再找数据」，注意表头、单位与时间轴，转述时须把符号信息转成完整句子",
+      "common_mistakes": [
+        "忽略表头与单位",
+        "信息转述不完整"
+      ],
+      "suggested_types": [
+        "读图",
+        "转述",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·非连续性文本",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-english-K018",
+      "index": 18,
+      "domain": "文化知识",
+      "theme": "文化知识",
+      "unit": "文化知识",
+      "name": "英语国家姓名文化与节日初识",
+      "objective": "了解英语国家姓名的构成与主要节日的名称和习俗",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-english-K015"
+      ],
+      "concept": "英语姓名名在前、姓在后，称呼用 Mr/Ms/Miss+姓；圣诞节、感恩节等节日有其历史渊源，比较时要注意文化差异而非优劣",
+      "common_mistakes": [
+        "姓名顺序理解反",
+        "以中国习俗套解西方节日"
+      ],
+      "suggested_types": [
+        "判断",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·文化专栏",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-english-K019",
+      "index": 19,
+      "domain": "学习策略",
+      "theme": "学习策略",
+      "unit": "学习策略",
+      "name": "音标辅助拼读与词汇卡片记忆",
+      "objective": "能借助音标拼读生词，用词汇卡片进行间隔复习",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K001"
+      ],
+      "concept": "音形对应是英语拼读的基础；词汇卡片遵循「少量多次、间隔重复」原则，正面词形、背面词义与例句",
+      "common_mistakes": [
+        "只记拼写不记读音",
+        "集中突击不复现"
+      ],
+      "suggested_types": [
+        "方法运用",
+        "反思",
+        "综合"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·学习策略",
+      "engine_hint": "template"
+    }
+  ]
 }

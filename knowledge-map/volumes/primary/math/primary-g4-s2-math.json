@@ -1,12 +1,591 @@
 {
   "volume_id": "primary-g4-s2-math",
-  "title": "g4数学下册",
+  "title": "四年级下册数学",
   "stage": "primary",
   "grade": "g4",
   "term": "s2",
   "subject": "math",
   "school_stage": "S2",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版四年级下册共有内容；2022版数学课标第二学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g4-s2-math-K001",
+      "index": 1,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "四则运算",
+      "name": "加、减法的意义和各部分关系",
+      "objective": "理解加减法的意义，掌握各部分之间的关系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-math-K012"
+      ],
+      "concept": "和=加数+加数；差=被减数-减数；减法是加法的逆运算",
+      "common_mistakes": [
+        "各部分关系式记错",
+        "逆运算理解不到位"
+      ],
+      "suggested_types": [
+        "理解",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·四则运算",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-math-K002",
+      "index": 2,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "四则运算",
+      "name": "乘、除法的意义和各部分关系",
+      "objective": "理解乘除法的意义，掌握各部分之间的关系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s2-math-K001"
+      ],
+      "concept": "积=因数×因数；商=被除数÷除数；除法是乘法的逆运算，0不能作除数",
+      "common_mistakes": [
+        "忽略0不能作除数",
+        "关系式记错"
+      ],
+      "suggested_types": [
+        "理解",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·四则运算",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-math-K003",
+      "index": 3,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "四则运算",
+      "name": "含括号的四则混合运算顺序",
+      "objective": "掌握含小括号、中括号的四则混合运算顺序",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s2-math-K002"
+      ],
+      "concept": "先算括号里面（小括号优先于中括号），再算乘除，最后算加减",
+      "common_mistakes": [
+        "括号层次混淆",
+        "运算顺序错误"
+      ],
+      "suggested_types": [
+        "计算",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·四则运算",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-math-K004",
+      "index": 4,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "四则运算",
+      "name": "有关0的运算",
+      "objective": "掌握有关0的运算规则",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s2-math-K002"
+      ],
+      "concept": "0不能作除数；任何数加0得原数；任何数乘0得0；0除以任何非0数得0",
+      "common_mistakes": [
+        "认为0÷0有意义",
+        "把0作除数当成合法运算"
+      ],
+      "suggested_types": [
+        "判断",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·四则运算",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-math-K005",
+      "index": 5,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "观察物体（二）",
+      "name": "从不同位置观察立体图形",
+      "objective": "能辨认从前面、上面、左面观察立体图形看到的形状",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-math-K015"
+      ],
+      "concept": "同一立体图形从不同方向观察，看到的平面图形可能不同",
+      "common_mistakes": [
+        "左视图与右视图混淆",
+        "小正方体数量判断错误"
+      ],
+      "suggested_types": [
+        "观察",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·观察物体（二）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-math-K006",
+      "index": 6,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "运算定律",
+      "name": "加法交换律与结合律",
+      "objective": "掌握加法交换律和结合律，能进行简便计算",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s2-math-K001"
+      ],
+      "concept": "a+b=b+a；(a+b)+c=a+(b+c)；用于凑整简化计算",
+      "common_mistakes": [
+        "定律使用错误",
+        "简便计算时符号出错"
+      ],
+      "suggested_types": [
+        "计算",
+        "简便计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·运算定律",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-math-K007",
+      "index": 7,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "运算定律",
+      "name": "乘法交换律、结合律与分配律",
+      "objective": "掌握乘法三大运算定律，能进行简便计算",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s2-math-K006"
+      ],
+      "concept": "a×b=b×a；(a×b)×c=a×(b×c)；(a+b)×c=a×c+b×c",
+      "common_mistakes": [
+        "分配律漏乘其中一项",
+        "结合律与分配律混淆"
+      ],
+      "suggested_types": [
+        "计算",
+        "简便计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·运算定律",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-math-K008",
+      "index": 8,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "运算定律",
+      "name": "运用运算定律简便计算",
+      "objective": "能灵活运用运算定律进行简便计算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s2-math-K007"
+      ],
+      "concept": "简便计算的核心是凑整：凑成整十、整百、整千再计算",
+      "common_mistakes": [
+        "生搬硬套定律",
+        "凑整方向错误"
+      ],
+      "suggested_types": [
+        "简便计算",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·运算定律",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-math-K009",
+      "index": 9,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "小数的意义和性质",
+      "name": "小数的意义与数位",
+      "objective": "理解小数的意义，认识小数的数位和计数单位",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-math-K017"
+      ],
+      "concept": "分母是10、100、1000的分数可以写成小数；小数数位有十分位、百分位、千分位",
+      "common_mistakes": [
+        "数位名称记错",
+        "小数与分数转换错误"
+      ],
+      "suggested_types": [
+        "理解",
+        "识别",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·小数的意义和性质",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-math-K010",
+      "index": 10,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "小数的意义和性质",
+      "name": "小数的性质与大小比较",
+      "objective": "掌握小数的性质，能正确比较小数大小",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s2-math-K009"
+      ],
+      "concept": "小数末尾添上0或去掉0，小数大小不变；比较小数从整数部分开始逐位比较",
+      "common_mistakes": [
+        "认为小数位数多就大",
+        "末尾的0处理错误"
+      ],
+      "suggested_types": [
+        "比较",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·小数的意义和性质",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-math-K011",
+      "index": 11,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "小数的意义和性质",
+      "name": "小数点位置移动引起大小变化",
+      "objective": "理解小数点移动与小数大小变化的规律",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s2-math-K010"
+      ],
+      "concept": "小数点向右移一位，数扩大到原来的10倍；向左移一位，缩小到原来的十分之一",
+      "common_mistakes": [
+        "移动方向与倍数关系搞反",
+        "位数不够时忘补0"
+      ],
+      "suggested_types": [
+        "发现规律",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·小数的意义和性质",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-math-K012",
+      "index": 12,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "小数的意义和性质",
+      "name": "小数与单位换算",
+      "objective": "能进行小数与计量单位之间的换算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s2-math-K011"
+      ],
+      "concept": "低级单位化成高级单位除以进率，高级单位化成低级单位乘进率",
+      "common_mistakes": [
+        "乘除方向搞反",
+        "进率记错"
+      ],
+      "suggested_types": [
+        "换算",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·小数的意义和性质",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-math-K013",
+      "index": 13,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "小数的意义和性质",
+      "name": "小数的近似数",
+      "objective": "能用四舍五入法求小数的近似数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s2-math-K012"
+      ],
+      "concept": "按要求保留位数，看保留位数的后一位决定舍还是入",
+      "common_mistakes": [
+        "保留位数判断错误",
+        "末尾0被随意去掉"
+      ],
+      "suggested_types": [
+        "近似",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·小数的意义和性质",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-math-K014",
+      "index": 14,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "三角形",
+      "name": "三角形的特性与三边关系",
+      "objective": "理解三角形的稳定性，掌握三角形三边关系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-math-K008"
+      ],
+      "concept": "三角形具有稳定性；任意两边之和大于第三边",
+      "common_mistakes": [
+        "忽略「任意」两字",
+        "三边关系判断错误"
+      ],
+      "suggested_types": [
+        "判断",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·三角形",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-math-K015",
+      "index": 15,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "三角形",
+      "name": "三角形的分类与内角和",
+      "objective": "能按角和边给三角形分类，掌握内角和为180°",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s2-math-K014"
+      ],
+      "concept": "按角分：锐角三角形、直角三角形、钝角三角形；按边分：等腰三角形、等边三角形；内角和180°",
+      "common_mistakes": [
+        "内角和记错",
+        "分类标准混淆"
+      ],
+      "suggested_types": [
+        "分类",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·三角形",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-math-K016",
+      "index": 16,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "小数的加法和减法",
+      "name": "小数加减法的笔算",
+      "objective": "能笔算小数加减法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-math-K018"
+      ],
+      "concept": "小数点对齐（也就是相同数位对齐），从末位算起，结果末尾的0可以去掉",
+      "common_mistakes": [
+        "末位对齐而不是小数点对齐",
+        "结果末尾的0未化简"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·小数的加法和减法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-math-K017",
+      "index": 17,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "小数的加法和减法",
+      "name": "小数加减混合运算与简便计算",
+      "objective": "能进行小数加减混合运算并运用定律简算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s2-math-K016"
+      ],
+      "concept": "整数加法运算定律同样适用于小数",
+      "common_mistakes": [
+        "定律误用",
+        "运算顺序错误"
+      ],
+      "suggested_types": [
+        "计算",
+        "简便计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·小数的加法和减法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-math-K018",
+      "index": 18,
+      "domain": "图形与几何",
+      "theme": "图形的位置与运动",
+      "unit": "图形的运动（二）",
+      "name": "轴对称与平移的应用",
+      "objective": "能补全轴对称图形，能用平移解决简单问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-math-K007"
+      ],
+      "concept": "轴对称图形对应点到对称轴的距离相等；平移后图形形状、大小不变",
+      "common_mistakes": [
+        "对应点找错",
+        "平移格数数错"
+      ],
+      "suggested_types": [
+        "操作",
+        "画图",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·图形的运动（二）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-math-K019",
+      "index": 19,
+      "domain": "统计与概率",
+      "theme": "数据的收集、整理与表达",
+      "unit": "平均数与条形统计图",
+      "name": "平均数的意义与求法",
+      "objective": "理解平均数的意义，会求一组数据的平均数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "平均数=总数÷份数；平均数反映一组数据的整体水平，不代表其中每个数据",
+      "common_mistakes": [
+        "把平均数当成实际数据",
+        "份数计算错误"
+      ],
+      "suggested_types": [
+        "计算",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·平均数与条形统计图",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-math-K020",
+      "index": 20,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "数学广角—鸡兔同笼",
+      "name": "鸡兔同笼问题",
+      "objective": "能用假设法解决鸡兔同笼问题",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s2-math-K019"
+      ],
+      "concept": "假设全是鸡，则腿数比实际少，差的部分÷每只兔比鸡多的腿数（4-2）=兔的只数",
+      "common_mistakes": [
+        "假设与结论对应关系搞反",
+        "差值计算错误"
+      ],
+      "suggested_types": [
+        "分析",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教四下·数学广角—鸡兔同笼",
+      "engine_hint": "llm"
+    }
+  ]
 }

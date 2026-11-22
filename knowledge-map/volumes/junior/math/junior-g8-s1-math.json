@@ -1,12 +1,718 @@
 {
   "volume_id": "junior-g8-s1-math",
-  "title": "g8数学上册",
+  "title": "八年级上册数学",
   "stage": "junior",
   "grade": "g8",
   "term": "s1",
   "subject": "math",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版八年级上册共有内容；2022版数学课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g8-s1-math-K001",
+      "index": 1,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "三角形",
+      "name": "三角形的三边关系",
+      "objective": "掌握三角形三边关系定理，能判断三条线段能否构成三角形",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "三角形任意两边之和大于第三边，任意两边之差小于第三边；这是判断三线段能否成形的充要条件",
+      "common_mistakes": [
+        "只验证一组两边之和",
+        "忽略两边之差条件",
+        "把等腰三角形两解全部保留而不检验"
+      ],
+      "suggested_types": [
+        "判断",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十一章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K002",
+      "index": 2,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "三角形",
+      "name": "三角形的内角和与外角",
+      "objective": "掌握三角形内角和定理及外角性质，能进行角度计算",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g8-s1-math-K001"
+      ],
+      "concept": "三角形内角和为180°；三角形的一个外角等于与它不相邻的两个内角之和，且大于任一不相邻内角",
+      "common_mistakes": [
+        "外角定理用错相邻内角",
+        "多边形内角和与三角形内角和混用"
+      ],
+      "suggested_types": [
+        "计算",
+        "推理",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十一章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K003",
+      "index": 3,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "三角形",
+      "name": "三角形的高、中线与角平分线",
+      "objective": "理解三角形三条重要线段的定义与性质，会作图",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g8-s1-math-K001"
+      ],
+      "concept": "高是顶点到对边所在直线的垂线段；中线连接顶点与对边中点，三等分三角形面积；角平分线分对边之比等于两邻边之比",
+      "common_mistakes": [
+        "钝角三角形的高画到形外时出错",
+        "把角平分线与中线混淆"
+      ],
+      "suggested_types": [
+        "作图",
+        "辨析",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十一章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-math-K004",
+      "index": 4,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "三角形",
+      "name": "多边形及其内角和",
+      "objective": "掌握多边形内角和与外角和公式，能求正多边形每个内角",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K002"
+      ],
+      "concept": "n边形内角和为(n-2)×180°，任意多边形外角和恒为360°；正n边形每个内角为(n-2)×180°/n",
+      "common_mistakes": [
+        "内角和公式中 n-2 写成 n-1",
+        "认为外角和随边数变化"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十一章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K005",
+      "index": 5,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "全等三角形",
+      "name": "全等三角形的性质与判定",
+      "objective": "掌握全等三角形判定方法（SSS、SAS、ASA、AAS），能规范书写证明",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K001",
+        "junior-g8-s1-math-K002"
+      ],
+      "concept": "全等三角形对应边相等、对应角相等；判定需三个条件且至少含一边，SSA 与 AAA 不能判定全等",
+      "common_mistakes": [
+        "用 SSA 判定全等",
+        "对应顶点字母书写顺序错乱",
+        "把添加的辅助线当作已知条件"
+      ],
+      "suggested_types": [
+        "证明",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十二章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-math-K006",
+      "index": 6,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "全等三角形",
+      "name": "直角三角形全等的判定 HL",
+      "objective": "掌握斜边、直角边判定定理，能判定两个直角三角形全等",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K005"
+      ],
+      "concept": "斜边和一条直角边分别相等的两个直角三角形全等（HL）；HL 只适用于直角三角形",
+      "common_mistakes": [
+        "对一般三角形误用 HL",
+        "混淆 HL 与 SSA"
+      ],
+      "suggested_types": [
+        "证明",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十二章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K007",
+      "index": 7,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "全等三角形",
+      "name": "角平分线的性质与判定",
+      "objective": "掌握角平分线上的点到角两边距离相等及其逆定理",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K005"
+      ],
+      "concept": "角平分线上的点到角两边的距离相等；到角两边距离相等的点在角的平分线上——性质与判定互为逆命题",
+      "common_mistakes": [
+        "把距离画成斜线段",
+        "只证一半忽略逆定理使用场景"
+      ],
+      "suggested_types": [
+        "证明",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十二章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-math-K008",
+      "index": 8,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "轴对称",
+      "name": "轴对称与轴对称图形",
+      "objective": "理解轴对称图形与两个图形成轴对称的区别与联系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g8-s1-math-K005"
+      ],
+      "concept": "轴对称图形是一个图形自身的对称性；两个图形成轴对称是两个图形的位置关系；对称轴是垂直平分线",
+      "common_mistakes": [
+        "混淆轴对称图形与成轴对称",
+        "认为对称轴一定是线段"
+      ],
+      "suggested_types": [
+        "辨析",
+        "作图",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十三章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K009",
+      "index": 9,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "轴对称",
+      "name": "线段垂直平分线的性质与判定",
+      "objective": "掌握垂直平分线性质定理及逆定理，会作垂直平分线",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K008"
+      ],
+      "concept": "线段垂直平分线上的点到线段两端点距离相等；到两端点距离相等的点在垂直平分线上",
+      "common_mistakes": [
+        "把垂直平分线性质与角平分线性质混用",
+        "作图时未标垂直符号"
+      ],
+      "suggested_types": [
+        "证明",
+        "作图",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十三章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K010",
+      "index": 10,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "轴对称",
+      "name": "等腰三角形的性质与判定",
+      "objective": "掌握等腰三角形\"等边对等角\"\"三线合一\"及判定方法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K008"
+      ],
+      "concept": "等腰三角形两底角相等；顶角平分线、底边中线、底边高互相重合；有两个角相等的三角形是等腰三角形",
+      "common_mistakes": [
+        "三线合一误用于任意三角形",
+        "已知角未区分顶角与底角导致漏解"
+      ],
+      "suggested_types": [
+        "证明",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十三章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-math-K011",
+      "index": 11,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "轴对称",
+      "name": "等边三角形的性质与判定",
+      "objective": "掌握等边三角形三边三角均相等及三种判定方法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K010"
+      ],
+      "concept": "等边三角形三边相等、三角均为60°；判定：三边相等、三角相等、有一个60°角的等腰三角形",
+      "common_mistakes": [
+        "忽略\"等腰+60°角\"这一判定路径",
+        "把等边三角形性质当作判定条件"
+      ],
+      "suggested_types": [
+        "证明",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十三章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K012",
+      "index": 12,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "轴对称",
+      "name": "含30°角的直角三角形",
+      "objective": "掌握30°角所对直角边等于斜边一半的性质",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K011"
+      ],
+      "concept": "在直角三角形中，30°角所对的直角边等于斜边的一半；反之，若一直角边等于斜边一半，则该边所对角为30°",
+      "common_mistakes": [
+        "把\"30°所对边\"误认为\"邻边\"",
+        "逆命题使用时不强调直角三角形前提"
+      ],
+      "suggested_types": [
+        "计算",
+        "证明",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十三章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K013",
+      "index": 13,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "轴对称",
+      "name": "最短路径问题（将军饮马）",
+      "objective": "能利用轴对称将折线路径转化为直线路径求最短距离",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-math-K009"
+      ],
+      "concept": "作定点关于直线的对称点，连接对称点与另一定点，交点即为使路径最短的动点位置——核心是\"化折为直\"",
+      "common_mistakes": [
+        "对称点作错方向",
+        "误把两点连线长度当作最短路径",
+        "忽略动点须在指定线段上"
+      ],
+      "suggested_types": [
+        "建模",
+        "计算",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十三章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-math-K014",
+      "index": 14,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "整式的乘法",
+      "name": "同底数幂的乘法",
+      "objective": "掌握同底数幂相乘的运算性质并能计算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [],
+      "concept": "同底数幂相乘，底数不变，指数相加：aᵐ·aⁿ=aᵐ⁺ⁿ（m、n为正整数）",
+      "common_mistakes": [
+        "把指数相加误作相乘",
+        "底数不同时强行合并"
+      ],
+      "suggested_types": [
+        "计算",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十四章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K015",
+      "index": 15,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "整式的乘法",
+      "name": "幂的乘方与积的乘方",
+      "objective": "掌握幂的乘方与积的乘方运算性质",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K014"
+      ],
+      "concept": "幂的乘方底数不变指数相乘：(aᵐ)ⁿ=aᵐⁿ；积的乘方等于各因式乘方的积：(ab)ⁿ=aⁿbⁿ",
+      "common_mistakes": [
+        "幂的乘方与同底数幂乘法混淆",
+        "积的乘方漏乘某个因式",
+        "负号处理不正确"
+      ],
+      "suggested_types": [
+        "计算",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十四章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K016",
+      "index": 16,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "整式的乘法",
+      "name": "整式的乘法",
+      "objective": "掌握单项式乘单项式、单项式乘多项式、多项式乘多项式的法则",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K015"
+      ],
+      "concept": "单项式相乘系数相乘、同底数幂相乘；单项式乘多项式用分配律；多项式乘多项式逐项相乘后合并同类项",
+      "common_mistakes": [
+        "漏乘某一项",
+        "符号在分配时出错",
+        "合并同类项时指数相加"
+      ],
+      "suggested_types": [
+        "计算",
+        "化简",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十四章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K017",
+      "index": 17,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "乘法公式",
+      "name": "平方差公式",
+      "objective": "掌握平方差公式并能正用、逆用",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K016"
+      ],
+      "concept": "(a+b)(a-b)=a²-b²；结构特征是\"两数和乘两数差，等于两数平方差\"",
+      "common_mistakes": [
+        "把(a+b)(a+b)套用平方差",
+        "逆用时符号判断错"
+      ],
+      "suggested_types": [
+        "计算",
+        "因式分解",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十四章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K018",
+      "index": 18,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "乘法公式",
+      "name": "完全平方公式",
+      "objective": "掌握完全平方公式并能正用、逆用",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K016"
+      ],
+      "concept": "(a±b)²=a²±2ab+b²；中间项符号随括号内符号，且结果为三项式",
+      "common_mistakes": [
+        "漏掉中间项2ab",
+        "中间项符号错",
+        "把(a+b)²写成a²+b²"
+      ],
+      "suggested_types": [
+        "计算",
+        "配方",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十四章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-math-K019",
+      "index": 19,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "因式分解",
+      "name": "提公因式法分解因式",
+      "objective": "能准确找出公因式并用提公因式法分解因式",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K016"
+      ],
+      "concept": "公因式取各项系数的最大公约数与相同字母的最低次幂的积；提公因式后括号内项数与原多项式项数相同",
+      "common_mistakes": [
+        "公因式找不全",
+        "提负号后括号内符号未变",
+        "漏掉某一项导致项数减少"
+      ],
+      "suggested_types": [
+        "因式分解",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十四章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K020",
+      "index": 20,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "因式分解",
+      "name": "公式法分解因式",
+      "objective": "能逆用平方差公式与完全平方公式分解因式",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K017",
+        "junior-g8-s1-math-K018"
+      ],
+      "concept": "a²-b²=(a+b)(a-b)；a²±2ab+b²=(a±b)²；分解须彻底，直到每个因式都不能再分解",
+      "common_mistakes": [
+        "分解不彻底",
+        "把a²+b²误当作可分解",
+        "符号与中间项不匹配仍套用完全平方"
+      ],
+      "suggested_types": [
+        "因式分解",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十四章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-math-K021",
+      "index": 21,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "分式",
+      "name": "分式的概念与基本性质",
+      "objective": "理解分式有意义的条件及分式的基本性质",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g8-s1-math-K019"
+      ],
+      "concept": "形如 A/B（B中含字母且B≠0）的式子叫分式；分式的基本性质：分子分母同乘（除）同一个不为0的整式，分式的值不变",
+      "common_mistakes": [
+        "忽略分母不为0的条件",
+        "约分时约掉含字母的项而非因式"
+      ],
+      "suggested_types": [
+        "辨析",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十五章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K022",
+      "index": 22,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "分式",
+      "name": "分式的乘除与约分",
+      "objective": "掌握分式乘除法则，能进行约分与化简",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K021"
+      ],
+      "concept": "分式相乘分子乘分子、分母乘分母，能约分先约分；除以一个分式等于乘它的倒数",
+      "common_mistakes": [
+        "约分时对加法式直接约项",
+        "除法忘记取倒数",
+        "未先因式分解就约分"
+      ],
+      "suggested_types": [
+        "计算",
+        "化简",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十五章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-math-K023",
+      "index": 23,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "分式",
+      "name": "分式的加减",
+      "objective": "掌握同分母与异分母分式的加减法则",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K022"
+      ],
+      "concept": "同分母分式相加减分母不变分子相加减；异分母先通分（取最简公分母）再加减",
+      "common_mistakes": [
+        "通分时找错最简公分母",
+        "分子相减时忘记变号",
+        "结果未化为最简分式"
+      ],
+      "suggested_types": [
+        "计算",
+        "化简",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十五章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-math-K024",
+      "index": 24,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "分式方程",
+      "name": "分式方程及其应用",
+      "objective": "会解可化为一元一次方程的分式方程并检验，能列分式方程解应用题",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-math-K023"
+      ],
+      "concept": "解分式方程先去分母化为整式方程，求出解后必须代入最简公分母检验，使分母为0的根是增根须舍去",
+      "common_mistakes": [
+        "忘记检验产生增根",
+        "去分母时漏乘不含分母的项",
+        "应用题中单位不统一"
+      ],
+      "suggested_types": [
+        "解方程",
+        "应用",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·第十五章",
+      "engine_hint": "llm"
+    }
+  ]
 }

@@ -1,12 +1,651 @@
 {
   "volume_id": "primary-g6-s2-chinese",
-  "title": "g6语文下册",
+  "title": "六年级下册语文",
   "stage": "primary",
   "grade": "g6",
   "term": "s2",
   "subject": "chinese",
   "school_stage": "S3",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "统编版（2024审定）六年级下册；2022版语文课标第三学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g6-s2-chinese-K001",
+      "index": 1,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "多音字",
+      "objective": "能依据语境准确判断多音字读音",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K001"
+      ],
+      "concept": "多音字读音随意义、用法变化，要在具体语境中辨析",
+      "common_mistakes": [
+        "按常用读音读",
+        "语境判断错误"
+      ],
+      "suggested_types": [
+        "读音",
+        "辨析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·第一单元",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K002",
+      "index": 2,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "形近字辨析",
+      "objective": "能辨析形近字并规范书写",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K002"
+      ],
+      "concept": "形近字差异在个别笔画或部件，需结合字义与构字理据记忆",
+      "common_mistakes": [
+        "笔画写错",
+        "形近混用"
+      ],
+      "suggested_types": [
+        "辨析",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·第二单元",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K003",
+      "index": 3,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "近义词与反义词辨析",
+      "objective": "能准确辨析近义词并恰当运用反义词",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K003"
+      ],
+      "concept": "近义词辨析看程度、范围、色彩、搭配；反义词要求词性一致、意义相对",
+      "common_mistakes": [
+        "近反义混淆",
+        "语体色彩不匹配"
+      ],
+      "suggested_types": [
+        "辨析",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·第三单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K004",
+      "index": 4,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "成语的运用",
+      "objective": "能在语境中准确恰当地运用成语",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K004"
+      ],
+      "concept": "成语使用要注意对象、语境、感情色彩，避免望文生义、褒贬误用",
+      "common_mistakes": [
+        "望文生义",
+        "对象误用"
+      ],
+      "suggested_types": [
+        "运用",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·语文园地",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K005",
+      "index": 5,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "词语的积累与运用",
+      "objective": "能分类积累词语并在表达中灵活运用",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s2-chinese-K004"
+      ],
+      "concept": "按主题、结构、感情色彩分类积累词语，运用时要考虑语境和搭配",
+      "common_mistakes": [
+        "积累无序",
+        "运用生硬"
+      ],
+      "suggested_types": [
+        "积累",
+        "运用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·语文园地",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K006",
+      "index": 6,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "句子",
+      "name": "修辞手法的综合运用",
+      "objective": "能综合运用多种修辞手法增强表达效果",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K006"
+      ],
+      "concept": "修辞要服务于表达目的，与文体、语境协调，避免刻意堆砌",
+      "common_mistakes": [
+        "修辞堆砌",
+        "与语境不协调"
+      ],
+      "suggested_types": [
+        "赏析",
+        "仿写",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·第一单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K007",
+      "index": 7,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "句子",
+      "name": "病句的综合修改",
+      "objective": "能诊断并修改含多处问题的病句",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K007"
+      ],
+      "concept": "逐层检查句子主干与修饰成分，注意成分残缺、搭配不当、语序不当、重复矛盾等问题",
+      "common_mistakes": [
+        "只改一处",
+        "修改后表意不清"
+      ],
+      "suggested_types": [
+        "修改",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K008",
+      "index": 8,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "句子",
+      "name": "句式的综合运用",
+      "objective": "能进行句式变换与仿写",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K008"
+      ],
+      "concept": "句式变换和仿写都要保持原意、符合语法，注意结构对应和修辞一致",
+      "common_mistakes": [
+        "变换后改变原意",
+        "仿写结构不一致"
+      ],
+      "suggested_types": [
+        "转换",
+        "仿写",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K009",
+      "index": 9,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "标点符号",
+      "name": "标点符号的综合运用",
+      "objective": "能综合正确使用各类标点符号",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K009"
+      ],
+      "concept": "依据语气、结构、层次选用标点，注意引号、括号、破折号的配合使用",
+      "common_mistakes": [
+        "标点混用",
+        "层次关系不清"
+      ],
+      "suggested_types": [
+        "标点",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·标点符号",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K010",
+      "index": 10,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "课文",
+      "name": "概括文章主要内容",
+      "objective": "能准确概括不同文体文章的主要内容",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K010"
+      ],
+      "concept": "记叙抓要素与线索，说明抓对象与特征，议论抓观点与论据",
+      "common_mistakes": [
+        "细节罗列",
+        "遗漏核心事件"
+      ],
+      "suggested_types": [
+        "概括",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·第四单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K011",
+      "index": 11,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "课文",
+      "name": "体会作者的情感",
+      "objective": "能借助多种方法深入体会作者的情感",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s2-chinese-K010"
+      ],
+      "concept": "通过关键句、细节描写、写作背景和抒情议论句，体会作者蕴含的情感",
+      "common_mistakes": [
+        "只概括内容不体情",
+        "情感理解表面化"
+      ],
+      "suggested_types": [
+        "赏析",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·第三单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K012",
+      "index": 12,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "古诗",
+      "name": "古诗：《寒食》《迢迢牵牛星》《十五夜望月》",
+      "objective": "能背诵古诗并体会其中的传统节日与情感",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K012"
+      ],
+      "concept": "借助注释理解诗意，了解与传统节日相关的习俗，体会诗中的情感",
+      "common_mistakes": [
+        "节日习俗理解错",
+        "情感体会不到位"
+      ],
+      "suggested_types": [
+        "背诵",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·第一单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K013",
+      "index": 13,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "文言文",
+      "name": "文言文《学弈》《两小儿辩日》",
+      "objective": "能借助注释读懂文言文并理解其中道理",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K013"
+      ],
+      "concept": "借助注释理解词句，理清说理或辩论的逻辑，体会专心致志、实事求是等道理",
+      "common_mistakes": [
+        "以今义解古义",
+        "逻辑关系理不清"
+      ],
+      "suggested_types": [
+        "理解",
+        "翻译",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·第五单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K014",
+      "index": 14,
+      "domain": "整本书阅读",
+      "theme": "整本书阅读",
+      "unit": "名著阅读",
+      "name": "名著阅读：《鲁滨逊漂流记》",
+      "objective": "能把握名著主要情节并分析人物形象",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K014"
+      ],
+      "concept": "读名著要梳理情节脉络、分析人物性格、体会作品主题和时代背景",
+      "common_mistakes": [
+        "只看梗概",
+        "人物分析标签化"
+      ],
+      "suggested_types": [
+        "阅读",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·第二单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K015",
+      "index": 15,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "说明文",
+      "name": "说明文与非连续性文本阅读",
+      "objective": "能把握说明对象特征并整合非连续性文本信息",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-chinese-K016"
+      ],
+      "concept": "说明文抓对象、特征、方法和顺序；非连续性文本要快速定位并整合图文信息",
+      "common_mistakes": [
+        "说明方法分析空泛",
+        "图文信息整合错误"
+      ],
+      "suggested_types": [
+        "分析",
+        "提取",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·第四单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K016",
+      "index": 16,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "习作",
+      "name": "习作：写作品梗概",
+      "objective": "能用简洁的语言写出作品梗概",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s2-chinese-K014"
+      ],
+      "concept": "梗概要保留主要人物、关键情节和结局，删去细节描写，语言简洁连贯",
+      "common_mistakes": [
+        "细节过多不够概括",
+        "关键情节遗漏"
+      ],
+      "suggested_types": [
+        "习作",
+        "概括",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·第二单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K017",
+      "index": 17,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "习作",
+      "name": "习作：让真情自然流露",
+      "objective": "能在叙事中自然表达真实情感",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "primary-g6-s2-chinese-K011"
+      ],
+      "concept": "真情实感来自真实经历和细节，通过具体描写自然流露，避免空洞抒情",
+      "common_mistakes": [
+        "空喊口号",
+        "情感与事件脱节"
+      ],
+      "suggested_types": [
+        "习作",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·第三单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K018",
+      "index": 18,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "口语交际",
+      "name": "口语交际：即兴发言",
+      "objective": "能围绕话题快速组织语言进行即兴发言",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "primary-g6-s2-chinese-K017"
+      ],
+      "concept": "即兴发言要迅速确定观点、组织两三条理由，语言简洁、条理清楚",
+      "common_mistakes": [
+        "观点不明",
+        "语无伦次"
+      ],
+      "suggested_types": [
+        "表达",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·口语交际",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K019",
+      "index": 19,
+      "domain": "跨学科学习",
+      "theme": "跨学科学习",
+      "unit": "综合性学习",
+      "name": "综合性学习：难忘小学生活",
+      "objective": "能通过多种形式回顾小学生活并表达感念",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "primary-g6-s2-chinese-K018"
+      ],
+      "concept": "可通过写回忆、制作纪念册、策划活动等形式综合运用语文能力",
+      "common_mistakes": [
+        "形式单一",
+        "内容空泛"
+      ],
+      "suggested_types": [
+        "探究",
+        "实践",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·综合性学习",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K020",
+      "index": 20,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "总复习",
+      "name": "小学语文总复习：字词",
+      "objective": "能系统梳理小学阶段字音、字形、词语知识",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s2-chinese-K005"
+      ],
+      "concept": "字词复习要归类整理：多音字、形近字、同音字、近反义词、成语，形成知识网络",
+      "common_mistakes": [
+        "零散记忆不成体系",
+        "易错点不清晰"
+      ],
+      "suggested_types": [
+        "整理",
+        "辨析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·总复习",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K021",
+      "index": 21,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "总复习",
+      "name": "小学语文总复习：阅读",
+      "objective": "能综合运用阅读方法理解各类文章",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s2-chinese-K015"
+      ],
+      "concept": "阅读复习要整合概括内容、体会情感、分析写法、提取信息等能力",
+      "common_mistakes": [
+        "方法单一",
+        "答题不结合文本"
+      ],
+      "suggested_types": [
+        "阅读",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·总复习",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-chinese-K022",
+      "index": 22,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "总复习",
+      "name": "小学语文总复习：习作",
+      "objective": "能根据要求完成各类习作",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "primary-g6-s2-chinese-K021"
+      ],
+      "concept": "习作复习要掌握审题、立意、选材、组织、表达的基本流程，注意书写与修改",
+      "common_mistakes": [
+        "审题偏差",
+        "内容空洞"
+      ],
+      "suggested_types": [
+        "习作",
+        "创造",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "统编六下·总复习",
+      "engine_hint": "llm"
+    }
+  ]
 }

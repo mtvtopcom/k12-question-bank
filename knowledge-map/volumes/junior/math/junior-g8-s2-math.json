@@ -1,12 +1,709 @@
 {
   "volume_id": "junior-g8-s2-math",
-  "title": "g8数学下册",
+  "title": "八年级下册数学",
   "stage": "junior",
   "grade": "g8",
   "term": "s2",
   "subject": "math",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版八年级下册共有内容；2022版数学课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g8-s2-math-K001",
+      "index": 1,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "二次根式",
+      "name": "二次根式的概念与性质",
+      "objective": "理解二次根式有意义的条件及双重非负性",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "形如√a（a≥0）的式子叫二次根式；√a本身非负，被开方数也非负；√(a²)=|a|",
+      "common_mistakes": [
+        "忽略被开方数非负条件",
+        "把√(a²)直接写成a",
+        "认为√a可以为负"
+      ],
+      "suggested_types": [
+        "辨析",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十六章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K002",
+      "index": 2,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "二次根式",
+      "name": "二次根式的乘除",
+      "objective": "掌握二次根式乘除法则并能化简",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-math-K001"
+      ],
+      "concept": "√a·√b=√(ab)（a≥0,b≥0）；√a÷√b=√(a/b)（a≥0,b>0）；化简结果要求分母不含根号、被开方数不含能开方的因数",
+      "common_mistakes": [
+        "化简不彻底",
+        "分母有理化时乘错因式",
+        "负号移入根号内出错"
+      ],
+      "suggested_types": [
+        "计算",
+        "化简",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十六章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K003",
+      "index": 3,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "二次根式",
+      "name": "二次根式的加减",
+      "objective": "能识别同类二次根式并进行加减运算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-math-K002"
+      ],
+      "concept": "先把各二次根式化为最简二次根式，再合并被开方数相同的项——类似合并同类项",
+      "common_mistakes": [
+        "未化简就判断是否同类",
+        "把√2+√3合并为√5"
+      ],
+      "suggested_types": [
+        "计算",
+        "化简",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十六章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K004",
+      "index": 4,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "勾股定理",
+      "name": "勾股定理",
+      "objective": "掌握勾股定理并能用于求直角三角形边长",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [],
+      "concept": "直角三角形两直角边的平方和等于斜边的平方：a²+b²=c²，其中c为斜边",
+      "common_mistakes": [
+        "斜边与直角边混淆",
+        "忘记定理只适用于直角三角形",
+        "开方后取负值"
+      ],
+      "suggested_types": [
+        "计算",
+        "证明",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十七章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K005",
+      "index": 5,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "勾股定理",
+      "name": "勾股定理的逆定理",
+      "objective": "掌握逆定理，能用三边关系判定直角三角形",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-math-K004"
+      ],
+      "concept": "若三角形三边满足a²+b²=c²，则这个三角形是直角三角形，且c所对的角为直角",
+      "common_mistakes": [
+        "未找最长边就代入",
+        "把逆定理与勾股定理混为一谈"
+      ],
+      "suggested_types": [
+        "判断",
+        "证明",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十七章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K006",
+      "index": 6,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "勾股定理",
+      "name": "勾股定理的实际应用",
+      "objective": "能建构直角三角形模型解决实际问题",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-math-K004"
+      ],
+      "concept": "把实际问题（梯子滑动、航海、折叠、最短路径）转化为直角三角形模型，再借助勾股定理列方程求解",
+      "common_mistakes": [
+        "未构造出直角三角形",
+        "折叠问题中对应边关系找错",
+        "分类讨论遗漏"
+      ],
+      "suggested_types": [
+        "建模",
+        "应用",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十七章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-math-K007",
+      "index": 7,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "平行四边形",
+      "name": "平行四边形的性质",
+      "objective": "掌握平行四边形对边、对角、对角线的关系",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-math-K005"
+      ],
+      "concept": "平行四边形对边平行且相等、对角相等、邻角互补、对角线互相平分；它是中心对称图形",
+      "common_mistakes": [
+        "把对角线\"互相平分\"记成\"相等\"",
+        "忽略邻角互补关系"
+      ],
+      "suggested_types": [
+        "证明",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十八章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K008",
+      "index": 8,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "平行四边形",
+      "name": "平行四边形的判定",
+      "objective": "掌握五种判定方法并能选择恰当方法证明",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-math-K007"
+      ],
+      "concept": "判定：两组对边分别平行、两组对边分别相等、一组对边平行且相等、两组对角分别相等、对角线互相平分的四边形",
+      "common_mistakes": [
+        "\"一组对边平行另一组相等\"误判为平行四边形",
+        "判定条件不足三条就下结论"
+      ],
+      "suggested_types": [
+        "证明",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十八章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-math-K009",
+      "index": 9,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "平行四边形",
+      "name": "三角形的中位线",
+      "objective": "掌握三角形中位线定理并能计算与证明",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-math-K008"
+      ],
+      "concept": "三角形的中位线平行于第三边，且等于第三边的一半；它与中线是不同的线段",
+      "common_mistakes": [
+        "把中位线当成中线",
+        "忘记\"平行\"这一半结论只用于计算"
+      ],
+      "suggested_types": [
+        "计算",
+        "证明",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十八章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K010",
+      "index": 10,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "特殊的平行四边形",
+      "name": "矩形的性质与判定",
+      "objective": "掌握矩形四个直角、对角线相等的性质及判定方法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-math-K008"
+      ],
+      "concept": "矩形是有一个角是直角的平行四边形，四个角都是直角、对角线相等；判定：一个直角、对角线相等的平行四边形、三个角是直角的四边形",
+      "common_mistakes": [
+        "只凭\"对角线相等\"判定矩形",
+        "把矩形性质与菱形性质混淆"
+      ],
+      "suggested_types": [
+        "证明",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十八章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K011",
+      "index": 11,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "特殊的平行四边形",
+      "name": "菱形的性质与判定",
+      "objective": "掌握菱形四边相等、对角线垂直平分的性质及判定",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-math-K008"
+      ],
+      "concept": "菱形是有一组邻边相等的平行四边形，四条边相等、对角线互相垂直且每条对角线平分一组对角；面积=对角线乘积的一半",
+      "common_mistakes": [
+        "菱形面积按普通平行四边形底乘高算错",
+        "把\"对角线垂直\"当作唯一判定条件"
+      ],
+      "suggested_types": [
+        "证明",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十八章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-math-K012",
+      "index": 12,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "特殊的平行四边形",
+      "name": "正方形的性质与判定",
+      "objective": "理解正方形既是矩形又是菱形，掌握其判定路径",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-math-K010",
+        "junior-g8-s2-math-K011"
+      ],
+      "concept": "正方形兼具矩形与菱形的全部性质：四边相等、四角为直角、对角线相等且互相垂直平分；判定需从矩形或菱形出发再补一个条件",
+      "common_mistakes": [
+        "判定路径混乱（先证矩形再证菱形顺序不清）",
+        "把正方形性质当作判定直接使用"
+      ],
+      "suggested_types": [
+        "证明",
+        "判断",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十八章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-math-K013",
+      "index": 13,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "函数",
+      "name": "变量与函数的概念",
+      "objective": "理解常量与变量、函数的概念及自变量的取值范围",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "在一个变化过程中有两个变量x、y，若对x的每一个确定值y都有唯一确定的值与之对应，则y是x的函数；自变量取值须使解析式与实际问题同时有意义",
+      "common_mistakes": [
+        "认为一个x可对应多个y仍是函数",
+        "忽略实际问题对自变量范围的限制"
+      ],
+      "suggested_types": [
+        "辨析",
+        "求范围",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十九章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K014",
+      "index": 14,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "一次函数",
+      "name": "正比例函数",
+      "objective": "理解正比例函数y=kx的图象与性质",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g8-s2-math-K013"
+      ],
+      "concept": "y=kx（k≠0）的图象是过原点的直线；k>0时y随x增大而增大，k<0时y随x增大而减小",
+      "common_mistakes": [
+        "忽略k≠0的限制",
+        "把正比例函数图象画成不过原点"
+      ],
+      "suggested_types": [
+        "作图",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十九章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K015",
+      "index": 15,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "一次函数",
+      "name": "一次函数的图象与性质",
+      "objective": "掌握一次函数y=kx+b的图象特征与增减性",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-math-K014"
+      ],
+      "concept": "y=kx+b（k≠0）的图象是一条直线，b决定与y轴交点，k决定倾斜方向与增减性；k、b符号共同决定经过的象限",
+      "common_mistakes": [
+        "k、b符号与象限对应关系记错",
+        "平移方向与b变化方向相反"
+      ],
+      "suggested_types": [
+        "作图",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十九章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-math-K016",
+      "index": 16,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "一次函数",
+      "name": "待定系数法求一次函数解析式",
+      "objective": "能用两组对应值求出一次函数解析式",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-math-K015"
+      ],
+      "concept": "设y=kx+b，代入两组已知对应值得到二元一次方程组，解出k、b即得解析式",
+      "common_mistakes": [
+        "把两点坐标代错位置",
+        "解出后不回代验证"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十九章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K017",
+      "index": 17,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "一次函数",
+      "name": "一次函数与方程、不等式",
+      "objective": "理解一次函数图象与一元一次方程、不等式解集的对应关系",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-math-K015"
+      ],
+      "concept": "直线与x轴交点的横坐标是kx+b=0的解；图象在x轴上方部分对应的x取值是kx+b>0的解集——数形结合的核心",
+      "common_mistakes": [
+        "不等号方向与图象上下方对应错",
+        "忽略k<0时解集方向反转"
+      ],
+      "suggested_types": [
+        "数形结合",
+        "解不等式",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十九章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-math-K018",
+      "index": 18,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "一次函数",
+      "name": "一次函数的实际应用",
+      "objective": "能建立一次函数模型解决最值与方案选择问题",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-math-K016",
+        "junior-g8-s2-math-K017"
+      ],
+      "concept": "先由实际条件求出自变量取值范围，再结合增减性在端点处取最值；方案比较比较两个函数值大小",
+      "common_mistakes": [
+        "忽略自变量取值范围导致最值取错",
+        "方案比较时未讨论区间"
+      ],
+      "suggested_types": [
+        "建模",
+        "应用",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十九章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-math-K019",
+      "index": 19,
+      "domain": "统计与概率",
+      "theme": "抽样与数据分析",
+      "unit": "数据的分析",
+      "name": "平均数与加权平均数",
+      "objective": "理解算术平均数与加权平均数的意义并能计算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [],
+      "concept": "算术平均数是各数据之和除以数据个数；加权平均数中权反映各数据的重要程度，权可以是次数、比例或百分比",
+      "common_mistakes": [
+        "加权平均数分母用数据个数而非权和",
+        "百分比形式的权未化成小数"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第二十章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K020",
+      "index": 20,
+      "domain": "统计与概率",
+      "theme": "抽样与数据分析",
+      "unit": "数据的分析",
+      "name": "中位数与众数",
+      "objective": "理解中位数、众数的意义并能从数据中求出",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g8-s2-math-K019"
+      ],
+      "concept": "中位数须先排序：奇数个取中间一个，偶数个取中间两个的平均数；众数是出现次数最多的数据，可以不唯一",
+      "common_mistakes": [
+        "未排序就取中位数",
+        "认为众数一定唯一",
+        "把众数当成次数"
+      ],
+      "suggested_types": [
+        "计算",
+        "辨析",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第二十章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K021",
+      "index": 21,
+      "domain": "统计与概率",
+      "theme": "抽样与数据分析",
+      "unit": "数据的分析",
+      "name": "方差与数据的波动",
+      "objective": "理解方差的意义并能计算，比较两组数据的稳定性",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-math-K019"
+      ],
+      "concept": "方差 s²=[(x₁-x̄)²+(x₂-x̄)²+…+(xₙ-x̄)²]/n；方差越大波动越大、越不稳定",
+      "common_mistakes": [
+        "方差公式漏除以n",
+        "认为方差越大越好（需结合具体情境）"
+      ],
+      "suggested_types": [
+        "计算",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第二十章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-math-K022",
+      "index": 22,
+      "domain": "统计与概率",
+      "theme": "抽样与数据分析",
+      "unit": "数据的分析",
+      "name": "用样本估计总体",
+      "objective": "理解抽样调查的合理性，能用样本特征估计总体特征",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-math-K020",
+        "junior-g8-s2-math-K021"
+      ],
+      "concept": "样本须具有代表性与随机性；用样本平均数、方差、比例估计总体相应特征，估计结果带有随机误差",
+      "common_mistakes": [
+        "样本选取有偏却直接推断总体",
+        "把估计值当作准确值"
+      ],
+      "suggested_types": [
+        "分析",
+        "推断",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第二十章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-math-K023",
+      "index": 23,
+      "domain": "综合与实践",
+      "theme": "项目式学习",
+      "unit": "数学活动",
+      "name": "综合与实践：测量问题中的勾股定理",
+      "objective": "能设计测量方案并运用勾股定理解决实际测量问题",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g8-s2-math-K006"
+      ],
+      "concept": "把不可直接测量的长度置于直角三角形中，通过可测量构造方程；方案需说明测量工具、步骤与误差来源",
+      "common_mistakes": [
+        "方案中缺少可测量条件",
+        "忽略测量误差的说明"
+      ],
+      "suggested_types": [
+        "项目",
+        "设计",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第十七章数学活动",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-math-K024",
+      "index": 24,
+      "domain": "综合与实践",
+      "theme": "项目式学习",
+      "unit": "数学活动",
+      "name": "综合与实践：用统计量做决策",
+      "objective": "能综合运用平均数、中位数、众数、方差为实际问题提供决策依据",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g8-s2-math-K022"
+      ],
+      "concept": "不同统计量反映不同侧面：平均水平看平均数、中等水平看中位数、多数水平看众数、稳定性看方差；决策须说明选取理由",
+      "common_mistakes": [
+        "只比较平均数就下结论",
+        "忽视数据分布对统计量代表性的影响"
+      ],
+      "suggested_types": [
+        "项目",
+        "评价",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·第二十章数学活动",
+      "engine_hint": "llm"
+    }
+  ]
 }

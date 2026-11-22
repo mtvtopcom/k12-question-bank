@@ -1,12 +1,594 @@
 {
   "volume_id": "junior-g9-s2-english",
-  "title": "g9英语下册",
+  "title": "九年级下册英语",
   "stage": "junior",
   "grade": "g9",
   "term": "s2",
   "subject": "english",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）九年级全一册 Unit 8—14/外研版/译林版共有内容；2022版英语课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g9-s2-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "语音",
+      "name": "语流音变与朗读评价",
+      "objective": "能辨识并运用连读、弱读、同化等语流音变，能评价他人朗读",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s1-english-K001"
+      ],
+      "concept": "语流音变包括连读、弱读、同化、省音；评价朗读看语音准确、节奏自然、语调达意、情感贴切四个维度",
+      "common_mistakes": [
+        "音变导致听懂障碍",
+        "评价标准单一（只看发音）"
+      ],
+      "suggested_types": [
+        "朗读",
+        "评价",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·语音",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "音乐、影视与娱乐词汇",
+      "objective": "能运用音乐类型、影视作品与娱乐活动相关词汇表达偏好",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g9-s1-english-K002"
+      ],
+      "concept": "娱乐词汇常与「偏好+理由」结构连用（I like music that...），为定语从句提供语言基础",
+      "common_mistakes": [
+        "音乐类型名称拼写错误",
+        "偏好表达缺少理由"
+      ],
+      "suggested_types": [
+        "运用",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 9",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "礼仪、习俗与社交词汇",
+      "objective": "能运用问候、餐桌、拜访等社交礼仪词汇描述文化差异",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g9-s2-english-K002"
+      ],
+      "concept": "礼仪词汇涉及「该做/不该做」两类（be supposed to / be not supposed to），常与 be supposed to 结构配合",
+      "common_mistakes": [
+        "礼仪表达搭配错误",
+        "文化差异表述绝对化"
+      ],
+      "suggested_types": [
+        "运用",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 10",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "意外事件与情绪词汇",
+      "objective": "能运用突发事件与情绪反应词汇叙述经历",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g9-s2-english-K003"
+      ],
+      "concept": "意外叙述常用过去完成时表「过去的过去」，情绪词汇（embarrassed、relieved）为叙事增添层次",
+      "common_mistakes": [
+        "情绪词误用（boring 与 bored）",
+        "时态层次不清"
+      ],
+      "suggested_types": [
+        "运用",
+        "叙述",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 12",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "情态动词",
+      "name": "情态动词表推测",
+      "objective": "能用 must/might/could/can't 表达不同程度的推测",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-english-K005"
+      ],
+      "concept": "推测确定度：must（肯定）> might/could（可能）> can't（不可能）；「must be」表肯定推测，其否定用 can't be 而非 mustn't be",
+      "common_mistakes": [
+        "mustn't be 误用于否定推测",
+        "确定程度词混用"
+      ],
+      "suggested_types": [
+        "填空",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 8",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K006",
+      "index": 6,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "定语从句",
+      "name": "定语从句（that/which/who）",
+      "objective": "能用关系代词 that/which/who 引导定语从句修饰名词",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-english-K007"
+      ],
+      "concept": "先行词指人用 who/that，指物用 which/that；关系代词在从句中充当主语或宾语，作宾语时可省略",
+      "common_mistakes": [
+        "关系代词与先行词不匹配",
+        "从句中重复出现先行词",
+        "从句语序错误"
+      ],
+      "suggested_types": [
+        "填空",
+        "合并",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 9",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "定语从句",
+      "name": "关系代词的选择与省略",
+      "objective": "能根据先行词与从句成分选择关系代词，判断何时可省略",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-english-K005"
+      ],
+      "concept": "只能用 that 的情形：先行词为 all/everything 等不定代词、被序数词或最高级修饰、先行词既有人又有物；作宾语时可省略",
+      "common_mistakes": [
+        "该用 that 处用 which",
+        "作主语时省略关系代词"
+      ],
+      "suggested_types": [
+        "辨析",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 9",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K008",
+      "index": 8,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "句型",
+      "name": "be supposed to 与 be expected to",
+      "objective": "能用 be supposed to/be expected to 表达约定、期待与规范",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s2-english-K004"
+      ],
+      "concept": "be supposed to do 表「按理应该」，含「实际未必如此」的意味；否定表「不应该」，疑问表「是否应该」",
+      "common_mistakes": [
+        "to 后接动名词",
+        "否定形式位置错误"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 10",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "使役结构",
+      "name": "make 使役结构",
+      "objective": "能用 make sb do sth / make sb + 形容词 表达使动结果",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s2-english-K008"
+      ],
+      "concept": "make sb do sth 中 do 不带 to；make sb + adj 表「使某人处于某状态」；被动语态中须还原 to（be made to do）",
+      "common_mistakes": [
+        "make 后误加 to",
+        "被动语态中漏 to"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 11",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K010",
+      "index": 10,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "过去完成时",
+      "name": "过去完成时的构成与用法",
+      "objective": "能用 had + 过去分词表示「过去的过去」",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-english-K011"
+      ],
+      "concept": "过去完成时表示在过去某时或某动作之前已完成的事，常与 by the time、before、when 引导的从句配合",
+      "common_mistakes": [
+        "与一般过去时混用导致时序混乱",
+        "had 后接过去式"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 12",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K011",
+      "index": 11,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "时态辨析",
+      "name": "现在完成时与一般过去时的区别",
+      "objective": "能区分现在完成时（关联现在）与一般过去时（仅述过去）",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-english-K010"
+      ],
+      "concept": "现在完成时强调对现在的影响、不指明具体时间；一般过去时叙述过去的具体事件，须有明确或隐含的过去时间",
+      "common_mistakes": [
+        "与明确过去时间连用现在完成时",
+        "忽视「对现在的影响」这一语义"
+      ],
+      "suggested_types": [
+        "辨析",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 14",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K012",
+      "index": 12,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "被动语态",
+      "name": "被动语态与进行时、完成时的综合",
+      "objective": "能构成进行时与完成时的被动语态",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-english-K012"
+      ],
+      "concept": "进行时被动为 be being + 过去分词；完成时被动为 have/has been + 过去分词；共同点是「be 变形式、过去分词不变」",
+      "common_mistakes": [
+        "being 遗漏",
+        "been 与 being 混淆"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 13",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K013",
+      "index": 13,
+      "domain": "语篇",
+      "theme": "语篇类型",
+      "unit": "语篇",
+      "name": "书信与感谢信的语篇结构",
+      "objective": "能读懂并撰写结构得体的感谢信",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g8-s2-english-K018"
+      ],
+      "concept": "感谢信结构为「称呼—致谢并说明事由—具体回忆与感受—再次致谢与祝愿—署名」；语气真挚，细节具体可感",
+      "common_mistakes": [
+        "致谢空泛无具体事由",
+        "格式缺项（漏结束语或署名）"
+      ],
+      "suggested_types": [
+        "写作",
+        "阅读",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 14",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K014",
+      "index": 14,
+      "domain": "语篇",
+      "theme": "语篇类型",
+      "unit": "语篇",
+      "name": "演讲稿的结构与语言",
+      "objective": "能分析演讲稿的开场、主体与结尾，并模仿写作",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-english-K012"
+      ],
+      "concept": "演讲稿结构为「问候与引入—观点与例证—呼吁与结尾」；语言上多用排比、设问、呼告与短句增强感染力",
+      "common_mistakes": [
+        "缺少呼告与现场感",
+        "观点与例证脱节"
+      ],
+      "suggested_types": [
+        "分析",
+        "写作",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 13",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K015",
+      "index": 15,
+      "domain": "语言知识",
+      "theme": "语用",
+      "unit": "语用",
+      "name": "表达遗憾、祝愿与道别",
+      "objective": "能用恰当句式表达遗憾、祝愿与临别赠言",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-english-K014"
+      ],
+      "concept": "遗憾用 I'm sorry that.../I wish I had...；祝愿用 I wish you.../May you...；道别用 Take care/Keep in touch，语气随关系亲疏调整",
+      "common_mistakes": [
+        "祝愿句式 Chinese English 化",
+        "道别语过于书面"
+      ],
+      "suggested_types": [
+        "对话",
+        "写作",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 14",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-english-K016",
+      "index": 16,
+      "domain": "主题",
+      "theme": "人与自我",
+      "unit": "主题",
+      "name": "成长回忆与未来规划",
+      "objective": "能回顾初中生活、总结成长并规划未来",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g9-s2-english-K014"
+      ],
+      "concept": "该主题要求「回顾—反思—展望」三层表达，可综合运用现在完成时（回顾）、一般将来时（展望）与定语从句（描述）",
+      "common_mistakes": [
+        "只罗列事件无反思",
+        "时态使用混乱"
+      ],
+      "suggested_types": [
+        "表达",
+        "写作",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 14",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K017",
+      "index": 17,
+      "domain": "主题",
+      "theme": "人与社会",
+      "unit": "主题",
+      "name": "礼仪规范与文化差异",
+      "objective": "能比较中外社交礼仪差异并作出得体应对",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s2-english-K008"
+      ],
+      "concept": "礼仪差异体现在问候方式、时间观念、餐桌习惯、送礼禁忌等方面；理解差异应落到价值观（个人主义/集体主义、直接/委婉）",
+      "common_mistakes": [
+        "以本国礼仪为标准评判他国",
+        "差异描述笼统无实例"
+      ],
+      "suggested_types": [
+        "表达",
+        "讨论",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 10",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K018",
+      "index": 18,
+      "domain": "主题",
+      "theme": "人与自然",
+      "unit": "主题",
+      "name": "环境保护与可持续行动",
+      "objective": "能就环境问题分析成因、提出可执行的解决措施",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s2-english-K011"
+      ],
+      "concept": "环保主题论述链为「问题—成因—影响—对策」，对策须具体可执行（reduce/reuse/recycle），并可用被动语态说明措施",
+      "common_mistakes": [
+        "对策空泛（如「保护环境」）",
+        "因果链断裂"
+      ],
+      "suggested_types": [
+        "表达",
+        "写作",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·Unit 13",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K019",
+      "index": 19,
+      "domain": "语言技能",
+      "theme": "听",
+      "unit": "语言技能",
+      "name": "听演讲抓主旨与观点",
+      "objective": "能听懂演讲类语篇的主旨、观点与支撑例证",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-english-K018"
+      ],
+      "concept": "演讲听力抓三处：开场的主旨句、中段的例证标志词（for example）、结尾的呼吁；注意语调强调处往往是观点所在",
+      "common_mistakes": [
+        "只记细节不抓主旨",
+        "忽视语调强调"
+      ],
+      "suggested_types": [
+        "听力",
+        "概括",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·听力训练",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-english-K020",
+      "index": 20,
+      "domain": "学习策略",
+      "theme": "学习策略",
+      "unit": "学习策略",
+      "name": "项目式学习与自我评价",
+      "objective": "能以项目方式整合语言技能，并用评价量表反思学习",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s2-english-K019"
+      ],
+      "concept": "项目式学习按「确定任务—分工合作—搜集整理—成果展示—反思改进」推进；自我评价须依据可观测指标（准确性、流利度、得体性）",
+      "common_mistakes": [
+        "项目流于形式无语言产出",
+        "反思停留在「还需努力」"
+      ],
+      "suggested_types": [
+        "项目",
+        "评价",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·项目活动",
+      "engine_hint": "llm"
+    }
+  ]
 }

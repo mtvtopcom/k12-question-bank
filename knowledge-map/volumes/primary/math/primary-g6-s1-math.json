@@ -1,12 +1,647 @@
 {
   "volume_id": "primary-g6-s1-math",
-  "title": "g6数学上册",
+  "title": "六年级上册数学",
   "stage": "primary",
   "grade": "g6",
   "term": "s1",
   "subject": "math",
   "school_stage": "S3",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版六年级上册共有内容；2022版数学课标第三学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g6-s1-math-K001",
+      "index": 1,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数乘法",
+      "name": "分数乘整数与分数乘分数",
+      "objective": "掌握分数乘法的计算方法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-math-K015"
+      ],
+      "concept": "分子相乘的积作分子，分母相乘的积作分母；能约分的先约分再乘更简便",
+      "common_mistakes": [
+        "忘记约分",
+        "把分子分母分别相加"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·分数乘法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s1-math-K002",
+      "index": 2,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数乘法",
+      "name": "分数乘法中的约分技巧",
+      "objective": "能在计算前进行交叉约分简化运算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K001"
+      ],
+      "concept": "计算前把一个因数的分子与另一个因数的分母约分，可以简化计算",
+      "common_mistakes": [
+        "约分位置弄错",
+        "约分后数值改变"
+      ],
+      "suggested_types": [
+        "计算",
+        "简便计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·分数乘法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s1-math-K003",
+      "index": 3,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "分数乘法",
+      "name": "求一个数的几分之几是多少",
+      "objective": "能用分数乘法解决求部分量的实际问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K001"
+      ],
+      "concept": "求a的b/c是多少，用a×b/c计算；关键是找准单位1",
+      "common_mistakes": [
+        "乘除混淆",
+        "单位1找错"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·分数乘法",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K004",
+      "index": 4,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数乘法",
+      "name": "分数混合运算与运算定律",
+      "objective": "能进行分数混合运算并运用运算定律简算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K002"
+      ],
+      "concept": "整数乘法的运算定律同样适用于分数乘法",
+      "common_mistakes": [
+        "定律误用",
+        "运算顺序错误"
+      ],
+      "suggested_types": [
+        "计算",
+        "简便计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·分数乘法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s1-math-K005",
+      "index": 5,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数乘法",
+      "name": "倒数的认识",
+      "objective": "理解倒数的意义，会求一个数的倒数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g6-s1-math-K001"
+      ],
+      "concept": "乘积是1的两个数互为倒数；1的倒数是1，0没有倒数",
+      "common_mistakes": [
+        "认为0有倒数",
+        "把相反数当成倒数"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·分数乘法",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K006",
+      "index": 6,
+      "domain": "图形与几何",
+      "theme": "图形的位置与运动",
+      "unit": "位置与方向（二）",
+      "name": "用方向和距离确定位置",
+      "objective": "能用方向和距离准确描述物体的位置",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-math-K005"
+      ],
+      "concept": "确定位置需要三要素：参照点、方向（含角度）、距离",
+      "common_mistakes": [
+        "只说方向不说距离",
+        "参照点判断错误"
+      ],
+      "suggested_types": [
+        "描述",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·位置与方向（二）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K007",
+      "index": 7,
+      "domain": "图形与几何",
+      "theme": "图形的位置与运动",
+      "unit": "位置与方向（二）",
+      "name": "描述简单的路线图",
+      "objective": "能按顺序描述行走路线",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K006"
+      ],
+      "concept": "路线描述要按先后顺序说清每段的方向和距离",
+      "common_mistakes": [
+        "顺序颠倒",
+        "方向描述错误"
+      ],
+      "suggested_types": [
+        "描述",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·位置与方向（二）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K008",
+      "index": 8,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数除法",
+      "name": "分数除以整数",
+      "objective": "能计算分数除以整数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K005"
+      ],
+      "concept": "除以一个不为0的数，等于乘这个数的倒数",
+      "common_mistakes": [
+        "忘记把除号变乘号",
+        "忽略除数不能为0"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·分数除法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s1-math-K009",
+      "index": 9,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数除法",
+      "name": "一个数除以分数",
+      "objective": "能计算一个数除以分数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K008"
+      ],
+      "concept": "甲数除以乙数（0除外）等于甲数乘乙数的倒数",
+      "common_mistakes": [
+        "倒数求错",
+        "只把除号变乘号但没取倒数"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·分数除法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s1-math-K010",
+      "index": 10,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "分数除法",
+      "name": "分数除法解决问题",
+      "objective": "能用分数除法（或方程）解决已知部分求整体的问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K009"
+      ],
+      "concept": "已知一个数的几分之几是多少，求这个数，用除法或列方程；关键是找准单位1",
+      "common_mistakes": [
+        "单位1找错",
+        "该用除法却用乘法"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·分数除法",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K011",
+      "index": 11,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "分数除法",
+      "name": "工程问题",
+      "objective": "能用单位1和效率解决简单的工程问题",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-math-K010"
+      ],
+      "concept": "把工作总量看作单位1，工作效率=1÷完成所需时间；合作效率=各效率之和",
+      "common_mistakes": [
+        "没有把总量设为单位1",
+        "效率相加时出错"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·分数除法",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K012",
+      "index": 12,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "比",
+      "name": "比的意义与比值",
+      "objective": "理解比的意义，会求比值",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-math-K012"
+      ],
+      "concept": "两个数相除又叫两个数的比；比值=前项÷后项，是一个数",
+      "common_mistakes": [
+        "比与比值混淆",
+        "比与除法、分数的关系不清"
+      ],
+      "suggested_types": [
+        "理解",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·比",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K013",
+      "index": 13,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "比",
+      "name": "比的基本性质与化简比",
+      "objective": "掌握比的基本性质，会化简比",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g6-s1-math-K012"
+      ],
+      "concept": "比的前项和后项同时乘或除以相同的数（0除外），比值不变",
+      "common_mistakes": [
+        "化简不彻底",
+        "整数比没有化成最简整数比"
+      ],
+      "suggested_types": [
+        "化简",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·比",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s1-math-K014",
+      "index": 14,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "比",
+      "name": "按比分配",
+      "objective": "能解决按比分配的实际问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K013"
+      ],
+      "concept": "先求总份数，再求每份的量，最后按各部分占的份数分配",
+      "common_mistakes": [
+        "总份数计算错误",
+        "分配比例用反"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·比",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K015",
+      "index": 15,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "圆",
+      "name": "圆的认识与画圆",
+      "objective": "认识圆心、半径、直径，会用圆规画圆",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "圆心决定圆的位置，半径决定圆的大小；同圆内所有半径相等，直径是半径的2倍",
+      "common_mistakes": [
+        "直径与半径关系记错",
+        "圆规使用不规范"
+      ],
+      "suggested_types": [
+        "识别",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·圆",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K016",
+      "index": 16,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "圆",
+      "name": "圆的周长",
+      "objective": "掌握圆的周长公式并能计算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K015"
+      ],
+      "concept": "圆的周长C=πd=2πr；π是圆周率，约等于3.14",
+      "common_mistakes": [
+        "把π当成3",
+        "直径与半径混用"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·圆",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K017",
+      "index": 17,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "圆",
+      "name": "圆的面积",
+      "objective": "掌握圆的面积公式并能计算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K016"
+      ],
+      "concept": "把圆转化成长方形推导出面积S=πr²",
+      "common_mistakes": [
+        "用周长公式算面积",
+        "把r²算成2r"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·圆",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K018",
+      "index": 18,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "圆",
+      "name": "圆环的面积与组合图形",
+      "objective": "会计算圆环及简单组合图形的面积",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K017"
+      ],
+      "concept": "圆环面积=πR²-πr²=π(R²-r²)；组合图形要合理分割或添补",
+      "common_mistakes": [
+        "内圆与外圆半径混淆",
+        "组合图形分割不当"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·圆",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K019",
+      "index": 19,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "百分数（一）",
+      "name": "百分数的意义与读写",
+      "objective": "理解百分数的意义，会正确读写百分数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g6-s1-math-K013"
+      ],
+      "concept": "百分数表示一个数是另一个数的百分之几，又叫百分率或百分比；它只表示倍比关系，不带单位",
+      "common_mistakes": [
+        "给百分数加单位",
+        "与分数的意义混淆"
+      ],
+      "suggested_types": [
+        "理解",
+        "读写",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·百分数（一）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K020",
+      "index": 20,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "百分数（一）",
+      "name": "百分数与分数、小数的互化及求百分率",
+      "objective": "能进行百分数与分数、小数的互化，会求常见百分率",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K019"
+      ],
+      "concept": "小数化百分数乘100再加%，百分数化小数去掉%再除以100；求百分率=部分÷总量×100%",
+      "common_mistakes": [
+        "小数点移动方向错",
+        "求百分率时分母用错"
+      ],
+      "suggested_types": [
+        "转换",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·百分数（一）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s1-math-K021",
+      "index": 21,
+      "domain": "统计与概率",
+      "theme": "数据的收集、整理与表达",
+      "unit": "扇形统计图",
+      "name": "扇形统计图的认识与分析",
+      "objective": "认识扇形统计图，能读出各部分占总量的百分比",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g6-s1-math-K019"
+      ],
+      "concept": "扇形统计图用整个圆表示总量，各扇形表示各部分占总量的百分比，便于看占比",
+      "common_mistakes": [
+        "把百分比当成具体数量",
+        "各部分之和不为100%"
+      ],
+      "suggested_types": [
+        "读图",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·扇形统计图",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-math-K022",
+      "index": 22,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "数学广角—数与形",
+      "name": "数与形：借助图形发现规律",
+      "objective": "能借助图形直观发现数与形的对应规律",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [],
+      "concept": "有些数量关系可以用图形直观表示，从图形的规律中能发现数的规律",
+      "common_mistakes": [
+        "只看数不看形",
+        "规律归纳不完整"
+      ],
+      "suggested_types": [
+        "发现规律",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六上·数学广角—数与形",
+      "engine_hint": "llm"
+    }
+  ]
 }

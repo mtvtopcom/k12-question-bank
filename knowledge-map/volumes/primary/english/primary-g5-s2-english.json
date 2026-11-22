@@ -1,12 +1,473 @@
 {
   "volume_id": "primary-g5-s2-english",
-  "title": "g5英语下册",
+  "title": "五年级下册英语",
   "stage": "primary",
   "grade": "g5",
   "term": "s2",
   "subject": "english",
   "school_stage": "S3",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版PEP（2024审定）/外研版/译林版五年级下册共有内容；2022版英语课标第三学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g5-s2-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "语音",
+      "name": "连读与失去爆破初步",
+      "objective": "初步感知连读和失去爆破现象",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s1-english-K001"
+      ],
+      "concept": "前一词以辅音结尾、后一词以元音开头时常连读；爆破音相邻时前一个常失去爆破",
+      "common_mistakes": [
+        "连读位置判断错",
+        "发音吞音过度"
+      ],
+      "suggested_types": [
+        "听辨",
+        "朗读",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Phonics",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "日期",
+      "name": "月份与日期表达",
+      "objective": "能认读十二个月份并表达日期",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [],
+      "concept": "日期表达为月份 + 序数词，如 May 1st；月份首字母要大写",
+      "common_mistakes": [
+        "月份首字母不大写",
+        "日期用序数词基数词混用"
+      ],
+      "suggested_types": [
+        "认读",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Unit 3",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "序数词",
+      "name": "序数词的构成",
+      "objective": "能正确构成并使用序数词",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g5-s2-english-K002"
+      ],
+      "concept": "多数序数词在基数词后加 -th；first、second、third 特殊；fifth、eighth、ninth、twelfth 拼写特殊",
+      "common_mistakes": [
+        "拼写规则错",
+        "基数词序数词混用"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Unit 3",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般将来时",
+      "name": "一般将来时 be going to",
+      "objective": "能使用 be going to 表达计划",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-english-K003"
+      ],
+      "concept": "be going to + 动词原形表示计划或打算，be 随主语变化",
+      "common_mistakes": [
+        "be 动词与主语不一致",
+        "going to 后接动词-ing"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般将来时",
+      "name": "一般将来时 will",
+      "objective": "能使用 will 表达将来",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-english-K004"
+      ],
+      "concept": "will + 动词原形表示将来，will 不随主语变化，否定为 won't",
+      "common_mistakes": [
+        "will 后接 to",
+        "will 后动词加 s"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-english-K006",
+      "index": 6,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "谈论计划",
+      "name": "谈论未来的计划",
+      "objective": "能用将来时谈论自己的计划",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-english-K005"
+      ],
+      "concept": "谈论计划常用 I'm going to... 或 I will...，注意时间状语",
+      "common_mistakes": [
+        "时态混用",
+        "计划内容表述不清"
+      ],
+      "suggested_types": [
+        "表达",
+        "对话",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "季节活动",
+      "name": "季节与活动词",
+      "objective": "能认读季节相关的活动词汇",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g4-s2-english-K002"
+      ],
+      "concept": "季节活动词常与将来时结合表达假期计划",
+      "common_mistakes": [
+        "搭配错误",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Unit 2",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-english-K008",
+      "index": 8,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "时态",
+      "name": "现在进行时表示将来",
+      "objective": "能理解现在进行时可表示已安排的将来",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s2-english-K003"
+      ],
+      "concept": "表示按计划即将发生的动作可用现在进行时，如 I'm leaving tomorrow.",
+      "common_mistakes": [
+        "与一般将来时混淆",
+        "忽略语境判断"
+      ],
+      "suggested_types": [
+        "选择",
+        "分析",
+        "判断"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-english-K009",
+      "index": 9,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "电话用语",
+      "name": "英语电话用语",
+      "objective": "能使用基本的英语电话用语",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-english-K006"
+      ],
+      "concept": "电话中介绍自己用 This is...，不用 I am...；询问对方用 Is that...?",
+      "common_mistakes": [
+        "电话中自我介绍用 I am",
+        "用语不礼貌"
+      ],
+      "suggested_types": [
+        "对话",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-english-K010",
+      "index": 10,
+      "domain": "语言技能",
+      "theme": "读",
+      "unit": "阅读",
+      "name": "短文推理",
+      "objective": "能根据短文信息进行简单推理",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-english-K011"
+      ],
+      "concept": "推理要基于文中信息，不能脱离文本凭空想象，注意区分事实与推断",
+      "common_mistakes": [
+        "凭空推断",
+        "把推断当事实"
+      ],
+      "suggested_types": [
+        "阅读",
+        "推理",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-english-K011",
+      "index": 11,
+      "domain": "语言技能",
+      "theme": "写",
+      "unit": "写作",
+      "name": "写邮件或短信",
+      "objective": "能写简短的邮件或短信",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-english-K012"
+      ],
+      "concept": "邮件有称呼、正文、结尾和署名，短信更简短口语化",
+      "common_mistakes": [
+        "格式要素缺失",
+        "语气不当"
+      ],
+      "suggested_types": [
+        "写作",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Writing",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-english-K012",
+      "index": 12,
+      "domain": "文化知识",
+      "theme": "文化",
+      "unit": "节日习俗",
+      "name": "中外节日与习俗",
+      "objective": "能比较中外节日习俗的差异",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s2-english-K013"
+      ],
+      "concept": "节日习俗反映文化价值观，比较时要关注背后的文化内涵",
+      "common_mistakes": [
+        "只列习俗不作比较",
+        "文化内涵理解偏差"
+      ],
+      "suggested_types": [
+        "比较",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Culture",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-english-K013",
+      "index": 13,
+      "domain": "学习策略",
+      "theme": "策略",
+      "unit": "预测",
+      "name": "学习策略：预测与推断",
+      "objective": "能根据标题和图片预测内容",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-english-K010"
+      ],
+      "concept": "阅读前根据标题、图片、关键词预测内容，阅读中不断验证和修正",
+      "common_mistakes": [
+        "预测后不验证",
+        "脱离线索乱猜"
+      ],
+      "suggested_types": [
+        "实践",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·学习策略",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-english-K014",
+      "index": 14,
+      "domain": "语篇",
+      "theme": "语篇",
+      "unit": "语篇",
+      "name": "说明文语篇的阅读",
+      "objective": "能把握说明文的说明对象和主要信息",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-english-K015"
+      ],
+      "concept": "说明文重在传递信息，要抓住说明对象、特征和支撑细节",
+      "common_mistakes": [
+        "说明对象找错",
+        "细节与主旨混淆"
+      ],
+      "suggested_types": [
+        "阅读",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-english-K015",
+      "index": 15,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "形容词比较级",
+      "name": "形容词比较级初步",
+      "objective": "初步掌握形容词比较级的构成与用法",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "一般加 -er，多音节词前加 more；比较级常与 than 连用",
+      "common_mistakes": [
+        "比较级构成错误",
+        "比较对象不对等"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Unit 1",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-english-K016",
+      "index": 16,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "综合表达",
+      "name": "介绍节日计划",
+      "objective": "能介绍自己的节日计划",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-english-K007"
+      ],
+      "concept": "介绍计划要说明时间、地点、活动和同行人，用将来时表达",
+      "common_mistakes": [
+        "时态错误",
+        "计划要素不全"
+      ],
+      "suggested_types": [
+        "表达",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五下·Review",
+      "engine_hint": "llm"
+    }
+  ]
 }

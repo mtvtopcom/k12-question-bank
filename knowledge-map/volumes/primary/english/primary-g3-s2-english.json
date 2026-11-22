@@ -1,12 +1,477 @@
 {
   "volume_id": "primary-g3-s2-english",
-  "title": "g3英语下册",
+  "title": "三年级下册英语",
   "stage": "primary",
   "grade": "g3",
   "term": "s2",
   "subject": "english",
   "school_stage": "S2",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版PEP（2024审定）/外研版/译林版三年级下册共有内容；2022版英语课标第二学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g3-s2-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "自然拼读",
+      "name": "短元音的发音规律",
+      "objective": "能掌握五个元音字母的短元音发音",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-english-K016"
+      ],
+      "concept": "a、e、i、o、u 在闭音节中常发短元音，如 cat、bed、sit、dog、cup",
+      "common_mistakes": [
+        "长短元音混淆",
+        "发音不到位"
+      ],
+      "suggested_types": [
+        "听辨",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Phonics",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "自然拼读",
+      "name": "辅音字母的发音规律",
+      "objective": "能掌握常见辅音字母的发音",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-english-K001"
+      ],
+      "concept": "多数辅音字母发音与其字母名称的辅音部分一致，但 c、g 有软硬音之分",
+      "common_mistakes": [
+        "c 的两种发音混淆",
+        "发音与字母名称混淆"
+      ],
+      "suggested_types": [
+        "听辨",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Phonics",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "动物",
+      "name": "动物词与特征描述",
+      "objective": "能认读动物词并用形容词描述",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s2-english-K005"
+      ],
+      "concept": "动物词可与 big、small、tall 等形容词搭配描述",
+      "common_mistakes": [
+        "动物名称混淆",
+        "描述词与动物不匹配"
+      ],
+      "suggested_types": [
+        "认读",
+        "描述",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Unit 3",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般疑问句",
+      "name": "Do you...? 一般疑问句",
+      "objective": "能使用 Do you...? 提问并作简答",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-english-K003"
+      ],
+      "concept": "Do you...? 的回答用 Yes, I do. 或 No, I don't.，不能用 Yes, I like.",
+      "common_mistakes": [
+        "回答用 like",
+        "助动词遗漏"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "对话"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "特殊疑问句",
+      "name": "特殊疑问词 What、Where、Who",
+      "objective": "能使用特殊疑问词提问",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-english-K004"
+      ],
+      "concept": "What 问事物，Where 问地点，Who 问人，回答要针对疑问词提供信息",
+      "common_mistakes": [
+        "疑问词与答句不匹配",
+        "语序错误"
+      ],
+      "suggested_types": [
+        "选择",
+        "对话",
+        "填空"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-english-K006",
+      "index": 6,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "水果食物",
+      "name": "水果与食物词扩展",
+      "objective": "能认读更多水果和食物单词",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s2-english-K007"
+      ],
+      "concept": "食物词要区分可数与不可数，影响后续的 some/any 用法",
+      "common_mistakes": [
+        "可数不可数混淆",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "分类",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Unit 5",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "名词复数",
+      "name": "可数名词单复数初步",
+      "objective": "能掌握名词复数的基本构成",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-english-K006"
+      ],
+      "concept": "一般在词尾加 -s，以 s、x、ch、sh 结尾加 -es，辅音字母加 y 结尾变 y 为 i 加 -es",
+      "common_mistakes": [
+        "不规则变化误用规则",
+        "es 与 s 混用"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-english-K008",
+      "index": 8,
+      "domain": "语言知识",
+      "theme": "语用",
+      "unit": "数字与价格",
+      "name": "数字与价格的表达",
+      "objective": "能用英语表达价格",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-english-K005"
+      ],
+      "concept": "价格用 yuan 或 dollar 表达，如 ten yuan、five dollars",
+      "common_mistakes": [
+        "货币单位用错",
+        "数字读法错误"
+      ],
+      "suggested_types": [
+        "表达",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-english-K009",
+      "index": 9,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "购物",
+      "name": "购物对话",
+      "objective": "能进行简单的购物交流",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-english-K008"
+      ],
+      "concept": "购物对话常包含 Can I help you?、How much is it?、I'll take it.",
+      "common_mistakes": [
+        "问价句式错误",
+        "答句不切题"
+      ],
+      "suggested_types": [
+        "对话",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-english-K010",
+      "index": 10,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "方位介词",
+      "name": "方位介词 in、on、under、behind",
+      "objective": "能正确使用方位介词描述位置",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-english-K006"
+      ],
+      "concept": "in 在里面，on 在上面，under 在下面，behind 在后面",
+      "common_mistakes": [
+        "介词混用",
+        "介词后漏宾语"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "判断"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Unit 6",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-english-K011",
+      "index": 11,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "There be",
+      "name": "There is 与 There are",
+      "objective": "能使用 There be 句型描述存在",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-english-K010"
+      ],
+      "concept": "There is 接单数或不可数名词，There are 接复数名词，就近原则",
+      "common_mistakes": [
+        "be 动词与名词数不一致",
+        "与 have 混用"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Unit 6",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-english-K012",
+      "index": 12,
+      "domain": "语言技能",
+      "theme": "读",
+      "unit": "阅读",
+      "name": "短文阅读理解",
+      "objective": "能读懂简单短文并提取信息",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s1-english-K013"
+      ],
+      "concept": "阅读短文先看问题，再回文中定位关键信息",
+      "common_mistakes": [
+        "信息定位不准",
+        "凭印象作答"
+      ],
+      "suggested_types": [
+        "阅读",
+        "提取",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-english-K013",
+      "index": 13,
+      "domain": "语言技能",
+      "theme": "写",
+      "unit": "书写",
+      "name": "单词与短句的书写",
+      "objective": "能正确书写单词和简单句子",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-english-K014"
+      ],
+      "concept": "句子书写要注意首字母大写、单词间距和句末标点",
+      "common_mistakes": [
+        "首字母不大写",
+        "句末漏标点"
+      ],
+      "suggested_types": [
+        "书写",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Writing",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-english-K014",
+      "index": 14,
+      "domain": "文化知识",
+      "theme": "文化",
+      "unit": "学校生活",
+      "name": "中外学校生活对比",
+      "objective": "了解中外学校生活的异同",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-english-K015"
+      ],
+      "concept": "中外学校在课程设置、作息时间、校园活动上各有特点",
+      "common_mistakes": [
+        "以本国经验替代",
+        "差异理解片面"
+      ],
+      "suggested_types": [
+        "理解",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Culture",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-english-K015",
+      "index": 15,
+      "domain": "学习策略",
+      "theme": "策略",
+      "unit": "拼读运用",
+      "name": "拼读规则的运用",
+      "objective": "能运用拼读规则认读生词",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-english-K002"
+      ],
+      "concept": "遇到生词先尝试用拼读规则读出来，再结合语境判断词义",
+      "common_mistakes": [
+        "直接跳过生词",
+        "拼读规则套用不当"
+      ],
+      "suggested_types": [
+        "拼读",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·学习策略",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-english-K016",
+      "index": 16,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "综合表达",
+      "name": "综合自我介绍",
+      "objective": "能整合问候、姓名、年龄、喜好进行完整自我介绍",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-english-K009"
+      ],
+      "concept": "完整自我介绍应包含问候、姓名、年龄、喜好等信息，句子要连贯",
+      "common_mistakes": [
+        "信息不全",
+        "句子之间不连贯"
+      ],
+      "suggested_types": [
+        "表达",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三下·Review",
+      "engine_hint": "llm"
+    }
+  ]
 }

@@ -1,12 +1,475 @@
 {
   "volume_id": "primary-g3-s1-english",
-  "title": "g3英语上册",
+  "title": "三年级上册英语",
   "stage": "primary",
   "grade": "g3",
   "term": "s1",
   "subject": "english",
   "school_stage": "S2",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版PEP（2024审定）/外研版/译林版三年级上册共有内容；2022版英语课标第二学段（三年级为起始年级）",
+  "knowledge_points": [
+    {
+      "id": "primary-g3-s1-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "字母",
+      "name": "字母表与字母顺序",
+      "objective": "能准确认读并默写26个字母的大小写",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g2-s2-english-K001"
+      ],
+      "concept": "26个字母各有大写和小写形式，顺序固定，是英语学习的基础",
+      "common_mistakes": [
+        "大小写形式混淆",
+        "字母顺序错乱"
+      ],
+      "suggested_types": [
+        "认读",
+        "默写",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Letters",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-english-K002",
+      "index": 2,
+      "domain": "语言技能",
+      "theme": "写",
+      "unit": "书写",
+      "name": "26个字母的规范书写",
+      "objective": "能在四线三格中规范书写26个字母",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-english-K001"
+      ],
+      "concept": "字母书写要注意占格、笔顺和大小写的区别",
+      "common_mistakes": [
+        "占格错误",
+        "笔顺不规范"
+      ],
+      "suggested_types": [
+        "书写",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Letters",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-english-K003",
+      "index": 3,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "问候介绍",
+      "name": "问候与自我介绍",
+      "objective": "能用英语问候并介绍自己",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-english-K016"
+      ],
+      "concept": "Hello, I'm... 是最基本的自我介绍句式，可加 Nice to meet you.",
+      "common_mistakes": [
+        "句式不完整",
+        "答句与问句不匹配"
+      ],
+      "suggested_types": [
+        "对话",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Unit 1",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-english-K004",
+      "index": 4,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "询问信息",
+      "name": "询问他人信息",
+      "objective": "能询问他人姓名和年龄并回答",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-english-K003"
+      ],
+      "concept": "What's your name? 问姓名，How old are you? 问年龄，回答用 I'm...",
+      "common_mistakes": [
+        "两个问句混淆",
+        "年龄回答不用 I'm"
+      ],
+      "suggested_types": [
+        "对话",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Unit 1",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "数字",
+      "name": "数字 1-100",
+      "objective": "能认读并说出 1 到 100 的数字",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g2-s1-english-K002"
+      ],
+      "concept": "整十数字多由个位数加 -ty 构成，但 twenty、thirty、forty、fifty 拼写特殊",
+      "common_mistakes": [
+        "thirteen 与 thirty 混淆",
+        "forty 拼成 fourty"
+      ],
+      "suggested_types": [
+        "认读",
+        "拼写",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Unit 6",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-english-K006",
+      "index": 6,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "文具",
+      "name": "文具与教室物品词",
+      "objective": "能认读教室中的常见物品单词",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "文具词常与 This is、I have 等句型搭配使用",
+      "common_mistakes": [
+        "pencil 与 pen 混淆",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Unit 1",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "指示代词",
+      "name": "This is 与 These are",
+      "objective": "能区分并使用 This is 和 These are",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-english-K006"
+      ],
+      "concept": "This is 接单数名词，These are 接复数名词，都指近处",
+      "common_mistakes": [
+        "单复数与 be 动词不匹配",
+        "this 与 these 混用"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "判断"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Unit 2",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-english-K008",
+      "index": 8,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "颜色",
+      "name": "颜色词扩展",
+      "objective": "能认读更多颜色单词并描述物品颜色",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s1-english-K011"
+      ],
+      "concept": "颜色词作定语放在名词前，如 a blue pen",
+      "common_mistakes": [
+        "颜色词位置放错",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "描述",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Unit 2",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "语用",
+      "unit": "描述",
+      "name": "用形容词描述人和物",
+      "objective": "能用形容词描述人或事物的特征",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-english-K008"
+      ],
+      "concept": "描述人物常用 tall、short、fat、thin 等形容词",
+      "common_mistakes": [
+        "形容词位置错误",
+        "用词不当"
+      ],
+      "suggested_types": [
+        "描述",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Unit 3",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-english-K010",
+      "index": 10,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "家庭",
+      "name": "家庭成员词扩展",
+      "objective": "能认读更多家庭成员称谓",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s2-english-K003"
+      ],
+      "concept": "英语家庭成员称谓较具体，如 uncle、aunt、cousin",
+      "common_mistakes": [
+        "称谓关系混淆",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Unit 4",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-english-K011",
+      "index": 11,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "be动词",
+      "name": "be 动词的一般现在时",
+      "objective": "能正确使用 am、is、are",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-english-K010"
+      ],
+      "concept": "be 动词随主语变化：I 用 am，第三人称单数用 is，其余用 are",
+      "common_mistakes": [
+        "主谓不一致",
+        "am/is/are 混用"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-english-K012",
+      "index": 12,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "人称代词",
+      "name": "人称代词 I、you、he、she",
+      "objective": "能正确使用主格人称代词",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-english-K011"
+      ],
+      "concept": "主格人称代词在句中作主语，要注意与 be 动词的搭配",
+      "common_mistakes": [
+        "he 与 she 混用",
+        "宾格主格混用"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "判断"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-english-K013",
+      "index": 13,
+      "domain": "语言技能",
+      "theme": "读",
+      "unit": "阅读",
+      "name": "图文匹配阅读",
+      "objective": "能借助图片读懂简单句子",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-english-K007"
+      ],
+      "concept": "低段阅读以图文结合为主，图片能帮助理解句意",
+      "common_mistakes": [
+        "只看文字不看图",
+        "词义猜测不准"
+      ],
+      "suggested_types": [
+        "阅读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-english-K014",
+      "index": 14,
+      "domain": "语言技能",
+      "theme": "写",
+      "unit": "书写",
+      "name": "字母与单词的规范书写",
+      "objective": "能在四线三格中规范书写单词",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-english-K002"
+      ],
+      "concept": "单词书写要注意字母间距、占格和大小写规范",
+      "common_mistakes": [
+        "字母间距不均",
+        "占格错误"
+      ],
+      "suggested_types": [
+        "书写",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Writing",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-english-K015",
+      "index": 15,
+      "domain": "文化知识",
+      "theme": "文化",
+      "unit": "节日",
+      "name": "英语国家的节日",
+      "objective": "了解英语国家的主要节日及习俗",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s2-english-K015"
+      ],
+      "concept": "如 Christmas 圣诞节、Thanksgiving 感恩节，各有独特习俗",
+      "common_mistakes": [
+        "节日与习俗对应错误",
+        "与中国节日混淆"
+      ],
+      "suggested_types": [
+        "理解",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Culture",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-english-K016",
+      "index": 16,
+      "domain": "学习策略",
+      "theme": "策略",
+      "unit": "自然拼读",
+      "name": "自然拼读初步",
+      "objective": "能初步运用字母发音规律拼读单词",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-english-K001"
+      ],
+      "concept": "自然拼读通过字母与发音的对应关系，帮助见词能读、听音能写",
+      "common_mistakes": [
+        "字母名称音与发音混淆",
+        "拼读规则套用错误"
+      ],
+      "suggested_types": [
+        "拼读",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教PEP三上·Phonics",
+      "engine_hint": "llm"
+    }
+  ]
 }

@@ -1,12 +1,595 @@
 {
   "volume_id": "junior-g8-s1-english",
-  "title": "g8英语上册",
+  "title": "八年级上册英语",
   "stage": "junior",
   "grade": "g8",
   "term": "s1",
   "subject": "english",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）八年级上册/外研版/译林版共有内容；2022版英语课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g8-s1-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "语音",
+      "name": "句子重音与节奏",
+      "objective": "能把握句子重音落在实词上，形成英语的节奏感",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-english-K001"
+      ],
+      "concept": "英语是重音计时语言，实词（名词、动词、形容词）重读、虚词弱读，重音间隔趋匀形成节奏",
+      "common_mistakes": [
+        "每个词都重读导致节奏破碎",
+        "虚词重读"
+      ],
+      "suggested_types": [
+        "朗读",
+        "听辨",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·语音",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "假期、旅行与活动话题词汇",
+      "objective": "能运用假期、旅行与户外活动相关词汇叙述经历",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g7-s2-english-K002"
+      ],
+      "concept": "旅行类词汇常与 go/visit/stay 等动词搭配，并与一般过去时连用叙述经历",
+      "common_mistakes": [
+        "动词搭配错误",
+        "过去式拼写错误"
+      ],
+      "suggested_types": [
+        "运用",
+        "拼写",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 1",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "频度副词与习惯活动词汇",
+      "objective": "能运用频度副词与习惯类活动词汇描述生活习惯",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g8-s1-english-K002"
+      ],
+      "concept": "频度副词按频率从高到低为 always/usually/often/sometimes/hardly ever/never，位置在实义动词前、be 动词后",
+      "common_mistakes": [
+        "频度副词位置错误",
+        "频率程度理解偏差"
+      ],
+      "suggested_types": [
+        "填空",
+        "描述",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 2",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "描述人物特征的形容词",
+      "objective": "能运用描述性格与外貌的形容词比较人物",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-english-K003"
+      ],
+      "concept": "人物描述形容词成对出现（outgoing/shy、hard-working/lazy），比较时须用比较级并与 than 连用",
+      "common_mistakes": [
+        "形容词比较级构成错误",
+        "比较对象不对等"
+      ],
+      "suggested_types": [
+        "运用",
+        "写作",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 3",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般过去时",
+      "name": "一般过去时的综合运用",
+      "objective": "能在语篇中正确、连贯地使用一般过去时叙述完整经历",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-english-K008"
+      ],
+      "concept": "叙事语篇以一般过去时为基调，穿插过去进行时表背景；须注意时间状语的呼应与动词形式的统一",
+      "common_mistakes": [
+        "叙事中时态前后不一致",
+        "时间状语与动词形式矛盾"
+      ],
+      "suggested_types": [
+        "写作",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 1",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K006",
+      "index": 6,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "频度副词",
+      "name": "how often 与频度表达",
+      "objective": "能用 how often 提问并作出恰当回答",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-english-K003"
+      ],
+      "concept": "回答 how often 可用频度副词、every day、once a week、three times a month 等；次数表达用 once/twice/three times",
+      "common_mistakes": [
+        "次数表达误用 once/twice 之外加 times",
+        "答非所问（用 how long 的答法）"
+      ],
+      "suggested_types": [
+        "问答",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 2",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "比较级",
+      "name": "形容词与副词的比较级",
+      "objective": "能正确构成比较级并用 than 进行比较",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-english-K004"
+      ],
+      "concept": "比较级构成：单音节加 -er，多音节前加 more；不规则如 good→better、bad→worse、many→more；比较须同类、对等",
+      "common_mistakes": [
+        "多音节词误加 -er",
+        "比较对象不对等（my hair 与 sister 比）",
+        "as...as 中间用比较级"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 3",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K008",
+      "index": 8,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "最高级",
+      "name": "形容词与副词的最高级",
+      "objective": "能正确构成最高级并用 in/of 短语限定范围",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-english-K007"
+      ],
+      "concept": "最高级构成：单音节加 -est，多音节前加 most；使用时常加 the，并用 in+范围或 of+同类群体限定",
+      "common_mistakes": [
+        "最高级前漏 the",
+        "in 与 of 使用混淆",
+        "把最高级用于两者比较"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "非谓语动词",
+      "name": "动词不定式作宾语",
+      "objective": "能使用 want/hope/plan/decide + to do 结构表达意愿与计划",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K005"
+      ],
+      "concept": "部分动词后接不定式作宾语（want/hope/plan/decide/learn）；有的动词后接动名词（enjoy/finish/mind），须成组记忆",
+      "common_mistakes": [
+        "to 后接动词 -ing",
+        "混淆接不定式与接动名词的动词"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 5—6",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K010",
+      "index": 10,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般将来时",
+      "name": "be going to 表打算",
+      "objective": "能用 be going to + 动词原形表达计划与预测",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-english-K009"
+      ],
+      "concept": "be going to 强调事先计划或有迹象的预测；be 随主语变化，后接动词原形",
+      "common_mistakes": [
+        "漏写 be 或 be 形式错误",
+        "与 will 混用不加区分"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 6",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K011",
+      "index": 11,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般将来时",
+      "name": "will 表将来与 will 与 be going to 的区别",
+      "objective": "能区分 will 与 be going to 的使用场合",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-english-K010"
+      ],
+      "concept": "will 多表临时决定、承诺与客观预测；be going to 多表事先计划与有迹象的预测",
+      "common_mistakes": [
+        "临时决定用 be going to",
+        "两者混用导致语义偏差"
+      ],
+      "suggested_types": [
+        "辨析",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 6",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K012",
+      "index": 12,
+      "domain": "语篇",
+      "theme": "语篇类型",
+      "unit": "语篇",
+      "name": "游记类语篇的结构与语言",
+      "objective": "能读懂游记类语篇，梳理行程并体会作者的观察与感受",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-english-K005"
+      ],
+      "concept": "游记按时间或空间顺序展开，包含「所至—所见—所感」，语言上多用过去时与感官描写",
+      "common_mistakes": [
+        "行程梳理混乱",
+        "忽视作者主观感受"
+      ],
+      "suggested_types": [
+        "阅读",
+        "梳理",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 1",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K013",
+      "index": 13,
+      "domain": "语篇",
+      "theme": "语篇类型",
+      "unit": "语篇",
+      "name": "评论类语篇的观点与理由",
+      "objective": "能读懂影视、书籍评论，区分观点与理由",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-english-K012"
+      ],
+      "concept": "评论类语篇结构为「评价—理由—推荐」，常用 I think/like/love 表达态度，用 because 引出理由",
+      "common_mistakes": [
+        "观点与理由混淆",
+        "只找态度不看支撑"
+      ],
+      "suggested_types": [
+        "阅读",
+        "分析",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K014",
+      "index": 14,
+      "domain": "语言知识",
+      "theme": "语用",
+      "unit": "语用",
+      "name": "表达偏好、提出邀请与回应",
+      "objective": "能得体地表达喜好、发出邀请并接受或婉拒",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-english-K012"
+      ],
+      "concept": "邀请用 Would you like to...?/How about...?；接受用 I'd love to，婉拒须先致谢再说明理由",
+      "common_mistakes": [
+        "婉拒时直接说 No 显得生硬",
+        "回答与邀请句式不匹配"
+      ],
+      "suggested_types": [
+        "对话",
+        "情景应答",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 5",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-english-K015",
+      "index": 15,
+      "domain": "主题",
+      "theme": "人与自我",
+      "unit": "主题",
+      "name": "假期生活与个人兴趣",
+      "objective": "能围绕假期经历与个人兴趣进行有细节的叙述",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-english-K013"
+      ],
+      "concept": "该主题要求「事件+感受」双层表达：既要叙述做了什么，也要说明感受与收获",
+      "common_mistakes": [
+        "只罗列活动无感受",
+        "叙述缺少细节"
+      ],
+      "suggested_types": [
+        "表达",
+        "写作",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 1",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K016",
+      "index": 16,
+      "domain": "主题",
+      "theme": "人与社会",
+      "unit": "主题",
+      "name": "娱乐、影视与大众文化",
+      "objective": "能就影视、电视节目等话题表达评价并说明理由",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g8-s1-english-K014"
+      ],
+      "concept": "文化娱乐话题涉及「是什么—怎么样—为什么」三层，评价时须用形容词与理由句支撑",
+      "common_mistakes": [
+        "评价空泛无理由",
+        "用中文思维直译表达"
+      ],
+      "suggested_types": [
+        "表达",
+        "讨论",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K017",
+      "index": 17,
+      "domain": "语言技能",
+      "theme": "听",
+      "unit": "语言技能",
+      "name": "听大意与记笔记",
+      "objective": "能听懂语篇大意，用符号与缩写记录关键信息",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-english-K016"
+      ],
+      "concept": "听大意抓主题句与重复词；记笔记用缩写、箭头、数字，避免逐字记录",
+      "common_mistakes": [
+        "逐字记录导致漏听",
+        "笔记无法复原信息"
+      ],
+      "suggested_types": [
+        "听力",
+        "笔记",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·听力训练",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K018",
+      "index": 18,
+      "domain": "语言技能",
+      "theme": "写",
+      "unit": "语言技能",
+      "name": "写简短评论与计划",
+      "objective": "能写结构完整的评论短文与假期计划",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g8-s1-english-K017"
+      ],
+      "concept": "评论按「评价—理由—推荐」三段；计划按「打算—理由—具体安排」展开，用 be going to/will",
+      "common_mistakes": [
+        "段落无主题句",
+        "时态与文体不匹配"
+      ],
+      "suggested_types": [
+        "写作",
+        "修改",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·写作",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-english-K019",
+      "index": 19,
+      "domain": "文化知识",
+      "theme": "文化知识",
+      "unit": "文化知识",
+      "name": "中外节日与影视文化",
+      "objective": "了解中外主要节日的习俗差异与影视文化的代表性作品",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-english-K019"
+      ],
+      "concept": "节日比较要抓住「时间—习俗—价值观」三个维度；影视文化要避免以个别作品代表整个文化",
+      "common_mistakes": [
+        "节日习俗张冠李戴",
+        "文化理解刻板化"
+      ],
+      "suggested_types": [
+        "判断",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·文化专栏",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s1-english-K020",
+      "index": 20,
+      "domain": "学习策略",
+      "theme": "学习策略",
+      "unit": "学习策略",
+      "name": "概括主旨与预测内容",
+      "objective": "能通过标题、首尾段概括主旨，依据线索预测后续内容",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-english-K018"
+      ],
+      "concept": "主旨概括看标题、首段、末段与高频词；预测可依据标题、图片、上文逻辑与背景知识",
+      "common_mistakes": [
+        "以偏概全概括主旨",
+        "预测脱离文本线索"
+      ],
+      "suggested_types": [
+        "阅读",
+        "概括",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八上·学习策略",
+      "engine_hint": "llm"
+    }
+  ]
 }

@@ -1,12 +1,711 @@
 {
   "volume_id": "junior-g9-s1-math",
-  "title": "g9数学上册",
+  "title": "九年级上册数学",
   "stage": "junior",
   "grade": "g9",
   "term": "s1",
   "subject": "math",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版九年级上册共有内容；2022版数学课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g9-s1-math-K001",
+      "index": 1,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "一元二次方程",
+      "name": "一元二次方程的概念与一般形式",
+      "objective": "理解一元二次方程的定义，能化为一般形式并指出各项系数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "只含一个未知数、未知数最高次数为2的整式方程叫一元二次方程，一般形式 ax²+bx+c=0（a≠0）；a≠0 是本质条件",
+      "common_mistakes": [
+        "忽略 a≠0 导致误判",
+        "系数符号带错（b、c 可为负）",
+        "把分式方程当作一元二次方程"
+      ],
+      "suggested_types": [
+        "辨析",
+        "化一般形式",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十一章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K002",
+      "index": 2,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "一元二次方程",
+      "name": "直接开平方法与配方法",
+      "objective": "掌握直接开平方法与配方法解一元二次方程",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-math-K001"
+      ],
+      "concept": "形如 (x+m)²=n（n≥0）可直接开平方；配方法通过加一次项系数一半的平方把方程化为完全平方式",
+      "common_mistakes": [
+        "配方时漏加或错加常数项",
+        "n<0 时仍开平方",
+        "开方后漏写负根"
+      ],
+      "suggested_types": [
+        "解方程",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十一章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K003",
+      "index": 3,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "一元二次方程",
+      "name": "公式法与根的判别式",
+      "objective": "掌握求根公式，能用判别式判断根的情况",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-math-K002"
+      ],
+      "concept": "求根公式 x=[-b±√(b²-4ac)]/(2a)；Δ=b²-4ac>0 有两个不等实根，Δ=0 有两个相等实根，Δ<0 无实根",
+      "common_mistakes": [
+        "Δ 计算时符号出错",
+        "把 Δ<0 也代入公式求根",
+        "分母误写为 a"
+      ],
+      "suggested_types": [
+        "解方程",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十一章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K004",
+      "index": 4,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "一元二次方程",
+      "name": "因式分解法解一元二次方程",
+      "objective": "能将方程一边化为0、另一边分解为两个一次因式之积求解",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-math-K003"
+      ],
+      "concept": "若 ab=0 则 a=0 或 b=0；因式分解法通常比公式法更快，适用形如 x²+bx=0、可十字相乘的方程",
+      "common_mistakes": [
+        "两边同除以含未知数的式子造成丢根",
+        "分解后未令每个因式为0"
+      ],
+      "suggested_types": [
+        "解方程",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十一章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K005",
+      "index": 5,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "一元二次方程",
+      "name": "一元二次方程的根与系数关系",
+      "objective": "掌握韦达定理并能求两根和、两根积及相关代数式的值",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-math-K003"
+      ],
+      "concept": "若 x₁、x₂ 是 ax²+bx+c=0 的两根，则 x₁+x₂=-b/a，x₁x₂=c/a；使用前须先确认 Δ≥0",
+      "common_mistakes": [
+        "未验证 Δ≥0 就使用",
+        "忘记除以 a",
+        "把两根和符号写反"
+      ],
+      "suggested_types": [
+        "计算",
+        "求值",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十一章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-math-K006",
+      "index": 6,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "一元二次方程",
+      "name": "一元二次方程的实际应用",
+      "objective": "能列一元二次方程解决增长率、面积、销售利润等问题",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-math-K004"
+      ],
+      "concept": "平均增长率模型 a(1+x)ⁿ=b；面积问题常通过平移拼合简化；销售问题用「总利润=单件利润×销量」建模，最后须检验根的合理性",
+      "common_mistakes": [
+        "增长率模型写成 a(1+nx)",
+        "求出两根后不检验是否符合实际",
+        "面积问题未扣除重叠部分"
+      ],
+      "suggested_types": [
+        "建模",
+        "应用",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十一章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-math-K007",
+      "index": 7,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "二次函数",
+      "name": "二次函数的概念与图象",
+      "objective": "理解二次函数定义，能画出 y=ax² 的图象并说出开口方向",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g8-s2-math-K015"
+      ],
+      "concept": "形如 y=ax²+bx+c（a≠0）的函数叫二次函数；y=ax² 图象是顶点在原点的抛物线，a>0 开口向上、a<0 开口向下",
+      "common_mistakes": [
+        "忽略 a≠0",
+        "把抛物线开口方向与 a 的绝对值混淆"
+      ],
+      "suggested_types": [
+        "作图",
+        "辨析",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十二章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K008",
+      "index": 8,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "二次函数",
+      "name": "二次函数 y=ax²+bx+c 的图象与性质",
+      "objective": "能求抛物线的顶点坐标、对称轴并分析增减性与最值",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-math-K007"
+      ],
+      "concept": "对称轴 x=-b/(2a)，顶点 (-b/(2a), (4ac-b²)/(4a))；a>0 时顶点处取最小值，a<0 时取最大值",
+      "common_mistakes": [
+        "对称轴公式符号写错",
+        "最值代入 x 后算错 y",
+        "增减性区间不写对称轴作为分界"
+      ],
+      "suggested_types": [
+        "计算",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十二章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-math-K009",
+      "index": 9,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "二次函数",
+      "name": "二次函数图象的平移",
+      "objective": "掌握抛物线平移规律，能由 y=ax² 得到 y=a(x-h)²+k",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-math-K008"
+      ],
+      "concept": "y=a(x-h)²+k 由 y=ax² 向右平移 h、向上平移 k 得到；口诀「左加右减、上加下减」针对自变量与函数值",
+      "common_mistakes": [
+        "左右平移方向记反",
+        "把 (x-h) 中的 h 符号当作平移方向"
+      ],
+      "suggested_types": [
+        "判断",
+        "写解析式",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十二章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K010",
+      "index": 10,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "二次函数",
+      "name": "待定系数法求二次函数解析式",
+      "objective": "能根据已知条件选用一般式、顶点式或交点式求解析式",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-math-K008"
+      ],
+      "concept": "已知三点用一般式；已知顶点或对称轴用顶点式 y=a(x-h)²+k；已知与 x 轴两交点用交点式 y=a(x-x₁)(x-x₂)",
+      "common_mistakes": [
+        "选错形式导致方程复杂化",
+        "解出 a 后不回代检验"
+      ],
+      "suggested_types": [
+        "计算",
+        "求解析式",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十二章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-math-K011",
+      "index": 11,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "二次函数",
+      "name": "二次函数与一元二次方程",
+      "objective": "理解抛物线与 x 轴交点个数与判别式的对应关系",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-math-K008",
+        "junior-g9-s1-math-K003"
+      ],
+      "concept": "抛物线与 x 轴交点的横坐标即 ax²+bx+c=0 的根；Δ>0 两交点、Δ=0 一个交点（相切）、Δ<0 无交点",
+      "common_mistakes": [
+        "把「一个交点」当作「无解」",
+        "交点坐标只写横坐标"
+      ],
+      "suggested_types": [
+        "数形结合",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十二章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-math-K012",
+      "index": 12,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "二次函数",
+      "name": "二次函数的实际应用与最值",
+      "objective": "能建立二次函数模型求实际问题中的最大面积、最大利润",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g9-s1-math-K010",
+        "junior-g9-s1-math-K011"
+      ],
+      "concept": "先由实际条件确定自变量取值范围，再求顶点最值；若顶点不在取值范围内，最值在区间端点取得",
+      "common_mistakes": [
+        "忽略自变量取值范围",
+        "把顶点横坐标当作最值",
+        "单位与量纲不统一"
+      ],
+      "suggested_types": [
+        "建模",
+        "最值",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十二章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-math-K013",
+      "index": 13,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "旋转",
+      "name": "图形的旋转与旋转的性质",
+      "objective": "理解旋转三要素，掌握旋转前后对应点到旋转中心距离相等、对应角相等",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "旋转由旋转中心、旋转方向、旋转角确定；旋转前后图形全等，对应点到旋转中心的距离相等，对应点与旋转中心连线所成的角等于旋转角",
+      "common_mistakes": [
+        "旋转角找错（未取对应点）",
+        "把旋转与平移、轴对称的性质混淆"
+      ],
+      "suggested_types": [
+        "作图",
+        "证明",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十三章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K014",
+      "index": 14,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "旋转",
+      "name": "中心对称与中心对称图形",
+      "objective": "理解中心对称的定义，能判断中心对称图形并作出对称图形",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g9-s1-math-K013"
+      ],
+      "concept": "绕某点旋转180°后能与原图形重合叫中心对称；对称点连线都经过对称中心且被对称中心平分",
+      "common_mistakes": [
+        "混淆中心对称与轴对称",
+        "认为中心对称图形一定有多条对称轴"
+      ],
+      "suggested_types": [
+        "辨析",
+        "作图",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十三章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K015",
+      "index": 15,
+      "domain": "图形与几何",
+      "theme": "图形与坐标",
+      "unit": "旋转",
+      "name": "关于原点对称的点的坐标",
+      "objective": "掌握点 P(x,y) 关于原点对称的点为 (-x,-y)",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-math-K014"
+      ],
+      "concept": "关于原点对称横纵坐标都变号；与关于 x 轴对称（y 变号）、关于 y 轴对称（x 变号）要区分",
+      "common_mistakes": [
+        "与关于坐标轴对称的规律混淆",
+        "只变一个坐标的符号"
+      ],
+      "suggested_types": [
+        "求坐标",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十三章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K016",
+      "index": 16,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "圆",
+      "name": "圆的相关概念",
+      "objective": "理解弦、弧、圆心角、等圆、等弧等概念",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "连接圆上两点的线段叫弦，经过圆心的弦是直径；圆上两点间部分叫弧，半圆是最长的弧；顶点在圆心的角叫圆心角",
+      "common_mistakes": [
+        "把弦与直径混同",
+        "认为长度相等的弧一定是等弧（须在同圆或等圆中）"
+      ],
+      "suggested_types": [
+        "辨析",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十四章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K017",
+      "index": 17,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "圆",
+      "name": "垂径定理",
+      "objective": "掌握垂径定理及其推论，能用于计算弦长、半径与弓形高",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-math-K016"
+      ],
+      "concept": "垂直于弦的直径平分这条弦，并且平分弦所对的两条弧；计算时常借助半径、半弦、弦心距构成的直角三角形",
+      "common_mistakes": [
+        "弦心距与弓形高混淆",
+        "利用勾股定理时把斜边认错"
+      ],
+      "suggested_types": [
+        "计算",
+        "证明",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十四章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-math-K018",
+      "index": 18,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "圆",
+      "name": "弧、弦、圆心角的关系",
+      "objective": "掌握同圆或等圆中弧、弦、圆心角的对应相等关系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g9-s1-math-K016"
+      ],
+      "concept": "在同圆或等圆中，相等的圆心角所对的弧相等、所对的弦相等、弦心距相等；三者中一组量相等可推出其余各组相等",
+      "common_mistakes": [
+        "忽略「同圆或等圆」前提",
+        "把圆心角与圆周角混淆"
+      ],
+      "suggested_types": [
+        "证明",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十四章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K019",
+      "index": 19,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "圆",
+      "name": "圆周角定理及推论",
+      "objective": "掌握圆周角定理、直径所对圆周角为直角及圆内接四边形性质",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-math-K018"
+      ],
+      "concept": "一条弧所对的圆周角等于它所对圆心角的一半；同弧所对圆周角相等；半圆（直径）所对的圆周角是直角；圆内接四边形对角互补",
+      "common_mistakes": [
+        "把同弧所对圆周角与圆心角关系用反",
+        "忽略圆周角顶点须在圆上"
+      ],
+      "suggested_types": [
+        "计算",
+        "证明",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十四章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-math-K020",
+      "index": 20,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "圆",
+      "name": "点与圆、直线与圆的位置关系",
+      "objective": "能用 d 与 r 的大小关系判断点、直线与圆的位置关系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g9-s1-math-K016"
+      ],
+      "concept": "点与圆：d<r 在圆内、d=r 在圆上、d>r 在圆外；直线与圆：d<r 相交、d=r 相切、d>r 相离",
+      "common_mistakes": [
+        "把 d 的含义搞错（应为中心到直线距离）",
+        "位置关系与公共点个数对应错"
+      ],
+      "suggested_types": [
+        "判断",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十四章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K021",
+      "index": 21,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "圆",
+      "name": "切线的性质与判定",
+      "objective": "掌握切线与半径垂直的性质及两种判定方法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-math-K020"
+      ],
+      "concept": "圆的切线垂直于过切点的半径；判定：与圆只有一个公共点、圆心到直线距离等于半径、经过半径外端且垂直于该半径的直线",
+      "common_mistakes": [
+        "证明切线时漏写「经过半径外端」",
+        "把切线性质当作判定直接使用"
+      ],
+      "suggested_types": [
+        "证明",
+        "计算",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十四章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-math-K022",
+      "index": 22,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "圆",
+      "name": "切线长定理与三角形的内切圆",
+      "objective": "掌握切线长定理并能求三角形内切圆半径",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-math-K021"
+      ],
+      "concept": "从圆外一点引圆的两条切线，切线长相等，且这一点与圆心的连线平分两切线的夹角；三角形内切圆圆心是三条角平分线的交点",
+      "common_mistakes": [
+        "内切圆与外接圆混淆（内心与外心）",
+        "切线长定理中角平分关系写反"
+      ],
+      "suggested_types": [
+        "证明",
+        "计算",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十四章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-math-K023",
+      "index": 23,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "圆",
+      "name": "正多边形与圆、弧长与扇形面积",
+      "objective": "掌握正多边形与圆的关系，会计算弧长、扇形面积和圆锥侧面积",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-math-K019"
+      ],
+      "concept": "正 n 边形中心角为 360°/n；弧长 l=nπr/180；扇形面积 S=nπr²/360=lr/2；圆锥侧面积 S=πrl（l 为母线长）",
+      "common_mistakes": [
+        "弧长公式与扇形面积公式混用",
+        "圆锥展开图中母线误作底面半径"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十四章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-math-K024",
+      "index": 24,
+      "domain": "统计与概率",
+      "theme": "随机事件的概率",
+      "unit": "概率初步",
+      "name": "随机事件与概率",
+      "objective": "理解必然事件、不可能事件、随机事件，能用列举法求概率",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [],
+      "concept": "在一定条件下可能发生也可能不发生的事件叫随机事件；概率 P(A)=m/n（n 为所有等可能结果数，m 为 A 包含的结果数），且 0≤P(A)≤1",
+      "common_mistakes": [
+        "列举时重复或遗漏结果",
+        "认为概率大就一定发生",
+        "把频率与概率等同"
+      ],
+      "suggested_types": [
+        "计算",
+        "判断",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·第二十五章",
+      "engine_hint": "template"
+    }
+  ]
 }

@@ -1,12 +1,648 @@
 {
   "volume_id": "primary-g1-s1-chinese",
-  "title": "g1语文上册",
+  "title": "一年级上册语文",
   "stage": "primary",
   "grade": "g1",
   "term": "s1",
   "subject": "chinese",
   "school_stage": "S1",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "统编版（2024审定）一年级上册；2022版语文课标第一学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g1-s1-chinese-K001",
+      "index": 1,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "单韵母 a o e 及四声",
+      "objective": "能准确认读 a、o、e 及四个声调",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "单韵母发音时口形保持不变；四声调值分别为高平、中升、降升、全降",
+      "common_mistakes": [
+        "二声与三声混淆",
+        "发音时口形发生改变"
+      ],
+      "suggested_types": [
+        "读音",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第1课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K002",
+      "index": 2,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "单韵母 i u ü",
+      "objective": "能准确认读 i、u、ü 并区分字形",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K001"
+      ],
+      "concept": "i、u、ü 发音口形各不相同，ü 要撮口，两点不能丢",
+      "common_mistakes": [
+        "ü 与 u 混淆",
+        "i 的声调标在点上被忽略"
+      ],
+      "suggested_types": [
+        "读音",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第2课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K003",
+      "index": 3,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "声母 b p m f",
+      "objective": "能准确认读 b、p、m、f 并与韵母拼读",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K001"
+      ],
+      "concept": "声母发音轻而短；b 不送气、p 送气，是区分二者的关键",
+      "common_mistakes": [
+        "b 与 p 混淆",
+        "声母读得过重过长"
+      ],
+      "suggested_types": [
+        "读音",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第3课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K004",
+      "index": 4,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "声母 d t n l",
+      "objective": "能准确认读 d、t、n、l 并与韵母拼读",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K003"
+      ],
+      "concept": "d 不送气、t 送气；n 是鼻音、l 是边音，发音方法不同",
+      "common_mistakes": [
+        "n 与 l 不分",
+        "d 与 t 混淆"
+      ],
+      "suggested_types": [
+        "读音",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第4课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K005",
+      "index": 5,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "声母 g k h",
+      "objective": "能准确认读 g、k、h 并与韵母拼读",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K004"
+      ],
+      "concept": "g 不送气、k 送气，h 是舌根擦音",
+      "common_mistakes": [
+        "g 与 k 混淆",
+        "h 发音部位错误"
+      ],
+      "suggested_types": [
+        "读音",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第5课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K006",
+      "index": 6,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "声母 j q x 与 ü 相拼规则",
+      "objective": "掌握 j、q、x 与 ü 相拼时省略两点的规则",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K002",
+        "primary-g1-s1-chinese-K005"
+      ],
+      "concept": "j、q、x 与 ü 相拼时，ü 上的两点要省略，写作 ju、qu、xu，但读音仍是 ü",
+      "common_mistakes": [
+        "忘记省略两点",
+        "看到 ju 读成 u"
+      ],
+      "suggested_types": [
+        "拼读",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第6课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K007",
+      "index": 7,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "声母 z c s 与整体认读音节 zi ci si",
+      "objective": "能区分平舌音 z、c、s 并认读整体认读音节",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K006"
+      ],
+      "concept": "z、c、s 是平舌音，发音时舌尖平伸；zi、ci、si 是整体认读音节，直接读出不再拼",
+      "common_mistakes": [
+        "把 zi 拼读成 z-i",
+        "平舌音与翘舌音不分"
+      ],
+      "suggested_types": [
+        "读音",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第7课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K008",
+      "index": 8,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "声母 zh ch sh r 与整体认读音节",
+      "objective": "能区分翘舌音 zh、ch、sh、r 并认读整体认读音节",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K007"
+      ],
+      "concept": "zh、ch、sh 是翘舌音，发音时舌尖上翘；zhi、chi、shi、ri 是整体认读音节",
+      "common_mistakes": [
+        "平翘舌不分",
+        "整体认读音节仍去拼读"
+      ],
+      "suggested_types": [
+        "读音",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第8课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K009",
+      "index": 9,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "复韵母 ai ei ui",
+      "objective": "能准确认读复韵母 ai、ei、ui",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K002"
+      ],
+      "concept": "复韵母由两个单韵母组合而成，发音时口形有滑动变化的过程",
+      "common_mistakes": [
+        "读成两个独立的音",
+        "ei 与 ui 混淆"
+      ],
+      "suggested_types": [
+        "读音",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第9课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K010",
+      "index": 10,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "复韵母 ao ou iu",
+      "objective": "能准确认读复韵母 ao、ou、iu",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K009"
+      ],
+      "concept": "发音时口形由大变小；iu 与 ui 的字母顺序不同，读音也不同",
+      "common_mistakes": [
+        "iu 与 ui 混淆",
+        "ou 读成 uo"
+      ],
+      "suggested_types": [
+        "读音",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第10课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K011",
+      "index": 11,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "复韵母 ie üe er 与整体认读 ye yue",
+      "objective": "能准确认读 ie、üe、er 及整体认读音节 ye、yue",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K010"
+      ],
+      "concept": "er 是特殊韵母，不与任何声母相拼，独立成音节",
+      "common_mistakes": [
+        "er 与声母拼读",
+        "üe 省略两点规则错"
+      ],
+      "suggested_types": [
+        "读音",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第11课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K012",
+      "index": 12,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "前鼻韵母 an en in un ün",
+      "objective": "能准确认读前鼻韵母，掌握整体认读音节 yuan、yin、yun",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K011"
+      ],
+      "concept": "前鼻韵母韵尾是 -n，发音时舌尖抵住上齿龈",
+      "common_mistakes": [
+        "前鼻音与后鼻音混淆",
+        "un 与 ün 混淆"
+      ],
+      "suggested_types": [
+        "读音",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第12课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K013",
+      "index": 13,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "后鼻韵母 ang eng ing ong",
+      "objective": "能准确认读后鼻韵母，掌握整体认读音节 ying",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K012"
+      ],
+      "concept": "后鼻韵母韵尾是 -ng，发音时舌根抬起抵住软腭",
+      "common_mistakes": [
+        "an 与 ang 混淆",
+        "ing 与 in 混淆"
+      ],
+      "suggested_types": [
+        "读音",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音第13课",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K014",
+      "index": 14,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "汉语拼音",
+      "name": "声调与标调规则",
+      "objective": "掌握四声读法和标调位置规则",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K013"
+      ],
+      "concept": "标调规则：有 a 不放过，没 a 找 o、e，i、u 并列标在后，单个韵母不必说",
+      "common_mistakes": [
+        "标调位置错误",
+        "i 上标调不去点"
+      ],
+      "suggested_types": [
+        "标调",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·汉语拼音",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K015",
+      "index": 15,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字写字",
+      "name": "笔画名称与笔顺规则",
+      "objective": "认识基本笔画，掌握先横后竖等笔顺规则",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "基本笔画有横、竖、撇、点、提、折、钩等；笔顺规则：先横后竖、先撇后点、从上到下、从左到右",
+      "common_mistakes": [
+        "笔顺颠倒",
+        "笔画名称说错"
+      ],
+      "suggested_types": [
+        "识别",
+        "书写",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·识字",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K016",
+      "index": 16,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "象形字识字：日月水火",
+      "objective": "能通过字形联想认识象形字",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K015"
+      ],
+      "concept": "象形字由实物图形逐渐演变而来，字形与事物形状相似",
+      "common_mistakes": [
+        "把象形字当会意字分析",
+        "字形与字义联系不上"
+      ],
+      "suggested_types": [
+        "识字",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·日月水火",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K017",
+      "index": 17,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "会意字识字：日月明、田力男",
+      "objective": "能通过部件组合理解会意字的字义",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K016"
+      ],
+      "concept": "会意字由两个或多个独体字组合而成，意义由各部分意义合成",
+      "common_mistakes": [
+        "不会拆解字义",
+        "把形声字当会意字"
+      ],
+      "suggested_types": [
+        "识字",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·日月明",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K018",
+      "index": 18,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "偏旁部首与汉字结构",
+      "objective": "能判断汉字结构，认识常见偏旁",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K015"
+      ],
+      "concept": "常见结构有独体字、上下结构、左右结构；偏旁往往提示字义类别",
+      "common_mistakes": [
+        "结构判断错误",
+        "偏旁名称说错"
+      ],
+      "suggested_types": [
+        "识别",
+        "分类",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·识字",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K019",
+      "index": 19,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字写字",
+      "name": "田字格书写规范",
+      "objective": "能在田字格中规范书写汉字",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K015"
+      ],
+      "concept": "字要写在田字格中央，注意关键笔画起笔和收笔的位置，保持间架匀称",
+      "common_mistakes": [
+        "字写出格子",
+        "各部分比例失调"
+      ],
+      "suggested_types": [
+        "书写",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·识字写字",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K020",
+      "index": 20,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "课文",
+      "name": "课文朗读：读准字音、不加字不漏字",
+      "objective": "能正确、流利地朗读课文",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K014"
+      ],
+      "concept": "朗读要做到读准字音、不加字、不漏字、不破句",
+      "common_mistakes": [
+        "加字或漏字",
+        "唱读、拖腔"
+      ],
+      "suggested_types": [
+        "朗读",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·课文",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K021",
+      "index": 21,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "古诗",
+      "name": "古诗诵读：《咏鹅》《江南》",
+      "objective": "能背诵古诗并初步感受诗中画面",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K020"
+      ],
+      "concept": "古诗朗读要注意节奏和停顿，边读边想象诗中描绘的画面",
+      "common_mistakes": [
+        "节奏停顿错误",
+        "只会背诵不理解意思"
+      ],
+      "suggested_types": [
+        "背诵",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·古诗",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-chinese-K022",
+      "index": 22,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "口语交际",
+      "name": "口语交际：我说你做",
+      "objective": "能听清指令并清楚地表达",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g1-s1-chinese-K020"
+      ],
+      "concept": "说话要大声、清楚、完整；听话要专心，听完整再行动",
+      "common_mistakes": [
+        "说话声音过小",
+        "没听完就行动"
+      ],
+      "suggested_types": [
+        "表达",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "统编一上·口语交际",
+      "engine_hint": "llm"
+    }
+  ]
 }

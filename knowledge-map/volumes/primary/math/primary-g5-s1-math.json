@@ -1,12 +1,589 @@
 {
   "volume_id": "primary-g5-s1-math",
-  "title": "g5数学上册",
+  "title": "五年级上册数学",
   "stage": "primary",
   "grade": "g5",
   "term": "s1",
   "subject": "math",
   "school_stage": "S3",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版五年级上册共有内容；2022版数学课标第三学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g5-s1-math-K001",
+      "index": 1,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "小数乘法",
+      "name": "小数乘整数",
+      "objective": "能计算小数乘整数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s2-math-K010"
+      ],
+      "concept": "先按整数乘法算出积，再看因数中一共有几位小数，就从积的右边起数出几位点上小数点",
+      "common_mistakes": [
+        "积的小数位数判断错误",
+        "积末尾的0处理不当"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·小数乘法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s1-math-K002",
+      "index": 2,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "小数乘法",
+      "name": "小数乘小数",
+      "objective": "能计算小数乘小数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-math-K001"
+      ],
+      "concept": "两个因数的小数位数之和就是积的小数位数",
+      "common_mistakes": [
+        "小数位数相加出错",
+        "小数点位置点错"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·小数乘法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s1-math-K003",
+      "index": 3,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "小数乘法",
+      "name": "积的近似数",
+      "objective": "能按要求求积的近似数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-math-K002"
+      ],
+      "concept": "先算出完整的积，再按保留位数四舍五入，不能先把因数近似后再乘",
+      "common_mistakes": [
+        "先对因数取近似再相乘",
+        "保留位数判断错误"
+      ],
+      "suggested_types": [
+        "近似",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·小数乘法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s1-math-K004",
+      "index": 4,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "小数乘法",
+      "name": "小数乘法的简便计算",
+      "objective": "能运用乘法运算定律进行小数简便计算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-math-K002"
+      ],
+      "concept": "整数乘法的交换律、结合律、分配律对小数乘法同样适用",
+      "common_mistakes": [
+        "定律误用",
+        "分配律漏乘一项"
+      ],
+      "suggested_types": [
+        "简便计算",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·小数乘法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s1-math-K005",
+      "index": 5,
+      "domain": "图形与几何",
+      "theme": "图形的位置与运动",
+      "unit": "位置",
+      "name": "用数对确定位置",
+      "objective": "能用数对表示物体的位置",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-math-K001"
+      ],
+      "concept": "数对写作（列，行），先列后行；列从左往右数，行从下往上数",
+      "common_mistakes": [
+        "行列顺序颠倒",
+        "起点从0而不是从1开始"
+      ],
+      "suggested_types": [
+        "表示",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·位置",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-math-K006",
+      "index": 6,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "小数除法",
+      "name": "小数除以整数",
+      "objective": "能计算小数除以整数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-math-K001"
+      ],
+      "concept": "按整数除法的方法计算，商的小数点要与被除数的小数点对齐",
+      "common_mistakes": [
+        "商的小数点位置错误",
+        "余数处理不当"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·小数除法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s1-math-K007",
+      "index": 7,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "小数除法",
+      "name": "一个数除以小数",
+      "objective": "能计算除数是小数的除法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-math-K006"
+      ],
+      "concept": "把除数的小数点向右移动变成整数，被除数的小数点同时向右移动相同的位数",
+      "common_mistakes": [
+        "只移动除数的小数点",
+        "被除数位数不够时忘补0"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·小数除法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s1-math-K008",
+      "index": 8,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "小数除法",
+      "name": "商的近似数",
+      "objective": "能按要求求商的近似数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-math-K007"
+      ],
+      "concept": "除到比需要保留的小数位数多一位，再四舍五入",
+      "common_mistakes": [
+        "只除到保留位数就舍入",
+        "循环小数处理不当"
+      ],
+      "suggested_types": [
+        "近似",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·小数除法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s1-math-K009",
+      "index": 9,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "小数除法",
+      "name": "循环小数",
+      "objective": "认识循环小数，会用循环节表示",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s1-math-K007"
+      ],
+      "concept": "小数部分从某一位起，一个或几个数字依次不断重复出现，叫循环小数；重复的数字叫循环节",
+      "common_mistakes": [
+        "循环节找错",
+        "把有限小数当成循环小数"
+      ],
+      "suggested_types": [
+        "识别",
+        "表示",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·小数除法",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-math-K010",
+      "index": 10,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "小数除法",
+      "name": "用计算器探索计算规律",
+      "objective": "能用计算器计算并探索算式中的规律",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-math-K009"
+      ],
+      "concept": "通过计算一组有结构的算式，观察结果与算式之间的关系，归纳出规律",
+      "common_mistakes": [
+        "规律表述不准确",
+        "只观察个别例子就下结论"
+      ],
+      "suggested_types": [
+        "发现规律",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·小数除法",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-math-K011",
+      "index": 11,
+      "domain": "统计与概率",
+      "theme": "随机现象发生的可能性",
+      "unit": "可能性",
+      "name": "事件发生的确定性与不确定性",
+      "objective": "能用一定、可能、不可能描述事件发生的可能性",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "一定和不可能都是确定事件，可能是随机事件；可能性小不等于不可能",
+      "common_mistakes": [
+        "把可能性小当成不可能",
+        "确定与不确定判断错误"
+      ],
+      "suggested_types": [
+        "判断",
+        "描述",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·可能性；北师大四上·可能性",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-math-K012",
+      "index": 12,
+      "domain": "统计与概率",
+      "theme": "随机现象发生的可能性",
+      "unit": "可能性",
+      "name": "可能性的大小比较",
+      "objective": "能比较事件发生可能性的大小",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-math-K011"
+      ],
+      "concept": "在总数中数量多的，被摸到的可能性大；数量少则可能性小",
+      "common_mistakes": [
+        "凭感觉判断而不看数量",
+        "把可能性大小与实际结果混淆"
+      ],
+      "suggested_types": [
+        "判断",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·可能性",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-math-K013",
+      "index": 13,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "简易方程",
+      "name": "用字母表示数",
+      "objective": "理解用字母表示数的意义，会规范书写含字母的式子",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "字母可以表示任意数；a×b写作ab或a·b，a×a写作a²，1×a写作a",
+      "common_mistakes": [
+        "把a×a写成2a",
+        "省略乘号的规则用错"
+      ],
+      "suggested_types": [
+        "表示",
+        "书写",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·简易方程",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-math-K014",
+      "index": 14,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "简易方程",
+      "name": "方程的意义与等式的性质",
+      "objective": "理解方程的意义，掌握等式的基本性质",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s1-math-K013"
+      ],
+      "concept": "含有未知数的等式叫方程；等式两边同时加、减、乘、除同一个数（除数不为0），等式仍成立",
+      "common_mistakes": [
+        "把方程与等式混为一谈",
+        "忽略除数不能为0"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·简易方程",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-math-K015",
+      "index": 15,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "简易方程",
+      "name": "解简易方程",
+      "objective": "能依据等式性质解简易方程并检验",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-math-K014"
+      ],
+      "concept": "解方程就是运用等式性质逐步求出未知数的值，求出后要代入原方程检验",
+      "common_mistakes": [
+        "移项时符号出错",
+        "解完不检验"
+      ],
+      "suggested_types": [
+        "解方程",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·简易方程",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s1-math-K016",
+      "index": 16,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "简易方程",
+      "name": "列方程解决实际问题",
+      "objective": "能找出等量关系并列方程解决实际问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-math-K015"
+      ],
+      "concept": "步骤：找等量关系→设未知数→列方程→解方程→检验→作答",
+      "common_mistakes": [
+        "等量关系找错",
+        "设未知数时语句不完整"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·简易方程",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-math-K017",
+      "index": 17,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "多边形的面积",
+      "name": "平行四边形的面积",
+      "objective": "掌握平行四边形面积公式并能应用",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s1-math-K016"
+      ],
+      "concept": "把平行四边形转化成长方形推导出：面积=底×高",
+      "common_mistakes": [
+        "用两条邻边相乘",
+        "底与高不对应"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·多边形的面积",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-math-K018",
+      "index": 18,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "多边形的面积",
+      "name": "三角形的面积",
+      "objective": "掌握三角形面积公式并能应用",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-math-K017"
+      ],
+      "concept": "两个完全一样的三角形可以拼成一个平行四边形，所以三角形面积=底×高÷2",
+      "common_mistakes": [
+        "忘记除以2",
+        "高不是对应底的高"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·多边形的面积",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-math-K019",
+      "index": 19,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "多边形的面积",
+      "name": "梯形的面积",
+      "objective": "掌握梯形面积公式并能应用",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-math-K018"
+      ],
+      "concept": "两个完全一样的梯形拼成平行四边形，梯形面积=（上底+下底）×高÷2",
+      "common_mistakes": [
+        "忘记除以2",
+        "上底与下底混淆"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·多边形的面积",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-math-K020",
+      "index": 20,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "数学广角—植树问题",
+      "name": "植树问题",
+      "objective": "能区分植树问题的三种情况并正确计算",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-math-K019"
+      ],
+      "concept": "两端都栽：棵数=段数+1；只栽一端：棵数=段数；两端都不栽：棵数=段数-1",
+      "common_mistakes": [
+        "三种情况混淆",
+        "段数与棵数的关系搞反"
+      ],
+      "suggested_types": [
+        "分析",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五上·数学广角—植树问题",
+      "engine_hint": "llm"
+    }
+  ]
 }

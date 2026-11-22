@@ -1,12 +1,585 @@
 {
   "volume_id": "primary-g2-s2-math",
-  "title": "g2数学下册",
+  "title": "二年级下册数学",
   "stage": "primary",
   "grade": "g2",
   "term": "s2",
   "subject": "math",
   "school_stage": "S1",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版二年级下册共有内容；2022版数学课标第一学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g2-s2-math-K001",
+      "index": 1,
+      "domain": "统计与概率",
+      "theme": "数据的收集、整理与表达",
+      "unit": "数据收集整理",
+      "name": "数据收集的常用方法",
+      "objective": "能用调查、举手、投票等方法收集数据",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "收集数据要先明确调查问题和对象；常用方法有举手、投票、问卷调查",
+      "common_mistakes": [
+        "调查对象不完整",
+        "重复计数"
+      ],
+      "suggested_types": [
+        "调查",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·数据收集整理",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-math-K002",
+      "index": 2,
+      "domain": "统计与概率",
+      "theme": "数据的收集、整理与表达",
+      "unit": "数据收集整理",
+      "name": "用统计表记录和呈现数据",
+      "objective": "能用简单的统计表整理数据并读出信息",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-math-K001"
+      ],
+      "concept": "统计表按项目分类记录，合计应等于各分项之和",
+      "common_mistakes": [
+        "合计与分项之和不符",
+        "项目遗漏"
+      ],
+      "suggested_types": [
+        "统计",
+        "读表",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·数据收集整理",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-math-K003",
+      "index": 3,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "表内除法（一）",
+      "name": "平均分的含义与两种分法",
+      "objective": "理解平均分就是每份分得同样多，认识两种分法",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s2-math-K011"
+      ],
+      "concept": "平均分要求每份数量相同；分为按份数分和按每份数分两种",
+      "common_mistakes": [
+        "每份数量不等也算平均分",
+        "两种分法混淆"
+      ],
+      "suggested_types": [
+        "理解",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·表内除法（一）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-math-K004",
+      "index": 4,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "表内除法（一）",
+      "name": "除法的意义与算式各部分名称",
+      "objective": "理解除法是平均分的运算，认识被除数、除数、商",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-math-K003"
+      ],
+      "concept": "除法表示平均分；被除数÷除数=商",
+      "common_mistakes": [
+        "被除数与除数位置颠倒",
+        "把商与积混淆"
+      ],
+      "suggested_types": [
+        "理解",
+        "识别",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·表内除法（一）；北师大二上·分一分与除法",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-math-K005",
+      "index": 5,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "表内除法（一）",
+      "name": "用2-6的乘法口诀求商",
+      "objective": "能用2-6的乘法口诀求商",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-math-K004"
+      ],
+      "concept": "想乘法算除法：除数×商=被除数",
+      "common_mistakes": [
+        "不会想对应口诀",
+        "商算错"
+      ],
+      "suggested_types": [
+        "计算",
+        "口算",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·表内除法（一）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-math-K006",
+      "index": 6,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "表内除法（一）",
+      "name": "用除法解决平均分问题",
+      "objective": "能解决平均分和包含除的实际问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-math-K005"
+      ],
+      "concept": "求每份数或求份数都用除法，要看清问题问的是什么",
+      "common_mistakes": [
+        "该用除法却用乘法",
+        "单位名称写错"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·表内除法（一）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-math-K007",
+      "index": 7,
+      "domain": "图形与几何",
+      "theme": "图形的位置与运动",
+      "unit": "图形的运动（一）",
+      "name": "轴对称图形的认识",
+      "objective": "认识轴对称图形，能找到对称轴",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "对折后两边完全重合的图形是轴对称图形，折痕所在的直线是对称轴",
+      "common_mistakes": [
+        "认为所有图形都对称",
+        "对称轴画错"
+      ],
+      "suggested_types": [
+        "识别",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·图形的运动（一）；北师大三下·图形的运动",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-math-K008",
+      "index": 8,
+      "domain": "图形与几何",
+      "theme": "图形的位置与运动",
+      "unit": "图形的运动（一）",
+      "name": "平移与旋转现象",
+      "objective": "能辨认生活中的平移和旋转现象",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-math-K007"
+      ],
+      "concept": "平移是沿直线移动，方向和大小都不变；旋转是绕一个点或轴转动",
+      "common_mistakes": [
+        "平移与旋转混淆",
+        "认为平移会改变形状"
+      ],
+      "suggested_types": [
+        "识别",
+        "分类",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·图形的运动（一）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-math-K009",
+      "index": 9,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "表内除法（二）",
+      "name": "用7-9的乘法口诀求商",
+      "objective": "能熟练用7-9的乘法口诀求商",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-math-K005"
+      ],
+      "concept": "同样想乘法算除法，口诀要熟练才能快速求商",
+      "common_mistakes": [
+        "口诀记错导致商错",
+        "余数与商混淆"
+      ],
+      "suggested_types": [
+        "计算",
+        "口算",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·表内除法（二）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-math-K010",
+      "index": 10,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "表内除法（二）",
+      "name": "求一个数是另一个数的几倍",
+      "objective": "理解倍的含义，会求一个数是另一个数的几倍",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-math-K009"
+      ],
+      "concept": "求a是b的几倍用a÷b；倍表示两个量的比较关系，不是单位名称",
+      "common_mistakes": [
+        "把倍当成单位写",
+        "该用除法却用乘法"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·表内除法（二）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-math-K011",
+      "index": 11,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "混合运算",
+      "name": "同级运算的运算顺序",
+      "objective": "知道只有加减或只有乘除时按从左到右顺序计算",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-math-K006"
+      ],
+      "concept": "同级运算从左到右依次计算",
+      "common_mistakes": [
+        "先算后面的",
+        "跳步计算"
+      ],
+      "suggested_types": [
+        "计算",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·混合运算",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-math-K012",
+      "index": 12,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "混合运算",
+      "name": "含两级运算的运算顺序",
+      "objective": "知道没有括号时先算乘除、后算加减",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-math-K011"
+      ],
+      "concept": "两级运算同时出现时，先乘除后加减",
+      "common_mistakes": [
+        "一律从左到右计算",
+        "先算加减后算乘除"
+      ],
+      "suggested_types": [
+        "计算",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·混合运算",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-math-K013",
+      "index": 13,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "混合运算",
+      "name": "含小括号的混合运算",
+      "objective": "知道有小括号时先算括号里面的",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-math-K012"
+      ],
+      "concept": "小括号可以改变运算顺序，先算括号内再算括号外",
+      "common_mistakes": [
+        "忽略小括号",
+        "括号内计算错误"
+      ],
+      "suggested_types": [
+        "计算",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·混合运算",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-math-K014",
+      "index": 14,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "有余数的除法",
+      "name": "有余数除法的意义与余数",
+      "objective": "理解余数的含义，知道余数必须小于除数",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-math-K004"
+      ],
+      "concept": "平均分后剩下不够再分的部分叫余数；余数一定小于除数",
+      "common_mistakes": [
+        "余数大于或等于除数",
+        "把余数当成商"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·有余数的除法",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-math-K015",
+      "index": 15,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "有余数的除法",
+      "name": "有余数除法的竖式计算",
+      "objective": "能正确用竖式计算有余数的除法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-math-K014"
+      ],
+      "concept": "竖式中商要与被除数的个位对齐，余数写在被除数下方",
+      "common_mistakes": [
+        "商的位置写错",
+        "余数计算错误"
+      ],
+      "suggested_types": [
+        "竖式计算",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·有余数的除法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-math-K016",
+      "index": 16,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "有余数的除法",
+      "name": "用有余数除法解决周期问题",
+      "objective": "能用有余数除法解决按周期排列的问题",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g2-s2-math-K015"
+      ],
+      "concept": "周期问题用除法，根据余数确定位置；余数为0时对应每组最后一个",
+      "common_mistakes": [
+        "余数为0时判断错误",
+        "周期数错"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·有余数的除法",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-math-K017",
+      "index": 17,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "万以内数的认识",
+      "name": "万以内数的认识与组成",
+      "objective": "认识计数单位千、万，理解万以内数的组成",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s2-math-K006"
+      ],
+      "concept": "10个一百是一千，10个一千是一万；数位顺序为个、十、百、千、万",
+      "common_mistakes": [
+        "数位顺序混乱",
+        "中间有0的数读写错误"
+      ],
+      "suggested_types": [
+        "识别",
+        "组成",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·万以内数的认识",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-math-K018",
+      "index": 18,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "万以内数的认识",
+      "name": "万以内数的读写与大小比较",
+      "objective": "能正确读写万以内的数并比较大小",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-math-K017"
+      ],
+      "concept": "读写都从高位起；比较时先比位数，位数相同再从最高位比",
+      "common_mistakes": [
+        "中间连续的0读错",
+        "位数不同也逐位比较"
+      ],
+      "suggested_types": [
+        "读写",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·万以内数的认识",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-math-K019",
+      "index": 19,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "克和千克",
+      "name": "克和千克的认识与换算",
+      "objective": "认识质量单位克和千克，知道1千克=1000克",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "称较轻物品用克（g），较重物品用千克（kg）；1千克=1000克",
+      "common_mistakes": [
+        "认为1千克=100克",
+        "单位选择错误"
+      ],
+      "suggested_types": [
+        "识别",
+        "换算",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·克和千克；北师大二下·千克、克、吨",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-math-K020",
+      "index": 20,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "数学广角—推理",
+      "name": "简单的逻辑推理",
+      "objective": "能借助排除法进行简单的逻辑推理",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [],
+      "concept": "推理常用排除法：先确定能确定的，再逐步排除不可能的情况",
+      "common_mistakes": [
+        "条件没有用全",
+        "推理过程跳步"
+      ],
+      "suggested_types": [
+        "推理",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教二下·数学广角—推理",
+      "engine_hint": "llm"
+    }
+  ]
 }

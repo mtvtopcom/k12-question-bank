@@ -1,12 +1,589 @@
 {
   "volume_id": "primary-g3-s1-math",
-  "title": "g3数学上册",
+  "title": "三年级上册数学",
   "stage": "primary",
   "grade": "g3",
   "term": "s1",
   "subject": "math",
   "school_stage": "S2",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版三年级上册共有内容；2022版数学课标第二学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g3-s1-math-K001",
+      "index": 1,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "时分秒",
+      "name": "秒的认识与时分秒关系",
+      "objective": "认识时间单位秒，掌握1分=60秒、1时=60分",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-math-K018"
+      ],
+      "concept": "1分=60秒，1时=60分=3600秒；秒是较小的时间单位",
+      "common_mistakes": [
+        "认为1分=100秒",
+        "时间单位之间换算错误"
+      ],
+      "suggested_types": [
+        "识别",
+        "换算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·时分秒；北师大二上·时、分、秒",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-math-K002",
+      "index": 2,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "时分秒",
+      "name": "经过时间的计算",
+      "objective": "能计算简单的经过时间",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-math-K001"
+      ],
+      "concept": "经过时间=结束时刻-开始时刻；跨小时计算要先统一成相同单位",
+      "common_mistakes": [
+        "把时刻与经过时间混淆",
+        "跨小时计算错误"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·时分秒",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-math-K003",
+      "index": 3,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "万以内的加法和减法（一）",
+      "name": "两位数加两位数口算",
+      "objective": "能口算两位数加两位数",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-math-K004"
+      ],
+      "concept": "口算可拆成整十数加整十数、个位数加个位数，再合并",
+      "common_mistakes": [
+        "进位遗漏",
+        "拆分步骤出错"
+      ],
+      "suggested_types": [
+        "口算",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·万以内的加法和减法（一）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-math-K004",
+      "index": 4,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "万以内的加法和减法（一）",
+      "name": "两位数减两位数口算",
+      "objective": "能口算两位数减两位数",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-math-K003"
+      ],
+      "concept": "拆成整十数减整十数、个位数减个位数，不够减时借位",
+      "common_mistakes": [
+        "退位遗漏",
+        "拆分顺序错误"
+      ],
+      "suggested_types": [
+        "口算",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·万以内的加法和减法（一）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-math-K005",
+      "index": 5,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "万以内的加法和减法（一）",
+      "name": "几百几十加、减几百几十",
+      "objective": "能笔算几百几十加、减几百几十",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-math-K004"
+      ],
+      "concept": "相同数位对齐，从个位算起，注意进退位",
+      "common_mistakes": [
+        "数位没有对齐",
+        "进退位出错"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·万以内的加法和减法（一）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-math-K006",
+      "index": 6,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "测量",
+      "name": "毫米、分米的认识与换算",
+      "objective": "认识毫米和分米，掌握1厘米=10毫米、1分米=10厘米",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-math-K001"
+      ],
+      "concept": "1厘米=10毫米，1分米=10厘米，1米=10分米；毫米用于更精确的测量",
+      "common_mistakes": [
+        "单位之间进率记错",
+        "量具读数错误"
+      ],
+      "suggested_types": [
+        "识别",
+        "换算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·测量",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-math-K007",
+      "index": 7,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "测量",
+      "name": "千米的认识",
+      "objective": "认识长度单位千米，知道1千米=1000米",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-math-K006"
+      ],
+      "concept": "千米（km）用于计量较长的路程；1千米=1000米",
+      "common_mistakes": [
+        "认为1千米=100米",
+        "长度单位选择错误"
+      ],
+      "suggested_types": [
+        "换算",
+        "选择",
+        "估计"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·测量",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-math-K008",
+      "index": 8,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "测量",
+      "name": "吨的认识与质量单位换算",
+      "objective": "认识质量单位吨，知道1吨=1000千克",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-math-K019"
+      ],
+      "concept": "吨（t）用于计量很重的物体；1吨=1000千克",
+      "common_mistakes": [
+        "吨与千克进率记错",
+        "质量单位选择错误"
+      ],
+      "suggested_types": [
+        "换算",
+        "选择",
+        "估计"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·测量",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-math-K009",
+      "index": 9,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "万以内的加法和减法（二）",
+      "name": "三位数加三位数（连续进位）",
+      "objective": "能笔算三位数加三位数的连续进位加法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-math-K005"
+      ],
+      "concept": "相同数位对齐，从个位加起，哪一位满十就向前一位进1，连续进位要逐位处理",
+      "common_mistakes": [
+        "连续进位时漏加进位的1",
+        "数位没有对齐"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·万以内的加法和减法（二）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-math-K010",
+      "index": 10,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "万以内的加法和减法（二）",
+      "name": "三位数减三位数（连续退位）",
+      "objective": "能笔算三位数减三位数的连续退位减法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-math-K009"
+      ],
+      "concept": "哪一位不够减就从前一位退1当10，连续退位要逐位处理",
+      "common_mistakes": [
+        "连续退位时漏减1",
+        "被减数中间有0时退位出错"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·万以内的加法和减法（二）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-math-K011",
+      "index": 11,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "万以内的加法和减法（二）",
+      "name": "加法的验算",
+      "objective": "会用交换加数位置的方法验算加法",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-math-K009"
+      ],
+      "concept": "交换两个加数的位置再加一遍，和不变，用此检验计算是否正确",
+      "common_mistakes": [
+        "验算方法记错",
+        "验算后不回头检查原式"
+      ],
+      "suggested_types": [
+        "验算",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·万以内的加法和减法（二）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-math-K012",
+      "index": 12,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "万以内的加法和减法（二）",
+      "name": "减法的验算",
+      "objective": "会用差加减数的方法验算减法",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-math-K010"
+      ],
+      "concept": "差+减数=被减数，或被减数-差=减数，用此检验减法",
+      "common_mistakes": [
+        "验算公式记错",
+        "验算结果与原式不符却不复查"
+      ],
+      "suggested_types": [
+        "验算",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·万以内的加法和减法（二）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-math-K013",
+      "index": 13,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "倍的认识",
+      "name": "倍的认识：求一个数的几倍",
+      "objective": "理解倍的含义，会求一个数的几倍是多少",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-math-K010"
+      ],
+      "concept": "求a的b倍用a×b；倍表示两个量之间的比较关系，不是单位",
+      "common_mistakes": [
+        "求几倍时用除法",
+        "给倍加上单位"
+      ],
+      "suggested_types": [
+        "理解",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·倍的认识",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-math-K014",
+      "index": 14,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "倍的认识",
+      "name": "求一个数是另一个数的几倍",
+      "objective": "会求一个数是另一个数的几倍并解决实际问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-math-K013"
+      ],
+      "concept": "求a是b的几倍用a÷b，与求一个数的几倍互为逆运算",
+      "common_mistakes": [
+        "乘除混淆",
+        "把标准量弄反"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·倍的认识",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-math-K015",
+      "index": 15,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "多位数乘一位数",
+      "name": "多位数乘一位数（不进位）",
+      "objective": "能笔算多位数乘一位数的不进位乘法",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-math-K013"
+      ],
+      "concept": "从个位乘起，用一位数依次乘多位数每一位上的数",
+      "common_mistakes": [
+        "从高位开始乘",
+        "积的数位写错"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·多位数乘一位数",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-math-K016",
+      "index": 16,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "多位数乘一位数",
+      "name": "多位数乘一位数（进位）",
+      "objective": "能笔算多位数乘一位数的进位乘法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-math-K015"
+      ],
+      "concept": "哪一位上的乘积满几十就向前一位进几，下一步要加上进位数",
+      "common_mistakes": [
+        "忘记加进位数",
+        "进位叠加计算错误"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·多位数乘一位数",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-math-K017",
+      "index": 17,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "多位数乘一位数",
+      "name": "因数中间或末尾有0的乘法",
+      "objective": "能正确计算因数中间或末尾有0的乘法",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s1-math-K016"
+      ],
+      "concept": "0乘任何数都得0；末尾有0时可先算前面部分再在积的末尾补0",
+      "common_mistakes": [
+        "中间0漏乘",
+        "末尾0的个数写错"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·多位数乘一位数",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-math-K018",
+      "index": 18,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "长方形和正方形",
+      "name": "长方形、正方形的特征与周长",
+      "objective": "掌握长方形和正方形的特征，会计算它们的周长",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g1-s2-math-K001"
+      ],
+      "concept": "长方形对边相等、四个直角；正方形四边相等。周长：长方形=(长+宽)×2，正方形=边长×4",
+      "common_mistakes": [
+        "周长与面积公式混淆",
+        "周长公式记错"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·长方形和正方形",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-math-K019",
+      "index": 19,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数的初步认识",
+      "name": "分数的初步认识：几分之一",
+      "objective": "认识几分之一，理解分数与平均分的关系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "把一个整体平均分成几份，其中的1份就是几分之一；分母表示分的份数，分子表示取的份数",
+      "common_mistakes": [
+        "不平均分也用分数表示",
+        "分母与分子位置颠倒"
+      ],
+      "suggested_types": [
+        "理解",
+        "识别",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·分数的初步认识",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-math-K020",
+      "index": 20,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "数学广角—集合",
+      "name": "集合思想与重叠问题",
+      "objective": "能用集合图解决简单的重叠问题",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [],
+      "concept": "两类事物有重叠时，总数=A类+B类-重叠部分；用集合图能直观看出重叠",
+      "common_mistakes": [
+        "重叠部分被重复计算",
+        "不会画集合图分析"
+      ],
+      "suggested_types": [
+        "分析",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三上·数学广角—集合",
+      "engine_hint": "llm"
+    }
+  ]
 }

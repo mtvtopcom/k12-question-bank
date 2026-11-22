@@ -1,12 +1,768 @@
 {
   "volume_id": "junior-g8-s2-chinese",
-  "title": "g8语文下册",
+  "title": "八年级下册语文",
   "stage": "junior",
   "grade": "g8",
   "term": "s2",
   "subject": "chinese",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "统编版（2024审定）八年级下册；2022版语文课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g8-s2-chinese-K001",
+      "index": 1,
+      "domain": "语言文字积累与梳理",
+      "theme": "汉字与词语",
+      "unit": "字词积累",
+      "name": "字音字形与词语积累",
+      "objective": "能准确读写本册重点字词，掌握民俗类与科学类词语",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g8-s1-chinese-K001"
+      ],
+      "concept": "本册词语涉及民俗（社戏、腰鼓）与科学（物候、板块）两类语域，需按语域归类积累",
+      "common_mistakes": [
+        "民俗类词语误写",
+        "科学术语理解偏差"
+      ],
+      "suggested_types": [
+        "注音",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·各单元读读写写",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K002",
+      "index": 2,
+      "domain": "语言文字积累与梳理",
+      "theme": "语法修辞",
+      "unit": "语法知识",
+      "name": "语序合理、结构完整与句式杂糅",
+      "objective": "能辨析语序不当、成分残缺、句式杂糅等语病并修改",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-chinese-K002"
+      ],
+      "concept": "语序不当含多层定语状语次序颠倒、并列成分逻辑倒置；成分残缺常缺主语或宾语中心语；句式杂糅是两种句式硬拼",
+      "common_mistakes": [
+        "多重定语次序判断错",
+        "缺宾语中心语未发现",
+        "杂糅句改一半"
+      ],
+      "suggested_types": [
+        "辨析",
+        "修改",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·语法知识",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K003",
+      "index": 3,
+      "domain": "语言文字积累与梳理",
+      "theme": "语法修辞",
+      "unit": "修辞",
+      "name": "反问、设问与呼告",
+      "objective": "能辨识反问、设问、呼告并分析其表达作用",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-chinese-K003"
+      ],
+      "concept": "反问寓答于问、加强语气；设问自问自答、引起注意并推进层次；呼告直接对人或物说话，增强抒情性与感染力",
+      "common_mistakes": [
+        "反问与设问混淆",
+        "呼告与拟人混淆"
+      ],
+      "suggested_types": [
+        "赏析",
+        "判断",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第一单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K004",
+      "index": 4,
+      "domain": "语言文字积累与梳理",
+      "theme": "文学文化常识",
+      "unit": "文学常识",
+      "name": "作家作品与文体常识",
+      "objective": "识记本册作家作品，了解《诗经》、诸子散文、游记、演讲词等文体",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g8-s1-chinese-K004"
+      ],
+      "concept": "《诗经》为我国最早的诗歌总集，分风、雅、颂，手法为赋、比、兴；诸子散文长于寓言与论辩；游记以游踪为序",
+      "common_mistakes": [
+        "风雅颂与赋比兴混为一谈",
+        "文体归属错误"
+      ],
+      "suggested_types": [
+        "识记",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·各单元注释",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K005",
+      "index": 5,
+      "domain": "文学阅读与创意表达",
+      "theme": "散文阅读",
+      "unit": "民俗散文",
+      "name": "民俗散文的地域文化与场景描写",
+      "objective": "能分析民俗散文中地域文化的呈现方式与场景描写的作用",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-chinese-K008"
+      ],
+      "concept": "民俗散文以地方风物、仪式、方言构成文化底色；场景描写通过多感官、点面结合再现氛围，寄托作者的文化认同与乡愁",
+      "common_mistakes": [
+        "只概括民俗不分析情感",
+        "场景描写作用答得笼统"
+      ],
+      "suggested_types": [
+        "分析",
+        "赏析",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第一单元《社戏》《安塞腰鼓》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K006",
+      "index": 6,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读",
+      "unit": "说明文",
+      "name": "事理说明文的逻辑顺序",
+      "objective": "能梳理事理说明文的逻辑链条，辨识由现象到本质的说明顺序",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-chinese-K012"
+      ],
+      "concept": "事理说明文常按「现象—原因—规律—应用」推进；逻辑顺序包括由因到果、由主到次、由概括到具体、由现象到本质",
+      "common_mistakes": [
+        "逻辑层次划分错误",
+        "把逻辑顺序当作时间顺序"
+      ],
+      "suggested_types": [
+        "梳理",
+        "分析",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第二单元《大自然的语言》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K007",
+      "index": 7,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读",
+      "unit": "说明文",
+      "name": "事理说明文的推理与求证",
+      "objective": "能分析说明文中假说、证据与结论之间的推理关系",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K006"
+      ],
+      "concept": "科学说明常以「提出问题—提出假说—寻找证据—得出结论」展开；要区分事实与推论，注意「可能」「也许」体现的科学审慎",
+      "common_mistakes": [
+        "把假说当作结论",
+        "忽视证据的充分性"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第二单元《阿西莫夫短文两篇》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K008",
+      "index": 8,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读",
+      "unit": "说明文",
+      "name": "科学观察与说明语言",
+      "objective": "能体会科学观察类文章在数据、观察记录上的严谨表达",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K007"
+      ],
+      "concept": "科学观察类文章以长期观察记录为据，数据具体、时间明确、术语准确；文学化表达服务于可读性而非替代准确性",
+      "common_mistakes": [
+        "数据与结论对应错",
+        "以文学化表达否定严谨性"
+      ],
+      "suggested_types": [
+        "分析",
+        "简答",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第二单元《大雁归来》《时间的脚印》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K009",
+      "index": 9,
+      "domain": "语言文字积累与梳理",
+      "theme": "文言基础",
+      "unit": "文言实词",
+      "name": "文言实词：古今异义与一词多义",
+      "objective": "能积累本册文言实词，辨析古今异义与一词多义",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-chinese-K016"
+      ],
+      "concept": "古今异义如「交通」「无论」「妻子」「绝境」；一词多义须依语境定，如「寻」（寻找/随即）、「许」（处所/答应/左右）",
+      "common_mistakes": [
+        "以今义解古义",
+        "同词异义不辨语境"
+      ],
+      "suggested_types": [
+        "解释",
+        "辨析",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第三、六单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K010",
+      "index": 10,
+      "domain": "语言文字积累与梳理",
+      "theme": "文言基础",
+      "unit": "文言虚词与句式",
+      "name": "文言虚词与特殊句式",
+      "objective": "能辨析「其」「而」「乃」的用法，识别省略句与倒装句",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K009"
+      ],
+      "concept": "「其」可作代词、语气副词（表推测、反问、祈使）；「而」表并列、承接、转折、修饰；省略句翻译须补出省略成分",
+      "common_mistakes": [
+        "省略成分未补出",
+        "虚词语气判断不准"
+      ],
+      "suggested_types": [
+        "辨析",
+        "翻译",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·文言课文",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K011",
+      "index": 11,
+      "domain": "文学阅读与创意表达",
+      "theme": "文言文阅读",
+      "unit": "文言散文",
+      "name": "《桃花源记》的虚实结合与理想寄托",
+      "objective": "能分析《桃花源记》虚实相生的写法与作者的社会理想",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K009"
+      ],
+      "concept": "文章以「忽逢」入虚、以「遂迷，不复得路」出虚，虚写理想社会、实写现实黑暗；「世外桃源」由此成为理想世界的文化符号",
+      "common_mistakes": [
+        "把桃源当作真实存在",
+        "忽视结尾「不复得路」的寓意"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第三单元《桃花源记》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K012",
+      "index": 12,
+      "domain": "文学阅读与创意表达",
+      "theme": "文言文阅读",
+      "unit": "文言散文",
+      "name": "《小石潭记》的移步换景与情感变化",
+      "objective": "能梳理游踪、分析景物特点与作者情感的由乐转忧",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K011"
+      ],
+      "concept": "文章按「发现—近观—远望—坐潭上—记同游者」的游踪移步换景；情感由「心乐之」转为「凄神寒骨」，与贬谪处境相关",
+      "common_mistakes": [
+        "游踪梳理混乱",
+        "忽视情感转折"
+      ],
+      "suggested_types": [
+        "梳理",
+        "赏析",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第三单元《小石潭记》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K013",
+      "index": 13,
+      "domain": "文学阅读与创意表达",
+      "theme": "文言文阅读",
+      "unit": "文言说明",
+      "name": "《核舟记》的空间说明顺序",
+      "objective": "能分析《核舟记》按空间顺序说明微雕的方法",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K011"
+      ],
+      "concept": "文章以「中—头—尾—背」的空间顺序说明，配合总说分说结构；说明中融入描写与想象，使静态微雕生动可感",
+      "common_mistakes": [
+        "空间顺序表述不清",
+        "总说分说层次混乱"
+      ],
+      "suggested_types": [
+        "分析",
+        "简答",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第三单元《核舟记》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K014",
+      "index": 14,
+      "domain": "文学阅读与创意表达",
+      "theme": "诗歌阅读",
+      "unit": "《诗经》",
+      "name": "《诗经》的赋比兴与重章叠句",
+      "objective": "能辨识赋、比、兴手法，体会重章叠句的表达效果",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K004"
+      ],
+      "concept": "赋是直陈其事，比是打比方，兴是先言他物以引起所咏；重章叠句通过章节复沓递进情感、增强音乐性",
+      "common_mistakes": [
+        "赋比兴判断错误",
+        "把重章叠句当作重复啰嗦"
+      ],
+      "suggested_types": [
+        "鉴赏",
+        "赏析",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第三单元《〈诗经〉二首》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K015",
+      "index": 15,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读",
+      "unit": "演讲词",
+      "name": "演讲词的针对性与鼓动性",
+      "objective": "能分析演讲词如何针对现场情境、借助修辞与情感打动听众",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g7-s2-chinese-K016"
+      ],
+      "concept": "演讲词的三重针对性：针对听众身份、针对现场情境、针对现实问题；鼓动性来自鲜明观点、强烈情感与排比呼告等修辞",
+      "common_mistakes": [
+        "忽视演讲的具体情境",
+        "只找修辞不看观点"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第四单元《最后一次讲演》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K016",
+      "index": 16,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读",
+      "unit": "演讲词",
+      "name": "演讲中的事例与说理",
+      "objective": "能分析演讲词中事例的选择与说理推进",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K015"
+      ],
+      "concept": "演讲中的事例要典型、贴近听众、便于共情；说理推进常用「摆事实—讲道理—发号召」结构",
+      "common_mistakes": [
+        "事例与观点不匹配",
+        "说理层次跳跃"
+      ],
+      "suggested_types": [
+        "分析",
+        "简答",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第四单元《应有格物致知精神》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K017",
+      "index": 17,
+      "domain": "文学阅读与创意表达",
+      "theme": "散文阅读",
+      "unit": "游记",
+      "name": "游记的游踪、视角与景物特征",
+      "objective": "能梳理游记游踪，分析观察视角（定点换景、移步换景）与景物特征",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K012"
+      ],
+      "concept": "游记三要素为所至、所见、所感；定点换景是立足点不变换视角，移步换景是随行踪变化视角",
+      "common_mistakes": [
+        "游踪顺序错乱",
+        "两种写景方式混淆"
+      ],
+      "suggested_types": [
+        "梳理",
+        "赏析",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第五单元《壶口瀑布》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K018",
+      "index": 18,
+      "domain": "文学阅读与创意表达",
+      "theme": "散文阅读",
+      "unit": "游记",
+      "name": "游记中的景物与感悟",
+      "objective": "能分析游记如何由景生理，实现「所感」的升华",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K017"
+      ],
+      "concept": "游记的感悟须由景物自然引出，常见路径为「写景—联想—升华」；生硬拔高会使感悟与景物脱节",
+      "common_mistakes": [
+        "感悟与景物脱节",
+        "升华层次单薄"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第五单元《一滴水经过丽江》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K019",
+      "index": 19,
+      "domain": "思辨性阅读与表达",
+      "theme": "思辨表达",
+      "unit": "议论性文言",
+      "name": "《庄子》二则的寓言与想象",
+      "objective": "能分析《北冥有鱼》《庄子与惠子游于濠梁》的寓言说理与想象特点",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K010"
+      ],
+      "concept": "《北冥有鱼》以夸张想象塑造鲲鹏，寄托「逍遥」理想；濠梁之辩展现「知鱼之乐」的相对主义思辨，辩论焦点是「能否知」与「如何知」",
+      "common_mistakes": [
+        "把鲲鹏故事当作纯想象而忽略寓意",
+        "辩论双方立场混淆"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第六单元《〈庄子〉二则》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K020",
+      "index": 20,
+      "domain": "思辨性阅读与表达",
+      "theme": "思辨表达",
+      "unit": "议论性文言",
+      "name": "《礼记》二则的儒家理想",
+      "objective": "能理解「大同」与「教学相长」的内涵并评价其现实意义",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K019"
+      ],
+      "concept": "《大道之行也》描绘「天下为公」的大同社会；《虽有嘉肴》以类比引出「教学相长」，二者均体现儒家修身与治世理想",
+      "common_mistakes": [
+        "大同社会的特征归纳不全",
+        "类比论证的作用分析不到位"
+      ],
+      "suggested_types": [
+        "概括",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第六单元《〈礼记〉二则》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K021",
+      "index": 21,
+      "domain": "文学阅读与创意表达",
+      "theme": "文言文阅读",
+      "unit": "托物寓意",
+      "name": "《马说》的托物寓意",
+      "objective": "能分析《马说》以千里马喻人才的托物寓意与讽刺手法",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K010"
+      ],
+      "concept": "以「千里马」喻人才、「食马者」喻愚妄的统治者、「伯乐」喻善识人才者；全文借马之不通鸣不平，属托物寓意而非直陈",
+      "common_mistakes": [
+        "喻体与本体的对应关系错",
+        "把托物寓意当作比喻论证"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第六单元《马说》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K022",
+      "index": 22,
+      "domain": "文学阅读与创意表达",
+      "theme": "诗歌阅读",
+      "unit": "唐诗",
+      "name": "唐诗三首的叙事与讽喻",
+      "objective": "能分析《石壕吏》《茅屋为秋风所破歌》《卖炭翁》的叙事手法与讽喻意味",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K014"
+      ],
+      "concept": "三首均以叙事见长：《石壕吏》用「藏问于答」的留白、《茅屋》由己及人的推己及人、《卖炭翁》用强烈对比揭示掠夺本质",
+      "common_mistakes": [
+        "只译诗句不作鉴赏",
+        "讽喻手法分析不到位"
+      ],
+      "suggested_types": [
+        "鉴赏",
+        "赏析",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第六单元《唐诗三首》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K023",
+      "index": 23,
+      "domain": "思辨性阅读与表达",
+      "theme": "思辨表达",
+      "unit": "议论性文章",
+      "name": "立论与驳论",
+      "objective": "能辨识立论文与驳论文，分析驳论的三种方式",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g7-s2-chinese-K019"
+      ],
+      "concept": "立论是正面提出并证明观点；驳论是反驳对方论点、论据或论证过程，可「驳论点、驳论据、驳论证」；破立结合最为有力",
+      "common_mistakes": [
+        "破立关系梳理不清",
+        "驳论方式判断错误"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·第四单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K024",
+      "index": 24,
+      "domain": "整本书阅读",
+      "theme": "名著导读",
+      "unit": "整本书阅读",
+      "name": "《钢铁是怎样炼成的》整本书阅读",
+      "objective": "能梳理保尔的成长历程，理解「钢铁」的象征意义",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K006"
+      ],
+      "concept": "保尔经历「少年—战士—建设者—病榻写作」四阶段；「钢铁」象征在烈火与冷却中炼成的意志，阅读要结合作者奥斯特洛夫斯基的经历理解自传性",
+      "common_mistakes": [
+        "成长阶段梳理混乱",
+        "象征意义理解表面化"
+      ],
+      "suggested_types": [
+        "梳理",
+        "分析",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·名著导读",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K025",
+      "index": 25,
+      "domain": "整本书阅读",
+      "theme": "名著导读",
+      "unit": "整本书阅读",
+      "name": "《经典常谈》整本书阅读",
+      "objective": "能了解《经典常谈》的十三篇内容，掌握「选择性阅读」的方法",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K004"
+      ],
+      "concept": "《经典常谈》是朱自清为中学生撰写的传统文化入门书，十三篇分述《说文解字》《周易》《诗经》等经典；阅读宜按兴趣与需求选择性切入，先读序言把握全书框架",
+      "common_mistakes": [
+        "把普及读物当作学术专著",
+        "逐篇平均用力导致半途而废"
+      ],
+      "suggested_types": [
+        "梳理",
+        "分析",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·名著导读",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-chinese-K026",
+      "index": 26,
+      "domain": "跨学科学习",
+      "theme": "综合性学习",
+      "unit": "综合性学习",
+      "name": "综合性学习：以和为贵",
+      "objective": "能围绕「和」的文化内涵开展探究、辩论与写作",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g8-s1-chinese-K026"
+      ],
+      "concept": "「和」含人与自我、人与人、人与自然、人与社会四重维度；探究应「以文证和」，用经典语句与事例支撑观点",
+      "common_mistakes": [
+        "概念泛化，缺乏文本支撑",
+        "活动与语文能力脱节"
+      ],
+      "suggested_types": [
+        "项目",
+        "设计",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八下·综合性学习",
+      "engine_hint": "llm"
+    }
+  ]
 }

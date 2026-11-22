@@ -1,12 +1,651 @@
 {
   "volume_id": "primary-g5-s2-chinese",
-  "title": "g5语文下册",
+  "title": "五年级下册语文",
   "stage": "primary",
   "grade": "g5",
   "term": "s2",
   "subject": "chinese",
   "school_stage": "S3",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "统编版（2024审定）五年级下册；2022版语文课标第三学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g5-s2-chinese-K001",
+      "index": 1,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "多音字",
+      "objective": "能依据语境准确判断多音字读音",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-chinese-K001"
+      ],
+      "concept": "多音字读音随意义和用法变化，要在具体语境中辨析",
+      "common_mistakes": [
+        "按常用读音读",
+        "语境判断错误"
+      ],
+      "suggested_types": [
+        "读音",
+        "辨析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第一单元",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K002",
+      "index": 2,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "形近字辨析",
+      "objective": "能辨析形近字并规范书写",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-chinese-K002"
+      ],
+      "concept": "形近字要抓住差异笔画，联系字义和构字部件记忆",
+      "common_mistakes": [
+        "笔画写错",
+        "形近混用"
+      ],
+      "suggested_types": [
+        "辨析",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第二单元",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K003",
+      "index": 3,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "近义词与反义词",
+      "objective": "能准确辨析近义词并恰当运用反义词",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-chinese-K003"
+      ],
+      "concept": "近义词辨析看程度、范围、色彩、搭配；反义词要求词性一致",
+      "common_mistakes": [
+        "近反义混淆",
+        "忽略语体差异"
+      ],
+      "suggested_types": [
+        "辨析",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第三单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K004",
+      "index": 4,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "成语的运用",
+      "objective": "能在语境中准确恰当地运用成语",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-chinese-K004"
+      ],
+      "concept": "成语使用要注意对象、语境、感情色彩，避免望文生义、语义重复和搭配不当",
+      "common_mistakes": [
+        "望文生义",
+        "褒贬误用"
+      ],
+      "suggested_types": [
+        "运用",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·语文园地",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K005",
+      "index": 5,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "词语的古今异义初步",
+      "objective": "能辨别文言词语与现代汉语意义的差异",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s2-chinese-K004"
+      ],
+      "concept": "文言词义与现代汉语常有差异，如走古义为跑、妻子古义为妻子和儿女",
+      "common_mistakes": [
+        "以今义解古义",
+        "望文生义"
+      ],
+      "suggested_types": [
+        "辨析",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第六单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K006",
+      "index": 6,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "句子",
+      "name": "修辞手法的综合运用",
+      "objective": "能综合运用多种修辞手法增强表达效果",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-chinese-K006"
+      ],
+      "concept": "根据表达需要选择修辞，注意与语境协调，避免为修辞而修辞",
+      "common_mistakes": [
+        "修辞堆砌",
+        "与语境不符"
+      ],
+      "suggested_types": [
+        "赏析",
+        "仿写",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第一单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K007",
+      "index": 7,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "句子",
+      "name": "病句的综合修改",
+      "objective": "能准确诊断并修改复杂病句",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-chinese-K007"
+      ],
+      "concept": "复杂病句可能兼有多处问题，要逐层检查主干与修饰成分，逐一修改",
+      "common_mistakes": [
+        "只改一处",
+        "修改后仍不通顺"
+      ],
+      "suggested_types": [
+        "修改",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K008",
+      "index": 8,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "句子",
+      "name": "仿写句子",
+      "objective": "能仿照例句的结构和手法写句子",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "primary-g5-s2-chinese-K006"
+      ],
+      "concept": "仿写要准确把握例句的句式结构、修辞手法和语意关系，做到形神兼备",
+      "common_mistakes": [
+        "只仿形式不合逻辑",
+        "结构不一致"
+      ],
+      "suggested_types": [
+        "仿写",
+        "创造",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K009",
+      "index": 9,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "标点符号",
+      "name": "标点符号的综合运用",
+      "objective": "能综合正确使用各类标点符号",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-chinese-K009"
+      ],
+      "concept": "依据语气、结构和层次选用标点，注意引号、括号与点号的配合",
+      "common_mistakes": [
+        "标点混用",
+        "层次不清"
+      ],
+      "suggested_types": [
+        "标点",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·标点符号",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K010",
+      "index": 10,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "课文",
+      "name": "概括文章主要内容",
+      "objective": "能准确概括各类文章的主要内容",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-chinese-K011"
+      ],
+      "concept": "叙事抓要素与主线，说明抓对象与特征，议论抓观点与依据",
+      "common_mistakes": [
+        "细节堆砌",
+        "遗漏核心内容"
+      ],
+      "suggested_types": [
+        "概括",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第四单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K011",
+      "index": 11,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "课文",
+      "name": "体会人物形象",
+      "objective": "能通过描写方法分析人物形象",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s2-chinese-K010"
+      ],
+      "concept": "分析人物要抓住语言、动作、神态、心理描写，结合具体情节概括性格品质",
+      "common_mistakes": [
+        "贴标签式评价",
+        "脱离文本"
+      ],
+      "suggested_types": [
+        "赏析",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第五单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K012",
+      "index": 12,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "古诗",
+      "name": "古诗：《四时田园杂兴》《稚子弄冰》《村晚》",
+      "objective": "能背诵古诗并体会田园生活的情趣",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g5-s1-chinese-K013"
+      ],
+      "concept": "借助注释理解诗意，抓住儿童形象和动作想象画面，体会其中的童趣",
+      "common_mistakes": [
+        "画面理解偏差",
+        "情趣体会不到"
+      ],
+      "suggested_types": [
+        "背诵",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第一单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K013",
+      "index": 13,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "文言文",
+      "name": "文言文《自相矛盾》",
+      "objective": "能借助注释读懂文言文并说出寓意",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s1-chinese-K014"
+      ],
+      "concept": "借助注释理解词句，理清卖矛与卖盾的逻辑关系，体会自相矛盾的道理",
+      "common_mistakes": [
+        "以今义解古义",
+        "逻辑关系理不清"
+      ],
+      "suggested_types": [
+        "理解",
+        "翻译",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第六单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K014",
+      "index": 14,
+      "domain": "整本书阅读",
+      "theme": "整本书阅读",
+      "unit": "古典名著",
+      "name": "古典名著的阅读方法",
+      "objective": "能运用猜读、跳读、借助资料等方法阅读古典名著",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-chinese-K013"
+      ],
+      "concept": "读古典名著可结合注释和资料理解，遇到难懂处可猜读跳读，先把握主要情节和人物",
+      "common_mistakes": [
+        "逐字死抠读不下去",
+        "跳过关键情节"
+      ],
+      "suggested_types": [
+        "阅读",
+        "策略",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第二单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K015",
+      "index": 15,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "说明性文章",
+      "name": "说明方法的综合运用",
+      "objective": "能综合运用多种说明方法说明事物",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-chinese-K010"
+      ],
+      "concept": "列数字、打比方、作比较、举例子等说明方法各有作用，要根据说明需要选用",
+      "common_mistakes": [
+        "方法识别错误",
+        "作用分析空泛"
+      ],
+      "suggested_types": [
+        "分析",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第八单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K016",
+      "index": 16,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "非连续性文本",
+      "name": "非连续性文本的阅读",
+      "objective": "能读懂图表、说明书、广告等非连续性文本",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s2-chinese-K015"
+      ],
+      "concept": "非连续性文本以图表、清单、说明等形式呈现，要快速定位信息并整合判断",
+      "common_mistakes": [
+        "只看图不看文字说明",
+        "信息整合错误"
+      ],
+      "suggested_types": [
+        "阅读",
+        "提取",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第三单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K017",
+      "index": 17,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "习作",
+      "name": "习作：写研究报告",
+      "objective": "能围绕问题搜集资料并写成简单研究报告",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "primary-g5-s2-chinese-K016"
+      ],
+      "concept": "研究报告包括问题的提出、研究方法、资料整理、研究结论，要有据可查",
+      "common_mistakes": [
+        "只有结论没有依据",
+        "资料不加整理"
+      ],
+      "suggested_types": [
+        "习作",
+        "探究",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第三单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K018",
+      "index": 18,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "习作",
+      "name": "习作：写人（形形色色的人）",
+      "objective": "能选取典型事例表现人物特点",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-chinese-K011"
+      ],
+      "concept": "写人要抓住最突出的特点，选取典型事例具体描写，避免面面俱到",
+      "common_mistakes": [
+        "特点不突出",
+        "事例与特点不匹配"
+      ],
+      "suggested_types": [
+        "习作",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第五单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K019",
+      "index": 19,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "口语交际",
+      "name": "口语交际：怎么表演课本剧",
+      "objective": "能参与讨论并合作表演课本剧",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-chinese-K018"
+      ],
+      "concept": "表演课本剧要改编剧本、分配角色、设计动作语言，体现人物性格和情节冲突",
+      "common_mistakes": [
+        "改编脱离原文",
+        "表演缺乏表现力"
+      ],
+      "suggested_types": [
+        "表达",
+        "实践",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·口语交际",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K020",
+      "index": 20,
+      "domain": "整本书阅读",
+      "theme": "整本书阅读",
+      "unit": "课外阅读",
+      "name": "课外阅读：古典名著",
+      "objective": "能阅读整本古典名著并把握主要人物与情节",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-chinese-K014"
+      ],
+      "concept": "读整本名著要梳理人物关系、把握主要情节脉络，感受人物形象和作品价值",
+      "common_mistakes": [
+        "只记片段不成体系",
+        "人物关系混乱"
+      ],
+      "suggested_types": [
+        "阅读",
+        "梳理",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·快乐读书吧",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K021",
+      "index": 21,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "写作方法",
+      "name": "环境描写的作用",
+      "objective": "能分析环境描写在文中的作用",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-chinese-K021"
+      ],
+      "concept": "环境描写可交代背景、渲染气氛、烘托人物心情、推动情节发展",
+      "common_mistakes": [
+        "作用分析单一",
+        "与环境内容脱节"
+      ],
+      "suggested_types": [
+        "赏析",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·第一单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-chinese-K022",
+      "index": 22,
+      "domain": "跨学科学习",
+      "theme": "跨学科学习",
+      "unit": "综合性学习",
+      "name": "综合性学习：搜集和整理资料",
+      "objective": "能围绕主题搜集、筛选并整理资料",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-chinese-K017"
+      ],
+      "concept": "搜集资料要明确主题、多渠道获取，整理时要分类、筛选、核实，注明来源",
+      "common_mistakes": [
+        "资料堆砌不筛选",
+        "来源不明"
+      ],
+      "suggested_types": [
+        "探究",
+        "实践",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "统编五下·综合性学习",
+      "engine_hint": "llm"
+    }
+  ]
 }

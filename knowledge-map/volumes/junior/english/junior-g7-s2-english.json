@@ -1,12 +1,594 @@
 {
   "volume_id": "junior-g7-s2-english",
-  "title": "g7英语下册",
+  "title": "七年级下册英语",
   "stage": "junior",
   "grade": "g7",
   "term": "s2",
   "subject": "english",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）七年级下册/外研版/译林版共有内容；2022版英语课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g7-s2-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "语音",
+      "name": "重音、连读与语调的进阶运用",
+      "objective": "能把握多音节词重音，在语流中正确连读并运用语调表达语气",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K002"
+      ],
+      "concept": "多音节词重音位置影响词义辨识；语调变化可表达疑问、惊讶、委婉等语气，是口语地道性的关键",
+      "common_mistakes": [
+        "重音位置导致词义误判",
+        "语调平板无语气变化"
+      ],
+      "suggested_types": [
+        "朗读",
+        "听辨",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·语音",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "动物、自然与天气话题词汇",
+      "objective": "能认读并运用动物、自然现象与天气相关词汇",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g7-s1-english-K003"
+      ],
+      "concept": "该语义场常与形容词搭配（sunny/rainy/windy），并大量使用 It's... 句型描述天气",
+      "common_mistakes": [
+        "天气形容词构成错误",
+        "动物名词单复数失误"
+      ],
+      "suggested_types": [
+        "认读",
+        "拼写",
+        "匹配"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 1、Unit 6",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "规则、健康与生活习惯词汇",
+      "objective": "能运用规则、健康与日常活动相关词汇表达建议与要求",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g7-s2-english-K002"
+      ],
+      "concept": "规则类词汇常与情态动词连用（must/have to/be allowed to），健康类词汇常与 keep fit、eat well 等搭配",
+      "common_mistakes": [
+        "搭配不当",
+        "词性误用（名词作动词）"
+      ],
+      "suggested_types": [
+        "运用",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 2、Unit 4",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "情态动词",
+      "name": "情态动词 can、must、have to",
+      "objective": "能正确使用情态动词表达能力、义务与必要性",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K005"
+      ],
+      "concept": "情态动词后接动词原形、无人称变化；must 表主观必须、have to 表客观不得不；否定 mustn't 表禁止、don't have to 表不必",
+      "common_mistakes": [
+        "情态动词后加 -s 或 -ed",
+        "mustn't 与 don't have to 混淆"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 2",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "祈使句",
+      "name": "祈使句的肯定与否定",
+      "objective": "能使用祈使句发出指令、提出请求，并正确构成否定式",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-english-K004"
+      ],
+      "concept": "祈使句以动词原形开头、主语 you 常省略；否定用 Don't + 动词原形；礼貌请求可加 please 或用 Will/Would you...",
+      "common_mistakes": [
+        "否定式误用 not 开头",
+        "祈使句中加主语 you 导致不地道"
+      ],
+      "suggested_types": [
+        "改写",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 2",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-english-K006",
+      "index": 6,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "现在进行时",
+      "name": "现在进行时的构成与用法",
+      "objective": "能正确使用 be + doing 表示正在发生的动作",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-english-K005"
+      ],
+      "concept": "结构为 am/is/are + 动词 -ing；与 now、look、listen 等标志词连用；动词 -ing 需注意双写与去 e 规则",
+      "common_mistakes": [
+        "漏写 be 动词",
+        "-ing 变化规则错误",
+        "与一般现在时混用"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般过去时",
+      "name": "一般过去时（规则动词）",
+      "objective": "能用规则动词过去式叙述过去发生的事",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K005"
+      ],
+      "concept": "规则动词过去式加 -ed（以 e 加 -d，辅音+y 变 i 加 -ed，重读闭音节双写）；常与 yesterday、last... 连用",
+      "common_mistakes": [
+        "-ed 变化规则错误",
+        "时态与时间状语不匹配"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 7",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-english-K008",
+      "index": 8,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般过去时",
+      "name": "一般过去时（不规则动词）",
+      "objective": "能正确使用常见不规则动词的过去式",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g7-s2-english-K007"
+      ],
+      "concept": "不规则动词如 go→went、see→saw、have→had、do→did、take→took，需按变化类型分组记忆",
+      "common_mistakes": [
+        "不规则动词误加 -ed",
+        "过去式与原形混用"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 7—8",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "介词",
+      "name": "时间、地点介词与介词短语",
+      "objective": "能正确使用 in/on/at 等介词表达时间与地点",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-english-K008"
+      ],
+      "concept": "时间：at 用于时刻、on 用于具体某天、in 用于月年季节与较长时段；地点：at 表点、on 表面、in 表内部空间",
+      "common_mistakes": [
+        "in/on/at 时间用法混淆",
+        "介词后接从句"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 3",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-english-K010",
+      "index": 10,
+      "domain": "语篇",
+      "theme": "语篇类型",
+      "unit": "语篇",
+      "name": "记叙文语篇的时间顺序",
+      "objective": "能按时间顺序读懂并复述记叙类短文",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g7-s1-english-K011"
+      ],
+      "concept": "英语记叙文常用 first/next/then/finally 等连接词标示时间推进，动词时态以一般过去时为主",
+      "common_mistakes": [
+        "时间线梳理混乱",
+        "连接词使用单一"
+      ],
+      "suggested_types": [
+        "阅读",
+        "复述",
+        "简答"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 7",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-english-K011",
+      "index": 11,
+      "domain": "语篇",
+      "theme": "语篇类型",
+      "unit": "语篇",
+      "name": "故事类语篇的情节与寓意",
+      "objective": "能梳理故事的开端、发展、高潮、结局并概括寓意",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g7-s2-english-K010"
+      ],
+      "concept": "故事语篇常用 Once upon a time 起首、以结局点明道理；概括寓意要「由事及理」，避免只复述情节",
+      "common_mistakes": [
+        "情节概括遗漏转折",
+        "寓意与故事脱节"
+      ],
+      "suggested_types": [
+        "阅读",
+        "概括",
+        "简答"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 8",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-english-K012",
+      "index": 12,
+      "domain": "语言知识",
+      "theme": "语用",
+      "unit": "语用",
+      "name": "提建议与表达许可",
+      "objective": "能用恰当句式提出建议、征求与给予许可",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-english-K004"
+      ],
+      "concept": "提建议可用 Why don't you...?/You'd better.../Shall we...?；征求意见用 Can/Could/May I...?，回答分许可与婉拒",
+      "common_mistakes": [
+        "建议句式后接动词形式错误",
+        "许可与请求混用"
+      ],
+      "suggested_types": [
+        "对话",
+        "情景应答",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 2",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-english-K013",
+      "index": 13,
+      "domain": "语言知识",
+      "theme": "语用",
+      "unit": "语用",
+      "name": "描述天气与表达感受",
+      "objective": "能用 It's... 句型描述天气并表达个人感受",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-english-K002"
+      ],
+      "concept": "天气描述用 It's + 天气形容词，也可用 It's raining/snowing；感受表达用 I feel.../It makes me...",
+      "common_mistakes": [
+        "天气表达用进行时与形容词混用",
+        "感受表达套用中文语序"
+      ],
+      "suggested_types": [
+        "对话",
+        "描述",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 6",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-english-K014",
+      "index": 14,
+      "domain": "主题",
+      "theme": "人与自然",
+      "unit": "主题",
+      "name": "动物保护与自然环境",
+      "objective": "能围绕动物与自然话题表达观点并说明理由",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g7-s2-english-K013"
+      ],
+      "concept": "该主题常涉及「现状—原因—对策」的论述结构，表达观点时须用 because/so 等连接词建立因果",
+      "common_mistakes": [
+        "观点与理由脱节",
+        "缺少事实支撑"
+      ],
+      "suggested_types": [
+        "表达",
+        "写作",
+        "综合"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 1",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-english-K015",
+      "index": 15,
+      "domain": "主题",
+      "theme": "人与社会",
+      "unit": "主题",
+      "name": "规则、秩序与公共生活",
+      "objective": "能就校规、家规等话题进行讨论并说明规则的意义",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g7-s2-english-K004"
+      ],
+      "concept": "规则话题涉及「允许/禁止/义务」三类表达，讨论时既要陈述规则，也要说明其对公共生活的价值",
+      "common_mistakes": [
+        "只列规则不作评价",
+        "情态动词误用导致语义反转"
+      ],
+      "suggested_types": [
+        "表达",
+        "讨论",
+        "综合"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·Unit 2",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-english-K016",
+      "index": 16,
+      "domain": "语言技能",
+      "theme": "听",
+      "unit": "语言技能",
+      "name": "听对话捕捉细节与推断场景",
+      "objective": "能从对话中捕捉细节信息并推断发生场景与人物关系",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g7-s1-english-K016"
+      ],
+      "concept": "场景推断依据关键词（menu→restaurant、ticket→station）；人物关系依据称呼与语气判断",
+      "common_mistakes": [
+        "只听词不推断",
+        "忽略语气与称呼线索"
+      ],
+      "suggested_types": [
+        "听力",
+        "推断",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·听力训练",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-english-K017",
+      "index": 17,
+      "domain": "语言技能",
+      "theme": "写",
+      "unit": "语言技能",
+      "name": "写日记与故事续写",
+      "objective": "能写结构完整的英文日记，能依据开头续写故事",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g7-s2-english-K011"
+      ],
+      "concept": "日记含日期、天气与正文，时态以一般过去时为主；续写要与原文人物、语气、时态保持一致",
+      "common_mistakes": [
+        "日记格式缺项",
+        "续写时态与原文不一致"
+      ],
+      "suggested_types": [
+        "写作",
+        "续写",
+        "综合"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·写作",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-english-K018",
+      "index": 18,
+      "domain": "文化知识",
+      "theme": "文化知识",
+      "unit": "文化知识",
+      "name": "英语国家的规则文化与动物保护",
+      "objective": "了解英语国家在公共规则与动物保护方面的文化习俗",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s2-english-K015"
+      ],
+      "concept": "文化比较要「知其然亦知其所以然」：规则背后是公共意识，动物保护背后是生命伦理，避免简单评判优劣",
+      "common_mistakes": [
+        "以刻板印象概括",
+        "文化差异理解表面化"
+      ],
+      "suggested_types": [
+        "判断",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·文化专栏",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s2-english-K019",
+      "index": 19,
+      "domain": "学习策略",
+      "theme": "学习策略",
+      "unit": "学习策略",
+      "name": "语境猜词与思维导图",
+      "objective": "能利用上下文线索猜测词义，用思维导图整理话题词汇",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-english-K003"
+      ],
+      "concept": "猜词线索包括定义、举例、对比、构词与常识；思维导图以中心词向外扩展语义场，便于成组记忆与提取",
+      "common_mistakes": [
+        "脱离语境硬译",
+        "导图层级混乱"
+      ],
+      "suggested_types": [
+        "方法运用",
+        "反思",
+        "综合"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·学习策略",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s2-english-K020",
+      "index": 20,
+      "domain": "学习策略",
+      "theme": "学习策略",
+      "unit": "学习策略",
+      "name": "合作学习与口头展示",
+      "objective": "能在小组合作中分工协作，完成简短的口头展示",
+      "difficulty": 3,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g7-s2-english-K019"
+      ],
+      "concept": "合作学习强调角色分工与互相倾听；口头展示遵循「开场—要点—总结」结构，辅以眼神交流与适当语速",
+      "common_mistakes": [
+        "分工不清导致部分成员缺位",
+        "照稿念读缺乏交流"
+      ],
+      "suggested_types": [
+        "合作",
+        "展示",
+        "综合"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七下·项目活动",
+      "engine_hint": "llm"
+    }
+  ]
 }

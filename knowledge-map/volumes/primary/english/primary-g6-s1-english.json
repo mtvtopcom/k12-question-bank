@@ -1,12 +1,471 @@
 {
   "volume_id": "primary-g6-s1-english",
-  "title": "g6英语上册",
+  "title": "六年级上册英语",
   "stage": "primary",
   "grade": "g6",
   "term": "s1",
   "subject": "english",
   "school_stage": "S3",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版PEP（2024审定）/外研版/译林版六年级上册共有内容；2022版英语课标第三学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g6-s1-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "语音",
+      "name": "语调与重音的综合运用",
+      "objective": "能在朗读中正确运用重音和语调表达意义",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-english-K001"
+      ],
+      "concept": "重音和语调能改变语义和情感，如一般疑问句升调、特殊疑问句降调",
+      "common_mistakes": [
+        "语调与句式不匹配",
+        "重音位置错误"
+      ],
+      "suggested_types": [
+        "朗读",
+        "听辨",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Phonics",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "交通出行",
+      "name": "交通方式与出行词",
+      "objective": "能认读交通方式和出行相关词汇",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "交通方式常用 by + 交通工具，如 by bus、on foot（步行特殊）",
+      "common_mistakes": [
+        "on foot 写成 by foot",
+        "介词搭配错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Unit 2",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s1-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "祈使句",
+      "name": "祈使句与指路表达",
+      "objective": "能用祈使句表达指令和指路",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-english-K002"
+      ],
+      "concept": "祈使句以动词原形开头，指路常用 Turn left、Go straight、At the corner 等",
+      "common_mistakes": [
+        "祈使句加主语",
+        "指路用语混淆"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Unit 1",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K004",
+      "index": 4,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "问路指路",
+      "name": "问路与指路对话",
+      "objective": "能进行问路和指路的交流",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-english-K003"
+      ],
+      "concept": "问路常用 Excuse me, where is...?，指路要说明方向和距离",
+      "common_mistakes": [
+        "方向表述错误",
+        "不够礼貌"
+      ],
+      "suggested_types": [
+        "对话",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Unit 1",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "爱好职业",
+      "name": "爱好与职业词",
+      "objective": "能认读爱好和职业相关词汇",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "爱好词常与 like doing 结构搭配，职业词常与 want to be 搭配",
+      "common_mistakes": [
+        "like 后接动词形式错",
+        "职业词拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Unit 4",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s1-english-K006",
+      "index": 6,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般现在时",
+      "name": "一般现在时第三人称单数复习",
+      "objective": "能准确使用一般现在时第三人称单数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s1-english-K002"
+      ],
+      "concept": "第三人称单数作主语时动词加 -s 或 -es，疑问和否定借助 does",
+      "common_mistakes": [
+        "动词漏加 s",
+        "疑问句用 do"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "疑问词",
+      "name": "特殊疑问词的综合运用",
+      "objective": "能根据答句选择恰当的疑问词",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g6-s1-english-K006"
+      ],
+      "concept": "what 问事物、where 问地点、when 问时间、who 问人、why 问原因、how 问方式",
+      "common_mistakes": [
+        "疑问词与答句不匹配",
+        "语序错误"
+      ],
+      "suggested_types": [
+        "选择",
+        "对话",
+        "填空"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K008",
+      "index": 8,
+      "domain": "语言技能",
+      "theme": "读",
+      "unit": "阅读",
+      "name": "长文阅读与信息匹配",
+      "objective": "能在较长文本中匹配信息",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s2-english-K010"
+      ],
+      "concept": "长文阅读先看题目要求，再带着问题扫读定位，注意同义替换",
+      "common_mistakes": [
+        "逐词精读耗时",
+        "忽略同义替换"
+      ],
+      "suggested_types": [
+        "阅读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K009",
+      "index": 9,
+      "domain": "语言技能",
+      "theme": "写",
+      "unit": "写作",
+      "name": "写简短书信",
+      "objective": "能按格式写一封简短书信",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-english-K011"
+      ],
+      "concept": "书信包括称呼、正文、结束语和署名，语气要与对象匹配",
+      "common_mistakes": [
+        "格式缺失",
+        "语气不当"
+      ],
+      "suggested_types": [
+        "写作",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Writing",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K010",
+      "index": 10,
+      "domain": "文化知识",
+      "theme": "文化",
+      "unit": "文化习俗",
+      "name": "英语国家的文化习俗",
+      "objective": "了解英语国家的主要文化习俗与交往礼仪",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-english-K012"
+      ],
+      "concept": "问候、致谢、道歉、邀请等交际习俗体现文化差异，要注意得体",
+      "common_mistakes": [
+        "以本国礼仪套用",
+        "场合判断错误"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Culture",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K011",
+      "index": 11,
+      "domain": "学习策略",
+      "theme": "策略",
+      "unit": "阅读策略",
+      "name": "学习策略：skimming 与 scanning",
+      "objective": "能区分并运用略读和扫读",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-english-K008"
+      ],
+      "concept": "skimming 快速把握大意，scanning 快速定位特定信息，目的不同方法不同",
+      "common_mistakes": [
+        "两种策略混用",
+        "目的与方法不匹配"
+      ],
+      "suggested_types": [
+        "实践",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·学习策略",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K012",
+      "index": 12,
+      "domain": "语篇",
+      "theme": "语篇",
+      "unit": "语篇",
+      "name": "书信与应用文的语篇特征",
+      "objective": "能识别书信、通知等应用文的语篇特征",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-english-K009"
+      ],
+      "concept": "应用文有固定格式和惯用语，语篇结构清晰、目的明确",
+      "common_mistakes": [
+        "格式特征识别不出",
+        "目的判断错误"
+      ],
+      "suggested_types": [
+        "阅读",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K013",
+      "index": 13,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "情态动词",
+      "name": "情态动词 should",
+      "objective": "能使用 should 表达建议",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "should 后接动词原形，表示应该做某事，否定为 shouldn't",
+      "common_mistakes": [
+        "should 后接 to",
+        "否定形式错误"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Unit 6",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K014",
+      "index": 14,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "There be",
+      "name": "There be 句型复习",
+      "objective": "能准确使用 There be 句型",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-english-K011"
+      ],
+      "concept": "There be 遵循就近原则，be 动词与最近的名词数一致",
+      "common_mistakes": [
+        "be 动词与名词数不一致",
+        "与 have 混用"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K015",
+      "index": 15,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "综合表达",
+      "name": "介绍自己的家乡",
+      "objective": "能介绍家乡的位置、特色和风物",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-english-K005"
+      ],
+      "concept": "介绍家乡要涵盖位置、环境、特产、人文等，注意逻辑顺序",
+      "common_mistakes": [
+        "内容零散",
+        "方位表述错误"
+      ],
+      "suggested_types": [
+        "表达",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Review",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s1-english-K016",
+      "index": 16,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "项目展示",
+      "name": "项目成果的口头展示",
+      "objective": "能就一个小项目做简短展示",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "primary-g6-s1-english-K015"
+      ],
+      "concept": "项目展示要有明确主题、清晰结构和恰当的表达方式，可借助图表",
+      "common_mistakes": [
+        "结构不清",
+        "照稿念无交流"
+      ],
+      "suggested_types": [
+        "表达",
+        "展示",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六上·Project",
+      "engine_hint": "llm"
+    }
+  ]
 }

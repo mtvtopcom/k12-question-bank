@@ -1,12 +1,475 @@
 {
   "volume_id": "primary-g6-s2-english",
-  "title": "g6英语下册",
+  "title": "六年级下册英语",
   "stage": "primary",
   "grade": "g6",
   "term": "s2",
   "subject": "english",
   "school_stage": "S3",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版PEP（2024审定）/外研版/译林版六年级下册共有内容；2022版英语课标第三学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g6-s2-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "语音",
+      "name": "语音知识综合复习",
+      "objective": "能综合运用语音知识朗读与辨音",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-english-K001"
+      ],
+      "concept": "综合运用字母发音、重音、语调、连读等知识，做到朗读自然流畅",
+      "common_mistakes": [
+        "顾此失彼",
+        "朗读不自然"
+      ],
+      "suggested_types": [
+        "朗读",
+        "听辨",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Review",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般过去时",
+      "name": "一般过去时复习",
+      "objective": "能准确运用一般过去时",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s1-english-K005"
+      ],
+      "concept": "过去式动词 + 过去时间状语，注意规则与不规则变化的区别",
+      "common_mistakes": [
+        "时态与时间状语不符",
+        "不规则动词错"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Review",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般将来时",
+      "name": "一般将来时复习",
+      "objective": "能准确运用一般将来时",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-english-K005"
+      ],
+      "concept": "be going to 和 will 都可表将来，注意结构完整",
+      "common_mistakes": [
+        "be 动词遗漏",
+        "will 后加 to"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Review",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "现在进行时",
+      "name": "现在进行时复习",
+      "objective": "能准确运用现在进行时",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s2-english-K003"
+      ],
+      "concept": "be + 动词-ing，注意动词 -ing 形式的拼写规则",
+      "common_mistakes": [
+        "漏 be 动词",
+        "-ing 拼写错误"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Review",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "时态对比",
+      "name": "三种时态的对比运用",
+      "objective": "能根据语境选择恰当的时态",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s2-english-K004"
+      ],
+      "concept": "一般现在时表习惯，现在进行时表此刻，一般过去时表过去，一般将来时表将来",
+      "common_mistakes": [
+        "时态混用",
+        "忽略时间状语提示"
+      ],
+      "suggested_types": [
+        "选择",
+        "分析",
+        "改错"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Review",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K006",
+      "index": 6,
+      "domain": "语言技能",
+      "theme": "读",
+      "unit": "阅读",
+      "name": "短文综合理解",
+      "objective": "能综合理解短文的主旨与细节",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-english-K008"
+      ],
+      "concept": "综合理解要兼顾主旨、细节、推断和词义猜测，注意上下文逻辑",
+      "common_mistakes": [
+        "只抓细节失主旨",
+        "推断无依据"
+      ],
+      "suggested_types": [
+        "阅读",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K007",
+      "index": 7,
+      "domain": "语言技能",
+      "theme": "读",
+      "unit": "阅读",
+      "name": "非连续性文本的阅读",
+      "objective": "能读懂菜单、时刻表、图表等非连续性文本",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [],
+      "concept": "非连续性文本信息以表格、图表形式呈现，要快速定位并整合",
+      "common_mistakes": [
+        "忽略表头单位",
+        "信息整合错误"
+      ],
+      "suggested_types": [
+        "阅读",
+        "提取",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K008",
+      "index": 8,
+      "domain": "语言技能",
+      "theme": "写",
+      "unit": "写作",
+      "name": "命题作文",
+      "objective": "能围绕题目写一段完整的短文",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "primary-g6-s1-english-K009"
+      ],
+      "concept": "命题作文要审清题意、确定要点、组织段落、检查语法与拼写",
+      "common_mistakes": [
+        "审题偏差",
+        "要点遗漏"
+      ],
+      "suggested_types": [
+        "写作",
+        "创造",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Writing",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇复习",
+      "name": "小学核心词汇的综合复习",
+      "objective": "能归类整理并运用小学阶段核心词汇",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-english-K005"
+      ],
+      "concept": "按主题、词性、构词法归类，形成网络，提高调用效率",
+      "common_mistakes": [
+        "零散记忆",
+        "拼写错误多"
+      ],
+      "suggested_types": [
+        "整理",
+        "运用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Review",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K010",
+      "index": 10,
+      "domain": "文化知识",
+      "theme": "文化",
+      "unit": "文化对比",
+      "name": "中外文化的综合对比",
+      "objective": "能就中外文化差异做出评价",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "primary-g6-s1-english-K010"
+      ],
+      "concept": "文化对比要尊重差异、理解成因，避免简单优劣判断",
+      "common_mistakes": [
+        "简单贴标签",
+        "文化偏见"
+      ],
+      "suggested_types": [
+        "评价",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Culture",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K011",
+      "index": 11,
+      "domain": "学习策略",
+      "theme": "策略",
+      "unit": "复习方法",
+      "name": "学习策略：综合复习方法",
+      "objective": "能制定并运用适合自己的复习方法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s2-english-K009"
+      ],
+      "concept": "复习可采用归类整理、错题回顾、间隔重复、自我检测等方法",
+      "common_mistakes": [
+        "只重复不检测",
+        "复习无计划"
+      ],
+      "suggested_types": [
+        "实践",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·学习策略",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K012",
+      "index": 12,
+      "domain": "语篇",
+      "theme": "语篇",
+      "unit": "语篇",
+      "name": "多类型语篇的阅读",
+      "objective": "能阅读记叙、说明、应用等多种语篇",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-english-K012"
+      ],
+      "concept": "不同语篇类型有不同结构特征，要按类型选择相应阅读策略",
+      "common_mistakes": [
+        "用同一方法读所有语篇",
+        "结构特征识别不出"
+      ],
+      "suggested_types": [
+        "阅读",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K013",
+      "index": 13,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "情景对话",
+      "name": "情景对话的综合运用",
+      "objective": "能在给定情境中完成得体的对话",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s2-english-K005"
+      ],
+      "concept": "情景对话要注意场合、对象、目的，语言得体、回应切题",
+      "common_mistakes": [
+        "答非所问",
+        "语言不得体"
+      ],
+      "suggested_types": [
+        "对话",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Speaking",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K014",
+      "index": 14,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "毕业感言",
+      "name": "毕业感言表达",
+      "objective": "能用英语表达毕业感受与祝福",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "primary-g6-s2-english-K013"
+      ],
+      "concept": "毕业感言可回顾经历、表达感谢、送上祝福，情感真挚、语言得体",
+      "common_mistakes": [
+        "内容空泛",
+        "语言不得体"
+      ],
+      "suggested_types": [
+        "表达",
+        "创造",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Speaking",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K015",
+      "index": 15,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "语法复习",
+      "name": "小学英语语法总复习",
+      "objective": "能系统梳理小学阶段核心语法",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s2-english-K005"
+      ],
+      "concept": "核心语法包括时态、名词单复数、代词、介词、疑问句、There be 等",
+      "common_mistakes": [
+        "知识零散不成体系",
+        "易错点不清"
+      ],
+      "suggested_types": [
+        "整理",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Review",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-english-K016",
+      "index": 16,
+      "domain": "语言技能",
+      "theme": "综合",
+      "unit": "综合运用",
+      "name": "小学英语综合运用",
+      "objective": "能综合运用听、说、读、写完成语言任务",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "primary-g6-s2-english-K015"
+      ],
+      "concept": "综合运用强调在真实情境中整合语言知识与技能完成任务",
+      "common_mistakes": [
+        "单项技能可但综合弱",
+        "情境理解偏差"
+      ],
+      "suggested_types": [
+        "综合",
+        "评价",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教PEP六下·Review",
+      "engine_hint": "llm"
+    }
+  ]
 }

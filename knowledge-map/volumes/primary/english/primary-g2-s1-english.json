@@ -1,12 +1,465 @@
 {
   "volume_id": "primary-g2-s1-english",
-  "title": "g2英语上册",
+  "title": "二年级上册英语（启蒙）",
   "stage": "primary",
   "grade": "g2",
   "term": "s1",
   "subject": "english",
   "school_stage": "S1",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版PEP/外研版/译林版二年级启蒙内容；2022版英语课标（一二年级为兴趣启蒙，不作为起始年级）",
+  "knowledge_points": [
+    {
+      "id": "primary-g2-s1-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "自然拼读",
+      "name": "字母在单词中的常见发音",
+      "objective": "初步感知字母在单词中的常见读音",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s2-english-K002"
+      ],
+      "concept": "同一个字母在单词中的读音可能与字母名称不同，这是自然拼读的基础",
+      "common_mistakes": [
+        "把字母名称音当单词音",
+        "发音规律不感知"
+      ],
+      "suggested_types": [
+        "听辨",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·Phonics",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "数字",
+      "name": "数字 11-20",
+      "objective": "能认读并说出 eleven 到 twenty",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s1-english-K010"
+      ],
+      "concept": "十几的数字多由个位数加 -teen 构成，但 eleven、twelve 是特殊形式",
+      "common_mistakes": [
+        "thirteen 与 thirty 混淆",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·Numbers",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "时间",
+      "name": "时间的整点表达",
+      "objective": "能用英语表达整点时间",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-english-K002"
+      ],
+      "concept": "整点用 It's ... o'clock 表达，o'clock 表示整点",
+      "common_mistakes": [
+        "漏掉 o'clock",
+        "数字读错"
+      ],
+      "suggested_types": [
+        "表达",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·Time",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "学校",
+      "name": "学校场所词 classroom、playground",
+      "objective": "能认读学校场所单词",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "学校场所词是描述校园生活的基础词汇",
+      "common_mistakes": [
+        "classroom 与 playground 混淆",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·My school",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-english-K005",
+      "index": 5,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "询问位置",
+      "name": "Where is...? 询问位置",
+      "objective": "能用 Where is...? 询问物品或地点位置",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-english-K004"
+      ],
+      "concept": "Where is 用于询问单数物品的位置，复数是 Where are",
+      "common_mistakes": [
+        "is 与 are 混用",
+        "答句介词用错"
+      ],
+      "suggested_types": [
+        "对话",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·My school",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-english-K006",
+      "index": 6,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "方位介词",
+      "name": "方位介词 in、on、under",
+      "objective": "能正确使用 in、on、under 描述位置",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-english-K005"
+      ],
+      "concept": "in 表示在里面，on 表示在上面（接触），under 表示在下面",
+      "common_mistakes": [
+        "in 与 on 混淆",
+        "介词后漏宾语"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "判断"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·My school",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "玩具",
+      "name": "玩具词 ball、doll、kite",
+      "objective": "能认读常见玩具单词",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "玩具词贴近儿童生活，易于结合实物教学",
+      "common_mistakes": [
+        "ball 与 doll 混淆",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·Toys",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-english-K008",
+      "index": 8,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "表达拥有",
+      "name": "I have... 表达拥有",
+      "objective": "能用 I have... 表达自己拥有某物",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-english-K007"
+      ],
+      "concept": "I have 后接名词，表示拥有；主语是第三人称单数时用 has",
+      "common_mistakes": [
+        "have 与 has 混用",
+        "漏掉冠词"
+      ],
+      "suggested_types": [
+        "对话",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·Toys",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "形容词",
+      "name": "形容词 big、small、long、short",
+      "objective": "能认读并运用四组反义形容词",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "这四组形容词互为反义，可成对记忆",
+      "common_mistakes": [
+        "big 与 small 对应错误",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "选择",
+        "匹配"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·Descriptions",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-english-K010",
+      "index": 10,
+      "domain": "语言知识",
+      "theme": "语用",
+      "unit": "描述",
+      "name": "用形容词描述物品",
+      "objective": "能用形容词描述物品特征",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-english-K009"
+      ],
+      "concept": "英语形容词放在名词前，如 a big ball",
+      "common_mistakes": [
+        "形容词位置放错",
+        "形容词与名词搭配不当"
+      ],
+      "suggested_types": [
+        "表达",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·Descriptions",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-english-K011",
+      "index": 11,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "天气",
+      "name": "天气词 sunny、rainy、cloudy",
+      "objective": "能认读常见天气单词",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "天气词多由名词加 -y 构成，如 sun→sunny、rain→rainy",
+      "common_mistakes": [
+        "拼写时漏掉字母",
+        "天气与图标对应错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·Weather",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-english-K012",
+      "index": 12,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "询问天气",
+      "name": "What's the weather like?",
+      "objective": "能就天气进行问答",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-english-K011"
+      ],
+      "concept": "询问天气用 What's the weather like? 回答 It's sunny 等",
+      "common_mistakes": [
+        "问句结构记错",
+        "答句漏 It's"
+      ],
+      "suggested_types": [
+        "对话",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·Weather",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-english-K013",
+      "index": 13,
+      "domain": "语言技能",
+      "theme": "听",
+      "unit": "歌曲",
+      "name": "英语歌曲与韵律",
+      "objective": "能跟唱英语歌曲并感受韵律",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s2-english-K014"
+      ],
+      "concept": "歌曲中的重复句型和押韵有助于语感培养",
+      "common_mistakes": [
+        "只跟旋律不听词",
+        "节奏跟不上"
+      ],
+      "suggested_types": [
+        "听唱",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·Let's sing",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-english-K014",
+      "index": 14,
+      "domain": "文化知识",
+      "theme": "文化",
+      "unit": "儿童生活",
+      "name": "英语国家儿童的生活",
+      "objective": "初步了解英语国家儿童的学校与日常生活",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "不同国家儿童的作息、饮食、节日习惯存在差异",
+      "common_mistakes": [
+        "用本国习惯套用",
+        "文化差异理解偏差"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·Culture",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-english-K015",
+      "index": 15,
+      "domain": "学习策略",
+      "theme": "策略",
+      "unit": "借助图片",
+      "name": "学习策略：借助图片理解",
+      "objective": "能借助图片猜测词义和句意",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [],
+      "concept": "低年级阅读中，图片是理解语言的重要辅助信息",
+      "common_mistakes": [
+        "只看文字不看图",
+        "凭图随意猜测"
+      ],
+      "suggested_types": [
+        "实践",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·学习策略",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-english-K016",
+      "index": 16,
+      "domain": "语言知识",
+      "theme": "语用",
+      "unit": "对话轮次",
+      "name": "简单对话的轮次",
+      "objective": "能进行有问有答的两三轮对话",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-english-K008"
+      ],
+      "concept": "对话要注意问与答的对应，回答要切题",
+      "common_mistakes": [
+        "答非所问",
+        "只会一句不会接话"
+      ],
+      "suggested_types": [
+        "对话",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二上·Dialogue",
+      "engine_hint": "llm"
+    }
+  ]
 }

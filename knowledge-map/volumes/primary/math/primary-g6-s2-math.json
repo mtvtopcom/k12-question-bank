@@ -1,12 +1,591 @@
 {
   "volume_id": "primary-g6-s2-math",
-  "title": "g6数学下册",
+  "title": "六年级下册数学",
   "stage": "primary",
   "grade": "g6",
   "term": "s2",
   "subject": "math",
   "school_stage": "S3",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版六年级下册共有内容；2022版数学课标第三学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g6-s2-math-K001",
+      "index": 1,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "负数",
+      "name": "负数的认识与意义",
+      "objective": "理解负数的意义，能读写负数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "负数是表示与正数具有相反意义的量；0既不是正数也不是负数",
+      "common_mistakes": [
+        "认为0是正数",
+        "负数大小比较错误"
+      ],
+      "suggested_types": [
+        "识别",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·负数；北师大四上·生活中的负数",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K002",
+      "index": 2,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "负数",
+      "name": "数轴与正负数的大小比较",
+      "objective": "能在数轴上表示正负数并比较大小",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g6-s2-math-K001"
+      ],
+      "concept": "数轴上右边的数总比左边的大；两个负数比较，绝对值大的反而小",
+      "common_mistakes": [
+        "认为-5大于-2",
+        "数轴方向理解错误"
+      ],
+      "suggested_types": [
+        "比较",
+        "表示",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·负数",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K003",
+      "index": 3,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "圆柱与圆锥",
+      "name": "圆柱的认识与侧面积",
+      "objective": "认识圆柱的特征，会计算圆柱的侧面积",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s1-math-K017"
+      ],
+      "concept": "圆柱侧面沿高展开是长方形，长等于底面周长，宽等于圆柱的高；侧面积=底面周长×高",
+      "common_mistakes": [
+        "侧面展开图形判断错误",
+        "把直径当半径代入"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·圆柱与圆锥",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K004",
+      "index": 4,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "圆柱与圆锥",
+      "name": "圆柱的表面积",
+      "objective": "会计算圆柱的表面积",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s2-math-K003"
+      ],
+      "concept": "圆柱表面积=侧面积+两个底面积",
+      "common_mistakes": [
+        "漏算底面",
+        "多算或错算面数"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·圆柱与圆锥",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K005",
+      "index": 5,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "圆柱与圆锥",
+      "name": "圆柱的体积",
+      "objective": "会计算圆柱的体积",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s2-math-K004"
+      ],
+      "concept": "圆柱体积=底面积×高=πr²h",
+      "common_mistakes": [
+        "用侧面积乘高",
+        "底面积计算错误"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·圆柱与圆锥",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K006",
+      "index": 6,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "圆柱与圆锥",
+      "name": "圆锥的认识与体积",
+      "objective": "认识圆锥，会计算圆锥的体积",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s2-math-K005"
+      ],
+      "concept": "圆锥体积等于与它等底等高圆柱体积的三分之一，即V=1/3×底面积×高",
+      "common_mistakes": [
+        "忘记乘三分之一",
+        "与圆柱体积公式混淆"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·圆柱与圆锥",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K007",
+      "index": 7,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "比例",
+      "name": "比例的意义与基本性质",
+      "objective": "理解比例的意义，掌握比例的基本性质",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g6-s1-math-K012"
+      ],
+      "concept": "表示两个比相等的式子叫比例；比例中两个外项的积等于两个内项的积",
+      "common_mistakes": [
+        "内项外项找错",
+        "把比与比例混淆"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·比例",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K008",
+      "index": 8,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "比例",
+      "name": "解比例",
+      "objective": "能依据比例的基本性质解比例",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s2-math-K007"
+      ],
+      "concept": "解比例就是利用内项积等于外项积，把比例转化为方程求解",
+      "common_mistakes": [
+        "内项外项乘错",
+        "解方程出错"
+      ],
+      "suggested_types": [
+        "解比例",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·比例",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g6-s2-math-K009",
+      "index": 9,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "比例",
+      "name": "正比例的意义与判断",
+      "objective": "理解正比例的意义，能判断两个量是否成正比例",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g6-s2-math-K007"
+      ],
+      "concept": "两种相关联的量，比值一定时成正比例，图像是一条过原点的直线",
+      "common_mistakes": [
+        "把比值一定与乘积一定混淆",
+        "判断时忽略相关联"
+      ],
+      "suggested_types": [
+        "判断",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·比例",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K010",
+      "index": 10,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "比例",
+      "name": "反比例的意义与判断",
+      "objective": "理解反比例的意义，能判断两个量是否成反比例",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g6-s2-math-K009"
+      ],
+      "concept": "两种相关联的量，乘积一定时成反比例",
+      "common_mistakes": [
+        "正反比例混淆",
+        "乘积一定被忽略"
+      ],
+      "suggested_types": [
+        "判断",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·比例",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K011",
+      "index": 11,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "比例",
+      "name": "比例尺",
+      "objective": "理解比例尺的意义，能进行图上距离与实际距离的换算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s2-math-K007"
+      ],
+      "concept": "图上距离:实际距离=比例尺；计算时先统一单位",
+      "common_mistakes": [
+        "单位不统一就计算",
+        "比例尺方向用反"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·比例",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K012",
+      "index": 12,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "比例",
+      "name": "图形的放大与缩小",
+      "objective": "理解图形按比放大或缩小的规律",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s2-math-K011"
+      ],
+      "concept": "按n:1放大，各条边都扩大到原来的n倍，形状不变、大小改变",
+      "common_mistakes": [
+        "只放大其中一条边",
+        "把放大与面积倍数混淆"
+      ],
+      "suggested_types": [
+        "操作",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·比例",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K013",
+      "index": 13,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "比例",
+      "name": "用比例解决问题",
+      "objective": "能用正比例和反比例解决实际问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g6-s2-math-K010"
+      ],
+      "concept": "先判断两种量成正比例还是反比例，再按对应关系列比例式",
+      "common_mistakes": [
+        "比例关系判断错误",
+        "列式时对应量位置颠倒"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·比例",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K014",
+      "index": 14,
+      "domain": "统计与概率",
+      "theme": "数据的收集、整理与表达",
+      "unit": "统计与概率",
+      "name": "统计图的综合选择",
+      "objective": "能根据数据特点选择合适的统计图",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-math-K021"
+      ],
+      "concept": "条形统计图便于比较数量多少；折线统计图便于看变化趋势；扇形统计图便于看部分占整体比例",
+      "common_mistakes": [
+        "选择依据说不清",
+        "混用统计图功能"
+      ],
+      "suggested_types": [
+        "选择",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·统计与概率",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K015",
+      "index": 15,
+      "domain": "统计与概率",
+      "theme": "数据的收集、整理与表达",
+      "unit": "统计与概率",
+      "name": "数据的分析与误导识别",
+      "objective": "能识别统计图中可能存在的误导性表达",
+      "difficulty": 3,
+      "bloom": "评价",
+      "prerequisites": [
+        "primary-g6-s2-math-K014"
+      ],
+      "concept": "纵轴起点不是0、图形比例失真、只呈现部分数据等都可能造成误导",
+      "common_mistakes": [
+        "只看图形不看数据",
+        "忽略纵轴刻度"
+      ],
+      "suggested_types": [
+        "评价",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·统计与概率",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K016",
+      "index": 16,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "数学思考",
+      "name": "有序思考与简单推理",
+      "objective": "能运用有序枚举、列表、假设等策略解决问题",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s2-math-K020"
+      ],
+      "concept": "有序思考能保证不重复不遗漏；列表和假设是常用的推理策略",
+      "common_mistakes": [
+        "列举不完整",
+        "推理过程跳步"
+      ],
+      "suggested_types": [
+        "推理",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·数学思考",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K017",
+      "index": 17,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "整理和复习",
+      "name": "数与代数的系统整理",
+      "objective": "系统整理整数、小数、分数、百分数的联系与区别",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s2-math-K016"
+      ],
+      "concept": "各种数之间存在密切联系，可以互相转化；运算定律贯穿所有数的运算",
+      "common_mistakes": [
+        "知识体系不完整",
+        "概念之间关系说不清"
+      ],
+      "suggested_types": [
+        "整理",
+        "综合",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·整理和复习",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K018",
+      "index": 18,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "整理和复习",
+      "name": "图形与几何的系统整理",
+      "objective": "系统整理平面图形与立体图形的特征及计算公式",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s1-math-K018"
+      ],
+      "concept": "平面图形侧重周长与面积，立体图形侧重表面积与体积；公式之间有推导关系",
+      "common_mistakes": [
+        "公式混淆",
+        "推导关系不清"
+      ],
+      "suggested_types": [
+        "整理",
+        "综合",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·整理和复习",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K019",
+      "index": 19,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "整理和复习",
+      "name": "统计与概率的系统整理",
+      "objective": "系统整理统计图的特点与可能性的判断",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g6-s2-math-K014"
+      ],
+      "concept": "三种统计图各有适用场景；可能性大小取决于数量占比",
+      "common_mistakes": [
+        "统计图选择不当",
+        "可能性判断凭感觉"
+      ],
+      "suggested_types": [
+        "整理",
+        "综合",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·整理和复习",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g6-s2-math-K020",
+      "index": 20,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "整理和复习",
+      "name": "综合运用知识解决问题",
+      "objective": "能综合运用小学阶段知识解决较复杂的实际问题",
+      "difficulty": 3,
+      "bloom": "创造",
+      "prerequisites": [
+        "primary-g6-s2-math-K017"
+      ],
+      "concept": "复杂问题需要分解为若干简单问题，选择合适的方法逐步解决",
+      "common_mistakes": [
+        "解题策略单一",
+        "不会分解问题"
+      ],
+      "suggested_types": [
+        "应用",
+        "综合",
+        "选择"
+      ],
+      "grade_range": [
+        "g6"
+      ],
+      "source": "人教六下·整理和复习",
+      "engine_hint": "llm"
+    }
+  ]
 }

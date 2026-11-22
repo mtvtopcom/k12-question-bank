@@ -1,12 +1,594 @@
 {
   "volume_id": "junior-g9-s1-english",
-  "title": "g9英语上册",
+  "title": "九年级上册英语",
   "stage": "junior",
   "grade": "g9",
   "term": "s1",
   "subject": "english",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）九年级全一册 Unit 1—7/外研版/译林版共有内容；2022版英语课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g9-s1-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "语音",
+      "name": "意群划分与朗读表现力",
+      "objective": "能按意群停顿，通过重音、语速的变化增强朗读表现力",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-english-K001"
+      ],
+      "concept": "意群是语义相对完整的小组，朗读在意群间停顿、意群内连贯；表现力来自重音落点、语速变化与语调起伏",
+      "common_mistakes": [
+        "按词停顿导致语义破碎",
+        "全程同一语速无表现力"
+      ],
+      "suggested_types": [
+        "朗读",
+        "评价",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·语音",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "学习方法与认知过程词汇",
+      "objective": "能运用描述学习方法与认知过程的词汇谈论学习策略",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g8-s2-english-K002"
+      ],
+      "concept": "学习策略词汇分三类：方式（by reading aloud）、能力（be good at、be afraid of）、效果（improve、make progress）",
+      "common_mistakes": [
+        "搭配介词错误",
+        "ability 与 skill 混用"
+      ],
+      "suggested_types": [
+        "运用",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 1",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "节日、传统与庆祝活动词汇",
+      "objective": "能运用节日名称、传统习俗与庆祝方式相关词汇",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g9-s1-english-K002"
+      ],
+      "concept": "节日词汇含名称（the Spring Festival）、习俗（give out lucky money）、象征物（mooncake、lantern）三个层次",
+      "common_mistakes": [
+        "节日专有名词大小写错误",
+        "习俗表达中式直译"
+      ],
+      "suggested_types": [
+        "运用",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 2",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "材料、制造与发明词汇",
+      "objective": "能运用材料名词、制造工艺与发明相关词汇说明物品来源",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g9-s1-english-K003"
+      ],
+      "concept": "材料词（cotton、silk、steel、glass）常作 be made of/from 的宾语；of 表看得出原料、from 表发生化学变化",
+      "common_mistakes": [
+        "be made of 与 from 混用",
+        "材料名词可数性判断错误"
+      ],
+      "suggested_types": [
+        "运用",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 5—6",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "方式状语",
+      "name": "by + doing 表方式方法",
+      "objective": "能用 by + 动名词表达方式、手段与途径",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-english-K002"
+      ],
+      "concept": "by 后接动名词表示「通过……方式」；回答 How do you...? 时最常用；注意 by 后不可接动词原形",
+      "common_mistakes": [
+        "by 后接动词原形",
+        "与 with/in 表方式混淆"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 1",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K006",
+      "index": 6,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "宾语从句",
+      "name": "宾语从句（that 引导）",
+      "objective": "能使用 that 引导的宾语从句表达观点与想法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-english-K005"
+      ],
+      "concept": "that 引导陈述句作宾语，口语中常省略；主句为一般现在时时从句时态不受限，主句为过去时时从句多用相应过去时",
+      "common_mistakes": [
+        "从句语序变为疑问语序",
+        "主从句时态呼应失误"
+      ],
+      "suggested_types": [
+        "填空",
+        "合并",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 2",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "宾语从句",
+      "name": "宾语从句（疑问词引导）与陈述语序",
+      "objective": "能用疑问词引导的宾语从句，并保持陈述语序",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-english-K006"
+      ],
+      "concept": "疑问词引导的宾语从句须用陈述语序（主语在前、谓语在后）；whether/if 表「是否」，whether 可与 or not 连用",
+      "common_mistakes": [
+        "从句用疑问语序",
+        "if 与 whether 混用（介词后、or not 前须用 whether）"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 3",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K008",
+      "index": 8,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "感叹句",
+      "name": "感叹句 what 与 how 的选择",
+      "objective": "能正确使用 what 与 how 引导的感叹句",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-english-K009"
+      ],
+      "concept": "what 修饰名词（What a beautiful day!），how 修饰形容词或副词（How beautiful!）；判断依据是感叹中心词的词性",
+      "common_mistakes": [
+        "what 与 how 混用",
+        "单数可数名词前漏冠词"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 2",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "used to",
+      "name": "used to 表过去习惯",
+      "objective": "能用 used to do 表达过去的习惯或状态",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-english-K005"
+      ],
+      "concept": "used to do 表过去常常而现已不再；否定为 didn't use to 或 usedn't to；疑问用 Did you use to...?",
+      "common_mistakes": [
+        "used to 与 be used to doing 混淆",
+        "否定形式写成 used not to do 之外的错误形式"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K010",
+      "index": 10,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "被动语态",
+      "name": "被动语态（一般现在时）",
+      "objective": "能构成 am/is/are + 过去分词并使用一般现在时的被动语态",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-english-K005"
+      ],
+      "concept": "被动语态强调动作承受者；结构为 be + 过去分词，be 随主语与 Tense 变化；执行者用 by 引出可省略",
+      "common_mistakes": [
+        "漏写 be 动词",
+        "过去分词与过去式混淆",
+        "不及物动词误用被动"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K011",
+      "index": 11,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "被动语态",
+      "name": "被动语态（一般过去时）",
+      "objective": "能构成 was/were + 过去分词并使用一般过去时的被动语态",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-english-K010"
+      ],
+      "concept": "一般过去时被动语态结构为 was/were + 过去分词；常与 in 1896、last year 等时间状语连用",
+      "common_mistakes": [
+        "was/were 与主语数不一致",
+        "不规则过去分词拼写错误"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 6",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K012",
+      "index": 12,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "被动语态",
+      "name": "含情态动词的被动语态",
+      "objective": "能构成 情态动词 + be + 过去分词",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-english-K011"
+      ],
+      "concept": "含情态动词的被动语态结构为 modal + be + 过去分词；否定在情态动词后加 not",
+      "common_mistakes": [
+        "情态动词后误用 to be",
+        "被动结构中漏 be"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 7",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K013",
+      "index": 13,
+      "domain": "语篇",
+      "theme": "语篇类型",
+      "unit": "语篇",
+      "name": "说明文：节日习俗的说明结构",
+      "objective": "能读懂节日习俗类说明文，梳理「来源—习俗—意义」结构",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-english-K012"
+      ],
+      "concept": "文化说明文常按「历史来源—主要习俗—文化意义」展开，语言客观、多用一般现在时与被动语态",
+      "common_mistakes": [
+        "习俗与意义混淆",
+        "忽视文化意义的概括"
+      ],
+      "suggested_types": [
+        "阅读",
+        "梳理",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 2",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K014",
+      "index": 14,
+      "domain": "语篇",
+      "theme": "语篇类型",
+      "unit": "语篇",
+      "name": "科普说明文：材料与制造",
+      "objective": "能读懂物品制造类说明文，梳理工艺流程与因果关系",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-english-K013"
+      ],
+      "concept": "工艺说明文按流程顺序展开，多用被动语态与 first/then/finally 等连接词，注意「原料—加工—成品」的转换",
+      "common_mistakes": [
+        "流程顺序错乱",
+        "被动语态理解反向（谁是承受者）"
+      ],
+      "suggested_types": [
+        "阅读",
+        "梳理",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 5—6",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K015",
+      "index": 15,
+      "domain": "语言知识",
+      "theme": "语用",
+      "unit": "语用",
+      "name": "礼貌请求与问路指路",
+      "objective": "能用委婉句式提出请求、问路并给出清晰指路",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-english-K014"
+      ],
+      "concept": "礼貌程度：Could you please...? > Can you...? > 祈使句；问路用 Excuse me, could you tell me how to get to...?；指路需给方向、距离与标志物",
+      "common_mistakes": [
+        "请求句式过于直接",
+        "指路缺少参照物导致无法执行"
+      ],
+      "suggested_types": [
+        "对话",
+        "情景应答",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 3",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K016",
+      "index": 16,
+      "domain": "主题",
+      "theme": "人与社会",
+      "unit": "主题",
+      "name": "节日文化与传承",
+      "objective": "能介绍中外节日的习俗并阐释其文化意义",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s1-english-K015"
+      ],
+      "concept": "节日主题表达要「述习俗+讲由来+谈意义」；跨文化比较应聚焦价值取向（家庭团聚、感恩、新生）而非形式优劣",
+      "common_mistakes": [
+        "只列习俗不谈意义",
+        "文化比较简单化"
+      ],
+      "suggested_types": [
+        "表达",
+        "写作",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 2",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K017",
+      "index": 17,
+      "domain": "主题",
+      "theme": "人与自然",
+      "unit": "主题",
+      "name": "材料消费与环境保护",
+      "objective": "能就材料使用、消费行为与环境保护表达观点并提出建议",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s1-english-K004"
+      ],
+      "concept": "该主题涉及「现象—影响—对策」的论述链，需用被动语态说明制造过程、用情态动词提出建议",
+      "common_mistakes": [
+        "论述缺少因果链",
+        "建议空泛不可执行"
+      ],
+      "suggested_types": [
+        "表达",
+        "写作",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·Unit 5—7",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K018",
+      "index": 18,
+      "domain": "语言技能",
+      "theme": "听",
+      "unit": "语言技能",
+      "name": "听长对话抓要点与记笔记",
+      "objective": "能在较长对话中抓取要点并用符号速记",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-english-K017"
+      ],
+      "concept": "长对话听前读题定焦点、听中抓「转折词后信息」与重复词、听后据笔记整合；速记用箭头、缩写与数字",
+      "common_mistakes": [
+        "被无关信息干扰",
+        "笔记无法还原语义"
+      ],
+      "suggested_types": [
+        "听力",
+        "笔记",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·听力训练",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K019",
+      "index": 19,
+      "domain": "语言技能",
+      "theme": "写",
+      "unit": "语言技能",
+      "name": "写说明性短文",
+      "objective": "能写结构清晰、语言客观的说明性短文",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g9-s1-english-K013"
+      ],
+      "concept": "说明文写作按「总—分—总」组织，用主题句统领段落，客观陈述为主，适当使用被动语态与连接词",
+      "common_mistakes": [
+        "段落无主题句",
+        "主观评价过多削弱说明性"
+      ],
+      "suggested_types": [
+        "写作",
+        "修改",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·写作",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-english-K020",
+      "index": 20,
+      "domain": "学习策略",
+      "theme": "学习策略",
+      "unit": "学习策略",
+      "name": "构词法与语境猜词",
+      "objective": "能运用构词知识与上下文线索推测生词含义",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g7-s1-english-K004"
+      ],
+      "concept": "猜词三路径：构词（前缀改变方向、后缀改变词性）、语境（定义、举例、对比）、常识",
+      "common_mistakes": [
+        "脱离语境套用词根",
+        "忽略词性变化导致句意不通"
+      ],
+      "suggested_types": [
+        "猜词",
+        "阅读",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九上·学习策略",
+      "engine_hint": "llm"
+    }
+  ]
 }

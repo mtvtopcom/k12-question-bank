@@ -1,12 +1,651 @@
 {
   "volume_id": "primary-g3-s1-chinese",
-  "title": "g3语文上册",
+  "title": "三年级上册语文",
   "stage": "primary",
   "grade": "g3",
   "term": "s1",
   "subject": "chinese",
   "school_stage": "S2",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "统编版（2024审定）三年级上册；2022版语文课标第二学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g3-s1-chinese-K001",
+      "index": 1,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "多音字",
+      "objective": "能根据词义和语境判断多音字读音",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g2-s2-chinese-K001"
+      ],
+      "concept": "多音字的不同读音往往对应不同意义，要结合词语、词性、语境判断",
+      "common_mistakes": [
+        "按最常见读音读",
+        "语境判断失误"
+      ],
+      "suggested_types": [
+        "读音",
+        "辨析",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第一单元",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K002",
+      "index": 2,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "形声字与形近字",
+      "objective": "能利用形声规律识记并辨析形近字",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K001"
+      ],
+      "concept": "形声字形旁表义、声旁表音；形近字要抓住差异笔画或部件",
+      "common_mistakes": [
+        "声旁读音等同字音",
+        "形近字混写"
+      ],
+      "suggested_types": [
+        "辨析",
+        "识字",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第二单元",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K003",
+      "index": 3,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "查字典",
+      "name": "部首查字法与选择义项",
+      "objective": "能用部首查字法查字并从多义项中选择正确义项",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-chinese-K004"
+      ],
+      "concept": "查到这个字后，要结合词语语境从字典的多个义项中选出恰当的一项",
+      "common_mistakes": [
+        "只查音不选义",
+        "义项选择与语境不符"
+      ],
+      "suggested_types": [
+        "查字典",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·语文园地",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K004",
+      "index": 4,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "近义词辨析",
+      "objective": "能辨析近义词在程度、范围、色彩上的差异",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g2-s2-chinese-K005"
+      ],
+      "concept": "近义词在程度轻重、范围大小、感情色彩和搭配习惯上常有差别",
+      "common_mistakes": [
+        "认为可随意互换",
+        "忽略感情色彩"
+      ],
+      "suggested_types": [
+        "辨析",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第三单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K005",
+      "index": 5,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "反义词",
+      "objective": "能准确找出并运用反义词",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-chinese-K006"
+      ],
+      "concept": "反义词词性相同、意义相反或相对，可在对比中增强表达效果",
+      "common_mistakes": [
+        "词性不匹配",
+        "近反义混淆"
+      ],
+      "suggested_types": [
+        "辨析",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第三单元",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K006",
+      "index": 6,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "成语的积累与运用",
+      "objective": "能理解并恰当运用常见成语",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-chinese-K007"
+      ],
+      "concept": "成语意义整体凝练，使用时要注意适用对象、语境和感情色彩",
+      "common_mistakes": [
+        "望文生义",
+        "对象或语境不合"
+      ],
+      "suggested_types": [
+        "积累",
+        "运用",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·语文园地",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K007",
+      "index": 7,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "词语的感情色彩",
+      "objective": "能区分褒义词、贬义词和中性词",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K006"
+      ],
+      "concept": "词语按感情色彩分为褒义、贬义和中性三类，用错会改变表达倾向",
+      "common_mistakes": [
+        "褒贬误用",
+        "忽略语境判断"
+      ],
+      "suggested_types": [
+        "辨析",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·词语",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K008",
+      "index": 8,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "句子",
+      "name": "比喻句",
+      "objective": "能识别、赏析并仿写比喻句",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K010"
+      ],
+      "concept": "比喻由本体、喻体和比喻词构成，本体与喻体必须是不同类事物且有相似点",
+      "common_mistakes": [
+        "本体喻体同类",
+        "相似点不明确"
+      ],
+      "suggested_types": [
+        "识别",
+        "赏析",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第一单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K009",
+      "index": 9,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "句子",
+      "name": "拟人句",
+      "objective": "能识别并体会拟人手法的表达效果",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-chinese-K009"
+      ],
+      "concept": "拟人是把物当作人来写，赋予人的动作、情感、语言，使表达更生动亲切",
+      "common_mistakes": [
+        "拟人与比喻混淆",
+        "赋予的特征不合事物特点"
+      ],
+      "suggested_types": [
+        "识别",
+        "赏析",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第一单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K010",
+      "index": 10,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "句子",
+      "name": "排比句初步",
+      "objective": "能识别排比句并体会其表达效果",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K009"
+      ],
+      "concept": "排比是把三个或三个以上结构相似、语气一致的短语或句子排列起来，增强语势",
+      "common_mistakes": [
+        "数量不足三个",
+        "结构不一致"
+      ],
+      "suggested_types": [
+        "识别",
+        "赏析",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K011",
+      "index": 11,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "句子",
+      "name": "修改病句：成分残缺",
+      "objective": "能找出并修改成分残缺的病句",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K008"
+      ],
+      "concept": "句子成分残缺常见为缺主语或缺谓语，修改时要补上缺失成分且不改变原意",
+      "common_mistakes": [
+        "补错成分",
+        "修改后改变原意"
+      ],
+      "suggested_types": [
+        "修改",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K012",
+      "index": 12,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "句子",
+      "name": "把字句与被字句的转换",
+      "objective": "能在把字句和被字句之间正确转换",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K011"
+      ],
+      "concept": "把字句强调施动者对受动者的处置，被字句强调受动者遭受的动作，转换时施受关系不能变",
+      "common_mistakes": [
+        "施受关系颠倒",
+        "把被字混用"
+      ],
+      "suggested_types": [
+        "转换",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K013",
+      "index": 13,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "标点符号",
+      "name": "引号的用法",
+      "objective": "能正确使用引号表示引用、特定称谓和特殊含义",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K012"
+      ],
+      "concept": "引号可表示直接引用、特定称谓、着重强调或特殊含义",
+      "common_mistakes": [
+        "引号成对使用被忽略",
+        "引用与转述混淆"
+      ],
+      "suggested_types": [
+        "标点",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·标点符号",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K014",
+      "index": 14,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "段落",
+      "name": "总分结构的段落",
+      "objective": "能识别并仿写总分结构的段落",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K013"
+      ],
+      "concept": "总分结构先总说后分述，总起句概括全段，分述句从不同方面具体说明",
+      "common_mistakes": [
+        "总起句与分述不对应",
+        "分述角度重复"
+      ],
+      "suggested_types": [
+        "分析",
+        "仿写",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第六单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K015",
+      "index": 15,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "课文",
+      "name": "概括段意",
+      "objective": "能用简洁的话概括段落主要意思",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g2-s2-chinese-K014"
+      ],
+      "concept": "概括段意可找中心句，也可归纳各句共同意思，语言要简洁不照抄",
+      "common_mistakes": [
+        "罗列内容不概括",
+        "遗漏主要意思"
+      ],
+      "suggested_types": [
+        "概括",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第六单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K016",
+      "index": 16,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "课文",
+      "name": "提取关键信息",
+      "objective": "能围绕问题提取文中的关键信息",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K015"
+      ],
+      "concept": "先明确问题指向，再定位相关段落，筛出直接支撑答案的关键语句",
+      "common_mistakes": [
+        "信息筛选不准",
+        "把无关信息当答案"
+      ],
+      "suggested_types": [
+        "提取",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第五单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K017",
+      "index": 17,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "古诗",
+      "name": "古诗诵读：《山行》《赠刘景文》《夜书所见》",
+      "objective": "能背诵古诗并体会诗中秋景与情感",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g2-s2-chinese-K015"
+      ],
+      "concept": "借助注释和插图理解诗意，注意朗读节奏，体会诗人借秋景表达的情感",
+      "common_mistakes": [
+        "节奏错误",
+        "诗意理解偏差"
+      ],
+      "suggested_types": [
+        "背诵",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第二单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K018",
+      "index": 18,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "文言文",
+      "name": "文言文《司马光》初步",
+      "objective": "能借助注释读懂浅易文言文并说出故事内容",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K017"
+      ],
+      "concept": "学习文言文要借助注释、插图和上下文理解词句，感受古今表达的差异",
+      "common_mistakes": [
+        "用现代汉语硬套",
+        "忽略注释"
+      ],
+      "suggested_types": [
+        "理解",
+        "翻译",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第八单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K019",
+      "index": 19,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "习作",
+      "name": "习作：写日记",
+      "objective": "能按日记格式记录一天中印象深刻的事",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K016"
+      ],
+      "concept": "日记要先写日期、星期、天气，正文写清一件事，表达真实感受",
+      "common_mistakes": [
+        "格式要素缺失",
+        "记流水账"
+      ],
+      "suggested_types": [
+        "写话",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第二单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K020",
+      "index": 20,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "习作",
+      "name": "习作：续写故事",
+      "objective": "能根据故事开头合理续写",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K019"
+      ],
+      "concept": "续写要延续原文的人物性格和情节逻辑，想象合理、有发展有结局",
+      "common_mistakes": [
+        "人物性格突变",
+        "情节脱离原文"
+      ],
+      "suggested_types": [
+        "写话",
+        "创造",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·第四单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K021",
+      "index": 21,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "口语交际",
+      "name": "口语交际：请教",
+      "objective": "能清楚说明问题并向他人请教",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K019"
+      ],
+      "concept": "请教要说清自己遇到的问题、已经想到的办法，态度诚恳、认真倾听",
+      "common_mistakes": [
+        "问题说不清",
+        "态度不诚恳"
+      ],
+      "suggested_types": [
+        "表达",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·口语交际",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s1-chinese-K022",
+      "index": 22,
+      "domain": "整本书阅读",
+      "theme": "整本书阅读",
+      "unit": "课外阅读",
+      "name": "课外阅读：童话与寓言",
+      "objective": "能阅读童话和寓言并说出感受",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K019"
+      ],
+      "concept": "读童话要感受想象，读寓言要提炼道理，读后能与同伴交流感受",
+      "common_mistakes": [
+        "只读不复述",
+        "寓意理解偏颇"
+      ],
+      "suggested_types": [
+        "阅读",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "统编三上·快乐读书吧",
+      "engine_hint": "llm"
+    }
+  ]
 }

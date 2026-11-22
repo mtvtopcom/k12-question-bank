@@ -1,12 +1,303 @@
 {
   "volume_id": "kg-k3-full-english",
-  "title": "大班英语全年",
+  "title": "大班英语全年（英语启蒙）",
   "stage": "kg",
   "grade": "k3",
   "term": "full",
   "subject": "english",
   "school_stage": "S0",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "《3-6岁儿童学习与发展指南》语言领域（大班）；《关于大力推进幼儿园与小学科学衔接的指导意见》",
+  "knowledge_points": [
+    {
+      "id": "kg-k3-full-english-K001",
+      "index": 1,
+      "domain": "语言",
+      "theme": "语音意识",
+      "unit": "语音",
+      "name": "英语首音与韵脚的辨听",
+      "objective": "能辨听单词的首音与韵脚，能找出押韵的词",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k2-full-english-K001"
+      ],
+      "concept": "首音与韵脚意识（cat-hat、cake-lake）是自然拼读与拼写的语音基础，通过押韵游戏培养",
+      "common_mistakes": [
+        "与汉语拼音混淆",
+        "只凭字形判断押韵"
+      ],
+      "suggested_types": [
+        "辨音",
+        "归类",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "英语启蒙·语音意识（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-english-K002",
+      "index": 2,
+      "domain": "语言",
+      "theme": "句型经验",
+      "unit": "问候",
+      "name": "句型 How are you? / I'm fine.",
+      "objective": "能用 How are you? 问候并作出恰当回答",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-english-K002"
+      ],
+      "concept": "问候对话是最基本的英语交际轮次：问与答成对出现，在每日晨间环节自然练习",
+      "common_mistakes": [
+        "只会问不会答",
+        "回答与问句不匹配"
+      ],
+      "suggested_types": [
+        "对话",
+        "情境应对",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "英语启蒙·日常用语（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-english-K003",
+      "index": 3,
+      "domain": "语言",
+      "theme": "句型经验",
+      "unit": "句型",
+      "name": "句型 What's this? / It's ...",
+      "objective": "能用 What's this? 提问并用 It's ... 回答",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k2-full-english-K006"
+      ],
+      "concept": "问答对练是语言输出的关键：一人问一人答，角色互换，让幼儿掌握「提问」这一主动交际能力",
+      "common_mistakes": [
+        "只会答不会问",
+        "答句与问句不匹配"
+      ],
+      "suggested_types": [
+        "问答",
+        "对话",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "英语启蒙·句型（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-english-K004",
+      "index": 4,
+      "domain": "语言",
+      "theme": "句型经验",
+      "unit": "句型",
+      "name": "句型 I can ...",
+      "objective": "能用 I can ... 表达自己的能力",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k3-full-english-K003"
+      ],
+      "concept": "I can 与动作词结合，既是语言表达也是自我肯定；可延伸为「我能自己做」的入学准备话题",
+      "common_mistakes": [
+        "can 后接 to do",
+        "只会说单词不构成句"
+      ],
+      "suggested_types": [
+        "表达",
+        "句型操练",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "英语启蒙·句型（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-english-K005",
+      "index": 5,
+      "domain": "语言",
+      "theme": "词汇经验",
+      "unit": "学校",
+      "name": "学校与文具词汇",
+      "objective": "能听辨并说出 school、book、pencil、bag 等词",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k3-full-english-K004"
+      ],
+      "concept": "学校与文具词是大班「入学准备」的自然延伸，可与整理书包的生活环节结合",
+      "common_mistakes": [
+        "词汇与实物错配",
+        "复数形式误用"
+      ],
+      "suggested_types": [
+        "命名",
+        "指认",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "英语启蒙·词汇（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-english-K006",
+      "index": 6,
+      "domain": "语言",
+      "theme": "词汇经验",
+      "unit": "时间与天气",
+      "name": "星期与天气表达",
+      "objective": "能说出 Monday 到 Sunday，能描述当天天气",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k2-full-english-K007"
+      ],
+      "concept": "每日播报（Today is Monday. It's sunny.）把星期与天气整合为固定句式，形成语言习惯",
+      "common_mistakes": [
+        "星期顺序错误",
+        "星期与天气句式混用"
+      ],
+      "suggested_types": [
+        "描述",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "英语启蒙·词汇（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-english-K007",
+      "index": 7,
+      "domain": "语言",
+      "theme": "阅读准备",
+      "unit": "绘本",
+      "name": "英语绘本的独立翻阅与简单讲述",
+      "objective": "能独立翻阅英语绘本，用简单英语或中英混说讲述画面",
+      "difficulty": 3,
+      "bloom": "创造",
+      "prerequisites": [
+        "kg-k2-full-english-K009"
+      ],
+      "concept": "「用两种语言混说」是大班双语发展的正常现象，不必纠正；重点在愿意表达与讲述连贯",
+      "common_mistakes": [
+        "禁止使用中文导致不敢说",
+        "要求全英文表达超出能力"
+      ],
+      "suggested_types": [
+        "讲述",
+        "共读",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》语言·阅读（大班）；英语启蒙",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-english-K008",
+      "index": 8,
+      "domain": "艺术",
+      "theme": "表现与创造",
+      "unit": "表演",
+      "name": "英语儿歌表演与节奏游戏",
+      "objective": "能参与英语儿歌的表演，配合节奏做动作与简单对唱",
+      "difficulty": 3,
+      "bloom": "创造",
+      "prerequisites": [
+        "kg-k3-full-english-K007"
+      ],
+      "concept": "表演让语言带上情感与场景，比机械跟读更能形成长期记忆",
+      "common_mistakes": [
+        "反复排练消磨兴趣",
+        "只求整齐不顾表达"
+      ],
+      "suggested_types": [
+        "表演",
+        "律动",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "英语启蒙·歌谣（大班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-english-K009",
+      "index": 9,
+      "domain": "社会",
+      "theme": "文化体验",
+      "unit": "文化",
+      "name": "英语国家的节日与习俗体验",
+      "objective": "能说出至少两个英语国家节日及其主要习俗",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k2-full-english-K010"
+      ],
+      "concept": "文化体验的目标是「开阔视野、萌发尊重」，不是记住知识点；应避免刻板印象与优劣比较",
+      "common_mistakes": [
+        "以刻板印象概括他国文化",
+        "文化体验流于形式"
+      ],
+      "suggested_types": [
+        "表达",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》社会·文化认同（大班）；英语启蒙",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k3-full-english-K010",
+      "index": 10,
+      "domain": "语言",
+      "theme": "学习品质",
+      "unit": "兴趣与自信",
+      "name": "入学前的英语学习兴趣与自信",
+      "objective": "愿意在他人面前说英语，对进入小学学习英语抱有期待",
+      "difficulty": 3,
+      "bloom": "评价",
+      "prerequisites": [
+        "kg-k3-full-english-K007"
+      ],
+      "concept": "兴趣与自信是幼小衔接中最重要的英语「素养」；成人应多鼓励尝试、少纠正错误，保护表达意愿",
+      "common_mistakes": [
+        "过度纠正发音打击自信",
+        "以测验排名评价幼儿"
+      ],
+      "suggested_types": [
+        "表达",
+        "自评",
+        "选择"
+      ],
+      "grade_range": [
+        "k3"
+      ],
+      "source": "《指南》语言·表达（大班）；幼小衔接指导意见",
+      "engine_hint": "template"
+    }
+  ]
 }

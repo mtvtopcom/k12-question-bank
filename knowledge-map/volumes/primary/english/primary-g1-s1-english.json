@@ -1,12 +1,469 @@
 {
   "volume_id": "primary-g1-s1-english",
-  "title": "g1英语上册",
+  "title": "一年级上册英语（启蒙）",
   "stage": "primary",
   "grade": "g1",
   "term": "s1",
   "subject": "english",
   "school_stage": "S1",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版PEP/外研版/译林版一年级启蒙内容；2022版英语课标（一二年级为兴趣启蒙，不作为起始年级）",
+  "knowledge_points": [
+    {
+      "id": "primary-g1-s1-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "字母",
+      "name": "字母 A-G 的认读",
+      "objective": "能认读字母 A 到 G 的大小写形式",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "英语共有26个字母，每个字母有大写和小写两种形式",
+      "common_mistakes": [
+        "b 与 d 混淆",
+        "大小写形式记混"
+      ],
+      "suggested_types": [
+        "认读",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·字母启蒙",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "字母",
+      "name": "字母 H-N 的认读",
+      "objective": "能认读字母 H 到 N 的大小写形式",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s1-english-K001"
+      ],
+      "concept": "字母按固定顺序排列，认读时要连起来唱读加深记忆",
+      "common_mistakes": [
+        "h 与 n 混淆",
+        "顺序错乱"
+      ],
+      "suggested_types": [
+        "认读",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·字母启蒙",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "字母",
+      "name": "字母 O-T 的认读",
+      "objective": "能认读字母 O 到 T 的大小写形式",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s1-english-K002"
+      ],
+      "concept": "字母 O 与数字 0 容易混淆，要注意区分",
+      "common_mistakes": [
+        "O 与数字 0 混淆",
+        "q 与 p 混淆"
+      ],
+      "suggested_types": [
+        "认读",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·字母启蒙",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "字母",
+      "name": "字母 U-Z 的认读",
+      "objective": "能认读字母 U 到 Z 的大小写形式",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s1-english-K003"
+      ],
+      "concept": "完成26个字母的认读是英语启蒙的第一步",
+      "common_mistakes": [
+        "u 与 v 混淆",
+        "顺序错乱"
+      ],
+      "suggested_types": [
+        "认读",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·字母启蒙",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "字母",
+      "name": "字母大小写配对",
+      "objective": "能把大写字母与小写字母正确配对",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-english-K004"
+      ],
+      "concept": "每个字母的大写与小写形状可能差别很大，如 A 与 a、R 与 r",
+      "common_mistakes": [
+        "大小写配对错误",
+        "形近字母混淆"
+      ],
+      "suggested_types": [
+        "配对",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·字母启蒙",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-english-K006",
+      "index": 6,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "问候",
+      "name": "问候语 Hello 与 Hi",
+      "objective": "能用 Hello、Hi 向他人问候",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [],
+      "concept": "Hello 较正式，Hi 更随意，都用于见面打招呼",
+      "common_mistakes": [
+        "问候与告别混用",
+        "发音不准"
+      ],
+      "suggested_types": [
+        "对话",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·Greetings",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-english-K007",
+      "index": 7,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "自我介绍",
+      "name": "自我介绍 I'm...",
+      "objective": "能用 I'm... 介绍自己的名字",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g1-s1-english-K006"
+      ],
+      "concept": "I'm 是 I am 的缩写，后面接自己的名字",
+      "common_mistakes": [
+        "漏掉 I'm 直接说名字",
+        "缩写形式写错"
+      ],
+      "suggested_types": [
+        "对话",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·Introductions",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-english-K008",
+      "index": 8,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "询问姓名",
+      "name": "询问姓名 What's your name?",
+      "objective": "能听懂并回答 What's your name?",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g1-s1-english-K007"
+      ],
+      "concept": "What's your name? 用来询问对方名字，回答用 My name is... 或 I'm...",
+      "common_mistakes": [
+        "答非所问",
+        "问句与答句混淆"
+      ],
+      "suggested_types": [
+        "对话",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·Introductions",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "数字",
+      "name": "数字 1-5",
+      "objective": "能认读并说出数字 one 到 five",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "英语数字是后续学习时间、价格、年龄的基础",
+      "common_mistakes": [
+        "three 与 tree 混淆",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·Numbers",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-english-K010",
+      "index": 10,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "数字",
+      "name": "数字 6-10",
+      "objective": "能认读并说出数字 six 到 ten",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s1-english-K009"
+      ],
+      "concept": "six 到 ten 的拼写要逐个记忆",
+      "common_mistakes": [
+        "six 与 sit 混淆",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·Numbers",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-english-K011",
+      "index": 11,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "颜色",
+      "name": "颜色词 red、yellow、blue、green",
+      "objective": "能认读四种基本颜色词",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "颜色词常用来描述物品，是高频基础词汇",
+      "common_mistakes": [
+        "red 与 read 混淆",
+        "颜色与单词对应错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "选择",
+        "匹配"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·Colours",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-english-K012",
+      "index": 12,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "文具",
+      "name": "文具词 pen、pencil、book、bag",
+      "objective": "能认读常见文具类单词",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g1-s1-english-K011"
+      ],
+      "concept": "文具词是课堂高频词，可与颜色词搭配描述",
+      "common_mistakes": [
+        "pen 与 pencil 混淆",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "选择",
+        "匹配"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·School things",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g1-s1-english-K013",
+      "index": 13,
+      "domain": "语言技能",
+      "theme": "听",
+      "unit": "课堂指令",
+      "name": "简单指令语 Stand up 与 Sit down",
+      "objective": "能听懂并执行简单的课堂指令",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g1-s1-english-K006"
+      ],
+      "concept": "课堂指令语配动作更容易理解，如 Stand up 起立、Sit down 坐下",
+      "common_mistakes": [
+        "指令与动作对应错误",
+        "只听到部分词"
+      ],
+      "suggested_types": [
+        "听力",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·Classroom",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-english-K014",
+      "index": 14,
+      "domain": "语言技能",
+      "theme": "听",
+      "unit": "歌谣",
+      "name": "英语儿歌与歌谣",
+      "objective": "能跟唱简单的英语儿歌",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-english-K013"
+      ],
+      "concept": "儿歌节奏鲜明、重复度高，是培养语感和兴趣的有效方式",
+      "common_mistakes": [
+        "只跟旋律不听词",
+        "发音含糊"
+      ],
+      "suggested_types": [
+        "听唱",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·Let's sing",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-english-K015",
+      "index": 15,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "语调",
+      "name": "英语语调初步",
+      "objective": "初步感受英语句子的升降调",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-english-K014"
+      ],
+      "concept": "英语陈述句一般用降调，一般疑问句常用升调",
+      "common_mistakes": [
+        "所有句子一个调",
+        "升调降调混淆"
+      ],
+      "suggested_types": [
+        "听辨",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·语音启蒙",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g1-s1-english-K016",
+      "index": 16,
+      "domain": "文化知识",
+      "theme": "文化",
+      "unit": "问候文化",
+      "name": "英语国家的问候方式",
+      "objective": "了解英语国家见面问候的常见方式",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-english-K006"
+      ],
+      "concept": "英语国家问候常伴随微笑、握手，熟人之间也常用 Hi",
+      "common_mistakes": [
+        "用中文习惯套用",
+        "不了解文化差异"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g1"
+      ],
+      "source": "人教PEP一上·Culture",
+      "engine_hint": "llm"
+    }
+  ]
 }

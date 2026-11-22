@@ -1,12 +1,361 @@
 {
   "volume_id": "kg-k2-full-chinese",
-  "title": "中班语文全年",
+  "title": "中班语文全年（语言领域）",
   "stage": "kg",
   "grade": "k2",
   "term": "full",
   "subject": "chinese",
   "school_stage": "S0",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "《3-6岁儿童学习与发展指南》语言领域（中班目标）；《幼儿园教育指导纲要（试行）》",
+  "knowledge_points": [
+    {
+      "id": "kg-k2-full-chinese-K001",
+      "index": 1,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "倾听",
+      "name": "倾听他人说话不打断，理解两步指令",
+      "objective": "能耐心听他人把话说完，能听懂并执行包含两个步骤的指令",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k1-full-chinese-K001"
+      ],
+      "concept": "中班倾听的发展点是「不打断」与「多步指令」；教师可用「先……再……」的句式组织活动，自然地进行练习",
+      "common_mistakes": [
+        "急于表达而打断",
+        "多步指令漏做后一步"
+      ],
+      "suggested_types": [
+        "听指令",
+        "情境判断",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》语言·倾听（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-chinese-K002",
+      "index": 2,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "表达",
+      "name": "连贯讲述一件简单的事",
+      "objective": "能围绕一个话题讲述 2—3 句话，说出事情的大致经过",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-chinese-K005"
+      ],
+      "concept": "连贯讲述需要「话题—细节—结尾」的雏形；成人可用追问（「然后呢」「你为什么」）帮助幼儿延展表达",
+      "common_mistakes": [
+        "一句一停无法连贯",
+        "话题频繁跳跃"
+      ],
+      "suggested_types": [
+        "讲述",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》语言·表达（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-chinese-K003",
+      "index": 3,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "词汇",
+      "name": "形容词与方位词的扩展",
+      "objective": "能使用常见形容词描述事物特征，使用上下、前后、里外等方位词",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-chinese-K004"
+      ],
+      "concept": "形容词学习宜成对出现（大小、长短、冷热），方位词须在真实空间动作中体验，避免抽象讲解",
+      "common_mistakes": [
+        "形容词与名词搭配错误",
+        "方位词混淆（前后与上下）"
+      ],
+      "suggested_types": [
+        "描述",
+        "指认",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》语言·词汇（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-chinese-K004",
+      "index": 4,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "句式",
+      "name": "疑问句与回答：「为什么」「怎么样」",
+      "objective": "能听懂并回答「为什么」「怎么样」的提问，会主动提问",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k2-full-chinese-K002"
+      ],
+      "concept": "「为什么」指向因果，「怎么样」指向状态与过程；成人应认真对待幼儿的提问，不敷衍、不嘲笑",
+      "common_mistakes": [
+        "回答只给结论不说原因",
+        "提问被忽视后不再发问"
+      ],
+      "suggested_types": [
+        "问答",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》语言·表达（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-chinese-K005",
+      "index": 5,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "儿歌",
+      "name": "儿歌、绕口令与节奏感",
+      "objective": "能有节奏地朗诵儿歌，初步感受绕口令的趣味",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-chinese-K006"
+      ],
+      "concept": "绕口令以相近音反复出现训练发音的清晰度，中班宜选短小、有趣、不拗口的内容，重在「玩声音」",
+      "common_mistakes": [
+        "追求速度导致吐字不清",
+        "内容过难引发挫败"
+      ],
+      "suggested_types": [
+        "朗诵",
+        "辨音",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》语言·文学（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-chinese-K006",
+      "index": 6,
+      "domain": "语言",
+      "theme": "阅读与书写准备",
+      "unit": "阅读",
+      "name": "图画书阅读中的预测与提问",
+      "objective": "能根据画面线索预测情节，并就画面提出自己的问题",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k1-full-chinese-K008"
+      ],
+      "concept": "预测依据是画面细节与已有经验；「猜一猜接下来会怎样」比「这幅画讲了什么」更能激发思考",
+      "common_mistakes": [
+        "预测脱离画面依据",
+        "只答不问缺少主动探究"
+      ],
+      "suggested_types": [
+        "预测",
+        "提问",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》语言·阅读（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-chinese-K007",
+      "index": 7,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "故事",
+      "name": "故事复述与角色对话",
+      "objective": "能复述故事的主要情节，能模仿角色的语气对话",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k2-full-chinese-K006"
+      ],
+      "concept": "复述从「说出主要角色与关键事件」开始，不要求逐句还原；角色对话要关注语气与情感的匹配",
+      "common_mistakes": [
+        "复述变成逐字背诵",
+        "对话语气单一无变化"
+      ],
+      "suggested_types": [
+        "复述",
+        "表演",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》语言·文学（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-chinese-K008",
+      "index": 8,
+      "domain": "语言",
+      "theme": "阅读与书写准备",
+      "unit": "前书写",
+      "name": "前书写准备：涂画线条与图形",
+      "objective": "愿意用涂画的方式表现事物，能画出简单的线条与封闭图形",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "kg-k1-full-chinese-K011"
+      ],
+      "concept": "前书写不等于写字：通过画线条、画圈、描画路径发展手眼协调与运笔控制，为日后书写做准备",
+      "common_mistakes": [
+        "提前要求书写汉字",
+        "握笔姿势长期错误不纠正"
+      ],
+      "suggested_types": [
+        "涂画",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》语言·书写准备（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-chinese-K009",
+      "index": 9,
+      "domain": "社会",
+      "theme": "人际交往",
+      "unit": "协商",
+      "name": "同伴交往中的协商用语",
+      "objective": "能在冲突中使用「我可以……吗」「我们轮流」等协商语言",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-chinese-K010"
+      ],
+      "concept": "协商语言是解决同伴冲突的工具；教师不宜直接裁决，而应示范句式并引导双方表达需求",
+      "common_mistakes": [
+        "用抢夺代替协商",
+        "成人包办解决冲突"
+      ],
+      "suggested_types": [
+        "情境应对",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》社会·人际交往（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-chinese-K010",
+      "index": 10,
+      "domain": "社会",
+      "theme": "人际交往",
+      "unit": "情绪",
+      "name": "情绪词汇与表达感受",
+      "objective": "能说出高兴、生气、难过、害怕等情绪，并说出简单原因",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k2-full-chinese-K009"
+      ],
+      "concept": "情绪词汇帮助幼儿把内在感受外化；「你看起来有点难过，是因为……吗」这类镜映式回应最有效",
+      "common_mistakes": [
+        "只被允许表达正面情绪",
+        "情绪与原因脱节"
+      ],
+      "suggested_types": [
+        "表达",
+        "识别",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》社会·情绪（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-chinese-K011",
+      "index": 11,
+      "domain": "艺术",
+      "theme": "表现与创造",
+      "unit": "表演",
+      "name": "故事表演与简单道具制作",
+      "objective": "能参与故事表演，用动作、语言表现角色，并参与制作简单道具",
+      "difficulty": 3,
+      "bloom": "创造",
+      "prerequisites": [
+        "kg-k2-full-chinese-K007"
+      ],
+      "concept": "表演游戏综合了语言、动作与想象；道具不必精美，「幼儿自己做」比「教师做得好」更有价值",
+      "common_mistakes": [
+        "追求演出效果而反复排练",
+        "道具由成人包办"
+      ],
+      "suggested_types": [
+        "表演",
+        "制作",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》艺术·表现（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-chinese-K012",
+      "index": 12,
+      "domain": "健康",
+      "theme": "生活习惯与生活能力",
+      "unit": "生活表达",
+      "name": "生活自理中的语言表达与求助",
+      "objective": "能在遇到困难时主动、清楚地向成人求助",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-chinese-K003"
+      ],
+      "concept": "求助是重要的自我保护与问题解决能力；应教给幼儿「说清楚发生了什么、需要什么帮助」的两句话结构",
+      "common_mistakes": [
+        "遇到困难只会哭",
+        "求助对象选择错误"
+      ],
+      "suggested_types": [
+        "情境应对",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》健康·生活能力（中班）",
+      "engine_hint": "template"
+    }
+  ]
 }

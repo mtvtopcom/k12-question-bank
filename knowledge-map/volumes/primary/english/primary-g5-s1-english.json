@@ -1,12 +1,475 @@
 {
   "volume_id": "primary-g5-s1-english",
-  "title": "g5英语上册",
+  "title": "五年级上册英语",
   "stage": "primary",
   "grade": "g5",
   "term": "s1",
   "subject": "english",
   "school_stage": "S3",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版PEP（2024审定）/外研版/译林版五年级上册共有内容；2022版英语课标第三学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g5-s1-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "语音",
+      "name": "单词重音与句子语调",
+      "objective": "能把握单词重音位置和句子基本语调",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s2-english-K001"
+      ],
+      "concept": "双音节以上单词有重读音节；陈述句用降调，一般疑问句用升调",
+      "common_mistakes": [
+        "重音位置错误",
+        "语调平直"
+      ],
+      "suggested_types": [
+        "听辨",
+        "朗读",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Phonics",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s1-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "学校生活",
+      "name": "学科与日常活动词",
+      "objective": "能认读学科和日常活动相关词汇",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g4-s1-english-K002"
+      ],
+      "concept": "学科词与活动词常搭配使用，如 have an English class",
+      "common_mistakes": [
+        "搭配错误",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Unit 2",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s1-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "一般过去时",
+      "name": "一般过去时的构成与用法",
+      "objective": "理解一般过去时表示过去发生的动作",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s2-english-K004"
+      ],
+      "concept": "一般过去时用动词过去式，常与 yesterday、last week 等时间状语连用",
+      "common_mistakes": [
+        "时态与时间状语不匹配",
+        "该用过去式用原形"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "动词过去式",
+      "name": "动词过去式的规则变化",
+      "objective": "能正确构成规则动词的过去式",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s1-english-K003"
+      ],
+      "concept": "一般加 -ed；以 e 结尾加 -d；辅音字母加 y 结尾变 y 为 i 加 -ed；重读闭音节双写末尾辅音加 -ed",
+      "common_mistakes": [
+        "双写规则遗漏",
+        "y 变 i 规则错"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "动词过去式",
+      "name": "动词过去式的不规则变化",
+      "objective": "能掌握常见不规则动词的过去式",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g5-s1-english-K004"
+      ],
+      "concept": "如 go→went、have→had、do→did、see→saw、eat→ate",
+      "common_mistakes": [
+        "按规则变化不规则动词",
+        "过去式拼写错误"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-english-K006",
+      "index": 6,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "描述过去",
+      "name": "描述过去发生的事",
+      "objective": "能用一般过去时描述过去的经历",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-english-K005"
+      ],
+      "concept": "描述过去要用过去式动词，并配合过去时间状语",
+      "common_mistakes": [
+        "动词未用过去式",
+        "时间状语用错"
+      ],
+      "suggested_types": [
+        "表达",
+        "对话",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "食物",
+      "name": "食物与口味词",
+      "objective": "能认读食物和口味相关词汇",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "食物词有可数与不可数之分，影响搭配的限定词",
+      "common_mistakes": [
+        "可数不可数混淆",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "分类",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Unit 3",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s1-english-K008",
+      "index": 8,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "名词",
+      "name": "可数名词与不可数名词",
+      "objective": "能区分可数名词和不可数名词",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s1-english-K007"
+      ],
+      "concept": "不可数名词没有复数形式，不能直接用 a/an 修饰，如 water、rice、bread",
+      "common_mistakes": [
+        "不可数名词加 s",
+        "用 a 修饰不可数名词"
+      ],
+      "suggested_types": [
+        "选择",
+        "分类",
+        "改错"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Unit 3",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "限定词",
+      "name": "some 与 any 的用法",
+      "objective": "能正确使用 some 和 any",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s1-english-K008"
+      ],
+      "concept": "some 多用于肯定句，any 多用于否定句和疑问句；表示请求或建议时疑问句也用 some",
+      "common_mistakes": [
+        "肯定句用 any",
+        "忽略请求语境用 some"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Unit 3",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-english-K010",
+      "index": 10,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "点餐",
+      "name": "点餐对话",
+      "objective": "能进行简单的点餐交流",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-english-K009"
+      ],
+      "concept": "点餐对话常用 What would you like?、I'd like...、Here you are.",
+      "common_mistakes": [
+        "点餐句式错误",
+        "可数不可数搭配错"
+      ],
+      "suggested_types": [
+        "对话",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Unit 3",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-english-K011",
+      "index": 11,
+      "domain": "语言技能",
+      "theme": "读",
+      "unit": "阅读",
+      "name": "短文细节理解",
+      "objective": "能读懂短文并理解细节信息",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s2-english-K011"
+      ],
+      "concept": "细节理解题要在文中定位对应句子，注意时间、数量、地点等具体信息",
+      "common_mistakes": [
+        "凭印象作答",
+        "定位不准"
+      ],
+      "suggested_types": [
+        "阅读",
+        "提取",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-english-K012",
+      "index": 12,
+      "domain": "语言技能",
+      "theme": "写",
+      "unit": "写作",
+      "name": "写短文描述经历",
+      "objective": "能写一段话描述一次经历",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s2-english-K012"
+      ],
+      "concept": "写经历要交代时间、地点、人物、事件，动词用过去式，句子连贯",
+      "common_mistakes": [
+        "时态混用",
+        "内容不连贯"
+      ],
+      "suggested_types": [
+        "写作",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Writing",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-english-K013",
+      "index": 13,
+      "domain": "文化知识",
+      "theme": "文化",
+      "unit": "饮食文化",
+      "name": "英语国家的饮食习惯",
+      "objective": "了解英语国家典型的饮食结构与用餐礼仪",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s1-english-K007"
+      ],
+      "concept": "英语国家正餐时间、餐具使用、常见食物与我国存在明显差异",
+      "common_mistakes": [
+        "以本国习惯替代",
+        "礼仪理解偏差"
+      ],
+      "suggested_types": [
+        "理解",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Culture",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-english-K014",
+      "index": 14,
+      "domain": "学习策略",
+      "theme": "策略",
+      "unit": "略读",
+      "name": "学习策略：略读找主旨",
+      "objective": "能通过略读快速把握文章主旨",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-english-K011"
+      ],
+      "concept": "略读关注标题、首尾段和每段首句，快速把握文章大意",
+      "common_mistakes": [
+        "逐词细读效率低",
+        "忽略首尾句"
+      ],
+      "suggested_types": [
+        "实践",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·学习策略",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-english-K015",
+      "index": 15,
+      "domain": "语篇",
+      "theme": "语篇",
+      "unit": "语篇",
+      "name": "记叙文语篇的阅读",
+      "objective": "能理清记叙文的时间线和事件顺序",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s1-english-K012"
+      ],
+      "concept": "记叙文按时间顺序展开，注意时间标志词和事件之间的因果联系",
+      "common_mistakes": [
+        "时间线混乱",
+        "事件顺序颠倒"
+      ],
+      "suggested_types": [
+        "阅读",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s1-english-K016",
+      "index": 16,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "综合表达",
+      "name": "讲述过去的经历",
+      "objective": "能完整讲述一次过去的经历",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s1-english-K006"
+      ],
+      "concept": "讲述经历要有开头交代、过程叙述和结尾感受，时态保持一致",
+      "common_mistakes": [
+        "时态不一致",
+        "缺少细节"
+      ],
+      "suggested_types": [
+        "表达",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教PEP五上·Review",
+      "engine_hint": "llm"
+    }
+  ]
 }

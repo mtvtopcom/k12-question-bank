@@ -1,12 +1,593 @@
 {
   "volume_id": "primary-g3-s2-math",
-  "title": "g3数学下册",
+  "title": "三年级下册数学",
   "stage": "primary",
   "grade": "g3",
   "term": "s2",
   "subject": "math",
   "school_stage": "S2",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版三年级下册共有内容；2022版数学课标第二学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g3-s2-math-K001",
+      "index": 1,
+      "domain": "图形与几何",
+      "theme": "图形的位置与运动",
+      "unit": "位置与方向（一）",
+      "name": "东南西北四个方向的辨认",
+      "objective": "能辨认东、南、西、北，并用这些方向描述位置",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s1-math-K003"
+      ],
+      "concept": "地图通常按上北下南、左西右东绘制；早晨太阳升起的方向是东",
+      "common_mistakes": [
+        "方向混淆",
+        "地图方向与实际方向不一致"
+      ],
+      "suggested_types": [
+        "识别",
+        "描述",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·位置与方向（一）；北师大二下·方向与位置",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-math-K002",
+      "index": 2,
+      "domain": "图形与几何",
+      "theme": "图形的位置与运动",
+      "unit": "位置与方向（一）",
+      "name": "东北、东南、西北、西南",
+      "objective": "能辨认四个斜方向并用其描述位置",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-math-K001"
+      ],
+      "concept": "斜方向位于两个正方向之间，如东北在东与北之间",
+      "common_mistakes": [
+        "斜方向表述错误",
+        "把东南说成南东"
+      ],
+      "suggested_types": [
+        "识别",
+        "描述",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·位置与方向（一）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-math-K003",
+      "index": 3,
+      "domain": "图形与几何",
+      "theme": "图形的位置与运动",
+      "unit": "位置与方向（一）",
+      "name": "简单的路线描述",
+      "objective": "能用方向和距离描述简单的行走路线",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-math-K002"
+      ],
+      "concept": "描述路线要说明朝哪个方向走、走多远或经过哪些地点，顺序不能颠倒",
+      "common_mistakes": [
+        "路线顺序颠倒",
+        "方向说错"
+      ],
+      "suggested_types": [
+        "描述",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·位置与方向（一）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-math-K004",
+      "index": 4,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "除数是一位数的除法",
+      "name": "整十、整百数除以一位数的口算",
+      "objective": "能口算整十、整百数除以一位数",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-math-K005"
+      ],
+      "concept": "把整十、整百数看成几个十或几个百再除，商要补回相应的0",
+      "common_mistakes": [
+        "商末尾的0漏写",
+        "口诀用错"
+      ],
+      "suggested_types": [
+        "口算",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·除数是一位数的除法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-math-K005",
+      "index": 5,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "除数是一位数的除法",
+      "name": "一位数除两位数的笔算",
+      "objective": "能笔算一位数除两位数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-math-K004"
+      ],
+      "concept": "从被除数最高位除起，除到哪一位商就写在那一位的上面",
+      "common_mistakes": [
+        "商的数位错位",
+        "余数处理不当"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·除数是一位数的除法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-math-K006",
+      "index": 6,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "除数是一位数的除法",
+      "name": "一位数除三位数的笔算",
+      "objective": "能笔算一位数除三位数，正确处理商中间或末尾有0的情况",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-math-K005"
+      ],
+      "concept": "从高位除起；某一位不够除时商0占位，不能空着",
+      "common_mistakes": [
+        "商中间的0漏写",
+        "余数大于除数"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·除数是一位数的除法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-math-K007",
+      "index": 7,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "除数是一位数的除法",
+      "name": "除法的验算",
+      "objective": "会用商×除数+余数=被除数验算除法",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-math-K006"
+      ],
+      "concept": "没有余数时商×除数=被除数；有余数时商×除数+余数=被除数",
+      "common_mistakes": [
+        "忘记加余数",
+        "验算公式记错"
+      ],
+      "suggested_types": [
+        "验算",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·除数是一位数的除法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-math-K008",
+      "index": 8,
+      "domain": "统计与概率",
+      "theme": "数据的收集、整理与表达",
+      "unit": "复式统计表",
+      "name": "复式统计表的认识与填写",
+      "objective": "认识复式统计表，能读懂并填写数据",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-math-K002"
+      ],
+      "concept": "复式统计表把两组或多组数据合并在一张表中，便于对比分析",
+      "common_mistakes": [
+        "表头含义理解错误",
+        "数据填错列"
+      ],
+      "suggested_types": [
+        "读表",
+        "填表",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·复式统计表",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-math-K009",
+      "index": 9,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "两位数乘两位数",
+      "name": "两位数乘两位数（不进位）",
+      "objective": "能笔算两位数乘两位数的不进位乘法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s1-math-K015"
+      ],
+      "concept": "先用第二个因数的个位去乘，再用十位去乘，两次积相加；第二部分积的末位要与十位对齐",
+      "common_mistakes": [
+        "第二部分积的位置写错",
+        "数位没有对齐"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·两位数乘两位数",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-math-K010",
+      "index": 10,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "两位数乘两位数",
+      "name": "两位数乘两位数（进位）",
+      "objective": "能笔算两位数乘两位数的进位乘法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-math-K009"
+      ],
+      "concept": "每一步乘积满十要进位，两次积相加时注意数位对齐",
+      "common_mistakes": [
+        "进位遗漏",
+        "相加时错位"
+      ],
+      "suggested_types": [
+        "计算",
+        "竖式计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·两位数乘两位数",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-math-K011",
+      "index": 11,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "面积",
+      "name": "面积的含义与面积单位",
+      "objective": "理解面积的含义，认识平方厘米、平方分米、平方米",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-math-K018"
+      ],
+      "concept": "面积是物体表面或封闭图形的大小；相邻面积单位间的进率是100",
+      "common_mistakes": [
+        "面积与周长混淆",
+        "面积单位进率按10计算"
+      ],
+      "suggested_types": [
+        "理解",
+        "识别",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·面积；北师大三下·面积",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-math-K012",
+      "index": 12,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "面积",
+      "name": "长方形和正方形的面积计算",
+      "objective": "会计算长方形和正方形的面积",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-math-K011"
+      ],
+      "concept": "长方形面积=长×宽；正方形面积=边长×边长",
+      "common_mistakes": [
+        "面积与周长公式混用",
+        "面积单位写成长度单位"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·面积",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-math-K013",
+      "index": 13,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "面积",
+      "name": "面积单位间的换算",
+      "objective": "能进行面积单位之间的换算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-math-K012"
+      ],
+      "concept": "1平方分米=100平方厘米，1平方米=100平方分米，进率是100",
+      "common_mistakes": [
+        "按长度单位进率10换算",
+        "换算方向搞反"
+      ],
+      "suggested_types": [
+        "换算",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·面积",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-math-K014",
+      "index": 14,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "年月日",
+      "name": "年月日的认识与大小月",
+      "objective": "认识年、月、日，知道大月、小月及2月的天数",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-math-K001"
+      ],
+      "concept": "一年12个月；大月31天（1、3、5、7、8、10、12月），小月30天（4、6、9、11月）；2月平年28天、闰年29天",
+      "common_mistakes": [
+        "大小月记混",
+        "2月天数记错"
+      ],
+      "suggested_types": [
+        "识别",
+        "记忆",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·年月日；北师大三上·年、月、日",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-math-K015",
+      "index": 15,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "年月日",
+      "name": "平年与闰年的判断",
+      "objective": "能判断某一年是平年还是闰年",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s2-math-K014"
+      ],
+      "concept": "公历年份是4的倍数的一般是闰年；整百年份必须是400的倍数才是闰年",
+      "common_mistakes": [
+        "整百年份只按4的倍数判断",
+        "判断方法记错"
+      ],
+      "suggested_types": [
+        "判断",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·年月日",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-math-K016",
+      "index": 16,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "年月日",
+      "name": "24时计时法",
+      "objective": "能进行普通计时法与24时计时法的转换",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-math-K014"
+      ],
+      "concept": "下午的时刻加12得到24时计时法；24时计时法减12得到普通计时法",
+      "common_mistakes": [
+        "加减12搞反",
+        "忘记标注上午或下午"
+      ],
+      "suggested_types": [
+        "换算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·年月日",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-math-K017",
+      "index": 17,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "小数的初步认识",
+      "name": "小数的初步认识与读写",
+      "objective": "认识小数，会读写小数，理解小数与分数的关系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-math-K019"
+      ],
+      "concept": "小数点左边是整数部分、右边是小数部分；0.1就是十分之一",
+      "common_mistakes": [
+        "小数点位置写错",
+        "小数读法错误"
+      ],
+      "suggested_types": [
+        "识别",
+        "读写",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·小数的初步认识",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-math-K018",
+      "index": 18,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "小数的初步认识",
+      "name": "小数的大小比较与简单加减",
+      "objective": "能比较小数大小并进行简单的小数加减",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-math-K017"
+      ],
+      "concept": "比较小数先比整数部分再比小数部分；加减时小数点要对齐",
+      "common_mistakes": [
+        "按小数位数多少比较大小",
+        "加减时小数点没有对齐"
+      ],
+      "suggested_types": [
+        "计算",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·小数的初步认识",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g3-s2-math-K019",
+      "index": 19,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "数学广角—搭配（二）",
+      "name": "搭配问题与乘法原理",
+      "objective": "能用乘法原理解决简单的搭配问题",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g2-s1-math-K020"
+      ],
+      "concept": "一件事分两步完成，第一步有m种方法、第二步有n种方法，共有m×n种搭配",
+      "common_mistakes": [
+        "用加法计算搭配数",
+        "组合时遗漏"
+      ],
+      "suggested_types": [
+        "分析",
+        "列举",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·数学广角—搭配（二）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g3-s2-math-K020",
+      "index": 20,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "综合与实践",
+      "name": "制作活动日历",
+      "objective": "综合运用年月日知识制作简易日历",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "primary-g3-s2-math-K014"
+      ],
+      "concept": "日历要正确体现月份、星期与日期的对应关系，注意大小月天数",
+      "common_mistakes": [
+        "日期与星期对应错误",
+        "大小月天数用错"
+      ],
+      "suggested_types": [
+        "实践",
+        "创造",
+        "选择"
+      ],
+      "grade_range": [
+        "g3"
+      ],
+      "source": "人教三下·综合与实践",
+      "engine_hint": "llm"
+    }
+  ]
 }

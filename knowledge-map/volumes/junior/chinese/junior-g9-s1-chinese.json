@@ -1,12 +1,775 @@
 {
   "volume_id": "junior-g9-s1-chinese",
-  "title": "g9语文上册",
+  "title": "九年级上册语文",
   "stage": "junior",
   "grade": "g9",
   "term": "s1",
   "subject": "chinese",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "统编版（2024审定）九年级上册；2022版语文课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g9-s1-chinese-K001",
+      "index": 1,
+      "domain": "语言文字积累与梳理",
+      "theme": "汉字与词语",
+      "unit": "字词积累",
+      "name": "字音字形与词语积累",
+      "objective": "能准确读写本册重点字词，掌握议论性文章的书面语汇",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g8-s1-chinese-K001"
+      ],
+      "concept": "九上语汇以议论、文学鉴赏类为主，需注意「断章取义」「强聒不舍」「恪尽职守」等成语的准确含义与写法",
+      "common_mistakes": [
+        "成语易错字",
+        "望文生义",
+        "书面语与口语混用"
+      ],
+      "suggested_types": [
+        "注音",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·各单元读读写写",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K002",
+      "index": 2,
+      "domain": "语言文字积累与梳理",
+      "theme": "语法修辞",
+      "unit": "语法知识",
+      "name": "复句类型与关联词语",
+      "objective": "能辨析并列、递进、选择、转折、因果、假设、条件七类复句",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K002"
+      ],
+      "concept": "复句由两个及以上意义相关、结构互不充当成分的分句构成；类型判断依据关联词与分句间的逻辑关系，无关联词时看语义关系",
+      "common_mistakes": [
+        "只看关联词不看语义",
+        "递进与并列混淆",
+        "因果与条件混淆"
+      ],
+      "suggested_types": [
+        "辨析",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·语法知识",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K003",
+      "index": 3,
+      "domain": "语言文字积累与梳理",
+      "theme": "语法修辞",
+      "unit": "语言运用",
+      "name": "语言的简明、连贯、得体",
+      "objective": "能修改不简明、不连贯、不得体的语句",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K002"
+      ],
+      "concept": "简明要求无冗余、无歧义；连贯要求话题统一、语序合理、衔接自然；得体要求符合对象、场合、目的与语体",
+      "common_mistakes": [
+        "句式不一致导致不连贯",
+        "谦敬辞误用",
+        "话题中途转换"
+      ],
+      "suggested_types": [
+        "修改",
+        "排序",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·语言运用",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K004",
+      "index": 4,
+      "domain": "语言文字积累与梳理",
+      "theme": "文学文化常识",
+      "unit": "文学常识",
+      "name": "作家作品与文体常识",
+      "objective": "识记本册作家作品，了解词、议论文、古典章回小说等文体",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K004"
+      ],
+      "concept": "词分小令、中调、长调，有词牌与题目；议论文三要素为论点、论据、论证；章回体小说以回目领起、可分可合",
+      "common_mistakes": [
+        "词牌与题目混淆",
+        "议论文要素遗漏",
+        "章回体与话本混淆"
+      ],
+      "suggested_types": [
+        "识记",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·各单元注释",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K005",
+      "index": 5,
+      "domain": "文学阅读与创意表达",
+      "theme": "诗歌阅读",
+      "unit": "现代诗",
+      "name": "诗歌的意象与抒情方式",
+      "objective": "能把握诗歌意象，辨识直接抒情与间接抒情",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K014"
+      ],
+      "concept": "直接抒情直抒胸臆，间接抒情借景、借物、借事；意象的选择与组合构成意境，共同承载诗人的情感与思考",
+      "common_mistakes": [
+        "抒情方式判断错误",
+        "意象解读脱离语境"
+      ],
+      "suggested_types": [
+        "鉴赏",
+        "赏析",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第一单元《沁园春·雪》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K006",
+      "index": 6,
+      "domain": "文学阅读与创意表达",
+      "theme": "诗歌阅读",
+      "unit": "诗歌朗诵",
+      "name": "诗歌的朗诵设计与情感表达",
+      "objective": "能为诗歌设计朗诵方案（节奏、重音、语调、停顿）并说明理由",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K005"
+      ],
+      "concept": "朗诵设计三看：看情感基调定语调、看语义层次定停顿、看关键词定重音；说明理由须回到诗句内容与情感",
+      "common_mistakes": [
+        "节奏切分破坏语义",
+        "重音与情感重点不符",
+        "只标符号不说理由"
+      ],
+      "suggested_types": [
+        "设计",
+        "朗读",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第一单元诗歌活动",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K007",
+      "index": 7,
+      "domain": "思辨性阅读与表达",
+      "theme": "思辨表达",
+      "unit": "议论文",
+      "name": "议论文三要素与论点提取",
+      "objective": "能准确找出中心论点与分论点，辨析论点的表述要求",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g7-s2-chinese-K019"
+      ],
+      "concept": "中心论点须是明确的判断句、能统摄全文；分论点从不同角度支撑中心论点；论点常在标题、开头、结尾或过渡处",
+      "common_mistakes": [
+        "把论题当论点",
+        "把分论点当中心论点",
+        "论点概括为短语而非判断句"
+      ],
+      "suggested_types": [
+        "提取",
+        "概括",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第二单元《敬业与乐业》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K008",
+      "index": 8,
+      "domain": "思辨性阅读与表达",
+      "theme": "思辨表达",
+      "unit": "议论文",
+      "name": "论据类型与论证方法",
+      "objective": "能区分事实论据与道理论据，辨识举例、道理、对比、比喻、引用等论证方法",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K007"
+      ],
+      "concept": "论证方法的作用统一表述为「运用……论证方法，论证了……观点，使论证更具说服力」；对比论证重在突出，比喻论证重在通俗",
+      "common_mistakes": [
+        "论据类型判断错误",
+        "论证方法与说明方法混淆",
+        "作用不结合具体观点"
+      ],
+      "suggested_types": [
+        "辨析",
+        "分析",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第二单元《论教养》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K009",
+      "index": 9,
+      "domain": "思辨性阅读与表达",
+      "theme": "思辨表达",
+      "unit": "议论文",
+      "name": "议论文的结构与语言",
+      "objective": "能梳理「提出问题—分析问题—解决问题」的结构，体会议论文语言的严密性",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K008"
+      ],
+      "concept": "常见结构有总分式、并列式、递进式、对照式；语言严密性体现为限定词（「可能」「一般」「在一定条件下」）的恰当使用",
+      "common_mistakes": [
+        "结构层次划分混乱",
+        "严密性分析只答「准确」"
+      ],
+      "suggested_types": [
+        "梳理",
+        "分析",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第五单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K010",
+      "index": 10,
+      "domain": "语言文字积累与梳理",
+      "theme": "文言基础",
+      "unit": "文言实词",
+      "name": "文言实词：一词多义与词类活用",
+      "objective": "能结合语境推断实词含义，辨析名词作状语、使动用法、意动用法",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K009"
+      ],
+      "concept": "使动是「使……怎样」，意动是「认为……怎样/把……当作」，名词作状语表方式、工具、处所；判断须结合语境与句式",
+      "common_mistakes": [
+        "使动与意动混淆",
+        "名词作状语与名词作动词混淆",
+        "以今义解古义"
+      ],
+      "suggested_types": [
+        "解释",
+        "辨析",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第三单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K011",
+      "index": 11,
+      "domain": "语言文字积累与梳理",
+      "theme": "文言基础",
+      "unit": "文言虚词与句式",
+      "name": "文言虚词与特殊句式",
+      "objective": "能辨析「而」「之」「以」「于」的用法，识别倒装句与判断句",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K010"
+      ],
+      "concept": "九上文言以「记」体为主，句式多变：状语后置（「刻唐贤今人诗赋于其上」）、宾语前置、定语后置均需调序翻译",
+      "common_mistakes": [
+        "倒装句不调序",
+        "虚词多义辨析不准"
+      ],
+      "suggested_types": [
+        "辨析",
+        "翻译",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第三单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K012",
+      "index": 12,
+      "domain": "文学阅读与创意表达",
+      "theme": "文言文阅读",
+      "unit": "文言散文",
+      "name": "《岳阳楼记》的写景抒情与政治抱负",
+      "objective": "能分析《岳阳楼记》的写景层次、抒情变化与「先忧后乐」的思想",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K011"
+      ],
+      "concept": "文章以「谪」字起、以「忧乐」结：先叙重修，再分写「悲」「喜」两景两情，最后以「不以物喜，不以己悲」升华到「先天下之忧而忧」",
+      "common_mistakes": [
+        "写景层次与情感对应错",
+        "把「先忧后乐」简单理解为忠君"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第三单元《岳阳楼记》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K013",
+      "index": 13,
+      "domain": "文学阅读与创意表达",
+      "theme": "文言文阅读",
+      "unit": "文言散文",
+      "name": "《醉翁亭记》「乐」的多重内涵",
+      "objective": "能梳理文中「乐」的层次，理解「与民同乐」的政治理想",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K012"
+      ],
+      "concept": "全文以「乐」字贯穿：山水之乐、宴酣之乐、禽鸟之乐、游人之乐，最终归为太守之「与民同乐」；「醉」是表象，「乐」是内核",
+      "common_mistakes": [
+        "「乐」的层次划分不全",
+        "忽视「太守之乐其乐」的深意"
+      ],
+      "suggested_types": [
+        "梳理",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第三单元《醉翁亭记》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K014",
+      "index": 14,
+      "domain": "文学阅读与创意表达",
+      "theme": "文言文阅读",
+      "unit": "文言散文",
+      "name": "《湖心亭看雪》的白描与「痴」",
+      "objective": "能分析白描手法的表达效果，理解「痴」字蕴含的情感",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K011"
+      ],
+      "concept": "白描以简笔勾勒、不加渲染，「一痕」「一点」「一芥」「两三粒」以量词写意；「痴」既是痴迷雪景，也是孤高自赏与故国之思",
+      "common_mistakes": [
+        "把白描与细节描写混淆",
+        "「痴」仅理解为痴迷"
+      ],
+      "suggested_types": [
+        "赏析",
+        "分析",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第三单元《湖心亭看雪》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K015",
+      "index": 15,
+      "domain": "文学阅读与创意表达",
+      "theme": "诗歌阅读",
+      "unit": "古代诗词",
+      "name": "诗词三首的鉴赏",
+      "objective": "能鉴赏《行路难》《酬乐天扬州初逢席上见赠》《水调歌头》的意象、手法与情感",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-chinese-K022"
+      ],
+      "concept": "《行路难》以「冰塞川」「雪满山」象征仕途受阻，结于「长风破浪」的豪迈；《酬乐天》以「沉舟」「病树」寓新陈代序；《水调歌头》由问月到悟理，化悲为达",
+      "common_mistakes": [
+        "用典与象征混淆",
+        "情感基调判断偏差"
+      ],
+      "suggested_types": [
+        "鉴赏",
+        "赏析",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第三单元诗词三首",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K016",
+      "index": 16,
+      "domain": "文学阅读与创意表达",
+      "theme": "小说阅读",
+      "unit": "小说",
+      "name": "《故乡》的人物对比与主题",
+      "objective": "能分析闰土、杨二嫂的前后变化，理解「路」的象征意义",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K008"
+      ],
+      "concept": "少年闰土与中年闰土的对比揭示封建等级观念与生活重压对人的摧残；结尾「其实地上本没有路」以象征寄寓对未来的希望",
+      "common_mistakes": [
+        "对比分析只罗列现象",
+        "忽视「我」的中间人立场"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第四单元《故乡》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K017",
+      "index": 17,
+      "domain": "文学阅读与创意表达",
+      "theme": "小说阅读",
+      "unit": "小说",
+      "name": "《我的叔叔于勒》的叙事视角与讽刺",
+      "objective": "能分析儿童视角的叙事效果，理解金钱关系下的人性扭曲",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K016"
+      ],
+      "concept": "以「我」（若瑟夫）的儿童视角叙述，使成人世界的势利显得格外触目；「盼于勒—遇于勒—避于勒」的情节反转构成强烈讽刺",
+      "common_mistakes": [
+        "视角作用分析空洞",
+        "把讽刺对象仅归于菲利普夫妇个人"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第四单元《我的叔叔于勒》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K018",
+      "index": 18,
+      "domain": "文学阅读与创意表达",
+      "theme": "小说阅读",
+      "unit": "小说",
+      "name": "《孤独之旅》的成长主题",
+      "objective": "能分析环境描写对人物成长的烘托作用，理解「孤独」的意义",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K017"
+      ],
+      "concept": "暴风雨的描写推动杜小康完成心理蜕变；「孤独」由恐惧走向接纳，最终成为成长的养分，体现「在困境中成长」的主题",
+      "common_mistakes": [
+        "环境描写作用分析单一",
+        "成长过程梳理缺环节"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第四单元《孤独之旅》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K019",
+      "index": 19,
+      "domain": "文学阅读与创意表达",
+      "theme": "古典小说",
+      "unit": "章回小说",
+      "name": "《智取生辰纲》的情节与人物",
+      "objective": "能梳理「智取」的双方较量，分析吴用的「智」与杨志的「失」",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K004"
+      ],
+      "concept": "全文以「智」为核心：吴用「智用天时、地利、人和」，杨志「急功近利、不善带人」；双线并进、悬念迭起是章回小说的典型手法",
+      "common_mistakes": [
+        "情节梳理遗漏关键环节",
+        "人物分析单一化"
+      ],
+      "suggested_types": [
+        "梳理",
+        "分析",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第六单元《智取生辰纲》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K020",
+      "index": 20,
+      "domain": "文学阅读与创意表达",
+      "theme": "古典小说",
+      "unit": "讽刺小说",
+      "name": "《范进中举》的讽刺艺术",
+      "objective": "能分析对比、夸张与细节描写构成的讽刺效果",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K019"
+      ],
+      "concept": "以范进中举前后的境遇反差、胡屠户的前倨后恭、张乡绅的攀附构成多层对比；「拍手大笑」「一脚踹去」等细节以夸张显荒诞",
+      "common_mistakes": [
+        "讽刺手法罗列不分析",
+        "忽视科举制度这一批判对象"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第六单元《范进中举》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K021",
+      "index": 21,
+      "domain": "文学阅读与创意表达",
+      "theme": "古典小说",
+      "unit": "章回小说",
+      "name": "《三顾茅庐》的人物塑造",
+      "objective": "能分析层层铺垫、侧面烘托塑造诸葛亮形象的方法",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K004"
+      ],
+      "concept": "文章以刘备的诚、关张的疑、徐庶与司马徽的荐、隆中景物的清幽层层铺垫，诸葛亮出场即见其高；「未出茅庐而知天下三分」以言显才",
+      "common_mistakes": [
+        "铺垫与正面描写混淆",
+        "人物形象概括不全面"
+      ],
+      "suggested_types": [
+        "分析",
+        "简答",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第六单元《三顾茅庐》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K022",
+      "index": 22,
+      "domain": "文学阅读与创意表达",
+      "theme": "古典小说",
+      "unit": "章回小说",
+      "name": "《刘姥姥进大观园》的视角与世情",
+      "objective": "能分析乡下人视角的叙事功能，理解其中的世态人情",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K021"
+      ],
+      "concept": "以刘姥姥的「陌生化」视角呈现贾府的奢华，既有喜剧色彩又含悲悯；「笑」的场面分层描写各人身份性格，是世情小说的典范笔法",
+      "common_mistakes": [
+        "只当笑话读，忽视悲悯",
+        "笑的场面描写分析不到位"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第六单元《刘姥姥进大观园》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K023",
+      "index": 23,
+      "domain": "思辨性阅读与表达",
+      "theme": "思辨表达",
+      "unit": "批判性阅读",
+      "name": "议论性文章的批判性阅读",
+      "objective": "能对议论性文章的观点、论据、论证作出有理有据的评价",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K009"
+      ],
+      "concept": "批判性阅读三步：还原作者主张与前提→检验论据是否真实充分→检查推论是否跳跃；评价要「先立后破」，说明理由",
+      "common_mistakes": [
+        "为反驳而反驳",
+        "评价脱离文本论据"
+      ],
+      "suggested_types": [
+        "评价",
+        "简答",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·第五单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K024",
+      "index": 24,
+      "domain": "整本书阅读",
+      "theme": "名著导读",
+      "unit": "整本书阅读",
+      "name": "《艾青诗选》整本书阅读",
+      "objective": "能把握艾青诗歌的核心意象与情感演变，学会读诗的方法",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K005"
+      ],
+      "concept": "艾青诗歌以「土地」「太阳」为核心意象，前者寄忧郁与深爱，后者寄光明与希望；读诗要抓意象、品语言、知人论世",
+      "common_mistakes": [
+        "意象解读单一",
+        "忽视创作分期的风格变化"
+      ],
+      "suggested_types": [
+        "梳理",
+        "分析",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·名著导读",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K025",
+      "index": 25,
+      "domain": "整本书阅读",
+      "theme": "名著导读",
+      "unit": "整本书阅读",
+      "name": "《水浒传》整本书阅读",
+      "objective": "能梳理主要人物的经历与性格，理解「官逼民反」的主题",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K024"
+      ],
+      "concept": "《水浒传》为章回体长篇小说，以「链式结构」串联人物；阅读可采「人物卡片法」，从出身、遭遇、性格、结局四栏归纳",
+      "common_mistakes": [
+        "人物绰号与事迹错配",
+        "把「忠义」简单肯定或全盘否定"
+      ],
+      "suggested_types": [
+        "梳理",
+        "评价",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·名著导读",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K026",
+      "index": 26,
+      "domain": "跨学科学习",
+      "theme": "综合性学习",
+      "unit": "综合性学习",
+      "name": "综合性学习：君子自强不息",
+      "objective": "能围绕自强不息主题搜集古今事例，开展演讲与写作",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g8-s2-chinese-K025"
+      ],
+      "concept": "自强不息既是个人修养也是民族精神；探究要「以事证理、以理统事」，避免事例堆砌与口号化表达",
+      "common_mistakes": [
+        "事例与观点脱节",
+        "表达口号化"
+      ],
+      "suggested_types": [
+        "项目",
+        "设计",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·综合性学习",
+      "engine_hint": "llm"
+    }
+  ]
 }

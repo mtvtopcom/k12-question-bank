@@ -1,12 +1,674 @@
 {
   "volume_id": "junior-g7-s1-math",
-  "title": "g7数学上册",
+  "title": "七年级上册数学",
   "stage": "junior",
   "grade": "g7",
   "term": "s1",
   "subject": "math",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版七年级上册共有内容；2022版数学课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g7-s1-math-K001",
+      "index": 1,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "有理数",
+      "name": "有理数的意义与分类",
+      "objective": "理解有理数的意义，能按不同标准分类",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g6-s2-math-K001"
+      ],
+      "concept": "整数和分数统称有理数；有理数可按正负分类，也可按整数分数分类",
+      "common_mistakes": [
+        "把0既当正数又当负数",
+        "分类标准交叉"
+      ],
+      "suggested_types": [
+        "理解",
+        "分类",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第一章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-math-K002",
+      "index": 2,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "有理数",
+      "name": "数轴",
+      "objective": "理解数轴三要素，能用数轴表示有理数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-math-K001"
+      ],
+      "concept": "数轴包含原点、正方向、单位长度三要素；数轴上右边的数总比左边的大",
+      "common_mistakes": [
+        "数轴三要素缺失",
+        "单位长度不统一"
+      ],
+      "suggested_types": [
+        "作图",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第一章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-math-K003",
+      "index": 3,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "有理数",
+      "name": "相反数与绝对值",
+      "objective": "理解相反数和绝对值的意义，会求绝对值",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-math-K002"
+      ],
+      "concept": "只有符号不同的两个数互为相反数；绝对值是数轴上表示该数的点到原点的距离",
+      "common_mistakes": [
+        "认为绝对值一定等于原数",
+        "忽略绝对值的非负性"
+      ],
+      "suggested_types": [
+        "计算",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第一章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-math-K004",
+      "index": 4,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "有理数",
+      "name": "有理数的加减法",
+      "objective": "掌握有理数加减法法则并能熟练计算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K003"
+      ],
+      "concept": "同号相加取相同符号并把绝对值相加；异号相加取绝对值大的符号并用大绝对值减小绝对值；减去一个数等于加上它的相反数",
+      "common_mistakes": [
+        "异号相加符号判断错",
+        "减法忘记转化为加法"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第一章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-math-K005",
+      "index": 5,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "有理数",
+      "name": "有理数的乘除法",
+      "objective": "掌握有理数乘除法法则并能熟练计算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K004"
+      ],
+      "concept": "两数相乘同号得正、异号得负，并把绝对值相乘；除以一个数等于乘它的倒数",
+      "common_mistakes": [
+        "符号法则判断错",
+        "0不能作除数被忽略"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第一章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-math-K006",
+      "index": 6,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "有理数",
+      "name": "有理数的乘方与混合运算",
+      "objective": "掌握乘方意义并正确进行有理数混合运算",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K005"
+      ],
+      "concept": "求n个相同因数的积的运算叫乘方；混合运算顺序：先乘方，再乘除，最后加减",
+      "common_mistakes": [
+        "负数的偶次幂符号错",
+        "运算顺序颠倒"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第一章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-math-K007",
+      "index": 7,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "有理数",
+      "name": "科学记数法与近似数",
+      "objective": "会用科学记数法表示较大的数并求近似数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K006"
+      ],
+      "concept": "科学记数法形式为 a×10ⁿ，其中1≤|a|<10；近似数要按精确度取舍",
+      "common_mistakes": [
+        "a 的范围不符合要求",
+        "精确度判断错误"
+      ],
+      "suggested_types": [
+        "表示",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第一章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-math-K008",
+      "index": 8,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "整式的加减",
+      "name": "代数式与用字母表示数",
+      "objective": "理解代数式的意义，能列代数式表示数量关系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "用运算符号把数和表示数的字母连接起来的式子叫代数式；字母可表示任意数",
+      "common_mistakes": [
+        "书写规范错误（如 a×3 写成 a3）",
+        "列式与题意不符"
+      ],
+      "suggested_types": [
+        "列式",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第二章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-math-K009",
+      "index": 9,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "整式的加减",
+      "name": "单项式与多项式",
+      "objective": "理解单项式、多项式的概念及次数、项数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-math-K008"
+      ],
+      "concept": "单项式是数与字母的积，单项式的次数是所有字母指数之和；几个单项式的和叫多项式",
+      "common_mistakes": [
+        "系数与次数混淆",
+        "多项式次数取错"
+      ],
+      "suggested_types": [
+        "识别",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第二章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-math-K010",
+      "index": 10,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "整式的加减",
+      "name": "同类项与合并同类项",
+      "objective": "能识别同类项并正确合并",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K009"
+      ],
+      "concept": "所含字母相同且相同字母的指数也相同的项是同类项；合并时系数相加、字母部分不变",
+      "common_mistakes": [
+        "把字母相同但指数不同的项当同类项",
+        "合并时字母部分也相加"
+      ],
+      "suggested_types": [
+        "计算",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第二章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-math-K011",
+      "index": 11,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "整式的加减",
+      "name": "去括号与添括号",
+      "objective": "掌握去括号法则并能正确化简",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K010"
+      ],
+      "concept": "括号前是正号，去括号后各项符号不变；括号前是负号，去括号后各项都变号",
+      "common_mistakes": [
+        "括号前是负号时只变第一项符号",
+        "漏乘括号内每一项"
+      ],
+      "suggested_types": [
+        "计算",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第二章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-math-K012",
+      "index": 12,
+      "domain": "数与代数",
+      "theme": "数与式",
+      "unit": "整式的加减",
+      "name": "整式的加减运算",
+      "objective": "能进行整式的加减运算并化简求值",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K011"
+      ],
+      "concept": "整式加减的实质是去括号、合并同类项",
+      "common_mistakes": [
+        "去括号符号错",
+        "合并同类项出错"
+      ],
+      "suggested_types": [
+        "计算",
+        "化简求值",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第二章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-math-K013",
+      "index": 13,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "一元一次方程",
+      "name": "一元一次方程的概念",
+      "objective": "理解一元一次方程的意义，会判断是否为一元一次方程",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-math-K012"
+      ],
+      "concept": "只含一个未知数、未知数次数为1、等号两边都是整式的方程叫一元一次方程",
+      "common_mistakes": [
+        "分母含未知数也误判为一元一次",
+        "未知数次数判断错"
+      ],
+      "suggested_types": [
+        "判断",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第三章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-math-K014",
+      "index": 14,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "一元一次方程",
+      "name": "等式的性质",
+      "objective": "掌握等式的基本性质并能运用",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-math-K013"
+      ],
+      "concept": "等式两边同时加、减、乘同一个数或除以同一个不为0的数，等式仍成立",
+      "common_mistakes": [
+        "忽略除数不能为0",
+        "两边运算不一致"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第三章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-math-K015",
+      "index": 15,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "一元一次方程",
+      "name": "解一元一次方程：移项与合并",
+      "objective": "能通过移项、合并解简单一元一次方程",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K014"
+      ],
+      "concept": "移项要变号；合并同类项把方程化为 ax=b 的形式",
+      "common_mistakes": [
+        "移项不变号",
+        "合并同类项出错"
+      ],
+      "suggested_types": [
+        "解方程",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第三章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-math-K016",
+      "index": 16,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "一元一次方程",
+      "name": "解一元一次方程：去括号与去分母",
+      "objective": "能解含括号和分母的一元一次方程",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K015"
+      ],
+      "concept": "去分母要在方程两边同乘各分母的最小公倍数，每一项都要乘，不要漏乘不含分母的项",
+      "common_mistakes": [
+        "去分母漏乘不含分母的项",
+        "去括号符号错"
+      ],
+      "suggested_types": [
+        "解方程",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第三章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-math-K017",
+      "index": 17,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "一元一次方程",
+      "name": "一元一次方程的应用：行程与工程",
+      "objective": "能用一元一次方程解决行程和工程问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K016"
+      ],
+      "concept": "行程问题基本关系：路程=速度×时间；工程问题常把工作总量设为1",
+      "common_mistakes": [
+        "等量关系找错",
+        "单位不统一"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第三章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-math-K018",
+      "index": 18,
+      "domain": "数与代数",
+      "theme": "方程与不等式",
+      "unit": "一元一次方程",
+      "name": "一元一次方程的应用：销售与配套",
+      "objective": "能用一元一次方程解决销售和配套问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K017"
+      ],
+      "concept": "销售问题：利润=售价-进价，利润率=利润÷进价；配套问题要抓住数量配比关系",
+      "common_mistakes": [
+        "利润与利润率混淆",
+        "配套比例用反"
+      ],
+      "suggested_types": [
+        "应用",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第三章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-math-K019",
+      "index": 19,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "几何图形初步",
+      "name": "立体图形与平面图形",
+      "objective": "认识常见立体图形和平面图形，理解展开图",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "立体图形可展开成平面图形；常见立体图形有棱柱、棱锥、圆柱、圆锥、球",
+      "common_mistakes": [
+        "展开图与立体图形对应错误",
+        "棱柱棱锥混淆"
+      ],
+      "suggested_types": [
+        "识别",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第四章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-math-K020",
+      "index": 20,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "几何图形初步",
+      "name": "直线、射线、线段",
+      "objective": "掌握直线、射线、线段的性质与表示方法",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g7-s1-math-K019"
+      ],
+      "concept": "两点确定一条直线；两点之间线段最短；线段可度量，直线射线不可度量",
+      "common_mistakes": [
+        "端点个数记错",
+        "两点之间线段最短记成直线"
+      ],
+      "suggested_types": [
+        "理解",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第四章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-math-K021",
+      "index": 21,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "几何图形初步",
+      "name": "角的度量与比较",
+      "objective": "掌握角的度量单位换算和大小比较",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K020"
+      ],
+      "concept": "1度=60分，1分=60秒；角的大小与边的长短无关",
+      "common_mistakes": [
+        "度分秒换算按十进制计算",
+        "认为边越长角越大"
+      ],
+      "suggested_types": [
+        "计算",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第四章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g7-s1-math-K022",
+      "index": 22,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "几何图形初步",
+      "name": "余角与补角",
+      "objective": "理解余角、补角的概念及性质",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-math-K021"
+      ],
+      "concept": "两角之和为90°互为余角，之和为180°互为补角；同角或等角的余角相等、补角相等",
+      "common_mistakes": [
+        "余角补角定义混淆",
+        "性质条件遗漏"
+      ],
+      "suggested_types": [
+        "计算",
+        "推理",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第四章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g7-s1-math-K023",
+      "index": 23,
+      "domain": "统计与概率",
+      "theme": "抽样与数据分析",
+      "unit": "数据的收集与整理",
+      "name": "数据的收集与整理",
+      "objective": "了解数据收集的方法并能整理数据",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "收集数据常用调查、试验、查阅资料等方法；整理数据可用表格、统计图",
+      "common_mistakes": [
+        "调查方法选择不当",
+        "数据整理遗漏"
+      ],
+      "suggested_types": [
+        "理解",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g7"
+      ],
+      "source": "人教七上·第五章",
+      "engine_hint": "llm"
+    }
+  ]
 }

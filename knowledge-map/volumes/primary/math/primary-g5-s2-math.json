@@ -1,12 +1,591 @@
 {
   "volume_id": "primary-g5-s2-math",
-  "title": "g5数学下册",
+  "title": "五年级下册数学",
   "stage": "primary",
   "grade": "g5",
   "term": "s2",
   "subject": "math",
   "school_stage": "S3",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版五年级下册共有内容；2022版数学课标第三学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g5-s2-math-K001",
+      "index": 1,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "观察物体（三）",
+      "name": "根据视图还原立体图形",
+      "objective": "能根据从三个方向看到的图形还原立体图形",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s2-math-K005"
+      ],
+      "concept": "综合从前面、上面、左面看到的图形，才能唯一确定小正方体的摆放方式",
+      "common_mistakes": [
+        "只用一两个视图就下结论",
+        "小正方体个数判断错误"
+      ],
+      "suggested_types": [
+        "分析",
+        "操作",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·观察物体（三）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-math-K002",
+      "index": 2,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "因数与倍数",
+      "name": "因数和倍数的意义",
+      "objective": "理解因数和倍数相互依存的关系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s2-math-K002"
+      ],
+      "concept": "在a×b=c中，a和b是c的因数，c是a和b的倍数；因数和倍数不能单独存在",
+      "common_mistakes": [
+        "单独说某个数是因数",
+        "因数与倍数概念混淆"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·因数与倍数",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-math-K003",
+      "index": 3,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "因数与倍数",
+      "name": "找一个数的因数和倍数",
+      "objective": "能有序列出一个数的因数和倍数",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-math-K002"
+      ],
+      "concept": "因数成对找，最小是1、最大是它本身；倍数从它本身开始，有无限多个",
+      "common_mistakes": [
+        "因数遗漏",
+        "忘记倍数有无限个"
+      ],
+      "suggested_types": [
+        "列举",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·因数与倍数",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-math-K004",
+      "index": 4,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "因数与倍数",
+      "name": "2、5、3的倍数特征",
+      "objective": "掌握2、5、3的倍数特征并能判断",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g5-s2-math-K003"
+      ],
+      "concept": "2和5的倍数看个位；3的倍数看各位数字之和是否为3的倍数",
+      "common_mistakes": [
+        "判断3的倍数时只看个位",
+        "特征记混"
+      ],
+      "suggested_types": [
+        "判断",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·因数与倍数",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-math-K005",
+      "index": 5,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "因数与倍数",
+      "name": "奇数和偶数",
+      "objective": "理解奇偶数的意义并能判断",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-math-K004"
+      ],
+      "concept": "是2的倍数的数叫偶数（0也是偶数），不是2的倍数的数叫奇数",
+      "common_mistakes": [
+        "0的奇偶性判断错误",
+        "把奇数与质数混淆"
+      ],
+      "suggested_types": [
+        "判断",
+        "分类",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·因数与倍数",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-math-K006",
+      "index": 6,
+      "domain": "数与代数",
+      "theme": "数量关系",
+      "unit": "因数与倍数",
+      "name": "质数与合数",
+      "objective": "理解质数与合数的意义并能判断",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-math-K003"
+      ],
+      "concept": "只有1和它本身两个因数的数是质数；除了1和本身还有其他因数的是合数；1既不是质数也不是合数",
+      "common_mistakes": [
+        "把1当成质数",
+        "把质数与奇数混为一谈"
+      ],
+      "suggested_types": [
+        "判断",
+        "分类",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·因数与倍数",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-math-K007",
+      "index": 7,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "长方体和正方体",
+      "name": "长方体和正方体的特征",
+      "objective": "掌握长方体和正方体的特征",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s1-math-K016"
+      ],
+      "concept": "长方体有6个面、12条棱、8个顶点，相对的面完全相同；正方体是特殊的长方体",
+      "common_mistakes": [
+        "棱的条数数错",
+        "不认为正方体是长方体"
+      ],
+      "suggested_types": [
+        "识别",
+        "描述",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·长方体和正方体",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-math-K008",
+      "index": 8,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "长方体和正方体",
+      "name": "长方体和正方体的表面积",
+      "objective": "会计算长方体和正方体的表面积",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-math-K007"
+      ],
+      "concept": "表面积是6个面的面积之和；长方体表面积=(长×宽+长×高+宽×高)×2",
+      "common_mistakes": [
+        "多算或少算面",
+        "表面积单位写错"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·长方体和正方体",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-math-K009",
+      "index": 9,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "长方体和正方体",
+      "name": "长方体和正方体的体积",
+      "objective": "会计算长方体和正方体的体积",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-math-K007"
+      ],
+      "concept": "长方体体积=长×宽×高=底面积×高；正方体体积=棱长×棱长×棱长",
+      "common_mistakes": [
+        "体积与表面积混淆",
+        "体积单位写错"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·长方体和正方体",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-math-K010",
+      "index": 10,
+      "domain": "图形与几何",
+      "theme": "图形的认识与测量",
+      "unit": "长方体和正方体",
+      "name": "体积单位与容积",
+      "objective": "认识体积单位与容积单位，掌握其换算",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-math-K009"
+      ],
+      "concept": "1立方米=1000立方分米，1立方分米=1000立方厘米；1升=1立方分米，1毫升=1立方厘米",
+      "common_mistakes": [
+        "体积与容积概念混淆",
+        "单位进率记错"
+      ],
+      "suggested_types": [
+        "换算",
+        "识别",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·长方体和正方体",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-math-K011",
+      "index": 11,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数的意义和性质",
+      "name": "分数的意义与单位1",
+      "objective": "理解分数的意义，能正确找出单位1",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-math-K019"
+      ],
+      "concept": "把单位1平均分成若干份，表示这样一份或几份的数叫分数；单位1可以是一个物体，也可以是一个整体",
+      "common_mistakes": [
+        "单位1找错",
+        "对分数意义的理解片面"
+      ],
+      "suggested_types": [
+        "理解",
+        "识别",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·分数的意义和性质",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-math-K012",
+      "index": 12,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数的意义和性质",
+      "name": "分数与除法的关系",
+      "objective": "理解分数与除法的关系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-math-K011"
+      ],
+      "concept": "a÷b=a/b（b≠0）；被除数相当于分子，除数相当于分母",
+      "common_mistakes": [
+        "忽略分母不能为0",
+        "除法与分数转换错误"
+      ],
+      "suggested_types": [
+        "理解",
+        "转换",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·分数的意义和性质",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-math-K013",
+      "index": 13,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数的意义和性质",
+      "name": "真分数与假分数",
+      "objective": "能区分真分数、假分数和带分数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-math-K012"
+      ],
+      "concept": "分子小于分母的是真分数（小于1）；分子大于或等于分母的是假分数（大于或等于1）",
+      "common_mistakes": [
+        "假分数与带分数混淆",
+        "认为假分数一定大于1"
+      ],
+      "suggested_types": [
+        "识别",
+        "分类",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·分数的意义和性质",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-math-K014",
+      "index": 14,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数的意义和性质",
+      "name": "分数的基本性质",
+      "objective": "掌握分数的基本性质",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g5-s2-math-K013"
+      ],
+      "concept": "分数的分子和分母同时乘或除以相同的数（0除外），分数的大小不变",
+      "common_mistakes": [
+        "只改变分子或只改变分母",
+        "0除外条件被忽略"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·分数的意义和性质",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-math-K015",
+      "index": 15,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数的意义和性质",
+      "name": "约分与通分",
+      "objective": "能正确进行约分和通分",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-math-K014"
+      ],
+      "concept": "约分用分子分母的最大公因数去除；通分用分母的最小公倍数作公分母",
+      "common_mistakes": [
+        "约分不彻底",
+        "公分母不是最小公倍数"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·分数的意义和性质",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-math-K016",
+      "index": 16,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数的意义和性质",
+      "name": "分数与小数的互化",
+      "objective": "能进行分数与小数的互化",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-math-K015"
+      ],
+      "concept": "分数化小数用分子除以分母；小数化分数看小数位数写成分母是10、100、1000的分数再约分",
+      "common_mistakes": [
+        "循环小数化分数出错",
+        "互化后忘记约分"
+      ],
+      "suggested_types": [
+        "转换",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·分数的意义和性质",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-math-K017",
+      "index": 17,
+      "domain": "图形与几何",
+      "theme": "图形的位置与运动",
+      "unit": "图形的运动（三）",
+      "name": "图形的旋转",
+      "objective": "理解旋转的三要素，能在方格纸上画出旋转后的图形",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s2-math-K018"
+      ],
+      "concept": "旋转三要素：旋转中心、旋转方向（顺/逆时针）、旋转角度；旋转后形状大小不变",
+      "common_mistakes": [
+        "旋转方向判断错误",
+        "旋转角度出错"
+      ],
+      "suggested_types": [
+        "操作",
+        "画图",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·图形的运动（三）",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-math-K018",
+      "index": 18,
+      "domain": "数与代数",
+      "theme": "数与运算",
+      "unit": "分数的加法和减法",
+      "name": "异分母分数加减法",
+      "objective": "能计算异分母分数的加减法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g5-s2-math-K015"
+      ],
+      "concept": "先通分变成同分母分数再加减，结果能约分的要约成最简分数",
+      "common_mistakes": [
+        "分子分母分别相加",
+        "结果忘记约分"
+      ],
+      "suggested_types": [
+        "计算",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·分数的加法和减法",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g5-s2-math-K019",
+      "index": 19,
+      "domain": "统计与概率",
+      "theme": "数据的收集、整理与表达",
+      "unit": "折线统计图",
+      "name": "折线统计图的认识与分析",
+      "objective": "认识折线统计图，能分析数据的变化趋势",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s1-math-K019"
+      ],
+      "concept": "折线统计图不但能表示数量多少，还能反映数量的增减变化趋势",
+      "common_mistakes": [
+        "趋势判断错误",
+        "把折线统计图当条形统计图读"
+      ],
+      "suggested_types": [
+        "读图",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·折线统计图",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g5-s2-math-K020",
+      "index": 20,
+      "domain": "综合与实践",
+      "theme": "主题式学习",
+      "unit": "数学广角—找次品",
+      "name": "找次品的最优策略",
+      "objective": "能用天平找出次品并使称量次数最少",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [],
+      "concept": "把待测物品尽量平均分成3份，能保证用最少的次数找出次品",
+      "common_mistakes": [
+        "分组不平均",
+        "称量次数不是最优"
+      ],
+      "suggested_types": [
+        "分析",
+        "推理",
+        "选择"
+      ],
+      "grade_range": [
+        "g5"
+      ],
+      "source": "人教五下·数学广角—找次品",
+      "engine_hint": "llm"
+    }
+  ]
 }

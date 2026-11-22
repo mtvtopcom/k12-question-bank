@@ -1,12 +1,471 @@
 {
   "volume_id": "primary-g4-s2-english",
-  "title": "g4英语下册",
+  "title": "四年级下册英语",
   "stage": "primary",
   "grade": "g4",
   "term": "s2",
   "subject": "english",
   "school_stage": "S2",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版PEP（2024审定）/外研版/译林版四年级下册共有内容；2022版英语课标第二学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g4-s2-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "自然拼读",
+      "name": "字母组合发音规律",
+      "objective": "能掌握常见字母组合的发音规律",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s1-english-K001"
+      ],
+      "concept": "常见组合如 ar、or、er、ir、ur 的发音规律，有助于拼读和拼写",
+      "common_mistakes": [
+        "组合发音混淆",
+        "规律套用错误"
+      ],
+      "suggested_types": [
+        "听辨",
+        "拼读",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Phonics",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "天气季节",
+      "name": "天气与季节词",
+      "objective": "能认读天气和季节相关词汇",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g2-s2-english-K008"
+      ],
+      "concept": "天气词多由名词加 -y 构成，季节词常与天气、活动搭配",
+      "common_mistakes": [
+        "拼写错误",
+        "天气与季节混淆"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Unit 3",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "现在进行时",
+      "name": "现在进行时的构成与用法",
+      "objective": "能正确使用现在进行时描述正在发生的动作",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-english-K011"
+      ],
+      "concept": "现在进行时构成：be（am/is/are）+ 动词-ing，表示此刻正在进行",
+      "common_mistakes": [
+        "漏掉 be 动词",
+        "动词 -ing 形式错误"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "时态对比",
+      "name": "现在进行时与一般现在时的对比",
+      "objective": "能区分并正确使用两种时态",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s2-english-K003"
+      ],
+      "concept": "现在进行时强调此刻正在做，一般现在时表示习惯性或经常性动作",
+      "common_mistakes": [
+        "时态混用",
+        "时间状语与时不匹配"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "判断"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "农场",
+      "name": "农场动物与蔬菜词",
+      "objective": "能认读农场动物和蔬菜单词",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "农场词汇常与 There be、These are 等句型结合",
+      "common_mistakes": [
+        "动物与蔬菜混淆",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "分类",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Unit 4",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-english-K006",
+      "index": 6,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "名词复数",
+      "name": "名词复数的规则变化",
+      "objective": "能正确构成名词的规则复数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-english-K007"
+      ],
+      "concept": "一般加 -s；以 s、x、ch、sh 结尾加 -es；辅音字母加 y 结尾变 y 为 i 加 -es",
+      "common_mistakes": [
+        "规则混淆",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "名词复数",
+      "name": "名词复数的不规则变化",
+      "objective": "能掌握常见名词的不规则复数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s2-english-K006"
+      ],
+      "concept": "如 man→men、child→children、foot→feet、sheep→sheep",
+      "common_mistakes": [
+        "按规则变化",
+        "单复数同形未识别"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "改错"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-english-K008",
+      "index": 8,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "购物",
+      "name": "购物与价格对话",
+      "objective": "能就购物和价格进行交流",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-english-K009"
+      ],
+      "concept": "购物对话要能问价、还价、表达购买意愿，注意礼貌用语",
+      "common_mistakes": [
+        "问价句式错误",
+        "数字表达错误"
+      ],
+      "suggested_types": [
+        "对话",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "服装",
+      "name": "服装词与穿着表达",
+      "objective": "能认读服装词并描述穿着",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g2-s2-english-K010"
+      ],
+      "concept": "描述穿着常用 be wearing 结构，注意服装名词的单复数",
+      "common_mistakes": [
+        "服装单复数错误",
+        "穿着描述动词形式错"
+      ],
+      "suggested_types": [
+        "认读",
+        "描述",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Unit 5",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s2-english-K010",
+      "index": 10,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "物主代词",
+      "name": "物主代词 my、your、his、her",
+      "objective": "能正确使用形容词性物主代词",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "形容词性物主代词后面必须接名词，如 my book、her pen",
+      "common_mistakes": [
+        "物主代词与名词数不一致",
+        "his 与 her 混用"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "判断"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-english-K011",
+      "index": 11,
+      "domain": "语言技能",
+      "theme": "读",
+      "unit": "阅读",
+      "name": "短文与图表阅读",
+      "objective": "能读懂短文和简单图表并提取信息",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s1-english-K011"
+      ],
+      "concept": "图表阅读要注意标题、单位、图例，短文阅读要抓关键句",
+      "common_mistakes": [
+        "忽略图表单位",
+        "信息整合错误"
+      ],
+      "suggested_types": [
+        "阅读",
+        "提取",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-english-K012",
+      "index": 12,
+      "domain": "语言技能",
+      "theme": "写",
+      "unit": "书写",
+      "name": "写几句话描述事物",
+      "objective": "能写几句连贯的话描述人或物",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s1-english-K012"
+      ],
+      "concept": "写话要注意句子完整、时态一致、拼写正确、书写规范",
+      "common_mistakes": [
+        "句子不完整",
+        "时态不一致"
+      ],
+      "suggested_types": [
+        "书写",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Writing",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-english-K013",
+      "index": 13,
+      "domain": "文化知识",
+      "theme": "文化",
+      "unit": "节日对比",
+      "name": "中外节日对比",
+      "objective": "能比较中外节日的异同",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-english-K014"
+      ],
+      "concept": "中外节日在由来、习俗、庆祝方式上既有差异也有相似之处",
+      "common_mistakes": [
+        "简单罗列不作比较",
+        "习俗对应错误"
+      ],
+      "suggested_types": [
+        "比较",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Culture",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-english-K014",
+      "index": 14,
+      "domain": "学习策略",
+      "theme": "策略",
+      "unit": "思维导图",
+      "name": "学习策略：用思维导图记词",
+      "objective": "能用思维导图归类记忆词汇",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [],
+      "concept": "按主题、词性、构词方式归类，形成词汇网络，提高记忆效率",
+      "common_mistakes": [
+        "分类标准混乱",
+        "只记单词不用"
+      ],
+      "suggested_types": [
+        "实践",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·学习策略",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-english-K015",
+      "index": 15,
+      "domain": "语篇",
+      "theme": "语篇",
+      "unit": "语篇",
+      "name": "故事类语篇的阅读",
+      "objective": "能读懂简单故事并理清情节",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s1-english-K015"
+      ],
+      "concept": "故事阅读要抓住人物、起因、经过、结果，注意时态多为一般过去时",
+      "common_mistakes": [
+        "情节顺序混乱",
+        "时态理解错误"
+      ],
+      "suggested_types": [
+        "阅读",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Reading",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s2-english-K016",
+      "index": 16,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "综合表达",
+      "name": "描述天气与活动",
+      "objective": "能结合天气描述相应的活动",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s2-english-K002"
+      ],
+      "concept": "描述天气与活动要注意时态和搭配，如 It's sunny. Let's go swimming.",
+      "common_mistakes": [
+        "天气与活动不匹配",
+        "时态错误"
+      ],
+      "suggested_types": [
+        "表达",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "人教PEP四下·Review",
+      "engine_hint": "llm"
+    }
+  ]
 }

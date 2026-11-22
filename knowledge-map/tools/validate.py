@@ -22,6 +22,17 @@ REQUIRED_KP_FIELDS = [
 ]
 BLOOMS = {"记忆", "理解", "应用", "分析", "评价", "创造"}
 
+# 难度锚点：1基础识记 / 2理解应用 / 3分析综合 / 4挑战探究
+# 难度描述的是认知负荷，不是年级高低，故须与 bloom 保持一致
+DIFFICULTY_BAND = {
+    "记忆": (1, 2),
+    "理解": (1, 3),
+    "应用": (2, 3),
+    "分析": (3, 4),
+    "评价": (3, 4),
+    "创造": (3, 4),
+}
+
 
 def load(path):
     with open(path, "r", encoding="utf-8") as f:
@@ -88,6 +99,13 @@ def validate_volume(fp, std, all_ids):
             errors.append(f"{tag}: bloom「{kp['bloom']}」非法")
         if kp.get("difficulty") not in (1, 2, 3, 4):
             errors.append(f"{tag}: difficulty 必须是1-4，实际 {kp.get('difficulty')}")
+        elif kp.get("bloom") in DIFFICULTY_BAND:
+            lo, hi = DIFFICULTY_BAND[kp["bloom"]]
+            if not lo <= kp["difficulty"] <= hi:
+                errors.append(
+                    f"{tag}: difficulty={kp['difficulty']} 与认知层级「{kp['bloom']}」不匹配"
+                    f"（应取 {lo}-{hi}）"
+                )
         kid = kp.get("id", "")
         if kid in seen_local:
             errors.append(f"{tag}: 册内ID重复 {kid}")

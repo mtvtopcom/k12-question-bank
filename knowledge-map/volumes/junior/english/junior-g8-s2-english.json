@@ -1,12 +1,594 @@
 {
   "volume_id": "junior-g8-s2-english",
-  "title": "g8英语下册",
+  "title": "八年级下册英语",
   "stage": "junior",
   "grade": "g8",
   "term": "s2",
   "subject": "english",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）八年级下册/外研版/译林版共有内容；2022版英语课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g8-s2-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "语音",
+      "name": "语调与情感表达",
+      "objective": "能通过语调、重音与语速的变化表达不同情感与态度",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-english-K001"
+      ],
+      "concept": "语调承载态度：降调表确定、升调表疑问或委婉、降升调表保留或礼貌异议",
+      "common_mistakes": [
+        "语调单一无法传达态度",
+        "重音位置与情感重点不符"
+      ],
+      "suggested_types": [
+        "朗读",
+        "听辨",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·语音",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "身体、健康与急救话题词汇",
+      "objective": "能运用身体部位、疾病症状与急救建议相关词汇",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g8-s1-english-K002"
+      ],
+      "concept": "健康话题有三类词：症状（headache、fever）、原因（hurt、fall down）、建议（lie down、see a doctor）",
+      "common_mistakes": [
+        "症状表达搭配错误（have a fever）",
+        "建议动词短语不完整"
+      ],
+      "suggested_types": [
+        "运用",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 1",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-english-K003",
+      "index": 3,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "志愿服务与家务劳动词汇",
+      "objective": "能运用志愿服务、家务与责任相关词汇表达行动",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g8-s2-english-K002"
+      ],
+      "concept": "志愿类词汇多为动词短语（clean up、cheer up、give out），需整体记忆并注意宾语位置",
+      "common_mistakes": [
+        "短语动词宾语位置错误",
+        "搭配介词错误"
+      ],
+      "suggested_types": [
+        "运用",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 2—3",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "词汇",
+      "name": "天气与突发事件词汇",
+      "objective": "能运用天气现象与突发事件的词汇叙述经历",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g8-s2-english-K003"
+      ],
+      "concept": "突发事件叙述常用过去进行时表背景、一般过去时表突发动作",
+      "common_mistakes": [
+        "天气词与事件词混用",
+        "时态搭配不当"
+      ],
+      "suggested_types": [
+        "运用",
+        "叙述",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 5",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "情态动词",
+      "name": "should、could 表建议",
+      "objective": "能用 should/could/had better 等提出建议并说明理由",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-english-K004"
+      ],
+      "concept": "should 表「应该」，语气较强；could 表委婉建议；had better 含告诫意味，否定为 had better not",
+      "common_mistakes": [
+        "should 后接 to do",
+        "had better 否定形式错误"
+      ],
+      "suggested_types": [
+        "填空",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K006",
+      "index": 6,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "代词",
+      "name": "反身代词的用法",
+      "objective": "能正确使用 myself/yourself 等反身代词",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s1-english-K007"
+      ],
+      "concept": "反身代词用于宾语与主语同指、固定搭配（enjoy oneself、by oneself、help oneself）及强调",
+      "common_mistakes": [
+        "反身代词与宾格混用",
+        "固定搭配中漏用反身代词"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 1",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "过去进行时",
+      "name": "过去进行时的构成与用法",
+      "objective": "能用 was/were + doing 表示过去某时正在发生的动作",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g7-s2-english-K006"
+      ],
+      "concept": "结构为 was/were + 动词 -ing；常与 at that time、at eight last night、when/while 从句连用",
+      "common_mistakes": [
+        "was/were 选择错误",
+        "与一般过去时混用"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K008",
+      "index": 8,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "状语从句",
+      "name": "when 与 while 引导的时间状语从句",
+      "objective": "能区分 when 与 while 引导时间状语从句的用法",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-english-K007"
+      ],
+      "concept": "when 可接短暂动作或持续动作，从句动词可用一般过去时；while 强调持续性，从句常用过去进行时",
+      "common_mistakes": [
+        "while 从句用短暂动词",
+        "主从句时态搭配错误"
+      ],
+      "suggested_types": [
+        "辨析",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "句型",
+      "name": "提出建议的多种句式",
+      "objective": "能运用 Why don't you...?/What/How about...?/Would you mind...? 等提出建议",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s2-english-K005"
+      ],
+      "concept": "不同句式后接形式不同：Why don't you + 动词原形；How about + 名词/doing；Would you mind + doing",
+      "common_mistakes": [
+        "about 后接动词原形",
+        "mind 后接 to do"
+      ],
+      "suggested_types": [
+        "改写",
+        "填空",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K010",
+      "index": 10,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "短语动词",
+      "name": "短语动词的类型与宾语位置",
+      "objective": "能辨析及物、不及物与可分的短语动词并正确安排宾语",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-english-K003"
+      ],
+      "concept": "短语动词分三类：动词+介词（不及物）、动词+副词（及物，代词宾语须置中间）、动词+副词+介词（及物）",
+      "common_mistakes": [
+        "代词宾语位置错误（pick up it）",
+        "介词与副词混淆"
+      ],
+      "suggested_types": [
+        "填空",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 2",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K011",
+      "index": 11,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "时态辨析",
+      "name": "一般过去时与过去进行时的区别",
+      "objective": "能区分两种过去时态在叙事中的不同功能",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-english-K008"
+      ],
+      "concept": "过去进行时提供背景与持续动作，一般过去时推进情节、表示突发动作，二者常配合使用",
+      "common_mistakes": [
+        "背景与事件时态颠倒",
+        "同一动作两处时态不一致"
+      ],
+      "suggested_types": [
+        "辨析",
+        "填空",
+        "写作"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 5",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K012",
+      "index": 12,
+      "domain": "语篇",
+      "theme": "语篇类型",
+      "unit": "语篇",
+      "name": "问题求助与建议类语篇",
+      "objective": "能读懂求助信并提取问题、分析建议的针对性",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-english-K013"
+      ],
+      "concept": "求助信结构为「陈述问题—说明困扰—请求建议」；建议信结构为「共情—分析—建议—鼓励」",
+      "common_mistakes": [
+        "问题与建议对应错位",
+        "忽视建议的理由"
+      ],
+      "suggested_types": [
+        "阅读",
+        "分析",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K013",
+      "index": 13,
+      "domain": "语篇",
+      "theme": "语篇类型",
+      "unit": "语篇",
+      "name": "民间故事与传说的语篇特征",
+      "objective": "能梳理故事脉络，理解反复出现的情节模式与文化意涵",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g7-s2-english-K011"
+      ],
+      "concept": "民间故事常用「三次重复」结构（three attempts），以数字「三」强化节奏，结局寄寓朴素的价值判断",
+      "common_mistakes": [
+        "三次重复结构未识别",
+        "寓意概括脱离文化背景"
+      ],
+      "suggested_types": [
+        "阅读",
+        "梳理",
+        "简答"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 6",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K014",
+      "index": 14,
+      "domain": "语言知识",
+      "theme": "语用",
+      "unit": "语用",
+      "name": "打电话与请求帮助",
+      "objective": "能使用得体的电话用语与求助表达",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g8-s1-english-K015"
+      ],
+      "concept": "电话用语有固定表达：May I speak to...?/This is...speaking/Hold on, please；求助用 Could you please...?",
+      "common_mistakes": [
+        "电话中误用 I am... 自我介绍",
+        "请求句式过于直接"
+      ],
+      "suggested_types": [
+        "对话",
+        "情景应答",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 3",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g8-s2-english-K015",
+      "index": 15,
+      "domain": "主题",
+      "theme": "人与自我",
+      "unit": "主题",
+      "name": "健康、情绪与压力管理",
+      "objective": "能围绕健康与情绪话题表达困扰并提出应对方式",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g8-s2-english-K006"
+      ],
+      "concept": "该主题要求「描述状态—分析原因—提出对策」的完整表达，涉及情态动词与建议句式的综合运用",
+      "common_mistakes": [
+        "只诉苦无对策",
+        "原因与状态混为一谈"
+      ],
+      "suggested_types": [
+        "表达",
+        "写作",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 1、Unit 4",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K016",
+      "index": 16,
+      "domain": "主题",
+      "theme": "人与社会",
+      "unit": "主题",
+      "name": "志愿服务、责任与家庭分工",
+      "objective": "能就志愿服务与家务分担当表达观点并说明理由",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g8-s2-english-K015"
+      ],
+      "concept": "该主题涉及权利与义务的讨论，表达时须兼顾个人意愿与社会责任，避免单一立场",
+      "common_mistakes": [
+        "观点绝对化",
+        "缺少具体事例支撑"
+      ],
+      "suggested_types": [
+        "表达",
+        "讨论",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·Unit 2—3",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K017",
+      "index": 17,
+      "domain": "语言技能",
+      "theme": "听",
+      "unit": "语言技能",
+      "name": "听对话推断态度与言外之意",
+      "objective": "能根据语气、措辞推断说话人的态度与意图",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-english-K018"
+      ],
+      "concept": "态度推断依据语调、情态动词（might/probably）、委婉语与否定疑问句，须「听言外之意」",
+      "common_mistakes": [
+        "只按字面理解",
+        "忽视语气线索"
+      ],
+      "suggested_types": [
+        "听力",
+        "推断",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·听力训练",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K018",
+      "index": 18,
+      "domain": "语言技能",
+      "theme": "写",
+      "unit": "语言技能",
+      "name": "写建议信",
+      "objective": "能写结构完整、语气得体的英文建议信",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g8-s2-english-K012"
+      ],
+      "concept": "建议信四步：称呼与共情—分析问题—给出二至三条建议并说明理由—鼓励与署名；语气须委婉，多用 should/could/Why not",
+      "common_mistakes": [
+        "语气生硬如命令",
+        "建议无理由支撑",
+        "书信格式缺项"
+      ],
+      "suggested_types": [
+        "写作",
+        "修改",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·写作",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K019",
+      "index": 19,
+      "domain": "文化知识",
+      "theme": "文化知识",
+      "unit": "文化知识",
+      "name": "中外民间故事与文化价值",
+      "objective": "能比较中外民间故事的母题与价值取向",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-english-K014"
+      ],
+      "concept": "民间故事共享「愚公移山式坚持」「灰姑娘式逆袭」等母题，但价值落点不同：中国重集体与坚韧，西方重个人与机遇",
+      "common_mistakes": [
+        "以优劣评判文化差异",
+        "母题识别错误"
+      ],
+      "suggested_types": [
+        "比较",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·文化专栏",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s2-english-K020",
+      "index": 20,
+      "domain": "学习策略",
+      "theme": "学习策略",
+      "unit": "学习策略",
+      "name": "阅读中的推断与复述",
+      "objective": "能依据文本线索作出合理推断，并用关键词复述语篇",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s2-english-K013"
+      ],
+      "concept": "推断须以文本证据为锚，避免主观臆测；复述用关键词串联，先骨架后细节，可借助时间线或思维导图",
+      "common_mistakes": [
+        "推断无文本依据",
+        "复述变成背诵原文"
+      ],
+      "suggested_types": [
+        "阅读",
+        "复述",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "人教八下·学习策略",
+      "engine_hint": "llm"
+    }
+  ]
 }

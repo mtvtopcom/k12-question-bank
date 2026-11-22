@@ -1,12 +1,643 @@
 {
   "volume_id": "primary-g2-s1-chinese",
-  "title": "g2语文上册",
+  "title": "二年级上册语文",
   "stage": "primary",
   "grade": "g2",
   "term": "s1",
   "subject": "chinese",
   "school_stage": "S1",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "统编版（2024审定）二年级上册；2022版语文课标第一学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g2-s1-chinese-K001",
+      "index": 1,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "多音字",
+      "objective": "能根据词语和语境判断多音字的读音",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g1-s2-chinese-K004"
+      ],
+      "concept": "同一个汉字有多种读音，读音不同往往意义也不同，要结合词语判断",
+      "common_mistakes": [
+        "读音与语境不匹配",
+        "只记住一个读音"
+      ],
+      "suggested_types": [
+        "读音",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·识字",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K002",
+      "index": 2,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "形声字的构字规律",
+      "objective": "能利用形旁表义、声旁表音的规律识字",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g1-s2-chinese-K006"
+      ],
+      "concept": "形声字由形旁和声旁组成：形旁提示意义类别，声旁提示读音",
+      "common_mistakes": [
+        "把声旁当形旁",
+        "误认为所有声旁读音完全相同"
+      ],
+      "suggested_types": [
+        "识字",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·识字",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K003",
+      "index": 3,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "查字典",
+      "name": "部首查字法",
+      "objective": "能用部首查字法查字典",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [],
+      "concept": "部首查字法步骤：确定部首→数部首笔画→查部首目录→数剩余笔画→查检字表",
+      "common_mistakes": [
+        "部首判断错误",
+        "剩余笔画数错"
+      ],
+      "suggested_types": [
+        "查字典",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·语文园地",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K004",
+      "index": 4,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "查字典",
+      "name": "音序查字法",
+      "objective": "能用音序查字法查字典",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [],
+      "concept": "音序查字法步骤：确定读音首字母大写→查音节表→按页码找字",
+      "common_mistakes": [
+        "音序字母找错",
+        "声调忽略"
+      ],
+      "suggested_types": [
+        "查字典",
+        "应用",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·语文园地",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K005",
+      "index": 5,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "近义词",
+      "objective": "能找出并辨析常见的近义词",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "近义词意义相近但不完全相同，使用时要看语境和搭配",
+      "common_mistakes": [
+        "把近义词与反义词混淆",
+        "认为近义词可随意替换"
+      ],
+      "suggested_types": [
+        "辨析",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·词语",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K006",
+      "index": 6,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "反义词",
+      "objective": "能找出并运用反义词",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K005"
+      ],
+      "concept": "反义词是意义相反或相对的词，如冷—热、容易—困难",
+      "common_mistakes": [
+        "近反义关系混淆",
+        "词性不匹配"
+      ],
+      "suggested_types": [
+        "辨析",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·词语",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K007",
+      "index": 7,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "词语搭配：形容词加名词",
+      "objective": "能进行准确生动的形容词与名词搭配",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K005"
+      ],
+      "concept": "修饰语要与中心词在意义上搭配得当，符合语言习惯",
+      "common_mistakes": [
+        "搭配不当",
+        "修饰语堆砌"
+      ],
+      "suggested_types": [
+        "搭配",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·词语",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K008",
+      "index": 8,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "量词与数词的使用",
+      "objective": "能正确使用量词表达数量",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K007"
+      ],
+      "concept": "不同事物有习惯搭配的量词，如一片叶子、一朵花、一群鸟",
+      "common_mistakes": [
+        "量词搭配错误",
+        "数词与量词顺序颠倒"
+      ],
+      "suggested_types": [
+        "搭配",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·词语",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K009",
+      "index": 9,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "成语的积累与理解",
+      "objective": "能积累常见成语并理解其意思",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K005"
+      ],
+      "concept": "成语是固定的四字短语，意义整体化，不能随意拆改字词",
+      "common_mistakes": [
+        "望文生义",
+        "成语用字写错"
+      ],
+      "suggested_types": [
+        "积累",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·语文园地",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K010",
+      "index": 10,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "句子",
+      "name": "比喻句初步",
+      "objective": "能识别并仿写简单的比喻句",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "比喻是把一种事物比作另一种相似的事物，常用像、好像、仿佛等比喻词",
+      "common_mistakes": [
+        "本体与喻体颠倒",
+        "把同类事物相比"
+      ],
+      "suggested_types": [
+        "识别",
+        "仿写",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K011",
+      "index": 11,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "句子",
+      "name": "把句子写具体",
+      "objective": "能通过添加修饰语把句子写具体",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K010"
+      ],
+      "concept": "在句子中添加时间、地点、样子、程度等修饰成分，使表达更具体生动",
+      "common_mistakes": [
+        "修饰语堆砌啰嗦",
+        "添加后句子不通顺"
+      ],
+      "suggested_types": [
+        "改写",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K012",
+      "index": 12,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "标点符号",
+      "name": "冒号与引号的使用",
+      "objective": "能正确使用冒号和引号",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g1-s2-chinese-K012"
+      ],
+      "concept": "提示语在前时后面用冒号，直接引用的话用引号标出",
+      "common_mistakes": [
+        "冒号引号位置错误",
+        "引号只加前不加后"
+      ],
+      "suggested_types": [
+        "标点",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·标点符号",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K013",
+      "index": 13,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "课文",
+      "name": "分角色朗读",
+      "objective": "能根据人物身份和情境读出不同语气",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K012"
+      ],
+      "concept": "分角色朗读要揣摩人物身份、性格和心情，用不同语气表现",
+      "common_mistakes": [
+        "所有角色一个语气",
+        "语气与人物不符"
+      ],
+      "suggested_types": [
+        "朗读",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·课文",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K014",
+      "index": 14,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "课文",
+      "name": "提取信息：时间、地点、人物",
+      "objective": "能准确提取故事中的时间、地点和人物",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K013"
+      ],
+      "concept": "先明确要找的信息类别，再回到文中定位相关语句，注意区分明说与推断",
+      "common_mistakes": [
+        "把推断当成明说",
+        "信息定位错误"
+      ],
+      "suggested_types": [
+        "提取",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·课文",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K015",
+      "index": 15,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "课文",
+      "name": "概括段意初步",
+      "objective": "能初步概括一段话的主要意思",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K014"
+      ],
+      "concept": "概括段意可以找中心句，也可以把各句意思归纳合并，要避免以偏概全",
+      "common_mistakes": [
+        "只抓细节丢了主要意思",
+        "照抄原句不做概括"
+      ],
+      "suggested_types": [
+        "概括",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·课文",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K016",
+      "index": 16,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "古诗",
+      "name": "古诗诵读：《登鹳雀楼》《望庐山瀑布》",
+      "objective": "能背诵古诗并理解诗中描绘的景象",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K013"
+      ],
+      "concept": "古诗要读准节奏，借助插图和生活经验想象诗中画面",
+      "common_mistakes": [
+        "节奏错误",
+        "理解停留在字面"
+      ],
+      "suggested_types": [
+        "背诵",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·古诗",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K017",
+      "index": 17,
+      "domain": "思辨性阅读与表达",
+      "theme": "思辨性阅读与表达",
+      "unit": "寓言",
+      "name": "寓言故事的寓意",
+      "objective": "能说出寓言故事所讲的道理",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K015"
+      ],
+      "concept": "寓言通过一个简短故事说明一个道理，要从故事中提炼出普遍意义",
+      "common_mistakes": [
+        "只复述故事不讲道理",
+        "寓意理解偏颇"
+      ],
+      "suggested_types": [
+        "理解",
+        "概括",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·寓言",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K018",
+      "index": 18,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "写话",
+      "name": "看图写几句话",
+      "objective": "能看图写几句连贯的话",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K011"
+      ],
+      "concept": "先观察图中人物、动作、环境，再按一定顺序写成几句连贯的话",
+      "common_mistakes": [
+        "句子不连贯",
+        "遗漏图中要素"
+      ],
+      "suggested_types": [
+        "写话",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·写话",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K019",
+      "index": 19,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "口语交际",
+      "name": "口语交际：商量",
+      "objective": "能用商量的语气与人沟通",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K013"
+      ],
+      "concept": "商量时语气要平和，说清自己的想法并征询对方意见",
+      "common_mistakes": [
+        "语气生硬像命令",
+        "不说明理由"
+      ],
+      "suggested_types": [
+        "表达",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·口语交际",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K020",
+      "index": 20,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字写字",
+      "name": "左右结构汉字的书写",
+      "objective": "能规范书写左右结构的汉字",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g1-s2-chinese-K020"
+      ],
+      "concept": "左右结构要处理好宽窄比例，一般左窄右宽或左右大致等宽，注意避让与穿插",
+      "common_mistakes": [
+        "左右比例失调",
+        "部件间距过大或过小"
+      ],
+      "suggested_types": [
+        "书写",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·识字写字",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K021",
+      "index": 21,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "ABAB式词语积累",
+      "objective": "能识别并积累ABAB式词语",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K008"
+      ],
+      "concept": "ABAB式由两个相同的双音节词重叠构成，如讨论讨论、雪白雪白",
+      "common_mistakes": [
+        "格式记错",
+        "与AABB式混淆"
+      ],
+      "suggested_types": [
+        "积累",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·语文园地",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s1-chinese-K022",
+      "index": 22,
+      "domain": "整本书阅读",
+      "theme": "整本书阅读",
+      "unit": "课外阅读",
+      "name": "课外阅读：童话故事",
+      "objective": "能阅读童话故事并说出主要情节",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-chinese-K017"
+      ],
+      "concept": "阅读童话要关注人物和情节，感受童话丰富的想象",
+      "common_mistakes": [
+        "只读图不看文字",
+        "情节记不全"
+      ],
+      "suggested_types": [
+        "阅读",
+        "复述",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "统编二上·快乐读书吧",
+      "engine_hint": "llm"
+    }
+  ]
 }

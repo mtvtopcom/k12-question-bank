@@ -1,12 +1,303 @@
 {
   "volume_id": "kg-k2-full-english",
-  "title": "中班英语全年",
+  "title": "中班英语全年（英语启蒙）",
   "stage": "kg",
   "grade": "k2",
   "term": "full",
   "subject": "english",
   "school_stage": "S0",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "《3-6岁儿童学习与发展指南》语言领域（中班）；幼儿园英语启蒙经验（非学科课程）",
+  "knowledge_points": [
+    {
+      "id": "kg-k2-full-english-K001",
+      "index": 1,
+      "domain": "语言",
+      "theme": "语音意识",
+      "unit": "语音",
+      "name": "英语首音的辨听",
+      "objective": "能听辨单词的首个音，感知首音相同的词",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "kg-k1-full-english-K001"
+      ],
+      "concept": "首音意识（如 cat、cake 都以 /k/ 开头）是自然拼读的前置能力，通过「找同音开头」游戏培养",
+      "common_mistakes": [
+        "与汉语拼音声母混淆",
+        "只记字母不辨音"
+      ],
+      "suggested_types": [
+        "辨音",
+        "归类",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "英语启蒙·语音意识（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-english-K002",
+      "index": 2,
+      "domain": "语言",
+      "theme": "词汇经验",
+      "unit": "家庭",
+      "name": "家庭称呼 mummy / daddy / brother / sister",
+      "objective": "能听辨并说出常见家庭成员的英语称呼",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k1-full-english-K003"
+      ],
+      "concept": "家庭词与「我的全家福」结合最自然；可延伸 to 家庭成员数量的点数",
+      "common_mistakes": [
+        "称呼与成员错配",
+        "发音含糊"
+      ],
+      "suggested_types": [
+        "命名",
+        "指认",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "英语启蒙·词汇（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-english-K003",
+      "index": 3,
+      "domain": "语言",
+      "theme": "词汇经验",
+      "unit": "食物",
+      "name": "食物词 apple / banana / milk / bread",
+      "objective": "能听辨并说出常见食物词，能表达喜欢与不喜欢",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k2-full-english-K002"
+      ],
+      "concept": "食物词在加餐、午餐环节自然复现；与 I like ... 句型结合形成完整表达",
+      "common_mistakes": [
+        "食物词与图片错配",
+        "可数与不可数混用"
+      ],
+      "suggested_types": [
+        "命名",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "英语启蒙·词汇（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-english-K004",
+      "index": 4,
+      "domain": "语言",
+      "theme": "词汇经验",
+      "unit": "数字",
+      "name": "数字 six—ten",
+      "objective": "能听辨并说出 six 到 ten",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k1-full-english-K005"
+      ],
+      "concept": "数字扩展到 10 后可结合「点数实物」使用，实现英文数词与数量的对应",
+      "common_mistakes": [
+        "six 与 seven 混淆",
+        "数到十后无法对应数量"
+      ],
+      "suggested_types": [
+        "点数",
+        "跟读",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "英语启蒙·词汇（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-english-K005",
+      "index": 5,
+      "domain": "语言",
+      "theme": "句型经验",
+      "unit": "句型",
+      "name": "句型 I like ...",
+      "objective": "能用 I like ... 表达自己的喜好",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k2-full-english-K003"
+      ],
+      "concept": "I like 是幼儿最早能自主生成的句型之一，可替换名词表达对食物、颜色、动物的喜好",
+      "common_mistakes": [
+        "like 后接动词 -ing",
+        "漏掉主语 I"
+      ],
+      "suggested_types": [
+        "表达",
+        "句型操练",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "英语启蒙·句型（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-english-K006",
+      "index": 6,
+      "domain": "语言",
+      "theme": "句型经验",
+      "unit": "句型",
+      "name": "句型 It's a ...",
+      "objective": "能用 It's a ... 指认并命名物体",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k2-full-english-K005"
+      ],
+      "concept": "It's a 用于「这是什么」的回答，是命名与判断的基础句型；注意 a/an 的选择在中班不作要求",
+      "common_mistakes": [
+        "漏掉 It's",
+        "把 It's a 用于复数"
+      ],
+      "suggested_types": [
+        "表达",
+        "问答",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "英语启蒙·句型（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-english-K007",
+      "index": 7,
+      "domain": "语言",
+      "theme": "词汇经验",
+      "unit": "天气",
+      "name": "天气词 sunny / rainy / windy",
+      "objective": "能听辨并说出常见天气词，能描述当天的天气",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k2-full-english-K002"
+      ],
+      "concept": "天气播报是日常环节：每天看窗外说天气，让词汇在真实情境中反复出现",
+      "common_mistakes": [
+        "天气词与景象错配",
+        "只会说单词不成句"
+      ],
+      "suggested_types": [
+        "描述",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "英语启蒙·词汇（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-english-K008",
+      "index": 8,
+      "domain": "艺术",
+      "theme": "表现与创造",
+      "unit": "韵律",
+      "name": "英语韵律儿歌与动作歌",
+      "objective": "能跟随英语儿歌做出相应动作，初步跟唱",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-english-K008"
+      ],
+      "concept": "动作歌把语言与身体动作绑定，形成「动作记忆」，是中班最有效的英语输入方式",
+      "common_mistakes": [
+        "只做动作不张口",
+        "动作与歌词不对应"
+      ],
+      "suggested_types": [
+        "律动",
+        "跟唱",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "英语启蒙·歌谣（中班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-english-K009",
+      "index": 9,
+      "domain": "语言",
+      "theme": "阅读准备",
+      "unit": "绘本",
+      "name": "英语绘本中的重复句式跟读",
+      "objective": "能跟随成人跟读绘本中反复出现的句式",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-english-K010"
+      ],
+      "concept": "重复句式（如 Brown bear, brown bear, what do you see?）让幼儿在 predictable 的结构中参与共读",
+      "common_mistakes": [
+        "逐句翻译削弱语感",
+        "要求背诵全文"
+      ],
+      "suggested_types": [
+        "跟读",
+        "共读",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》语言·阅读（中班）；英语启蒙",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k2-full-english-K010",
+      "index": 10,
+      "domain": "社会",
+      "theme": "文化体验",
+      "unit": "节日",
+      "name": "英语国家的节日文化体验",
+      "objective": "愿意参与圣诞节、万圣节等节日活动，感受文化差异",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k2-full-english-K008"
+      ],
+      "concept": "节日体验以「玩」为主：做手工、唱歌曲、尝食物，让幼儿感受「世界上有不同的过节方式」",
+      "common_mistakes": [
+        "把节日简化为消费与装扮",
+        "以中国节日标准评判他国节日"
+      ],
+      "suggested_types": [
+        "体验",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "k2"
+      ],
+      "source": "《指南》社会·文化认同（中班）；英语启蒙",
+      "engine_hint": "template"
+    }
+  ]
 }

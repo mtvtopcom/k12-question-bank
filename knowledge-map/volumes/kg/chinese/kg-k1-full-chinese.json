@@ -1,12 +1,357 @@
 {
   "volume_id": "kg-k1-full-chinese",
-  "title": "小班语文全年",
+  "title": "小班语文全年（语言领域）",
   "stage": "kg",
   "grade": "k1",
   "term": "full",
   "subject": "chinese",
   "school_stage": "S0",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "《3-6岁儿童学习与发展指南》语言领域（小班目标）；《幼儿园教育指导纲要（试行）》",
+  "knowledge_points": [
+    {
+      "id": "kg-k1-full-chinese-K001",
+      "index": 1,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "倾听",
+      "name": "听懂日常生活中的简单指令",
+      "objective": "能听懂并执行包含一个步骤的生活指令，如「把杯子放到桌上」",
+      "difficulty": 1,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "小班幼儿的倾听以「听懂一步指令」为起点，指令须结合具体情境与手势提示，避免抽象表述",
+      "common_mistakes": [
+        "一次给多个指令导致无法执行",
+        "用抽象词语代替具体动作"
+      ],
+      "suggested_types": [
+        "听指令",
+        "做动作",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》语言·倾听（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-chinese-K002",
+      "index": 2,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "表达",
+      "name": "愿意说话，能说出自己的名字和需要",
+      "objective": "愿意在熟悉的人面前说话，能说出自己的名字和简单需要",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-chinese-K001"
+      ],
+      "concept": "「愿意说」比「说得好」更重要；成人应耐心等待、不打断、不纠正发音，用回应鼓励幼儿表达",
+      "common_mistakes": [
+        "抢答代替幼儿表达",
+        "当众纠正发音使幼儿不敢说"
+      ],
+      "suggested_types": [
+        "表达",
+        "回答",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》语言·表达（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-chinese-K003",
+      "index": 3,
+      "domain": "健康",
+      "theme": "生活习惯与生活能力",
+      "unit": "生活表达",
+      "name": "在生活环节中表达如厕、喝水等需求",
+      "objective": "能用语言向成人表达如厕、喝水、身体不适等基本需求",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-chinese-K002"
+      ],
+      "concept": "生活需求表达是语言与健康的交叉点；教师应教给固定句式（「老师，我想上厕所」）并在真实环节中反复练习",
+      "common_mistakes": [
+        "用哭闹代替表达",
+        "只用手势不开口"
+      ],
+      "suggested_types": [
+        "表达",
+        "情境判断",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》健康·生活能力（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-chinese-K004",
+      "index": 4,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "词汇",
+      "name": "常见物品与动作词汇的积累",
+      "objective": "能说出常见物品名称和日常动作词，并在情境中正确使用",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k1-full-chinese-K002"
+      ],
+      "concept": "词汇学习依托真实物品与动作，遵循「名词先行、动词跟上」的顺序；形容词在小班后期逐步引入",
+      "common_mistakes": [
+        "名词与动词混用",
+        "只认图片不认实物"
+      ],
+      "suggested_types": [
+        "命名",
+        "指认",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》语言·词汇（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-chinese-K005",
+      "index": 5,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "句式",
+      "name": "简单句「我要……」「这是……」",
+      "objective": "能用「我要……」「这是……」等简单句表达意愿与指认",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-chinese-K004"
+      ],
+      "concept": "简单句是小班语言发展的关键台阶，句长一般为 3—5 个字；成人可通过「扩展」把单词句补成完整句",
+      "common_mistakes": [
+        "只说单词不成句",
+        "语序颠倒（如「要喝水我」）"
+      ],
+      "suggested_types": [
+        "表达",
+        "补全",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》语言·表达（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-chinese-K006",
+      "index": 6,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "儿歌",
+      "name": "儿歌童谣的跟读与节奏感",
+      "objective": "能跟随成人念诵简短儿歌，感受押韵与节奏",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "kg-k1-full-chinese-K004"
+      ],
+      "concept": "儿歌以短句、押韵、重复为特征，配合拍手、跺脚等动作可强化节奏感知，是小班最适宜的文学形式",
+      "common_mistakes": [
+        "要求背全篇造成压力",
+        "只念不动缺少节奏体验"
+      ],
+      "suggested_types": [
+        "朗诵",
+        "跟读",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》语言·文学（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-chinese-K007",
+      "index": 7,
+      "domain": "语言",
+      "theme": "阅读与书写准备",
+      "unit": "阅读",
+      "name": "图画书阅读的常规",
+      "objective": "能一页一页翻书，会指认画面中的主要形象",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-chinese-K001"
+      ],
+      "concept": "早期阅读先建立「书怎么读」的常规：从封面开始、一页页翻、按画面顺序看，再谈内容理解",
+      "common_mistakes": [
+        "跳页翻书",
+        "把书倒着拿"
+      ],
+      "suggested_types": [
+        "操作",
+        "指认",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》语言·阅读（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-chinese-K008",
+      "index": 8,
+      "domain": "语言",
+      "theme": "阅读与书写准备",
+      "unit": "阅读",
+      "name": "看图说话：说出画面中的主要人物与动作",
+      "objective": "能观察画面并说出「谁」「在做什么」",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k1-full-chinese-K007"
+      ],
+      "concept": "看图说话从「谁」开始，再到「在做什么」，最后到「在哪里」；提问要具体，避免「这幅画讲了什么」这类开放问题",
+      "common_mistakes": [
+        "只说出物品名称",
+        "脱离画面自由想象"
+      ],
+      "suggested_types": [
+        "表达",
+        "观察",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》语言·阅读（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-chinese-K009",
+      "index": 9,
+      "domain": "语言",
+      "theme": "倾听与表达",
+      "unit": "故事",
+      "name": "故事聆听与简单回应",
+      "objective": "能安静听完一个短故事，并对故事中的问题作出简单回应",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "kg-k1-full-chinese-K006"
+      ],
+      "concept": "小班故事宜短（3—5 分钟）、情节重复、角色少；讲述中可停下来问「接下来会怎样」以维持注意",
+      "common_mistakes": [
+        "故事过长导致注意力涣散",
+        "提问过难使幼儿放弃回应"
+      ],
+      "suggested_types": [
+        "聆听",
+        "回答",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》语言·文学（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-chinese-K010",
+      "index": 10,
+      "domain": "社会",
+      "theme": "人际交往",
+      "unit": "礼貌用语",
+      "name": "使用「你好」「谢谢」「再见」",
+      "objective": "能在提醒下使用基本礼貌用语",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-chinese-K002"
+      ],
+      "concept": "礼貌用语的学习靠「情境示范+及时强化」，而非机械背诵；成人应先向幼儿示范，再在真实交往中引导使用",
+      "common_mistakes": [
+        "只在课堂上说，生活中不用",
+        "强迫幼儿当众打招呼"
+      ],
+      "suggested_types": [
+        "情境应对",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》社会·人际交往（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-chinese-K011",
+      "index": 11,
+      "domain": "艺术",
+      "theme": "表现与创造",
+      "unit": "涂画",
+      "name": "涂鸦与图画表达",
+      "objective": "愿意用笔涂画，能用涂画表达自己的感受",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [],
+      "concept": "小班处于涂鸦期，重在「愿意画、敢画」，不追求形象逼真；成人应提供大纸粗笔，关注过程而非结果",
+      "common_mistakes": [
+        "以「像不像」评价幼儿作品",
+        "范画限制幼儿表达"
+      ],
+      "suggested_types": [
+        "创作",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》艺术·表现（小班）",
+      "engine_hint": "template"
+    },
+    {
+      "id": "kg-k1-full-chinese-K012",
+      "index": 12,
+      "domain": "艺术",
+      "theme": "表现与创造",
+      "unit": "表演",
+      "name": "模仿小动物叫声与动作的表演游戏",
+      "objective": "能在游戏中学说动物叫声、模仿动物动作",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "kg-k1-full-chinese-K009"
+      ],
+      "concept": "模仿是幼儿语言与动作发展的重要途径；表演游戏把语音练习藏在游戏中，避免枯燥的机械重复",
+      "common_mistakes": [
+        "只模仿动作不说话",
+        "要求表演完整情节超出小班水平"
+      ],
+      "suggested_types": [
+        "模仿",
+        "表演",
+        "选择"
+      ],
+      "grade_range": [
+        "k1"
+      ],
+      "source": "《指南》艺术·表现（小班）",
+      "engine_hint": "template"
+    }
+  ]
 }

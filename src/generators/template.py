@@ -71,10 +71,16 @@ class TemplateGenerator(BaseGenerator):
         return defaults
 
     def _default_kinds(self, subject: str) -> List[str]:
+        # 知识点地图里的 subject 是英文键（math/chinese/english），
+        # 旧配置与人工笔记里可能是中文键，两种都要兼容，否则会全部落到 arithmetic。
         return {
+            "math": ["arithmetic", "fraction", "geometry", "percentage", "equation"],
             "数学": ["arithmetic", "fraction", "geometry", "percentage", "equation"],
+            "english": ["vocabulary", "grammar"],
             "英语": ["vocabulary", "grammar"],
+            "chinese": ["pinyin", "idiom", "characters"],
             "语文": ["pinyin", "idiom", "characters"],
+            "science": ["science_basic"],
             "科学": ["science_basic"],
         }.get(subject, ["arithmetic"])
 
@@ -92,8 +98,50 @@ class TemplateGenerator(BaseGenerator):
             "generator_version": VERSION,
         }
 
+    @staticmethod
+    def _uniq_distractors(correct: str, cands, rng) -> List[str]:
+        """返回最多 3 个与正确答案互不相同的干扰项。
+
+        干扰项先按给定顺序去重；不足 3 个时对数值型答案做邻近扰动补足；
+        仍不足则返回现有的（调用方据此放弃该题，绝不填充无意义选项）。
+        """
+        seen = {correct}
+        out: List[str] = []
+        for c in cands:
+            if c and c not in seen:
+                seen.add(c)
+                out.append(c)
+            if len(out) >= 3:
+                return out
+        try:
+            base = float(correct)
+        except (TypeError, ValueError):
+            return out
+        if "," in correct or correct.endswith("平方厘米"):
+            return out
+        deltas = list(range(1, 13)) + list(range(12, 40))
+        rng.shuffle(deltas)
+        for d in deltas:
+            for v in (base + d, base - d):
+                if v < 0:
+                    continue
+                s = str(int(v)) if float(v).is_integer() else f"{v:g}"
+                if s not in seen:
+                    seen.add(s)
+                    out.append(s)
+                    if len(out) >= 3:
+                        return out
+        return out
+
     def _make(self, topic, i, kind, stem, correct, distractors, explanation, rng, bloom=None, difficulty=None):
-        options, answer = self.shuffle_options(stem, correct, distractors, rng)
+        correct = str(correct)
+        dis = self._uniq_distractors(correct, [str(d) for d in distractors], rng)
+        if len(dis) < 3:
+            # 干扰项不足时放弃该题：宁可少出，也不产出三选项的残缺选择题
+            return None
+        options, answer = self.shuffle_options(stem, correct, dis, rng)
+        if len(options) != 4:
+            return None
         base = self._base(topic, i, kind)
         if bloom:
             base["bloom"] = bloom
@@ -222,17 +270,17 @@ class TemplateGenerator(BaseGenerator):
     def _gen_pinyin(self, topic, i, rng):
         items = [
             ("苹果", "píng guǒ", ["pín guǒ", "píng guó", "pìng guǒ"]),
-            ("学校", "xué xiào", ["xué xiāo", "xué xiào", "xuè xiào"]),
-            ("老师", "lǎo shī", ["lǎo shī", "lāo shī", "lǎo shí"]),
-            ("美丽", "měi lì", ["méi lì", "měi lì", "mèi lì"]),
+            ("学校", "xué xiào", ["xué xiāo", "xiè xiào", "xuè xiào"]),
+            ("老师", "lǎo shī", ["lāo shī", "lào shī", "lǎo shí"]),
+            ("美丽", "měi lì", ["méi lì", "měi lí", "mèi lì"]),
             ("朋友", "péng you", ["péng yǒu", "pén you", "pèng you"]),
         ]
         word, correct, dis = rng.choice(items)
         stem = f"词语「{word}」的正确读音是？"
-        # 去重干扰项中的正确项
+        # 去重干扰项中的正确项；不足 3 个则放弃该题，绝不填充无意义选项
         dis = [d for d in dis if d != correct]
-        while len(dis) < 3:
-            dis.append(correct + "?" if len(dis) < 1 else "—")
+        if len(dis) < 3:
+            return None
         return self._make(topic, i, "pinyin", stem, correct, dis, f"「{word}」读作 {correct}", rng)
 
     def _gen_idiom(self, topic, i, rng):

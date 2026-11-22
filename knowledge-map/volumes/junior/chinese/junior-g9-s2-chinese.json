@@ -1,12 +1,768 @@
 {
   "volume_id": "junior-g9-s2-chinese",
-  "title": "g9语文下册",
+  "title": "九年级下册语文",
   "stage": "junior",
   "grade": "g9",
   "term": "s2",
   "subject": "chinese",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "统编版（2024审定）九年级下册；2022版语文课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g9-s2-chinese-K001",
+      "index": 1,
+      "domain": "语言文字积累与梳理",
+      "theme": "汉字与词语",
+      "unit": "字词积累",
+      "name": "字音字形与词语积累",
+      "objective": "能准确读写本册重点字词，掌握文学鉴赏与戏剧类语汇",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K001"
+      ],
+      "concept": "九下语汇含较多文学鉴赏术语（意境、含蓄、蕴藉）与戏剧用语（台词、潜台词、舞台说明），需按类积累",
+      "common_mistakes": [
+        "术语含义混淆",
+        "成语易错字"
+      ],
+      "suggested_types": [
+        "注音",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·各单元读读写写",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K002",
+      "index": 2,
+      "domain": "语言文字积累与梳理",
+      "theme": "语法修辞",
+      "unit": "语言运用",
+      "name": "简明、连贯、得体与修辞的综合运用",
+      "objective": "能在具体语境中综合运用修辞与句式增强表达效果",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K003"
+      ],
+      "concept": "修辞服务于表达目的：要强调用反复排比、要含蓄用借代象征、要生动用比喻拟人；得体则要求语体与场合一致",
+      "common_mistakes": [
+        "修辞与目的不匹配",
+        "语体不一致（口语与书面语混杂）"
+      ],
+      "suggested_types": [
+        "修改",
+        "仿写",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·语言运用",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K003",
+      "index": 3,
+      "domain": "语言文字积累与梳理",
+      "theme": "文学文化常识",
+      "unit": "文学常识",
+      "name": "作家作品与文体常识",
+      "objective": "识记本册作家作品，了解戏剧（话剧、歌剧、独幕剧）与先秦散文",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K004"
+      ],
+      "concept": "戏剧按内容性质分悲剧、喜剧、正剧，按结构分独幕剧、多幕剧；剧本由舞台说明与人物台词构成，台词含对话、独白、旁白",
+      "common_mistakes": [
+        "戏剧分类标准混淆",
+        "舞台说明与台词混淆"
+      ],
+      "suggested_types": [
+        "识记",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·各单元注释",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K004",
+      "index": 4,
+      "domain": "文学阅读与创意表达",
+      "theme": "诗歌阅读",
+      "unit": "现代诗",
+      "name": "现代诗的意象、象征与抒情",
+      "objective": "能分析《祖国啊，我亲爱的祖国》《海燕》的意象组合与象征手法",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K005"
+      ],
+      "concept": "《祖国啊》以「破旧的老水车」「簇新的理想」等意象群构成历史与未来的对照；《海燕》以海燕象征革命先驱，以风暴象征革命形势",
+      "common_mistakes": [
+        "象征体与本体的对应分析不清",
+        "情感基调把握偏差"
+      ],
+      "suggested_types": [
+        "鉴赏",
+        "赏析",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第一单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K005",
+      "index": 5,
+      "domain": "文学阅读与创意表达",
+      "theme": "小说阅读",
+      "unit": "小说",
+      "name": "《孔乙己》的人物与批判",
+      "objective": "能分析孔乙己形象的多重性，理解「看客」群像的批判意义",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K017"
+      ],
+      "concept": "孔乙己是科举制度的牺牲品，既可怜又可悲；咸亨酒店里「笑」的看客群像，揭示国民精神的麻木，比个人悲剧更深刻",
+      "common_mistakes": [
+        "人物分析单一化（只同情不批判）",
+        "忽视看客群像的作用"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第二单元《孔乙己》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K006",
+      "index": 6,
+      "domain": "文学阅读与创意表达",
+      "theme": "小说阅读",
+      "unit": "小说",
+      "name": "《变色龙》的讽刺与夸张",
+      "objective": "能分析奥楚蔑洛夫五次「变色」的表现与讽刺效果",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K005"
+      ],
+      "concept": "以「狗的主人是谁」为变量，主人公态度反复翻转，形成漫画式夸张；脱大衣、穿大衣的细节暗示其心理，讽刺沙皇专制下的奴性",
+      "common_mistakes": [
+        "「变色」次数与原因对应错",
+        "讽刺对象理解片面"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第二单元《变色龙》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K007",
+      "index": 7,
+      "domain": "文学阅读与创意表达",
+      "theme": "小说阅读",
+      "unit": "乡土小说",
+      "name": "《溜索》《蒲柳人家》的乡土书写",
+      "objective": "能分析乡土小说中的地域风情与人物性格的关联",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K006"
+      ],
+      "concept": "乡土小说以方言、风物、习俗构建地域空间，人物性格在特定生存环境中生成；《溜索》以极简笔法写峡谷之险与人之从容",
+      "common_mistakes": [
+        "风情描写与人物性格割裂",
+        "忽视叙述节奏的作用"
+      ],
+      "suggested_types": [
+        "分析",
+        "简答",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第二单元《溜索》《蒲柳人家》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K008",
+      "index": 8,
+      "domain": "语言文字积累与梳理",
+      "theme": "文言基础",
+      "unit": "文言实词",
+      "name": "文言实词：一词多义与词类活用",
+      "objective": "能积累本册文言实词，辨析古今异义、通假与活用",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K010"
+      ],
+      "concept": "《鱼我所欲也》「患」「辟」、《送东阳马生序》「援」「稍」等须依语境定；「辟」通「避」，「乡」通「向」",
+      "common_mistakes": [
+        "通假字按本字硬解",
+        "活用类型误判"
+      ],
+      "suggested_types": [
+        "解释",
+        "辨析",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第三、六单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K009",
+      "index": 9,
+      "domain": "语言文字积累与梳理",
+      "theme": "文言基础",
+      "unit": "文言虚词与句式",
+      "name": "文言虚词与特殊句式",
+      "objective": "能辨析「为」「以」「于」的用法，识别判断句、倒装句、省略句",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K008"
+      ],
+      "concept": "「为」可作动词、介词（表对象、原因、被动）、语气词；《鱼我所欲也》多判断句与反问句，语气强烈",
+      "common_mistakes": [
+        "虚词用法判断单一",
+        "省略成分未补出"
+      ],
+      "suggested_types": [
+        "辨析",
+        "翻译",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第三、六单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K010",
+      "index": 10,
+      "domain": "思辨性阅读与表达",
+      "theme": "思辨表达",
+      "unit": "议论性文言",
+      "name": "《鱼我所欲也》的论证与「舍生取义」",
+      "objective": "能梳理文章的论证层次，理解「舍生取义」的价值取向",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K009"
+      ],
+      "concept": "文章先以「鱼与熊掌」设喻引出论点，再从「正面—反面」对比论证，最后以「不食嗟来之食」与「万钟受之」对比深化",
+      "common_mistakes": [
+        "论证层次梳理不清",
+        "把「义」抽象化而不联系具体取舍"
+      ],
+      "suggested_types": [
+        "梳理",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第三单元《鱼我所欲也》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K011",
+      "index": 11,
+      "domain": "文学阅读与创意表达",
+      "theme": "文言文阅读",
+      "unit": "史传散文",
+      "name": "《唐雎不辱使命》的对话与人物",
+      "objective": "能分析对话中的交锋层次与人物形象的塑造",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K010"
+      ],
+      "concept": "全文以对话推进：秦王「易地」设骗—唐雎据理力争—秦王「怫然怒」—唐雎「挺剑而起」，以「布衣之怒」对「天子之怒」，气势逆转",
+      "common_mistakes": [
+        "交锋层次划分混乱",
+        "人物形象概括空泛"
+      ],
+      "suggested_types": [
+        "分析",
+        "简答",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第三单元《唐雎不辱使命》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K012",
+      "index": 12,
+      "domain": "文学阅读与创意表达",
+      "theme": "文言文阅读",
+      "unit": "赠序",
+      "name": "《送东阳马生序》的对比与劝学",
+      "objective": "能分析作者以自身经历与太学生对比的说理方法",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K010"
+      ],
+      "concept": "文章以「余之勤且艰」与「诸生之优越」四组对比（得书、求师、奔走、生活）展开，现身说法而不空谈道理",
+      "common_mistakes": [
+        "对比组数归纳不全",
+        "忽视赠序「勉励」的文体功能"
+      ],
+      "suggested_types": [
+        "分析",
+        "简答",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第三单元《送东阳马生序》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K013",
+      "index": 13,
+      "domain": "文学阅读与创意表达",
+      "theme": "诗歌阅读",
+      "unit": "古代诗词",
+      "name": "词四首的鉴赏",
+      "objective": "能鉴赏《渔家傲·秋思》《江城子·密州出猎》《破阵子·为陈同甫赋壮词以寄之》《满江红》的风格与情感",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K015"
+      ],
+      "concept": "四首词风格各异：范词苍凉悲壮、苏词豪放洒脱、辛词雄浑沉郁（结句「可怜白发生」陡转）、秋词刚健激昂；鉴赏须扣住「景—事—情」",
+      "common_mistakes": [
+        "豪放与婉约判断偏差",
+        "结句陡转的艺术效果分析不到位"
+      ],
+      "suggested_types": [
+        "鉴赏",
+        "赏析",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第三单元词四首",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K014",
+      "index": 14,
+      "domain": "实用性阅读与交流",
+      "theme": "文艺随笔",
+      "unit": "读书方法",
+      "name": "《谈读书》《不求甚解》的读书观",
+      "objective": "能比较两文的读书主张，形成自己的读书方法",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K003"
+      ],
+      "concept": "培根主张读书要有方法、有选择、能转化为能力；马南邨以「不求甚解」强调先广读后精读、重在会意，二者互补而非对立",
+      "common_mistakes": [
+        "把两文主张简单对立",
+        "忽视文体差异（随笔与驳论）"
+      ],
+      "suggested_types": [
+        "比较",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第四单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K015",
+      "index": 15,
+      "domain": "文学阅读与创意表达",
+      "theme": "文艺随笔",
+      "unit": "文艺鉴赏",
+      "name": "意境、无言之美与想象",
+      "objective": "能理解意境的构成，分析「无言之美」与想象在鉴赏中的作用",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K014"
+      ],
+      "concept": "意境是「景」与「情」的交融；「无言之美」指艺术以留白引发想象；鉴赏须「驱遣想象」，把文字还原为形象与情境",
+      "common_mistakes": [
+        "意境与意象混淆",
+        "鉴赏只复述内容"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第四单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K016",
+      "index": 16,
+      "domain": "文学阅读与创意表达",
+      "theme": "戏剧",
+      "unit": "剧本",
+      "name": "剧本的体例与戏剧冲突",
+      "objective": "能识别舞台说明与台词，梳理戏剧冲突的开端、发展、高潮、结局",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K003"
+      ],
+      "concept": "剧本由舞台说明（人物表、场景、动作神态提示）与台词（对话、独白、旁白）构成；戏剧冲突是人物意志的对抗，是推动情节的核心",
+      "common_mistakes": [
+        "舞台说明与台词混淆",
+        "冲突层次梳理不清"
+      ],
+      "suggested_types": [
+        "辨析",
+        "梳理",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第五单元《屈原》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K017",
+      "index": 17,
+      "domain": "文学阅读与创意表达",
+      "theme": "戏剧",
+      "unit": "剧本",
+      "name": "台词与人物性格",
+      "objective": "能通过台词（含潜台词）分析人物性格与心理",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K016"
+      ],
+      "concept": "台词含显性语义与潜台词，潜台词是「话中有话」；分析要「由言入心」，把语言与人物处境、性格联系起来",
+      "common_mistakes": [
+        "只读字面不挖潜台词",
+        "人物分析脱离台词"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第五单元《天下第一楼》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K018",
+      "index": 18,
+      "domain": "文学阅读与创意表达",
+      "theme": "戏剧",
+      "unit": "独幕剧",
+      "name": "独幕剧的情节与象征",
+      "objective": "能分析《枣儿》的情节结构与「枣儿」的象征意义",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K017"
+      ],
+      "concept": "独幕剧篇幅短、场景单一而冲突集中；《枣儿》以「枣儿」象征亲情与乡土，老人与男孩的对话构成呼唤与期盼",
+      "common_mistakes": [
+        "象征意义解读单薄",
+        "忽视独幕剧的时空限制"
+      ],
+      "suggested_types": [
+        "分析",
+        "简答",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第五单元《枣儿》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K019",
+      "index": 19,
+      "domain": "文学阅读与创意表达",
+      "theme": "文言文阅读",
+      "unit": "史传散文",
+      "name": "《曹刿论战》的详略与人物",
+      "objective": "能分析文章「详于论、略于战」的剪裁与人物形象",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K010"
+      ],
+      "concept": "文章详写「论战」、略写「交战」，突出「远谋」；以「肉食者鄙」的对比反衬曹刿的见识与担当",
+      "common_mistakes": [
+        "详略分析不落到主题",
+        "人物形象概括空泛"
+      ],
+      "suggested_types": [
+        "分析",
+        "简答",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第六单元《曹刿论战》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K020",
+      "index": 20,
+      "domain": "思辨性阅读与表达",
+      "theme": "思辨表达",
+      "unit": "讽谏艺术",
+      "name": "《邹忌讽齐王纳谏》的讽谏艺术",
+      "objective": "能分析「由家及国」的类推说理与三层进谏结构",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K019"
+      ],
+      "concept": "邹忌以「妻私、妾畏、客有求」类比「宫妇左右莫不私王、朝廷之臣莫不畏王、四境之内莫不有求于王」，由私事推及国事；进谏分「三赏」「三变」层层推进",
+      "common_mistakes": [
+        "类比链条梳理断裂",
+        "忽视「讽」的婉转特点"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第六单元《邹忌讽齐王纳谏》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K021",
+      "index": 21,
+      "domain": "思辨性阅读与表达",
+      "theme": "思辨表达",
+      "unit": "表文",
+      "name": "《出师表》的议论与抒情",
+      "objective": "能分析文章「以议为主、以情动人」的写法与「三顾」之恩",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K020"
+      ],
+      "concept": "全文以「开张圣听、赏罚分明、亲贤远佞」三条建议为议论主干，以「报先帝、忠陛下」的情感贯穿，情理交融",
+      "common_mistakes": [
+        "建议条目归纳不全",
+        "情理关系分析不清"
+      ],
+      "suggested_types": [
+        "分析",
+        "评价",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第六单元《出师表》",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K022",
+      "index": 22,
+      "domain": "文学阅读与创意表达",
+      "theme": "诗歌阅读",
+      "unit": "古代诗词曲",
+      "name": "诗词曲五首的鉴赏",
+      "objective": "能鉴赏《白雪歌送武判官归京》《南乡子·登京口北固亭有怀》《过零丁洋》《山坡羊·潼关怀古》《朝天子·咏喇叭》",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K013"
+      ],
+      "concept": "五首体裁各异（歌行、词、律诗、散曲、小令）：《白雪歌》以奇景写别情、《南乡子》用问答怀古、《过零丁洋》以「丹心」明志、《山坡羊》由兴亡叹百姓苦、《朝天子》以喇叭讽宦官",
+      "common_mistakes": [
+        "体裁判断错误",
+        "用典与直抒混淆"
+      ],
+      "suggested_types": [
+        "鉴赏",
+        "赏析",
+        "简答"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第六单元诗词曲五首",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K023",
+      "index": 23,
+      "domain": "整本书阅读",
+      "theme": "名著导读",
+      "unit": "整本书阅读",
+      "name": "《儒林外史》整本书阅读",
+      "objective": "能把握讽刺小说的结构特点与士林群像的批判意义",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K004"
+      ],
+      "concept": "《儒林外史》以「虽云长篇，颇同短制」的连环结构串联士人故事；讽刺手法含蓄（白描、对比、不着一字评断），批判科举对人格的扭曲",
+      "common_mistakes": [
+        "把讽刺理解为直接谩骂",
+        "结构特点把握不清"
+      ],
+      "suggested_types": [
+        "梳理",
+        "评价",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·名著导读",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K024",
+      "index": 24,
+      "domain": "整本书阅读",
+      "theme": "名著导读",
+      "unit": "整本书阅读",
+      "name": "《简·爱》整本书阅读",
+      "objective": "能梳理简·爱的成长阶段，理解其人格独立与平等观",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K023"
+      ],
+      "concept": "简·爱经历盖茨海德—洛伍德—桑菲尔德—沼屋—芬丁五阶段；「我们的精神是平等的」体现其自尊与平等观，是女性自我意识觉醒的经典表达",
+      "common_mistakes": [
+        "成长阶段梳理混乱",
+        "把爱情主线当作唯一主题"
+      ],
+      "suggested_types": [
+        "梳理",
+        "评价",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·名著导读",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K025",
+      "index": 25,
+      "domain": "文学阅读与创意表达",
+      "theme": "戏剧",
+      "unit": "戏剧活动",
+      "name": "戏剧活动：剧本改编与舞台呈现",
+      "objective": "能将小说片段改编为剧本并完成排演，掌握舞台调度与表演的基本要求",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g9-s2-chinese-K017"
+      ],
+      "concept": "改编要「立主脑、减头绪」：提炼核心冲突、集中场景、把叙述语言转为可演的台词与舞台说明；排演需协调台词、动作、灯效与节奏",
+      "common_mistakes": [
+        "改编后冲突被削弱",
+        "舞台说明缺失导致无法排演",
+        "台词书面化、不宜口语表演"
+      ],
+      "suggested_types": [
+        "改编",
+        "排演",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·第五单元戏剧活动",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-chinese-K026",
+      "index": 26,
+      "domain": "跨学科学习",
+      "theme": "综合性学习",
+      "unit": "综合性学习",
+      "name": "综合性学习：岁月如歌——我们的初中生活",
+      "objective": "能策划毕业纪念活动，完成资料整理、文稿撰写与成果展示",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K026"
+      ],
+      "concept": "以「回顾—梳理—表达—展示」为流程，综合运用记叙、抒情、说明、议论多种表达方式，形成有个人印记的语文成果",
+      "common_mistakes": [
+        "活动流于形式",
+        "文稿缺少真情实感与细节"
+      ],
+      "suggested_types": [
+        "项目",
+        "设计",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九下·综合性学习",
+      "engine_hint": "llm"
+    }
+  ]
 }

@@ -1,12 +1,467 @@
 {
   "volume_id": "primary-g2-s2-english",
-  "title": "g2英语下册",
+  "title": "二年级下册英语（启蒙）",
   "stage": "primary",
   "grade": "g2",
   "term": "s2",
   "subject": "english",
   "school_stage": "S1",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版PEP/外研版/译林版二年级启蒙内容；2022版英语课标（一二年级为兴趣启蒙，不作为起始年级）",
+  "knowledge_points": [
+    {
+      "id": "primary-g2-s2-english-K001",
+      "index": 1,
+      "domain": "语言知识",
+      "theme": "语音",
+      "unit": "自然拼读",
+      "name": "字母组合 sh、ch 的发音",
+      "objective": "初步感知 sh、ch 的常见发音",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-english-K001"
+      ],
+      "concept": "sh 常发 /ʃ/，ch 常发 /tʃ/，是常见字母组合",
+      "common_mistakes": [
+        "sh 与 ch 混淆",
+        "发音部位错误"
+      ],
+      "suggested_types": [
+        "听辨",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Phonics",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-english-K002",
+      "index": 2,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "食物",
+      "name": "食物词 rice、noodles、bread",
+      "objective": "能认读常见食物单词",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "食物词可数与不可数的区分是后续语法的伏笔",
+      "common_mistakes": [
+        "noodles 单复数误解",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Food",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-english-K003",
+      "index": 3,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "询问喜好",
+      "name": "Do you like...? 及其回答",
+      "objective": "能用 Do you like...? 询问并回答喜好",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-english-K002"
+      ],
+      "concept": "Do you like...? 是助动词引导的一般疑问句，回答用 Yes, I do. 或 No, I don't.",
+      "common_mistakes": [
+        "回答用 Yes, I like.",
+        "助动词漏掉"
+      ],
+      "suggested_types": [
+        "对话",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Food",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-english-K004",
+      "index": 4,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "三餐",
+      "name": "三餐词 breakfast、lunch、dinner",
+      "objective": "能认读三餐名称",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g2-s2-english-K002"
+      ],
+      "concept": "三餐分别对应早、中、晚，注意 dinner 也可指正餐",
+      "common_mistakes": [
+        "三餐与时间对应错误",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Food",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-english-K005",
+      "index": 5,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "日常活动",
+      "name": "动词短语 get up、go to school",
+      "objective": "能认读常见日常活动短语",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "动词短语是英语表达的核心单位，要整块记忆",
+      "common_mistakes": [
+        "短语拆开理解",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Daily life",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-english-K006",
+      "index": 6,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "描述作息",
+      "name": "用英语描述日常作息",
+      "objective": "能用简单句描述自己的一天",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-english-K005"
+      ],
+      "concept": "描述作息要注意动词形式和时间顺序",
+      "common_mistakes": [
+        "动作顺序混乱",
+        "动词形式错误"
+      ],
+      "suggested_types": [
+        "表达",
+        "选择",
+        "判断"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Daily life",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-english-K007",
+      "index": 7,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "星期",
+      "name": "星期词 Monday 到 Sunday",
+      "objective": "能认读一周七天的英文名称",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "星期名称首字母要大写，Sunday 是一周的第一天（英语习惯）",
+      "common_mistakes": [
+        "首字母不大写",
+        "星期顺序错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "排序",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Days of the week",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-english-K008",
+      "index": 8,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "季节",
+      "name": "季节词 spring、summer、autumn、winter",
+      "objective": "能认读四季名称",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "四季名称与天气、活动密切相关",
+      "common_mistakes": [
+        "季节顺序错误",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Seasons",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-english-K009",
+      "index": 9,
+      "domain": "语言知识",
+      "theme": "语用",
+      "unit": "搭配",
+      "name": "季节与活动的搭配",
+      "objective": "能把季节与典型活动正确搭配",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-english-K008"
+      ],
+      "concept": "不同季节有典型活动，如 spring—fly kites、winter—make a snowman",
+      "common_mistakes": [
+        "季节与活动错配",
+        "动词形式错误"
+      ],
+      "suggested_types": [
+        "匹配",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Seasons",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-english-K010",
+      "index": 10,
+      "domain": "语言知识",
+      "theme": "词汇",
+      "unit": "服装",
+      "name": "服装词 shirt、dress、shoes",
+      "objective": "能认读常见服装单词",
+      "difficulty": 1,
+      "bloom": "记忆",
+      "prerequisites": [],
+      "concept": "服装词要注意 shoes 通常用复数形式",
+      "common_mistakes": [
+        "shoes 用单数",
+        "拼写错误"
+      ],
+      "suggested_types": [
+        "认读",
+        "匹配",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Clothes",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g2-s2-english-K011",
+      "index": 11,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "现在进行时",
+      "name": "现在进行时初步 I'm wearing...",
+      "objective": "初步感知现在进行时的构成",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-english-K010"
+      ],
+      "concept": "现在进行时表示正在进行的动作，构成是 be + 动词-ing",
+      "common_mistakes": [
+        "漏掉 be 动词",
+        "动词不加 -ing"
+      ],
+      "suggested_types": [
+        "选择",
+        "填空",
+        "判断"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Clothes",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-english-K012",
+      "index": 12,
+      "domain": "语言知识",
+      "theme": "语法",
+      "unit": "祈使句",
+      "name": "祈使句初步",
+      "objective": "能听懂并使用简单祈使句",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-english-K005"
+      ],
+      "concept": "祈使句以动词原形开头，表示请求或命令，如 Open the door.",
+      "common_mistakes": [
+        "句首加主语",
+        "动词形式错误"
+      ],
+      "suggested_types": [
+        "选择",
+        "判断",
+        "听力"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Classroom",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-english-K013",
+      "index": 13,
+      "domain": "文化知识",
+      "theme": "文化",
+      "unit": "饮食文化",
+      "name": "中外饮食差异",
+      "objective": "初步了解中外饮食文化的差异",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s2-english-K002"
+      ],
+      "concept": "中餐以米面为主食，西餐常见面包、牛奶，餐具使用也不同",
+      "common_mistakes": [
+        "用本国习惯判断",
+        "文化差异理解片面"
+      ],
+      "suggested_types": [
+        "理解",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Culture",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-english-K014",
+      "index": 14,
+      "domain": "学习策略",
+      "theme": "策略",
+      "unit": "跟读模仿",
+      "name": "学习策略：跟读与模仿",
+      "objective": "能通过跟读模仿改善语音语调",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g2-s2-english-K001"
+      ],
+      "concept": "跟读要注意语音、语调、连读，模仿原声的节奏",
+      "common_mistakes": [
+        "跟读不看文本",
+        "语调平直"
+      ],
+      "suggested_types": [
+        "实践",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·学习策略",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-english-K015",
+      "index": 15,
+      "domain": "语言技能",
+      "theme": "听",
+      "unit": "歌谣",
+      "name": "英语儿歌与童谣",
+      "objective": "能跟唱童谣并体会押韵",
+      "difficulty": 2,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g2-s1-english-K013"
+      ],
+      "concept": "童谣押韵规律明显，有助于感知英语语音特点",
+      "common_mistakes": [
+        "只跟旋律",
+        "押韵不感知"
+      ],
+      "suggested_types": [
+        "听唱",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Let's chant",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g2-s2-english-K016",
+      "index": 16,
+      "domain": "语言技能",
+      "theme": "说",
+      "unit": "综合表达",
+      "name": "综合自我介绍",
+      "objective": "能综合运用所学进行简单自我介绍",
+      "difficulty": 2,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g1-s1-english-K007"
+      ],
+      "concept": "自我介绍可包含姓名、年龄、喜好等基本信息",
+      "common_mistakes": [
+        "内容不完整",
+        "句子不连贯"
+      ],
+      "suggested_types": [
+        "表达",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g2"
+      ],
+      "source": "人教PEP二下·Review",
+      "engine_hint": "llm"
+    }
+  ]
 }

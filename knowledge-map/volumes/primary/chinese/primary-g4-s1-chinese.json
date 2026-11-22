@@ -1,12 +1,651 @@
 {
   "volume_id": "primary-g4-s1-chinese",
-  "title": "g4语文上册",
+  "title": "四年级上册语文",
   "stage": "primary",
   "grade": "g4",
   "term": "s1",
   "subject": "chinese",
   "school_stage": "S2",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "统编版（2024审定）四年级上册；2022版语文课标第二学段",
+  "knowledge_points": [
+    {
+      "id": "primary-g4-s1-chinese-K001",
+      "index": 1,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "多音字",
+      "objective": "能依据词义和语境判断多音字读音",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s2-chinese-K001"
+      ],
+      "concept": "多音字读音与意义、词性对应，需在具体语境中辨析",
+      "common_mistakes": [
+        "按常用读音读",
+        "语境判断错误"
+      ],
+      "suggested_types": [
+        "读音",
+        "辨析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第一单元",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K002",
+      "index": 2,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "识字",
+      "name": "形近字辨析",
+      "objective": "能辨析形近字并正确书写",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s2-chinese-K002"
+      ],
+      "concept": "形近字差别集中在个别笔画或部件，需结合字义与构字理据记忆",
+      "common_mistakes": [
+        "笔画增减",
+        "部件混淆"
+      ],
+      "suggested_types": [
+        "辨析",
+        "改错",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第二单元",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K003",
+      "index": 3,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "近义词辨析",
+      "objective": "能辨析近义词在程度、范围和色彩上的差异",
+      "difficulty": 3,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s2-chinese-K003"
+      ],
+      "concept": "近义词差别体现在程度轻重、范围大小、感情色彩和搭配习惯上",
+      "common_mistakes": [
+        "随意互换",
+        "忽略感情色彩"
+      ],
+      "suggested_types": [
+        "辨析",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第三单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K004",
+      "index": 4,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "成语的积累与运用",
+      "objective": "能理解并恰当运用成语",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-chinese-K004"
+      ],
+      "concept": "成语意义凝练、结构固定，使用要注意对象、语境和感情色彩",
+      "common_mistakes": [
+        "望文生义",
+        "语义重复"
+      ],
+      "suggested_types": [
+        "运用",
+        "选择",
+        "填空"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·语文园地",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K005",
+      "index": 5,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "词语",
+      "name": "词语的感情色彩",
+      "objective": "能辨别词语的褒贬并恰当使用",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s1-chinese-K003"
+      ],
+      "concept": "词语按感情色彩分为褒义、贬义、中性，误用会改变表达倾向",
+      "common_mistakes": [
+        "褒贬误用",
+        "忽略语境"
+      ],
+      "suggested_types": [
+        "辨析",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·词语",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K006",
+      "index": 6,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "句子",
+      "name": "比喻、拟人、夸张的综合运用",
+      "objective": "能辨析并综合运用三种修辞手法",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-chinese-K006"
+      ],
+      "concept": "比喻重相似、拟人重人格化、夸张重突出特点，可结合使用增强表现力",
+      "common_mistakes": [
+        "修辞混淆",
+        "使用不合情理"
+      ],
+      "suggested_types": [
+        "赏析",
+        "仿写",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第一单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K007",
+      "index": 7,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "句子",
+      "name": "排比句",
+      "objective": "能识别排比句并体会其增强语势的作用",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s1-chinese-K010"
+      ],
+      "concept": "排比由三个或以上结构相似、语气一致的语句构成，能增强语势、强调情感",
+      "common_mistakes": [
+        "数量不足",
+        "结构不一致"
+      ],
+      "suggested_types": [
+        "识别",
+        "赏析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K008",
+      "index": 8,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "句子",
+      "name": "修改病句：语序不当",
+      "objective": "能找出并调整语序不当的病句",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s2-chinese-K008"
+      ],
+      "concept": "语序不当会使句子表意混乱，调整时要保持原意并符合语言习惯",
+      "common_mistakes": [
+        "调整后改变原意",
+        "找不准语序问题"
+      ],
+      "suggested_types": [
+        "修改",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K009",
+      "index": 9,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "句子",
+      "name": "修改病句：重复啰嗦",
+      "objective": "能找出并删改重复啰嗦的语句",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s1-chinese-K008"
+      ],
+      "concept": "重复啰嗦指语义相同的词语或句子重复出现，修改时删去多余部分",
+      "common_mistakes": [
+        "删改后语义缺失",
+        "保留赘余"
+      ],
+      "suggested_types": [
+        "修改",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K010",
+      "index": 10,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "句子",
+      "name": "转述句",
+      "objective": "能把直接引语改为转述句",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s1-chinese-K009"
+      ],
+      "concept": "转述时要改换人称、去掉引号、调整标点，保持原意不变",
+      "common_mistakes": [
+        "人称改错",
+        "引号未去掉"
+      ],
+      "suggested_types": [
+        "转换",
+        "改写",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·句子",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K011",
+      "index": 11,
+      "domain": "语言文字积累与梳理",
+      "theme": "语言文字积累与梳理",
+      "unit": "标点符号",
+      "name": "顿号与分号",
+      "objective": "能正确使用顿号和分号",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g3-s2-chinese-K011"
+      ],
+      "concept": "顿号用于句内并列词语之间，分号用于并列分句之间，层次上分号大于顿号",
+      "common_mistakes": [
+        "顿号与逗号混用",
+        "分号用于非并列分句"
+      ],
+      "suggested_types": [
+        "标点",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·标点符号",
+      "engine_hint": "template"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K012",
+      "index": 12,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "段落",
+      "name": "过渡句与中心句",
+      "objective": "能识别过渡句和中心句并说明其作用",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s2-chinese-K012"
+      ],
+      "concept": "中心句概括段落主要意思，过渡句连接上下文使文章连贯",
+      "common_mistakes": [
+        "过渡与中心混淆",
+        "作用说明不准"
+      ],
+      "suggested_types": [
+        "识别",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第五单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K013",
+      "index": 13,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "课文",
+      "name": "概括文章主要内容",
+      "objective": "能概括写人记事类文章的主要内容",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g3-s2-chinese-K013"
+      ],
+      "concept": "可用谁在什么情况下做了什么结果如何的框架概括，语言要简洁",
+      "common_mistakes": [
+        "细节罗列",
+        "遗漏主要事件"
+      ],
+      "suggested_types": [
+        "概括",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第四单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K014",
+      "index": 14,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "课文",
+      "name": "体会文章的思想感情",
+      "objective": "能通过关键语句体会文章表达的思想感情",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "primary-g4-s1-chinese-K013"
+      ],
+      "concept": "借助关键词句、人物言行和景物描写，体会作者蕴含其中的情感态度",
+      "common_mistakes": [
+        "只概括内容不体会情感",
+        "情感理解偏差"
+      ],
+      "suggested_types": [
+        "赏析",
+        "分析",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第六单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K015",
+      "index": 15,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "古诗",
+      "name": "古诗：《暮江吟》《题西林壁》《雪梅》",
+      "objective": "能背诵古诗并理解诗中哲理",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "primary-g3-s2-chinese-K015"
+      ],
+      "concept": "写景诗要想象画面，哲理诗要从景物中提炼道理，如《题西林壁》讲观察角度",
+      "common_mistakes": [
+        "哲理理解错误",
+        "景物与情感脱节"
+      ],
+      "suggested_types": [
+        "背诵",
+        "理解",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第三单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K016",
+      "index": 16,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "文言文",
+      "name": "文言文《精卫填海》",
+      "objective": "能借助注释读懂文言文并感受人物精神",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g3-s2-chinese-K016"
+      ],
+      "concept": "借助注释和上下文理解文言词句，体会神话人物的坚韧精神",
+      "common_mistakes": [
+        "以今义解古义",
+        "忽略注释"
+      ],
+      "suggested_types": [
+        "理解",
+        "翻译",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第四单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K017",
+      "index": 17,
+      "domain": "文学阅读与创意表达",
+      "theme": "文学阅读与创意表达",
+      "unit": "神话",
+      "name": "神话故事的特点",
+      "objective": "能说出神话故事想象奇特、人物形象鲜明的特点",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s1-chinese-K016"
+      ],
+      "concept": "神话常用夸张奇特的想象解释自然或表现英雄，人物具有超凡力量和精神品质",
+      "common_mistakes": [
+        "与童话混淆",
+        "只记情节不归纳特点"
+      ],
+      "suggested_types": [
+        "理解",
+        "概括",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第四单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K018",
+      "index": 18,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "习作",
+      "name": "习作：写观察日记",
+      "objective": "能连续观察并记录事物的变化",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s1-chinese-K012"
+      ],
+      "concept": "观察日记要写清观察时间、对象和变化，注意细节和连续性",
+      "common_mistakes": [
+        "只写结果不写变化过程",
+        "观察不细致"
+      ],
+      "suggested_types": [
+        "习作",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第三单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K019",
+      "index": 19,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "习作",
+      "name": "习作：写事",
+      "objective": "能按事情发展顺序写清一件事",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s1-chinese-K018"
+      ],
+      "concept": "写事要交代清时间、地点、人物，把起因、经过、结果写具体，重点写经过",
+      "common_mistakes": [
+        "流水账",
+        "经过不具体"
+      ],
+      "suggested_types": [
+        "习作",
+        "表达",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第五单元",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K020",
+      "index": 20,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "口语交际",
+      "name": "口语交际：讲历史人物故事",
+      "objective": "能完整讲述历史人物故事",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s1-chinese-K018"
+      ],
+      "concept": "讲故事要交代背景、突出人物关键事迹，语言生动、条理清楚",
+      "common_mistakes": [
+        "情节不完整",
+        "人物形象不突出"
+      ],
+      "suggested_types": [
+        "表达",
+        "复述",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·口语交际",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K021",
+      "index": 21,
+      "domain": "整本书阅读",
+      "theme": "整本书阅读",
+      "unit": "课外阅读",
+      "name": "课外阅读：神话传说",
+      "objective": "能阅读中外神话传说并感受想象魅力",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "primary-g4-s1-chinese-K018"
+      ],
+      "concept": "读神话要感受古人解释世界的想象方式，比较中外神话的异同",
+      "common_mistakes": [
+        "只记故事不体会想象",
+        "混淆神话与传说"
+      ],
+      "suggested_types": [
+        "阅读",
+        "比较",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·快乐读书吧",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "primary-g4-s1-chinese-K022",
+      "index": 22,
+      "domain": "实用性阅读与交流",
+      "theme": "实用性阅读与交流",
+      "unit": "阅读策略",
+      "name": "批注阅读",
+      "objective": "能在阅读时写下自己的批注",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "primary-g4-s1-chinese-K014"
+      ],
+      "concept": "批注可在文中空白处写下疑问、感受、评价，帮助深入理解文本",
+      "common_mistakes": [
+        "批注与文本无关",
+        "只抄原文无想法"
+      ],
+      "suggested_types": [
+        "批注",
+        "阅读",
+        "选择"
+      ],
+      "grade_range": [
+        "g4"
+      ],
+      "source": "统编四上·第六单元",
+      "engine_hint": "llm"
+    }
+  ]
 }

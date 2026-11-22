@@ -1,12 +1,708 @@
 {
   "volume_id": "junior-g9-s2-math",
-  "title": "g9数学下册",
+  "title": "九年级下册数学",
   "stage": "junior",
   "grade": "g9",
   "term": "s2",
   "subject": "math",
   "school_stage": "S4",
-  "status": "todo",
-  "source_basis": "",
-  "knowledge_points": []
+  "status": "done",
+  "source_basis": "人教版（2024审定）/北师大版/苏教版九年级下册共有内容；2022版数学课标第四学段",
+  "knowledge_points": [
+    {
+      "id": "junior-g9-s2-math-K001",
+      "index": 1,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "反比例函数",
+      "name": "反比例函数的概念",
+      "objective": "理解反比例函数的定义并能确定比例系数",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g8-s2-math-K013"
+      ],
+      "concept": "形如 y=k/x（k≠0）的函数叫反比例函数，也可写成 xy=k 或 y=kx⁻¹；自变量 x≠0",
+      "common_mistakes": [
+        "忽略 k≠0 与 x≠0",
+        "把 y=k/x 与 y=kx 混淆"
+      ],
+      "suggested_types": [
+        "辨析",
+        "求解析式",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十六章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-math-K002",
+      "index": 2,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "反比例函数",
+      "name": "反比例函数的图象与性质",
+      "objective": "掌握双曲线的所在象限与增减性",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-math-K001"
+      ],
+      "concept": "图象是双曲线；k>0 时位于一、三象限，每一象限内 y 随 x 增大而减小；k<0 时位于二、四象限，每一象限内 y 随 x 增大而增大",
+      "common_mistakes": [
+        "跨象限比较函数值大小",
+        "把「每一象限内」的增减性推广到整个定义域"
+      ],
+      "suggested_types": [
+        "作图",
+        "比较大小",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十六章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-math-K003",
+      "index": 3,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "反比例函数",
+      "name": "反比例函数中 k 的几何意义",
+      "objective": "理解过双曲线上一点向坐标轴作垂线所得矩形面积等于 |k|",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-math-K002"
+      ],
+      "concept": "过双曲线上任一点作 x 轴、y 轴的垂线，与坐标轴围成的矩形面积为 |k|，对应直角三角形面积为 |k|/2",
+      "common_mistakes": [
+        "忘记加绝对值导致面积为负",
+        "把矩形面积与三角形面积混用"
+      ],
+      "suggested_types": [
+        "计算",
+        "求面积",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十六章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-math-K004",
+      "index": 4,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "反比例函数",
+      "name": "反比例函数与一次函数的综合",
+      "objective": "能联立解析式求交点并利用图象比较函数值大小",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-math-K002",
+        "junior-g8-s2-math-K015"
+      ],
+      "concept": "联立 y=k/x 与 y=ax+b 得 ax²+bx-k=0，其解为交点横坐标；图象比较大小须按交点分段讨论并注意 x≠0",
+      "common_mistakes": [
+        "解分式方程产生增根未舍去",
+        "分段讨论时区间端点开闭写错"
+      ],
+      "suggested_types": [
+        "数形结合",
+        "综合",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十六章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-math-K005",
+      "index": 5,
+      "domain": "数与代数",
+      "theme": "函数",
+      "unit": "反比例函数",
+      "name": "反比例函数的实际应用",
+      "objective": "能建立反比例函数模型解决工程、行程、压强等问题",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s2-math-K002"
+      ],
+      "concept": "当两个量的乘积为定值时成反比例关系，如「工作总量=效率×时间」「压强=压力/受力面积」",
+      "common_mistakes": [
+        "把反比例关系误判为正比例",
+        "忽略自变量的实际取值范围"
+      ],
+      "suggested_types": [
+        "建模",
+        "应用",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十六章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-math-K006",
+      "index": 6,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "相似",
+      "name": "比例线段与比例的基本性质",
+      "objective": "理解比例线段的概念，掌握比例的基本性质与合比、等比性质",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "四条线段 a、b、c、d 满足 a/b=c/d 则成比例；基本性质 ad=bc；黄金比为 (√5-1)/2≈0.618",
+      "common_mistakes": [
+        "线段单位不统一就求比",
+        "合分比性质符号出错"
+      ],
+      "suggested_types": [
+        "计算",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十七章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-math-K007",
+      "index": 7,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "相似",
+      "name": "平行线分线段成比例",
+      "objective": "掌握基本事实：两条直线被一组平行线所截，所得对应线段成比例",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s2-math-K006"
+      ],
+      "concept": "三条平行线截两条直线，所得对应线段成比例；推论：平行于三角形一边的直线截其他两边（或延长线），所得对应线段成比例",
+      "common_mistakes": [
+        "对应线段找错（未按位置对应）",
+        "忽略「对应」二字随意组比"
+      ],
+      "suggested_types": [
+        "计算",
+        "证明",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十七章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-math-K008",
+      "index": 8,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "相似",
+      "name": "相似三角形的判定",
+      "objective": "掌握相似三角形的判定定理并能选择恰当方法证明",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s2-math-K007"
+      ],
+      "concept": "判定：两角分别相等、两边成比例且夹角相等、三边成比例、平行于三角形一边的直线所截三角形与原三角形相似；直角三角形可加斜边直角边成比例",
+      "common_mistakes": [
+        "用「两边成比例」而忽略夹角",
+        "对应顶点顺序写错导致比例式错"
+      ],
+      "suggested_types": [
+        "证明",
+        "判断",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十七章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-math-K009",
+      "index": 9,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "相似",
+      "name": "相似三角形的性质",
+      "objective": "掌握相似三角形对应线段之比、周长比、面积比的关系",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s2-math-K008"
+      ],
+      "concept": "相似三角形对应高、对应中线、对应角平分线之比都等于相似比；周长比等于相似比；面积比等于相似比的平方",
+      "common_mistakes": [
+        "面积比误用相似比",
+        "把周长比与面积比混淆"
+      ],
+      "suggested_types": [
+        "计算",
+        "证明",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十七章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-math-K010",
+      "index": 10,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "相似",
+      "name": "相似三角形的实际应用",
+      "objective": "能利用相似三角形原理测量不可直接测量的高度与距离",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-math-K009"
+      ],
+      "concept": "构造「A 型」或「X 型」相似模型，用对应边成比例列方程；测量方案需说明构造的相似条件",
+      "common_mistakes": [
+        "相似模型构造错误",
+        "对应边比例式写反"
+      ],
+      "suggested_types": [
+        "建模",
+        "应用",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十七章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-math-K011",
+      "index": 11,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "相似",
+      "name": "相似多边形",
+      "objective": "理解相似多边形的定义与周长、面积关系",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g9-s2-math-K009"
+      ],
+      "concept": "边数相同、对应角相等、对应边成比例的多边形叫相似多边形；相似多边形周长比等于相似比，面积比等于相似比的平方",
+      "common_mistakes": [
+        "只凭对应边成比例判定相似多边形",
+        "忽略对应角相等这一条件"
+      ],
+      "suggested_types": [
+        "判断",
+        "计算",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十七章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-math-K012",
+      "index": 12,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "相似",
+      "name": "图形的位似",
+      "objective": "理解位似图形是特殊的相似图形，掌握位似中心与位似比",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g9-s2-math-K011"
+      ],
+      "concept": "两个多边形不仅相似，且对应顶点连线都经过同一点，这两个图形叫位似图形；该点为位似中心，对应边互相平行（或在同一直线上）",
+      "common_mistakes": [
+        "把位似与普通相似混同",
+        "位似比与面积比混淆"
+      ],
+      "suggested_types": [
+        "辨析",
+        "作图",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十七章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-math-K013",
+      "index": 13,
+      "domain": "图形与几何",
+      "theme": "图形与坐标",
+      "unit": "相似",
+      "name": "位似与坐标变换",
+      "objective": "掌握以原点为位似中心的位似变换对坐标的影响",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s2-math-K012"
+      ],
+      "concept": "以原点为位似中心、位似比为 k 时，对应点坐标为 (kx, ky) 或 (-kx, -ky)，取决于图形在位似中心同侧还是异侧",
+      "common_mistakes": [
+        "漏掉异侧情形导致漏解",
+        "把位似比与坐标倍数关系搞反"
+      ],
+      "suggested_types": [
+        "求坐标",
+        "作图",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十七章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-math-K014",
+      "index": 14,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "锐角三角函数",
+      "name": "锐角三角函数的定义",
+      "objective": "理解正弦、余弦、正切的定义并能求值",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "在 Rt△ABC 中，∠C=90°，sinA=a/c、cosA=b/c、tanA=a/b；三角函数值只与角的大小有关，与三角形边长无关",
+      "common_mistakes": [
+        "未明确相对于哪个角判定邻边与对边",
+        "把 sinA 写成边之比时分子分母颠倒"
+      ],
+      "suggested_types": [
+        "计算",
+        "辨析",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十八章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-math-K015",
+      "index": 15,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "锐角三角函数",
+      "name": "特殊角的三角函数值",
+      "objective": "熟记 30°、45°、60° 的三角函数值并能进行相关计算",
+      "difficulty": 2,
+      "bloom": "记忆",
+      "prerequisites": [
+        "junior-g9-s2-math-K014"
+      ],
+      "concept": "sin30°=1/2、sin45°=√2/2、sin60°=√3/2；cos 值依次为 √3/2、√2/2、1/2；tan30°=√3/3、tan45°=1、tan60°=√3",
+      "common_mistakes": [
+        "正弦与余弦值记混",
+        "tan30° 与 tan60° 记反"
+      ],
+      "suggested_types": [
+        "计算",
+        "求值",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十八章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-math-K016",
+      "index": 16,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "锐角三角函数",
+      "name": "同角与互余角的三角函数关系",
+      "objective": "掌握 sin²A+cos²A=1、tanA=sinA/cosA 及 sinA=cos(90°-A)",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [
+        "junior-g9-s2-math-K015"
+      ],
+      "concept": "同一锐角满足 sin²A+cos²A=1、tanA=sinA/cosA；互余两角满足 sinA=cos(90°-A)、tanA·tan(90°-A)=1",
+      "common_mistakes": [
+        "把互余关系写成 sinA=cos(180°-A)",
+        "平方关系漏平方"
+      ],
+      "suggested_types": [
+        "化简",
+        "求值",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十八章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-math-K017",
+      "index": 17,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "锐角三角函数",
+      "name": "解直角三角形",
+      "objective": "能根据已知元素求出直角三角形的其余元素",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s2-math-K016"
+      ],
+      "concept": "解直角三角形依据：三边关系 a²+b²=c²、两锐角互余、边角关系（三角函数）；已知两边或一边一角即可求解",
+      "common_mistakes": [
+        "选错三角函数导致边角不对应",
+        "结果未按要求取近似值"
+      ],
+      "suggested_types": [
+        "计算",
+        "求解",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十八章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-math-K018",
+      "index": 18,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "锐角三角函数",
+      "name": "解直角三角形中的仰角与俯角",
+      "objective": "能识别仰角、俯角并建立直角三角形模型求解",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-math-K017"
+      ],
+      "concept": "视线在水平线上方所成角为仰角，下方为俯角；常通过作高把斜三角形分割为两个直角三角形",
+      "common_mistakes": [
+        "仰角与俯角认反",
+        "未构造直角三角形直接套公式"
+      ],
+      "suggested_types": [
+        "建模",
+        "计算",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十八章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-math-K019",
+      "index": 19,
+      "domain": "图形与几何",
+      "theme": "图形的变化",
+      "unit": "锐角三角函数",
+      "name": "解直角三角形中的坡度与方位角",
+      "objective": "能处理坡度（坡比）、坡角与方位角问题",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-math-K017"
+      ],
+      "concept": "坡度 i=h/l=tanα（α 为坡角）；方位角以正北或正南为始边顺时针（或逆时针）度量，须先画准方向",
+      "common_mistakes": [
+        "坡度与坡角混为一谈",
+        "方位角起点选错",
+        "把坡度写成百分数后直接当角度"
+      ],
+      "suggested_types": [
+        "建模",
+        "计算",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十八章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-math-K020",
+      "index": 20,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "投影与视图",
+      "name": "投影",
+      "objective": "理解平行投影与中心投影的区别",
+      "difficulty": 3,
+      "bloom": "理解",
+      "prerequisites": [],
+      "concept": "由平行光线形成的投影叫平行投影，由同一点发出的光线形成的投影叫中心投影；同一时刻物高与影长成比例",
+      "common_mistakes": [
+        "两种投影混用",
+        "忽略太阳光下不同时刻影长变化"
+      ],
+      "suggested_types": [
+        "辨析",
+        "作图",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十九章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-math-K021",
+      "index": 21,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "投影与视图",
+      "name": "三视图",
+      "objective": "掌握主视图、左视图、俯视图的画法与位置关系",
+      "difficulty": 3,
+      "bloom": "应用",
+      "prerequisites": [
+        "junior-g9-s2-math-K020"
+      ],
+      "concept": "主视图从前向后看、左视图从左向右看、俯视图从上向下看；遵循「长对正、高平齐、宽相等」；看得见的轮廓线画实线，看不见的画虚线",
+      "common_mistakes": [
+        "三个视图位置摆放错误",
+        "虚实线使用不当",
+        "宽相等关系弄错"
+      ],
+      "suggested_types": [
+        "作图",
+        "判断",
+        "选择"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十九章",
+      "engine_hint": "template"
+    },
+    {
+      "id": "junior-g9-s2-math-K022",
+      "index": 22,
+      "domain": "图形与几何",
+      "theme": "图形的性质",
+      "unit": "投影与视图",
+      "name": "由三视图还原几何体",
+      "objective": "能根据三视图想象几何体并计算其表面积或体积",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s2-math-K021"
+      ],
+      "concept": "由三视图确定几何体的形状与尺寸：主视图与俯视图定长、主视图与左视图定高、俯视图与左视图定宽；再按对应公式计算",
+      "common_mistakes": [
+        "还原形状错误（如把圆柱当棱柱）",
+        "尺寸对应错导致计算错误",
+        "漏算被遮挡的面"
+      ],
+      "suggested_types": [
+        "还原",
+        "计算",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十九章",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-math-K023",
+      "index": 23,
+      "domain": "综合与实践",
+      "theme": "项目式学习",
+      "unit": "数学活动",
+      "name": "综合与实践：几何体的展开图与表面积",
+      "objective": "能画出常见几何体的展开图并据此计算表面积",
+      "difficulty": 4,
+      "bloom": "创造",
+      "prerequisites": [
+        "junior-g9-s2-math-K022"
+      ],
+      "concept": "展开图与原几何体表面一一对应；圆锥展开为扇形加圆，扇形弧长等于底面周长，是连接平面与立体的关键等式",
+      "common_mistakes": [
+        "展开图与原图面对应错",
+        "圆锥展开时扇形半径与底面半径混用"
+      ],
+      "suggested_types": [
+        "项目",
+        "设计",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十九章数学活动",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s2-math-K024",
+      "index": 24,
+      "domain": "综合与实践",
+      "theme": "项目式学习",
+      "unit": "数学活动",
+      "name": "综合与实践：测量与建模综合探究",
+      "objective": "能综合运用相似与三角函数设计并实施测量方案",
+      "difficulty": 4,
+      "bloom": "评价",
+      "prerequisites": [
+        "junior-g9-s2-math-K018",
+        "junior-g9-s2-math-K019"
+      ],
+      "concept": "根据被测对象与可达条件选择模型：水平可达用相似，测角可达用三角函数；方案须包含工具、步骤、数据处理与误差分析",
+      "common_mistakes": [
+        "方案未说明模型适用条件",
+        "缺少误差与改进的分析"
+      ],
+      "suggested_types": [
+        "项目",
+        "评价",
+        "综合"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "人教九下·第二十八章数学活动",
+      "engine_hint": "llm"
+    }
+  ]
 }
