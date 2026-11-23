@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import store  # noqa: E402
 
 APP_TITLE = "K12 知识点地图 · 管理台"
-VERSION = "1.0"
+VERSION = "1.1"
 
 
 class App:
@@ -70,6 +70,9 @@ class App:
         menubar.add_cascade(label="编辑", menu=m_edit)
 
         m_tools = tk.Menu(menubar, tearoff=0)
+        m_tools.add_command(label="生成题目（所选知识点）", command=self.generate_questions)
+        m_tools.add_command(label="批量生成（当前列表）", command=self.generate_batch_questions)
+        m_tools.add_separator()
         m_tools.add_command(label="运行全部校验", command=self.run_checks)
         m_tools.add_command(label="刷新数据", command=self.reload_all)
         menubar.add_cascade(label="工具", menu=m_tools)
@@ -181,6 +184,8 @@ class App:
             ("编辑所选", self.edit_dialog),
             ("删除所选", self.delete_selected),
             ("撤销", self.undo),
+            ("生成题目", self.generate_questions),
+            ("批量生成", self.generate_batch_questions),
             ("运行校验", self.run_checks),
             ("导出 CSV", lambda: self.export("csv")),
             ("刷新", self.reload_all),
@@ -464,6 +469,28 @@ class App:
         self.reload_all()
 
     # ---------------- 工具 ----------------
+    def generate_questions(self):
+        if not self.selected_id:
+            messagebox.showinfo("提示", "请先在列表中选择一个知识点")
+            return
+        found = store.find_point(self.selected_id)
+        if not found:
+            return
+        kp, _ = found
+        QuestionDialog(self.root, [kp], title=f"题目生成 · {kp['name']}")
+
+    def generate_batch_questions(self):
+        rows = self.current_rows
+        if not rows:
+            messagebox.showinfo("提示", "当前列表没有知识点，请先选择册或设置筛选")
+            return
+        if len(rows) > 150 and not messagebox.askyesno(
+                "批量生成",
+                f"当前列表有 {len(rows)} 个知识点，批量生成需要一点时间。继续？"):
+            return
+        QuestionDialog(self.root, [kp for kp, _ in rows],
+                       title=f"批量题目生成 · {len(rows)} 个知识点")
+
     def run_checks(self):
         win = tk.Toplevel(self.root)
         win.title("校验结果")
@@ -540,11 +567,185 @@ class App:
    每次写操作都会自动备份到 desktop/backups/，并记入 changelog.jsonl。
 5. 「撤销」恢复最近一次变更所在册的完整快照。
 6. 「运行校验」调用结构校验 + 字段校验 + 课标交叉校验三套脚本。
-7. 注意：volumes/ 是 data/*.py 生成的产物。若要永久固化修改，
+7. 「生成题目」用内容感知引擎为所选知识点现场出题；「批量生成」对当前列表
+   统一出题并全局去重。可设置每点题数与随机种子，双击题目看完整选项和解析，
+   支持导出 JSONL / CSV。生成在后台线程进行，不卡界面。
+8. 注意：volumes/ 是 data/*.py 生成的产物。若要永久固化修改，
    请把改动同步回 knowledge-map/data/ 下对应的源文件，再运行 build_volumes.py。""")
 
     def about_dialog(self):
-        messagebox.showinfo("关于", f"{APP_TITLE}\nv{VERSION}\n\n63 册 / 1225 知识点\nPython 标准库 + 系统 Tcl/Tk，零第三方依赖。")
+        messagebox.showinfo("关于", f"{APP_TITLE}\nv{VERSION}\n\n63 册 / 1225 知识点\n内容感知型出题引擎 · Python 标准库 + Tcl/Tk")
+
+
+class QuestionDialog:
+    """题目生成窗口：设置参数 → 后台生成（不卡界面）→ 列表 / 详情 / 导出。"""
+
+    def __init__(self, parent: tk.Tk, topics: list, title: str):
+        self.topics = list(topics)          # [{知识点 dict}]
+        self.questions: list = []           # [题目 dict]
+        self.busy = False
+        self.win = tk.Toplevel(parent)
+        self.win.title(title)
+        self.win.geometry("1000x680")
+        self.win.minsize(820, 520)
+        self.win.transient(parent)
+
+        # 参数栏
+        bar = ttk.Frame(self.win, padding=(12, 10))
+        bar.pack(fill="x")
+        ttk.Label(bar, text="每点题数").pack(side="left")
+        self.var_n = tk.StringVar(value="12" if len(self.topics) == 1 else "6")
+        ttk.Combobox(bar, textvariable=self.var_n, width=6,
+                     values=["4", "6", "8", "12", "20", "30"],
+                     state="readonly").pack(side="left", padx=(4, 14))
+        ttk.Label(bar, text="随机种子").pack(side="left")
+        self.var_seed = tk.StringVar(value="20261120")
+        ttk.Entry(bar, textvariable=self.var_seed, width=12).pack(side="left", padx=(4, 14))
+        self.btn_gen = ttk.Button(bar, text="生成题目", command=self.generate)
+        self.btn_gen.pack(side="left")
+        self.lbl_status = ttk.Label(bar, text="就绪", foreground="#0F6E56")
+        self.lbl_status.pack(side="left", padx=14)
+
+        self.pb = ttk.Progressbar(self.win, mode="determinate", maximum=len(self.topics))
+        self.pb.pack(fill="x", padx=12)
+
+        # 题目列表
+        frame = ttk.Frame(self.win, padding=(12, 8))
+        frame.pack(fill="both", expand=True)
+        cols = ("no", "kind", "stem", "answer", "difficulty", "source")
+        heads = {"no": "#", "kind": "题型", "stem": "题干", "answer": "答案",
+                 "difficulty": "难度", "source": "来源"}
+        widths = {"no": 42, "kind": 92, "stem": 540, "answer": 52,
+                  "difficulty": 52, "source": 110}
+        self.list = ttk.Treeview(frame, columns=cols, show="headings", selectmode="browse")
+        for c in cols:
+            self.list.heading(c, text=heads[c])
+            self.list.column(c, width=widths[c], anchor="w")
+        self.list.pack(side="left", fill="both", expand=True)
+        sb = ttk.Scrollbar(frame, orient="vertical", command=self.list.yview)
+        sb.pack(side="right", fill="y")
+        self.list.configure(yscrollcommand=sb.set)
+        self.list.bind("<Double-1>", lambda _: self.show_detail())
+
+        # 底部操作
+        bottom = ttk.Frame(self.win, padding=(12, 10))
+        bottom.pack(fill="x")
+        for text, cmd in [
+            ("查看完整题目", self.show_detail),
+            ("导出 JSONL", lambda: self.export("jsonl")),
+            ("导出 CSV", lambda: self.export("csv")),
+        ]:
+            ttk.Button(bottom, text=text, command=cmd).pack(side="left", padx=(0, 8))
+        ttk.Button(bottom, text="关闭", command=self.win.destroy).pack(side="right")
+
+    def _after(self, fn):
+        """窗口可能已关闭，安全投递到主线程。"""
+        try:
+            self.win.after(0, fn)
+        except tk.TclError:
+            pass
+
+    def generate(self):
+        if self.busy:
+            return
+        try:
+            n = int(self.var_n.get())
+            seed = int(self.var_seed.get())
+        except ValueError:
+            messagebox.showerror("参数错误", "每点题数和随机种子必须是整数", parent=self.win)
+            return
+        self.busy = True
+        self.btn_gen.configure(state="disabled")
+        self.lbl_status.configure(text="生成中…")
+        self.list.delete(*self.list.get_children())
+        self.questions = []
+        self.pb.configure(value=0, maximum=len(self.topics))
+
+        def work():
+            try:
+                if len(self.topics) == 1:
+                    qs = store.generate_for_point(self.topics[0]["id"], n, seed)
+                    self._after(lambda: self.pb.configure(value=1))
+                else:
+                    def progress(i, total, acc):
+                        self._after(lambda i=i, total=total, acc=acc: (
+                            self.pb.configure(value=i),
+                            self.lbl_status.configure(
+                                text=f"生成中 {i}/{total} · 已入库 {acc} 题")))
+                    ids = [kp["id"] for kp in self.topics]
+                    qs = store.generate_batch(ids, n, seed, progress=progress)
+                self._after(lambda: self._done(qs))
+            except Exception as exc:  # noqa: BLE001 - 界面需展示任何失败
+                self._after(lambda: self._error(str(exc)))
+
+        import threading
+        threading.Thread(target=work, daemon=True).start()
+
+    def _done(self, qs):
+        self.questions = qs
+        self.busy = False
+        self.btn_gen.configure(state="normal")
+        for i, q in enumerate(qs, 1):
+            self.list.insert("", "end", iid=q["id"], values=(
+                i, store.question_kind(q), q["stem"], q["answer"],
+                q["difficulty"], q["source"]))
+        self.lbl_status.configure(
+            text=f"完成 · 生成 {len(qs)} 题" if qs else "完成 · 0 题（该知识点内容不足以命题）")
+
+    def _error(self, msg):
+        self.busy = False
+        self.btn_gen.configure(state="normal")
+        self.lbl_status.configure(text="生成失败")
+        messagebox.showerror("生成失败", msg, parent=self.win)
+
+    def show_detail(self):
+        sel = self.list.selection()
+        if not sel:
+            messagebox.showinfo("提示", "请先选择一道题目", parent=self.win)
+            return
+        q = next((x for x in self.questions if x["id"] == sel[0]), None)
+        if not q:
+            return
+        win = tk.Toplevel(self.win)
+        win.title("题目详情")
+        win.geometry("760x560")
+        win.transient(self.win)
+        txt = scrolledtext.ScrolledText(win, wrap="word", font=("", 13), padx=14, pady=12)
+        txt.pack(fill="both", expand=True)
+        txt.insert("end", f"{store.question_kind(q)} · 难度 {q['difficulty']} · {q['bloom']}\n", ("meta",))
+        txt.insert("end", f"知识点：{q['topic']}  ·  {q['grade']} {q['subject']}\n\n", ("meta",))
+        txt.insert("end", q["stem"] + "\n\n", ("stem",))
+        for i, opt in enumerate(q["options"]):
+            letter = "ABCD"[i]
+            correct = letter == q["answer"]
+            txt.insert("end",
+                       f"（{'答案' if correct else '选项'}） {letter}. {opt}\n",
+                       ("correct" if correct else "opt",))
+        txt.insert("end", "\n解析\n", ("label",))
+        txt.insert("end", q["explanation"] + "\n\n", ("expl",))
+        txt.insert("end", f"题目 ID：{q['id']}\n引擎：{q['source']} {q['generator_version']}", ("meta",))
+        txt.tag_configure("meta", foreground="#666666", font=("", 11))
+        txt.tag_configure("stem", font=("", 14, "bold"))
+        txt.tag_configure("label", font=("", 12, "bold"), foreground="#185FA5")
+        txt.tag_configure("correct", foreground="#0F6E56", font=("", 13, "bold"))
+        txt.tag_configure("opt", font=("", 13))
+        txt.configure(state="disabled")
+
+    def export(self, fmt: str):
+        if not self.questions:
+            messagebox.showinfo("提示", "还没有题目可导出", parent=self.win)
+            return
+        path = filedialog.asksaveasfilename(
+            parent=self.win, title=f"导出题目 {fmt.upper()}",
+            defaultextension=f".{fmt}",
+            filetypes=[(f"{fmt.upper()} 文件", f"*.{fmt}"), ("所有文件", "*.*")])
+        if not path:
+            return
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(store.export_questions(self.questions, fmt))
+        messagebox.showinfo("导出完成",
+                            f"已导出 {len(self.questions)} 题 → {os.path.basename(path)}",
+                            parent=self.win)
 
 
 def subprocess_open(path: str):

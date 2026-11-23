@@ -26,6 +26,9 @@ KM_ROOT = os.path.join(PROJECT_ROOT, "knowledge-map")
 VOL_ROOT = os.path.join(KM_ROOT, "volumes")
 TAXONOMY = os.path.join(KM_ROOT, "taxonomy")
 TOOLS = os.path.join(KM_ROOT, "tools")
+SRC_ROOT = os.path.join(PROJECT_ROOT, "src")               # 题目生成引擎
+if SRC_ROOT not in sys.path:
+    sys.path.insert(0, SRC_ROOT)
 
 BACKUP_ROOT = os.path.join(APP_ROOT, "backups")
 CHANGELOG = os.path.join(APP_ROOT, "changelog.jsonl")
@@ -389,6 +392,167 @@ def export_json(rows: List[Tuple[Dict[str, Any], Dict[str, Any]]]) -> str:
         item["title"] = v["title"]
         data.append(item)
     return json.dumps(data, ensure_ascii=False, indent=2)
+
+
+# ---------------- 题目生成（内容感知型引擎）----------------
+# 桌面界面直接读写 volumes/*.json（字段名 name/unit/concept/common_mistakes/
+# engine_hint，年级是 g3+s2 代码）。生成引擎消费的是 knowledge_points.jsonl
+# 格式（topic/chapter/explanation/engine，年级是「三年级下」）。这里做纯内存
+# 字段适配，绝不落盘，避免改动正在管理的知识点数据。
+
+_GRADE_CN = {
+    "k1": "小班", "k2": "中班", "k3": "大班",
+    "g1": "一年级", "g2": "二年级", "g3": "三年级",
+    "g4": "四年级", "g5": "五年级", "g6": "六年级",
+    "g7": "七年级", "g8": "八年级", "g9": "九年级",
+}
+_GEN_CFG = {"quality": {
+    "min_options": 4, "max_options": 4,
+    "require_explanation": True, "min_explanation_chars": 8,
+    "dedup_jaccard_threshold": 0.85, "check_answer_in_options": True,
+}}
+
+KIND_LABELS = {
+    "goal_match": "目标匹配", "statement": "正误辨析", "error_spot": "易错识别",
+    "key_term": "核心要领", "prerequisite": "前置知识", "domain_class": "领域归类",
+    "percentage": "百分数计算", "equation": "方程求解", "fraction": "分数运算",
+    "geometry": "图形计算", "arithmetic": "四则运算",
+}
+
+
+def _grade_cn(grade: str, term: str) -> str:
+    """g3 + s2 → 三年级下；k1 → 小班。"""
+    base = _GRADE_CN.get(grade, grade)
+    if grade.startswith("g"):
+        return base + {"s1": "上", "s2": "下"}.get(term, "")
+    return base
+
+
+def _as_generator_topic(kp: Dict[str, Any], v: Dict[str, Any]) -> Dict[str, Any]:
+    """单条知识点：volumes 字段 → 生成引擎字段（内存转换）。"""
+    mistakes = [str(x).strip() for x in (kp.get("common_mistakes") or []) if str(x).strip()]
+    explanation = str(kp.get("concept") or "").strip()
+    if mistakes:
+        explanation += "\n易错点：" + "；".join(mistakes)
+    return {
+        "topic_id": kp["id"],
+        "topic": kp.get("name", ""),
+        "chapter": kp.get("unit", ""),          # volumes.unit = jsonl.chapter
+        "grade": _grade_cn(v.get("grade", ""), v.get("term", "")),
+        "subject": v.get("subject", ""),
+        "domain": kp.get("domain", ""),
+        "theme": kp.get("theme", ""),
+        "explanation": explanation,
+        "objective": kp.get("objective", ""),
+        "difficulty": int(kp.get("difficulty", 1) or 1),
+        "bloom": kp.get("bloom", "理解"),
+        "prerequisites": list(kp.get("prerequisites") or []),
+        "engine": kp.get("engine_hint", "template"),
+        "source": kp.get("source", ""),
+    }
+
+
+def build_corpus() -> List[Dict[str, Any]]:
+    """把当前全部册转成生成引擎输入（每次实时读取，反映界面里的最新编辑）。"""
+    out = []
+    for v in load_all_volumes():
+        for kp in v["knowledge_points"]:
+            out.append(_as_generator_topic(kp, v))
+    return out
+
+
+def _make_generator(seed: int, corpus: Optional[List[Dict[str, Any]]] = None):
+    from generators.content_aware import ContentAwareGenerator, VERSION  # noqa: F401
+    gen = ContentAwareGenerator(int(seed))
+    gen.set_corpus(corpus if corpus is not None else build_corpus())
+    return gen
+
+
+def generate_for_point(topic_id: str, n: int = 12, seed: int = 20261120,
+                       gate=None) -> List[Dict[str, Any]]:
+    """为一个知识点出题，返回通过门禁的题目 dict 列表。"""
+    from quality import QualityGate
+    found = find_point(topic_id)
+    if not found:
+        raise StoreError(f"知识点不存在: {topic_id}")
+    kp, v = found
+    gen = _make_generator(seed)
+    topic = _as_generator_topic(kp, v)
+    gate = gate or QualityGate(_GEN_CFG)
+    out = []
+    for q in gen.generate(topic, max(int(n), 0)):
+        ok, _ = gate.check(q)
+        if ok:
+            out.append(q.to_dict())
+    return out
+
+
+def generate_batch(topic_ids: List[str], n: int = 8, seed: int = 20261120,
+                   progress=None) -> List[Dict[str, Any]]:
+    """批量出题（共享一个门禁做全局去重）。progress(i, total, acc) 回调。"""
+    from quality import QualityGate
+    corpus = build_corpus()
+    by_id = {t["topic_id"]: t for t in corpus}
+    gen = _make_generator(seed, corpus)
+    gate = QualityGate(_GEN_CFG)
+    out: List[Dict[str, Any]] = []
+    ids = list(topic_ids)
+    for i, tid in enumerate(ids):
+        topic = by_id.get(tid)
+        if topic:
+            for q in gen.generate(topic, max(int(n), 0)):
+                ok, _ = gate.check(q)
+                if ok:
+                    out.append(q.to_dict())
+        if progress:
+            progress(i + 1, len(ids), len(out))
+    return out
+
+
+def question_kind(q: Dict[str, Any]) -> str:
+    """从题干/来源判断题型标签，供界面展示。"""
+    text = q.get("stem", "")
+    for key in ("学习目标", "哪一课"):
+        if key in text:
+            return KIND_LABELS["goal_match"]
+    for key in ("常见错误", "典型错误", "容易犯", "需要避免", "应避免出现"):
+        if key in text:
+            return KIND_LABELS["error_spot"]
+    for key in ("核心要领", "术语", "核心概念", "关键要领"):
+        if key in text:
+            return KIND_LABELS["key_term"]
+    for key in ("先修", "先掌握", "先具备", "前提", "先铺垫"):
+        if key in text:
+            return KIND_LABELS["prerequisite"]
+    for key in ("归入", "属于下面", "划入", "归属于", "课标"):
+        if key in text:
+            return KIND_LABELS["domain_class"]
+    if any(op in text for op in (" + ", " - ", " × ", "÷", "=", "？")) and \
+            any(ch.isdigit() for ch in text):
+        return KIND_LABELS["arithmetic"]
+    return KIND_LABELS["statement"]
+
+
+def export_questions(questions: List[Dict[str, Any]], fmt: str) -> str:
+    """导出题目：jsonl / csv。"""
+    if fmt == "jsonl":
+        return "".join(json.dumps(q, ensure_ascii=False) + "\n" for q in questions)
+    cols = ["id", "topic_id", "grade", "subject", "topic", "chapter",
+            "difficulty", "bloom", "type", "stem", "options", "answer",
+            "explanation", "source", "generator_version"]
+    buf = io.StringIO()
+    w = csv.writer(buf)
+    w.writerow(cols)
+    for q in questions:
+        w.writerow([
+            q.get("id", ""), q.get("topic_id", ""), q.get("grade", ""),
+            q.get("subject", ""), q.get("topic", ""), q.get("chapter", ""),
+            q.get("difficulty", ""), q.get("bloom", ""), q.get("type", ""),
+            q.get("stem", ""), " | ".join(q.get("options", [])),
+            q.get("answer", ""), q.get("explanation", ""),
+            q.get("source", ""), q.get("generator_version", ""),
+        ])
+    return buf.getvalue()
 
 
 if __name__ == "__main__":
