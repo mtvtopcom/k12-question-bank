@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mtvtopcom/k12-question-bank/raw/main/docs/question-output.schema.json",
+  "title": "K12 题库工厂 · 大模型出题输出（JSON 格式）",
+  "description": "桌面端「AI 提示词」页选择 JSON 输出时，要求大模型返回的题目数组结构。字段说明见 docs/OUTPUT_FORMATS.md。",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "required": [
+      "topic_id",
+      "topic_name",
+      "stem",
+      "options",
+      "answer",
+      "explanation",
+      "difficulty",
+      "bloom",
+      "type"
+    ],
+    "properties": {
+      "topic_id": {
+        "type": "string",
+        "minLength": 1,
+        "description": "来源知识点 ID，可在 knowledge-map/volumes/ 中反查",
+        "examples": ["primary-g3-s1-math-K018"]
+      },
+      "topic_name": {
+        "type": "string",
+        "minLength": 1,
+        "description": "来源知识点名称",
+        "examples": ["长方形、正方形的特征与周长"]
+      },
+      "stem": {
+        "type": "string",
+        "minLength": 4,
+        "description": "题干，不含选项与题号"
+      },
+      "options": {
+        "type": "array",
+        "description": "4 个选项，顺序即 A/B/C/D，不含「A.」前缀",
+        "minItems": 4,
+        "maxItems": 4,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "answer": {
+        "type": "string",
+        "description": "正确答案字母",
+        "enum": ["A", "B", "C", "D"]
+      },
+      "explanation": {
+        "type": "string",
+        "minLength": 1,
+        "description": "解析：正确项为什么对、干扰项为什么错"
+      },
+      "difficulty": {
+        "type": "integer",
+        "description": "1=容易 2=中等 3=较难 4=难",
+        "minimum": 1,
+        "maximum": 4
+      },
+      "bloom": {
+        "type": "string",
+        "description": "认知层级",
+        "enum": ["记忆", "理解", "应用", "分析", "评价", "创造"]
+      },
+      "type": {
+        "type": "string",
+        "description": "题型，当前固定单选",
+        "const": "single_choice"
+      }
+    }
+  }
+}

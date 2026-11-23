@@ -1,0 +1,34 @@
+[
+  {
+    "topic_id": "primary-g3-s1-math-K018",
+    "topic_name": "长方形、正方形的特征与周长",
+    "stem": "一个长方形花坛长 8 米、宽 5 米，绕它走一圈是多少米？",
+    "options": [
+      "26 米",
+      "13 米",
+      "40 米",
+      "21 米"
+    ],
+    "answer": "A",
+    "explanation": "绕一圈即周长，(8+5)×2=26 米。13 米只是长加宽，忘了乘 2；40 米是误把长乘宽当作周长。",
+    "difficulty": 2,
+    "bloom": "应用",
+    "type": "single_choice"
+  },
+  {
+    "topic_id": "primary-g3-s1-chinese-K006",
+    "topic_name": "成语的积累与运用",
+    "stem": "下面哪个成语的意思是「做了多余的事，反而不恰当」？",
+    "options": [
+      "画蛇添足",
+      "锦上添花",
+      "雪中送炭",
+      "一举两得"
+    ],
+    "answer": "A",
+    "explanation": "画蛇添足比喻做了多余的事反而把事情弄坏；锦上添花指好上加好，雪中送炭指及时帮助，一举两得指做一件事得到两方面好处。",
+    "difficulty": 2,
+    "bloom": "理解",
+    "type": "single_choice"
+  }
+]

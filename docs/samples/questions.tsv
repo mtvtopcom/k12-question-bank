@@ -1,0 +1,3 @@
+topic_id	topic_name	stem	option_a	option_b	option_c	option_d	answer	explanation	difficulty	bloom	type
+primary-g3-s1-math-K018	长方形、正方形的特征与周长	一个长方形花坛长 8 米、宽 5 米，绕它走一圈是多少米？	26 米	13 米	40 米	21 米	A	绕一圈即周长，(8+5)×2=26 米。13 米只是长加宽，忘了乘 2；40 米是误把长乘宽当作周长。	2	应用	single_choice
+primary-g3-s1-chinese-K006	成语的积累与运用	下面哪个成语的意思是「做了多余的事，反而不恰当」？	画蛇添足	锦上添花	雪中送炭	一举两得	A	画蛇添足比喻做了多余的事反而把事情弄坏；锦上添花指好上加好，雪中送炭指及时帮助，一举两得指做一件事得到两方面好处。	2	理解	single_choice

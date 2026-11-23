@@ -92,8 +92,8 @@ python3 scripts/verify.py
 ```json
 {
   "id": "a1b2c3...",
-  "topic_id": "math_g6_shanxing",
-  "grade": "六年级上", "subject": "数学", "topic": "扇形统计图",
+  "topic_id": "primary-g6-s1-math-K016",
+  "grade": "六年级上", "subject": "math", "topic": "圆的周长",
   "difficulty": 2, "bloom": "理解", "type": "single_choice",
   "stem": "某部分占整体的30%，对应扇形圆心角是多少度？",
   "options": ["30°", "108°", "90°", "72°"],
@@ -103,6 +103,27 @@ python3 scripts/verify.py
   "quality": {"dedup_hash": "...", "qa_passed": true}
 }
 ```
+
+## 生成题目的输出格式（对接文档）
+
+桌面端「AI 提示词」支持 4 种输出格式，大模型按对应指令返回。完整字段说明、示例、解析代码与校验规则见 **[docs/OUTPUT_FORMATS.md](docs/OUTPUT_FORMATS.md)**，并附 [JSON Schema](docs/question-output.schema.json) 与 [4 种格式示例文件](docs/samples/)。
+
+| 格式 | 结构 | 关键点 | 适用场景 |
+|---|---|---|---|
+| **JSON** | 顶层数组，每题一个对象 | `options` 为 4 元数组；`answer` 为 A–D；`difficulty` 为 1–4 | 程序直接入库 |
+| **TXT** | 逐题分段，题间空行 | `【题干】【选项】【答案】【解析】【难度】【知识点】` | 人工阅读、贴进 Word |
+| **Excel** | TSV（制表符），12 列 | 复制到 Excel A1 → 另存 `.xlsx` | 老师批量校对 |
+| **CSV** | RFC 4180，12 列，同表头 | UTF-8 BOM；含逗号/引号/换行时加引号 | 导入表格 / 数据库 |
+
+公共字段：`topic_id`、`topic_name`、`stem`、`options`（表格格式为 `option_a`…`option_d`）、`answer`、`explanation`、`difficulty`、`bloom`、`type`。
+
+Excel / CSV 的 12 列顺序固定：`topic_id, topic_name, stem, option_a, option_b, option_c, option_d, answer, explanation, difficulty, bloom, type`。
+
+```json
+[{"topic_id":"primary-g3-s1-math-K018","topic_name":"长方形、正方形的特征与周长","stem":"一个长方形花坛长 8 米、宽 5 米，绕它走一圈是多少米？","options":["26 米","13 米","40 米","21 米"],"answer":"A","explanation":"绕一圈即周长，(8+5)×2=26 米。","difficulty":2,"bloom":"应用","type":"single_choice"}]
+```
+
+> 仓库管道自身导出的 JSONL / CSV / App JSON（`src/exporters.py`）字段不同，如何映射成 `id / grade / subject / topic` 见文档第 8 节。
 
 ## 目录结构
 
@@ -125,6 +146,7 @@ k12-question-bank/
 │   ├── tools/                  # build_volumes / validate / merge / progress
 │   └── README.md
 ├── scripts/                    # run_from_map / run_full / verify
+├── docs/                       # 输出格式说明（JSON/TXT/Excel/CSV）、JSON Schema、样例
 ├── desktop/                    # macOS 桌面管理台（源码 + 出厂快照 + 打包脚本）
 │   ├── src/                    # app.py / store.py / prompt.py
 │   ├── original/               # 63 册 / 1225 点出厂快照（gzip）
