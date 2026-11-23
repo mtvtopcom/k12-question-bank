@@ -18,7 +18,7 @@ ROOT = os.path.dirname(HERE)
 REQUIRED_KP_FIELDS = [
     "id", "index", "domain", "unit", "name", "objective", "difficulty",
     "bloom", "prerequisites", "concept", "common_mistakes",
-    "suggested_types", "grade_range", "source", "engine_hint",
+    "suggested_types", "grade_range", "source",
 ]
 BLOOMS = {"记忆", "理解", "应用", "分析", "评价", "创造"}
 

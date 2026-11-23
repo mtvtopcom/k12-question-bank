@@ -33,8 +33,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·字母启蒙",
-      "engine_hint": "template"
+      "source": "人教新起点一上·字母启蒙"
     },
     {
       "id": "primary-g1-s1-english-K002",
@@ -62,8 +61,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·字母启蒙",
-      "engine_hint": "template"
+      "source": "人教新起点一上·字母启蒙"
     },
     {
       "id": "primary-g1-s1-english-K003",
@@ -91,8 +89,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·字母启蒙",
-      "engine_hint": "template"
+      "source": "人教新起点一上·字母启蒙"
     },
     {
       "id": "primary-g1-s1-english-K004",
@@ -120,8 +117,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·字母启蒙",
-      "engine_hint": "template"
+      "source": "人教新起点一上·字母启蒙"
     },
     {
       "id": "primary-g1-s1-english-K005",
@@ -149,8 +145,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·字母启蒙",
-      "engine_hint": "template"
+      "source": "人教新起点一上·字母启蒙"
     },
     {
       "id": "primary-g1-s1-english-K006",
@@ -176,8 +171,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·Greetings",
-      "engine_hint": "llm"
+      "source": "人教新起点一上·Greetings"
     },
     {
       "id": "primary-g1-s1-english-K007",
@@ -205,8 +199,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·Introductions",
-      "engine_hint": "llm"
+      "source": "人教新起点一上·Introductions"
     },
     {
       "id": "primary-g1-s1-english-K008",
@@ -234,8 +227,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·Introductions",
-      "engine_hint": "llm"
+      "source": "人教新起点一上·Introductions"
     },
     {
       "id": "primary-g1-s1-english-K009",
@@ -261,8 +253,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·Numbers",
-      "engine_hint": "template"
+      "source": "人教新起点一上·Numbers"
     },
     {
       "id": "primary-g1-s1-english-K010",
@@ -290,8 +281,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·Numbers",
-      "engine_hint": "template"
+      "source": "人教新起点一上·Numbers"
     },
     {
       "id": "primary-g1-s1-english-K011",
@@ -317,8 +307,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·Colours",
-      "engine_hint": "template"
+      "source": "人教新起点一上·Colours"
     },
     {
       "id": "primary-g1-s1-english-K012",
@@ -346,8 +335,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·School things",
-      "engine_hint": "template"
+      "source": "人教新起点一上·School things"
     },
     {
       "id": "primary-g1-s1-english-K013",
@@ -375,8 +363,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·Classroom",
-      "engine_hint": "llm"
+      "source": "人教新起点一上·Classroom"
     },
     {
       "id": "primary-g1-s1-english-K014",
@@ -404,8 +391,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·Let's sing",
-      "engine_hint": "llm"
+      "source": "人教新起点一上·Let's sing"
     },
     {
       "id": "primary-g1-s1-english-K015",
@@ -433,8 +419,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·语音启蒙",
-      "engine_hint": "llm"
+      "source": "人教新起点一上·语音启蒙"
     },
     {
       "id": "primary-g1-s1-english-K016",
@@ -462,8 +447,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一上·Culture",
-      "engine_hint": "llm"
+      "source": "人教新起点一上·Culture"
     }
   ]
 }

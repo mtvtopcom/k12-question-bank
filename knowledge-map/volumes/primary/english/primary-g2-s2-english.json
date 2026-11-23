@@ -35,8 +35,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Phonics",
-      "engine_hint": "template"
+      "source": "人教新起点二下·Phonics"
     },
     {
       "id": "primary-g2-s2-english-K002",
@@ -62,8 +61,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Food",
-      "engine_hint": "template"
+      "source": "人教新起点二下·Food"
     },
     {
       "id": "primary-g2-s2-english-K003",
@@ -91,8 +89,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Food",
-      "engine_hint": "llm"
+      "source": "人教新起点二下·Food"
     },
     {
       "id": "primary-g2-s2-english-K004",
@@ -120,8 +117,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Food",
-      "engine_hint": "template"
+      "source": "人教新起点二下·Food"
     },
     {
       "id": "primary-g2-s2-english-K005",
@@ -147,8 +143,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Daily life",
-      "engine_hint": "template"
+      "source": "人教新起点二下·Daily life"
     },
     {
       "id": "primary-g2-s2-english-K006",
@@ -176,8 +171,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Daily life",
-      "engine_hint": "llm"
+      "source": "人教新起点二下·Daily life"
     },
     {
       "id": "primary-g2-s2-english-K007",
@@ -203,8 +197,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Days of the week",
-      "engine_hint": "template"
+      "source": "人教新起点二下·Days of the week"
     },
     {
       "id": "primary-g2-s2-english-K008",
@@ -230,8 +223,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Seasons",
-      "engine_hint": "template"
+      "source": "人教新起点二下·Seasons"
     },
     {
       "id": "primary-g2-s2-english-K009",
@@ -259,8 +251,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Seasons",
-      "engine_hint": "llm"
+      "source": "人教新起点二下·Seasons"
     },
     {
       "id": "primary-g2-s2-english-K010",
@@ -286,8 +277,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Clothes",
-      "engine_hint": "template"
+      "source": "人教新起点二下·Clothes"
     },
     {
       "id": "primary-g2-s2-english-K011",
@@ -315,8 +305,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Clothes",
-      "engine_hint": "llm"
+      "source": "人教新起点二下·Clothes"
     },
     {
       "id": "primary-g2-s2-english-K012",
@@ -344,8 +333,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Classroom",
-      "engine_hint": "llm"
+      "source": "人教新起点二下·Classroom"
     },
     {
       "id": "primary-g2-s2-english-K013",
@@ -373,8 +361,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Culture",
-      "engine_hint": "llm"
+      "source": "人教新起点二下·Culture"
     },
     {
       "id": "primary-g2-s2-english-K014",
@@ -402,8 +389,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·学习策略",
-      "engine_hint": "llm"
+      "source": "人教新起点二下·学习策略"
     },
     {
       "id": "primary-g2-s2-english-K015",
@@ -431,8 +417,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Let's chant",
-      "engine_hint": "llm"
+      "source": "人教新起点二下·Let's chant"
     },
     {
       "id": "primary-g2-s2-english-K016",
@@ -460,8 +445,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教新起点二下·Review",
-      "engine_hint": "llm"
+      "source": "人教新起点二下·Review"
     }
   ]
 }

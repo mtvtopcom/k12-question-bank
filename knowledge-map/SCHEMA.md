@@ -40,8 +40,7 @@
   "common_mistakes": ["把6和9写反", "数数时漏数或重复"],
   "suggested_types": ["识别", "数数", "选择"],
   "grade_range": ["g1"],
-  "source": "人教版一上数学 P2-16",
-  "engine_hint": "template"
+  "source": "人教版一上数学 P2-16"
 }
 ```
 
@@ -64,7 +63,6 @@
 | `suggested_types` | ✅ | 建议出题类型 |
 | `grade_range` | ✅ | 适用年级数组 |
 | `source` | ✅ | 权威来源：教材版本+页码 或 课标条款 |
-| `engine_hint` | ✅ | `template`（规则可枚举）/ `llm`（需语义理解），生成阶段据此分流 |
 
 ## 难度与认知层级必须一致
 

@@ -33,8 +33,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第1课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第1课"
     },
     {
       "id": "primary-g1-s1-chinese-K002",
@@ -62,8 +61,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第2课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第2课"
     },
     {
       "id": "primary-g1-s1-chinese-K003",
@@ -91,8 +89,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第3课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第3课"
     },
     {
       "id": "primary-g1-s1-chinese-K004",
@@ -120,8 +117,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第4课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第4课"
     },
     {
       "id": "primary-g1-s1-chinese-K005",
@@ -149,8 +145,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第5课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第5课"
     },
     {
       "id": "primary-g1-s1-chinese-K006",
@@ -179,8 +174,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第6课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第6课"
     },
     {
       "id": "primary-g1-s1-chinese-K007",
@@ -208,8 +202,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第7课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第7课"
     },
     {
       "id": "primary-g1-s1-chinese-K008",
@@ -237,8 +230,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第8课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第8课"
     },
     {
       "id": "primary-g1-s1-chinese-K009",
@@ -266,8 +258,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第9课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第9课"
     },
     {
       "id": "primary-g1-s1-chinese-K010",
@@ -295,8 +286,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第10课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第10课"
     },
     {
       "id": "primary-g1-s1-chinese-K011",
@@ -324,8 +314,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第11课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第11课"
     },
     {
       "id": "primary-g1-s1-chinese-K012",
@@ -353,8 +342,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第12课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第12课"
     },
     {
       "id": "primary-g1-s1-chinese-K013",
@@ -382,8 +370,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音第13课",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音第13课"
     },
     {
       "id": "primary-g1-s1-chinese-K014",
@@ -411,8 +398,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·汉语拼音",
-      "engine_hint": "template"
+      "source": "统编一上·汉语拼音"
     },
     {
       "id": "primary-g1-s1-chinese-K015",
@@ -438,8 +424,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·识字",
-      "engine_hint": "template"
+      "source": "统编一上·识字"
     },
     {
       "id": "primary-g1-s1-chinese-K016",
@@ -467,8 +452,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·日月水火",
-      "engine_hint": "llm"
+      "source": "统编一上·日月水火"
     },
     {
       "id": "primary-g1-s1-chinese-K017",
@@ -496,8 +480,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·日月明",
-      "engine_hint": "llm"
+      "source": "统编一上·日月明"
     },
     {
       "id": "primary-g1-s1-chinese-K018",
@@ -525,8 +508,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·识字",
-      "engine_hint": "llm"
+      "source": "统编一上·识字"
     },
     {
       "id": "primary-g1-s1-chinese-K019",
@@ -554,8 +536,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·识字写字",
-      "engine_hint": "llm"
+      "source": "统编一上·识字写字"
     },
     {
       "id": "primary-g1-s1-chinese-K020",
@@ -583,8 +564,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·课文",
-      "engine_hint": "llm"
+      "source": "统编一上·课文"
     },
     {
       "id": "primary-g1-s1-chinese-K021",
@@ -612,8 +592,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·古诗",
-      "engine_hint": "llm"
+      "source": "统编一上·古诗"
     },
     {
       "id": "primary-g1-s1-chinese-K022",
@@ -641,8 +620,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一上·口语交际",
-      "engine_hint": "llm"
+      "source": "统编一上·口语交际"
     }
   ]
 }

@@ -35,8 +35,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Starter",
-      "engine_hint": "template"
+      "source": "人教七上·Starter"
     },
     {
       "id": "junior-g7-s1-english-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·语音",
-      "engine_hint": "template"
+      "source": "人教七上·语音"
     },
     {
       "id": "junior-g7-s1-english-K003",
@@ -93,8 +91,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Unit 1—3",
-      "engine_hint": "template"
+      "source": "人教七上·Unit 1—3"
     },
     {
       "id": "junior-g7-s1-english-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·词汇学习",
-      "engine_hint": "llm"
+      "source": "人教七上·词汇学习"
     },
     {
       "id": "junior-g7-s1-english-K005",
@@ -152,8 +148,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Unit 1—6",
-      "engine_hint": "llm"
+      "source": "人教七上·Unit 1—6"
     },
     {
       "id": "junior-g7-s1-english-K006",
@@ -182,8 +177,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Unit 2",
-      "engine_hint": "template"
+      "source": "人教七上·Unit 2"
     },
     {
       "id": "junior-g7-s1-english-K007",
@@ -211,8 +205,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Unit 1",
-      "engine_hint": "llm"
+      "source": "人教七上·Unit 1"
     },
     {
       "id": "junior-g7-s1-english-K008",
@@ -241,8 +234,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Unit 3",
-      "engine_hint": "template"
+      "source": "人教七上·Unit 3"
     },
     {
       "id": "junior-g7-s1-english-K009",
@@ -270,8 +262,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Unit 7",
-      "engine_hint": "template"
+      "source": "人教七上·Unit 7"
     },
     {
       "id": "junior-g7-s1-english-K010",
@@ -300,8 +291,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Unit 4—6",
-      "engine_hint": "llm"
+      "source": "人教七上·Unit 4—6"
     },
     {
       "id": "junior-g7-s1-english-K011",
@@ -329,8 +319,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Unit 1",
-      "engine_hint": "llm"
+      "source": "人教七上·Unit 1"
     },
     {
       "id": "junior-g7-s1-english-K012",
@@ -358,8 +347,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Unit 7",
-      "engine_hint": "template"
+      "source": "人教七上·Unit 7"
     },
     {
       "id": "junior-g7-s1-english-K013",
@@ -387,8 +375,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Unit 1",
-      "engine_hint": "template"
+      "source": "人教七上·Unit 1"
     },
     {
       "id": "junior-g7-s1-english-K014",
@@ -416,8 +403,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Unit 1—2",
-      "engine_hint": "llm"
+      "source": "人教七上·Unit 1—2"
     },
     {
       "id": "junior-g7-s1-english-K015",
@@ -445,8 +431,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·Unit 3—4",
-      "engine_hint": "llm"
+      "source": "人教七上·Unit 3—4"
     },
     {
       "id": "junior-g7-s1-english-K016",
@@ -474,8 +459,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·听力训练",
-      "engine_hint": "template"
+      "source": "人教七上·听力训练"
     },
     {
       "id": "junior-g7-s1-english-K017",
@@ -503,8 +487,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·非连续性文本",
-      "engine_hint": "template"
+      "source": "人教七上·非连续性文本"
     },
     {
       "id": "junior-g7-s1-english-K018",
@@ -532,8 +515,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·文化专栏",
-      "engine_hint": "template"
+      "source": "人教七上·文化专栏"
     },
     {
       "id": "junior-g7-s1-english-K019",
@@ -561,8 +543,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七上·学习策略",
-      "engine_hint": "template"
+      "source": "人教七上·学习策略"
     }
   ]
 }

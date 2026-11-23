@@ -35,8 +35,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·语音",
-      "engine_hint": "llm"
+      "source": "人教九下·语音"
     },
     {
       "id": "junior-g9-s2-english-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 9",
-      "engine_hint": "template"
+      "source": "人教九下·Unit 9"
     },
     {
       "id": "junior-g9-s2-english-K003",
@@ -93,8 +91,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 10",
-      "engine_hint": "template"
+      "source": "人教九下·Unit 10"
     },
     {
       "id": "junior-g9-s2-english-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 12",
-      "engine_hint": "template"
+      "source": "人教九下·Unit 12"
     },
     {
       "id": "junior-g9-s2-english-K005",
@@ -151,8 +147,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 8",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 8"
     },
     {
       "id": "junior-g9-s2-english-K006",
@@ -181,8 +176,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 9",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 9"
     },
     {
       "id": "junior-g9-s2-english-K007",
@@ -210,8 +204,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 9",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 9"
     },
     {
       "id": "junior-g9-s2-english-K008",
@@ -239,8 +232,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 10",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 10"
     },
     {
       "id": "junior-g9-s2-english-K009",
@@ -268,8 +260,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 11",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 11"
     },
     {
       "id": "junior-g9-s2-english-K010",
@@ -297,8 +288,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 12",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 12"
     },
     {
       "id": "junior-g9-s2-english-K011",
@@ -326,8 +316,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 14",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 14"
     },
     {
       "id": "junior-g9-s2-english-K012",
@@ -355,8 +344,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 13",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 13"
     },
     {
       "id": "junior-g9-s2-english-K013",
@@ -384,8 +372,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 14",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 14"
     },
     {
       "id": "junior-g9-s2-english-K014",
@@ -413,8 +400,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 13",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 13"
     },
     {
       "id": "junior-g9-s2-english-K015",
@@ -442,8 +428,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 14",
-      "engine_hint": "template"
+      "source": "人教九下·Unit 14"
     },
     {
       "id": "junior-g9-s2-english-K016",
@@ -471,8 +456,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 14",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 14"
     },
     {
       "id": "junior-g9-s2-english-K017",
@@ -500,8 +484,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 10",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 10"
     },
     {
       "id": "junior-g9-s2-english-K018",
@@ -529,8 +512,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·Unit 13",
-      "engine_hint": "llm"
+      "source": "人教九下·Unit 13"
     },
     {
       "id": "junior-g9-s2-english-K019",
@@ -558,8 +540,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·听力训练",
-      "engine_hint": "llm"
+      "source": "人教九下·听力训练"
     },
     {
       "id": "junior-g9-s2-english-K020",
@@ -587,8 +568,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "人教九下·项目活动",
-      "engine_hint": "llm"
+      "source": "人教九下·项目活动"
     }
   ]
 }

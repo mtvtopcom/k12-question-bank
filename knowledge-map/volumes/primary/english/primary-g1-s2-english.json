@@ -35,8 +35,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·字母复习",
-      "engine_hint": "template"
+      "source": "人教新起点一下·字母复习"
     },
     {
       "id": "primary-g1-s2-english-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·语音启蒙",
-      "engine_hint": "template"
+      "source": "人教新起点一下·语音启蒙"
     },
     {
       "id": "primary-g1-s2-english-K003",
@@ -91,8 +89,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·My family",
-      "engine_hint": "template"
+      "source": "人教新起点一下·My family"
     },
     {
       "id": "primary-g1-s2-english-K004",
@@ -120,8 +117,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·My family",
-      "engine_hint": "llm"
+      "source": "人教新起点一下·My family"
     },
     {
       "id": "primary-g1-s2-english-K005",
@@ -147,8 +143,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·Animals",
-      "engine_hint": "template"
+      "source": "人教新起点一下·Animals"
     },
     {
       "id": "primary-g1-s2-english-K006",
@@ -176,8 +171,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·Animals",
-      "engine_hint": "llm"
+      "source": "人教新起点一下·Animals"
     },
     {
       "id": "primary-g1-s2-english-K007",
@@ -203,8 +197,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·Fruit",
-      "engine_hint": "template"
+      "source": "人教新起点一下·Fruit"
     },
     {
       "id": "primary-g1-s2-english-K008",
@@ -232,8 +225,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·Fruit",
-      "engine_hint": "llm"
+      "source": "人教新起点一下·Fruit"
     },
     {
       "id": "primary-g1-s2-english-K009",
@@ -259,8 +251,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·Body",
-      "engine_hint": "template"
+      "source": "人教新起点一下·Body"
     },
     {
       "id": "primary-g1-s2-english-K010",
@@ -288,8 +279,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·Colours",
-      "engine_hint": "llm"
+      "source": "人教新起点一下·Colours"
     },
     {
       "id": "primary-g1-s2-english-K011",
@@ -317,8 +307,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·Greetings",
-      "engine_hint": "llm"
+      "source": "人教新起点一下·Greetings"
     },
     {
       "id": "primary-g1-s2-english-K012",
@@ -346,8 +335,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·Greetings",
-      "engine_hint": "llm"
+      "source": "人教新起点一下·Greetings"
     },
     {
       "id": "primary-g1-s2-english-K013",
@@ -375,8 +363,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·Polite words",
-      "engine_hint": "llm"
+      "source": "人教新起点一下·Polite words"
     },
     {
       "id": "primary-g1-s2-english-K014",
@@ -404,8 +391,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·Let's sing",
-      "engine_hint": "llm"
+      "source": "人教新起点一下·Let's sing"
     },
     {
       "id": "primary-g1-s2-english-K015",
@@ -433,8 +419,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·Culture",
-      "engine_hint": "llm"
+      "source": "人教新起点一下·Culture"
     },
     {
       "id": "primary-g1-s2-english-K016",
@@ -462,8 +447,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教新起点一下·学习策略",
-      "engine_hint": "llm"
+      "source": "人教新起点一下·学习策略"
     }
   ]
 }

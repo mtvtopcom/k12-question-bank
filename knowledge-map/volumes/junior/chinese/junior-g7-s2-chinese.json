@@ -36,8 +36,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·各单元读读写写",
-      "engine_hint": "template"
+      "source": "统编七下·各单元读读写写"
     },
     {
       "id": "junior-g7-s2-chinese-K002",
@@ -66,8 +65,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·语法知识",
-      "engine_hint": "llm"
+      "source": "统编七下·语法知识"
     },
     {
       "id": "junior-g7-s2-chinese-K003",
@@ -95,8 +93,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·第二单元《黄河颂》",
-      "engine_hint": "llm"
+      "source": "统编七下·第二单元《黄河颂》"
     },
     {
       "id": "junior-g7-s2-chinese-K004",
@@ -124,8 +121,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·各单元注释",
-      "engine_hint": "template"
+      "source": "统编七下·各单元注释"
     },
     {
       "id": "junior-g7-s2-chinese-K005",
@@ -153,8 +149,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·第一单元《邓稼先》",
-      "engine_hint": "llm"
+      "source": "统编七下·第一单元《邓稼先》"
     },
     {
       "id": "junior-g7-s2-chinese-K006",
@@ -182,8 +177,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·第五单元《紫藤萝瀑布》",
-      "engine_hint": "llm"
+      "source": "统编七下·第五单元《紫藤萝瀑布》"
     },
     {
       "id": "junior-g7-s2-chinese-K007",
@@ -211,8 +205,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·第五单元",
-      "engine_hint": "llm"
+      "source": "统编七下·第五单元"
     },
     {
       "id": "junior-g7-s2-chinese-K008",
@@ -238,8 +231,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·第三单元《台阶》",
-      "engine_hint": "llm"
+      "source": "统编七下·第三单元《台阶》"
     },
     {
       "id": "junior-g7-s2-chinese-K009",
@@ -267,8 +259,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·第三单元《阿长与〈山海经〉》",
-      "engine_hint": "llm"
+      "source": "统编七下·第三单元《阿长与〈山海经〉》"
     },
     {
       "id": "junior-g7-s2-chinese-K010",
@@ -296,8 +287,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·第二单元《黄河颂》",
-      "engine_hint": "llm"
+      "source": "统编七下·第二单元《黄河颂》"
     },
     {
       "id": "junior-g7-s2-chinese-K011",
@@ -325,8 +315,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·古代诗歌五首",
-      "engine_hint": "llm"
+      "source": "统编七下·古代诗歌五首"
     },
     {
       "id": "junior-g7-s2-chinese-K012",
@@ -354,8 +343,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·文言课文",
-      "engine_hint": "llm"
+      "source": "统编七下·文言课文"
     },
     {
       "id": "junior-g7-s2-chinese-K013",
@@ -383,8 +371,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·《孙权劝学》《卖油翁》",
-      "engine_hint": "llm"
+      "source": "统编七下·《孙权劝学》《卖油翁》"
     },
     {
       "id": "junior-g7-s2-chinese-K014",
@@ -412,8 +399,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·《陋室铭》《爱莲说》",
-      "engine_hint": "llm"
+      "source": "统编七下·《陋室铭》《爱莲说》"
     },
     {
       "id": "junior-g7-s2-chinese-K015",
@@ -439,8 +425,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·第二单元",
-      "engine_hint": "llm"
+      "source": "统编七下·第二单元"
     },
     {
       "id": "junior-g7-s2-chinese-K016",
@@ -468,8 +453,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·第四单元",
-      "engine_hint": "llm"
+      "source": "统编七下·第四单元"
     },
     {
       "id": "junior-g7-s2-chinese-K017",
@@ -497,8 +481,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·阅读策略",
-      "engine_hint": "template"
+      "source": "统编七下·阅读策略"
     },
     {
       "id": "junior-g7-s2-chinese-K018",
@@ -527,8 +510,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·写作",
-      "engine_hint": "template"
+      "source": "统编七下·写作"
     },
     {
       "id": "junior-g7-s2-chinese-K019",
@@ -556,8 +538,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·第四单元《最苦与最乐》",
-      "engine_hint": "llm"
+      "source": "统编七下·第四单元《最苦与最乐》"
     },
     {
       "id": "junior-g7-s2-chinese-K020",
@@ -585,8 +566,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·第五单元",
-      "engine_hint": "llm"
+      "source": "统编七下·第五单元"
     },
     {
       "id": "junior-g7-s2-chinese-K021",
@@ -614,8 +594,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·名著导读",
-      "engine_hint": "llm"
+      "source": "统编七下·名著导读"
     },
     {
       "id": "junior-g7-s2-chinese-K022",
@@ -643,8 +622,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·名著导读【旧版；2024秋新版已移出必读名录】",
-      "engine_hint": "llm"
+      "source": "统编七下·名著导读【旧版；2024秋新版已移出必读名录】"
     },
     {
       "id": "junior-g7-s2-chinese-K023",
@@ -672,8 +650,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·综合性学习",
-      "engine_hint": "llm"
+      "source": "统编七下·综合性学习"
     },
     {
       "id": "junior-g7-s2-chinese-K024",
@@ -702,8 +679,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·写作",
-      "engine_hint": "llm"
+      "source": "统编七下·写作"
     },
     {
       "id": "junior-g7-s2-chinese-K025",
@@ -731,8 +707,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七下·写作",
-      "engine_hint": "llm"
+      "source": "统编七下·写作"
     }
   ]
 }

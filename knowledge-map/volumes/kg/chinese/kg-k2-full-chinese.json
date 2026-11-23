@@ -35,8 +35,7 @@
       "grade_range": [
         "k2"
       ],
-      "source": "《指南》语言·倾听（中班）",
-      "engine_hint": "template"
+      "source": "《指南》语言·倾听（中班）"
     },
     {
       "id": "kg-k2-full-chinese-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "k2"
       ],
-      "source": "《指南》语言·表达（中班）",
-      "engine_hint": "template"
+      "source": "《指南》语言·表达（中班）"
     },
     {
       "id": "kg-k2-full-chinese-K003",
@@ -93,8 +91,7 @@
       "grade_range": [
         "k2"
       ],
-      "source": "《指南》语言·词汇（中班）",
-      "engine_hint": "template"
+      "source": "《指南》语言·词汇（中班）"
     },
     {
       "id": "kg-k2-full-chinese-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "k2"
       ],
-      "source": "《指南》语言·表达（中班）",
-      "engine_hint": "template"
+      "source": "《指南》语言·表达（中班）"
     },
     {
       "id": "kg-k2-full-chinese-K005",
@@ -151,8 +147,7 @@
       "grade_range": [
         "k2"
       ],
-      "source": "《指南》语言·文学（中班）",
-      "engine_hint": "template"
+      "source": "《指南》语言·文学（中班）"
     },
     {
       "id": "kg-k2-full-chinese-K006",
@@ -180,8 +175,7 @@
       "grade_range": [
         "k2"
       ],
-      "source": "《指南》语言·阅读（中班）",
-      "engine_hint": "template"
+      "source": "《指南》语言·阅读（中班）"
     },
     {
       "id": "kg-k2-full-chinese-K007",
@@ -209,8 +203,7 @@
       "grade_range": [
         "k2"
       ],
-      "source": "《指南》语言·文学（中班）",
-      "engine_hint": "template"
+      "source": "《指南》语言·文学（中班）"
     },
     {
       "id": "kg-k2-full-chinese-K008",
@@ -238,8 +231,7 @@
       "grade_range": [
         "k2"
       ],
-      "source": "《指南》语言·书写准备（中班）",
-      "engine_hint": "template"
+      "source": "《指南》语言·书写准备（中班）"
     },
     {
       "id": "kg-k2-full-chinese-K009",
@@ -267,8 +259,7 @@
       "grade_range": [
         "k2"
       ],
-      "source": "《指南》社会·人际交往（中班）",
-      "engine_hint": "template"
+      "source": "《指南》社会·人际交往（中班）"
     },
     {
       "id": "kg-k2-full-chinese-K010",
@@ -296,8 +287,7 @@
       "grade_range": [
         "k2"
       ],
-      "source": "《指南》社会·情绪（中班）",
-      "engine_hint": "template"
+      "source": "《指南》社会·情绪（中班）"
     },
     {
       "id": "kg-k2-full-chinese-K011",
@@ -325,8 +315,7 @@
       "grade_range": [
         "k2"
       ],
-      "source": "《指南》艺术·表现（中班）",
-      "engine_hint": "template"
+      "source": "《指南》艺术·表现（中班）"
     },
     {
       "id": "kg-k2-full-chinese-K012",
@@ -354,8 +343,7 @@
       "grade_range": [
         "k2"
       ],
-      "source": "《指南》健康·生活能力（中班）",
-      "engine_hint": "template"
+      "source": "《指南》健康·生活能力（中班）"
     }
   ]
 }

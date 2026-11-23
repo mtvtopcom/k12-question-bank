@@ -2,7 +2,7 @@
 """从 knowledge-map/data/*.py 的紧凑定义，展开生成标准册 JSON。
 
 这样做的价值：
-  - 知识点内容（13 个字段）只写一遍，避免手写 63 册重复结构出错
+  - 知识点内容（12 个字段）只写一遍，避免手写 63 册重复结构出错
   - id / index 自动编号，永不越界
   - prerequisites 支持「本册序号」引用，自动转成完整 ID，杜绝悬空引用
   - 每次生成都跑一遍全量校验，字段缺失/领域非法/ID 重复立即报错
@@ -17,12 +17,12 @@
             "source_basis": "人教版/北师大版/苏教版一年级上册；2022版数学课标第一学段",
             "rows": [
                 # (domain, theme, unit, name, objective, difficulty, bloom,
-                #  prereq, concept, mistakes, types, source, engine)
+                #  prereq, concept, mistakes, types, source)
                 ("数与代数", "数与运算", "10以内数的认识", "数一数：1-10各数的认识",
                  "能正确认、读、写1-10各数，理解基数含义", 1, "记忆", [],
                  "数是表示数量的符号，每个数对应相应数量的物体",
                  ["把6和9写反", "数数时漏数或重复"],
-                 ["识别", "数数", "选择"], "人教一上·准备课；北师大一上·生活中的数", "template"),
+                 ["识别", "数数", "选择"], "人教一上·准备课；北师大一上·生活中的数"),
             ],
         },
     }
@@ -56,11 +56,10 @@ VOLUMES_META = os.path.join(KM_ROOT, "taxonomy", "volumes.json")
 # 元组字段顺序，必须与数据文件里的 rows 严格一致
 FIELDS = [
     "domain", "theme", "unit", "name", "objective", "difficulty", "bloom",
-    "prereq", "concept", "mistakes", "types", "source", "engine",
+    "prereq", "concept", "mistakes", "types", "source",
 ]
 
 REQUIRED_STR = ("domain", "theme", "unit", "name", "objective", "concept", "source")
-VALID_ENGINE = {"template", "llm"}
 
 # 难度锚点：1基础识记 / 2理解应用 / 3分析综合 / 4挑战探究
 # 难度描述认知负荷而非年级高低，须与 bloom 保持单调一致
@@ -164,8 +163,6 @@ def expand_volume(vid: str, vol: dict, errors: list) -> dict:
         # 难度 / 认知层级校验
         if r["difficulty"] not in (1, 2, 3, 4):
             errors.append(f"{vid} 第{i}条: difficulty={r['difficulty']} 必须是 1-4")
-        if r["engine"] not in VALID_ENGINE:
-            errors.append(f"{vid} 第{i}条: engine_hint={r['engine']} 必须是 template/llm")
 
         # 前置关系：整数转本册 ID
         prereqs = []
@@ -199,7 +196,6 @@ def expand_volume(vid: str, vol: dict, errors: list) -> dict:
             "suggested_types": list(r["types"] or []),
             "grade_range": list(vol.get("grade_range") or [vol["grade"]]),
             "source": r["source"],
-            "engine_hint": r["engine"],
         })
 
     return {

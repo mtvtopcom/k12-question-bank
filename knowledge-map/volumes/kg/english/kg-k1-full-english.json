@@ -33,8 +33,7 @@
       "grade_range": [
         "k1"
       ],
-      "source": "《指南》语言·倾听（小班）；英语启蒙",
-      "engine_hint": "template"
+      "source": "《指南》语言·倾听（小班）；英语启蒙"
     },
     {
       "id": "kg-k1-full-english-K002",
@@ -62,8 +61,7 @@
       "grade_range": [
         "k1"
       ],
-      "source": "英语启蒙·日常用语（小班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·日常用语（小班）"
     },
     {
       "id": "kg-k1-full-english-K003",
@@ -91,8 +89,7 @@
       "grade_range": [
         "k1"
       ],
-      "source": "英语启蒙·日常用语（小班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·日常用语（小班）"
     },
     {
       "id": "kg-k1-full-english-K004",
@@ -120,8 +117,7 @@
       "grade_range": [
         "k1"
       ],
-      "source": "英语启蒙·词汇（小班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·词汇（小班）"
     },
     {
       "id": "kg-k1-full-english-K005",
@@ -149,8 +145,7 @@
       "grade_range": [
         "k1"
       ],
-      "source": "英语启蒙·词汇（小班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·词汇（小班）"
     },
     {
       "id": "kg-k1-full-english-K006",
@@ -178,8 +173,7 @@
       "grade_range": [
         "k1"
       ],
-      "source": "英语启蒙·词汇（小班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·词汇（小班）"
     },
     {
       "id": "kg-k1-full-english-K007",
@@ -207,8 +201,7 @@
       "grade_range": [
         "k1"
       ],
-      "source": "英语启蒙·歌谣（小班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·歌谣（小班）"
     },
     {
       "id": "kg-k1-full-english-K008",
@@ -236,8 +229,7 @@
       "grade_range": [
         "k1"
       ],
-      "source": "英语启蒙·歌谣（小班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·歌谣（小班）"
     },
     {
       "id": "kg-k1-full-english-K009",
@@ -265,8 +257,7 @@
       "grade_range": [
         "k1"
       ],
-      "source": "英语启蒙·日常用语（小班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·日常用语（小班）"
     },
     {
       "id": "kg-k1-full-english-K010",
@@ -294,8 +285,7 @@
       "grade_range": [
         "k1"
       ],
-      "source": "《指南》语言·阅读（小班）；英语启蒙",
-      "engine_hint": "template"
+      "source": "《指南》语言·阅读（小班）；英语启蒙"
     }
   ]
 }

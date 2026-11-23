@@ -35,8 +35,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·第一单元",
-      "engine_hint": "template"
+      "source": "统编六下·第一单元"
     },
     {
       "id": "primary-g6-s2-chinese-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·第二单元",
-      "engine_hint": "template"
+      "source": "统编六下·第二单元"
     },
     {
       "id": "primary-g6-s2-chinese-K003",
@@ -93,8 +91,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·第三单元",
-      "engine_hint": "llm"
+      "source": "统编六下·第三单元"
     },
     {
       "id": "primary-g6-s2-chinese-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·语文园地",
-      "engine_hint": "llm"
+      "source": "统编六下·语文园地"
     },
     {
       "id": "primary-g6-s2-chinese-K005",
@@ -151,8 +147,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·语文园地",
-      "engine_hint": "llm"
+      "source": "统编六下·语文园地"
     },
     {
       "id": "primary-g6-s2-chinese-K006",
@@ -180,8 +175,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·第一单元",
-      "engine_hint": "llm"
+      "source": "统编六下·第一单元"
     },
     {
       "id": "primary-g6-s2-chinese-K007",
@@ -209,8 +203,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·句子",
-      "engine_hint": "llm"
+      "source": "统编六下·句子"
     },
     {
       "id": "primary-g6-s2-chinese-K008",
@@ -238,8 +231,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·句子",
-      "engine_hint": "llm"
+      "source": "统编六下·句子"
     },
     {
       "id": "primary-g6-s2-chinese-K009",
@@ -267,8 +259,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·标点符号",
-      "engine_hint": "template"
+      "source": "统编六下·标点符号"
     },
     {
       "id": "primary-g6-s2-chinese-K010",
@@ -296,8 +287,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·第四单元",
-      "engine_hint": "llm"
+      "source": "统编六下·第四单元"
     },
     {
       "id": "primary-g6-s2-chinese-K011",
@@ -325,8 +315,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·第三单元",
-      "engine_hint": "llm"
+      "source": "统编六下·第三单元"
     },
     {
       "id": "primary-g6-s2-chinese-K012",
@@ -354,8 +343,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·第一单元",
-      "engine_hint": "llm"
+      "source": "统编六下·第一单元"
     },
     {
       "id": "primary-g6-s2-chinese-K013",
@@ -383,8 +371,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·第五单元",
-      "engine_hint": "llm"
+      "source": "统编六下·第五单元"
     },
     {
       "id": "primary-g6-s2-chinese-K014",
@@ -412,8 +399,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·第二单元",
-      "engine_hint": "llm"
+      "source": "统编六下·第二单元"
     },
     {
       "id": "primary-g6-s2-chinese-K015",
@@ -441,8 +427,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·第四单元",
-      "engine_hint": "llm"
+      "source": "统编六下·第四单元"
     },
     {
       "id": "primary-g6-s2-chinese-K016",
@@ -470,8 +455,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·第二单元",
-      "engine_hint": "llm"
+      "source": "统编六下·第二单元"
     },
     {
       "id": "primary-g6-s2-chinese-K017",
@@ -499,8 +483,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·第三单元",
-      "engine_hint": "llm"
+      "source": "统编六下·第三单元"
     },
     {
       "id": "primary-g6-s2-chinese-K018",
@@ -528,8 +511,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·口语交际",
-      "engine_hint": "llm"
+      "source": "统编六下·口语交际"
     },
     {
       "id": "primary-g6-s2-chinese-K019",
@@ -557,8 +539,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·综合性学习",
-      "engine_hint": "llm"
+      "source": "统编六下·综合性学习"
     },
     {
       "id": "primary-g6-s2-chinese-K020",
@@ -586,8 +567,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·总复习",
-      "engine_hint": "llm"
+      "source": "统编六下·总复习"
     },
     {
       "id": "primary-g6-s2-chinese-K021",
@@ -615,8 +595,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·总复习",
-      "engine_hint": "llm"
+      "source": "统编六下·总复习"
     },
     {
       "id": "primary-g6-s2-chinese-K022",
@@ -644,8 +623,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "统编六下·总复习",
-      "engine_hint": "llm"
+      "source": "统编六下·总复习"
     }
   ]
 }

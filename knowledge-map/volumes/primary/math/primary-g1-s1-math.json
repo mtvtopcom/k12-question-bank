@@ -33,8 +33,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·准备课；北师大一上·生活中的数",
-      "engine_hint": "template"
+      "source": "人教一上·准备课；北师大一上·生活中的数"
     },
     {
       "id": "primary-g1-s1-math-K002",
@@ -62,8 +61,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·准备课；苏教一上·数一数",
-      "engine_hint": "template"
+      "source": "人教一上·准备课；苏教一上·数一数"
     },
     {
       "id": "primary-g1-s1-math-K003",
@@ -89,8 +87,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·位置；北师大一上·位置与顺序",
-      "engine_hint": "llm"
+      "source": "人教一上·位置；北师大一上·位置与顺序"
     },
     {
       "id": "primary-g1-s1-math-K004",
@@ -118,8 +115,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·位置；苏教一上·认位置",
-      "engine_hint": "llm"
+      "source": "人教一上·位置；苏教一上·认位置"
     },
     {
       "id": "primary-g1-s1-math-K005",
@@ -147,8 +143,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·1-5的认识",
-      "engine_hint": "template"
+      "source": "人教一上·1-5的认识"
     },
     {
       "id": "primary-g1-s1-math-K006",
@@ -176,8 +171,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·1-5的认识；北师大一上·比较",
-      "engine_hint": "template"
+      "source": "人教一上·1-5的认识；北师大一上·比较"
     },
     {
       "id": "primary-g1-s1-math-K007",
@@ -205,8 +199,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·1-5的认识",
-      "engine_hint": "llm"
+      "source": "人教一上·1-5的认识"
     },
     {
       "id": "primary-g1-s1-math-K008",
@@ -234,8 +227,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·加法",
-      "engine_hint": "template"
+      "source": "人教一上·加法"
     },
     {
       "id": "primary-g1-s1-math-K009",
@@ -263,8 +255,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·减法",
-      "engine_hint": "template"
+      "source": "人教一上·减法"
     },
     {
       "id": "primary-g1-s1-math-K010",
@@ -292,8 +283,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·0的认识",
-      "engine_hint": "template"
+      "source": "人教一上·0的认识"
     },
     {
       "id": "primary-g1-s1-math-K011",
@@ -319,8 +309,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·认识图形（一）；北师大一上·认识图形",
-      "engine_hint": "llm"
+      "source": "人教一上·认识图形（一）；北师大一上·认识图形"
     },
     {
       "id": "primary-g1-s1-math-K012",
@@ -348,8 +337,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·6-10的认识和加减法",
-      "engine_hint": "template"
+      "source": "人教一上·6-10的认识和加减法"
     },
     {
       "id": "primary-g1-s1-math-K013",
@@ -377,8 +365,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·6-10的认识和加减法",
-      "engine_hint": "template"
+      "source": "人教一上·6-10的认识和加减法"
     },
     {
       "id": "primary-g1-s1-math-K014",
@@ -406,8 +393,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·10的认识",
-      "engine_hint": "template"
+      "source": "人教一上·10的认识"
     },
     {
       "id": "primary-g1-s1-math-K015",
@@ -435,8 +421,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·连加连减",
-      "engine_hint": "template"
+      "source": "人教一上·连加连减"
     },
     {
       "id": "primary-g1-s1-math-K016",
@@ -464,8 +449,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·加减混合",
-      "engine_hint": "template"
+      "source": "人教一上·加减混合"
     },
     {
       "id": "primary-g1-s1-math-K017",
@@ -493,8 +477,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·11-20各数的认识；北师大一上·20以内数的认识",
-      "engine_hint": "template"
+      "source": "人教一上·11-20各数的认识；北师大一上·20以内数的认识"
     },
     {
       "id": "primary-g1-s1-math-K018",
@@ -522,8 +505,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·11-20各数的认识",
-      "engine_hint": "template"
+      "source": "人教一上·11-20各数的认识"
     },
     {
       "id": "primary-g1-s1-math-K019",
@@ -549,8 +531,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·认识钟表；北师大一上·小明的一天",
-      "engine_hint": "llm"
+      "source": "人教一上·认识钟表；北师大一上·小明的一天"
     },
     {
       "id": "primary-g1-s1-math-K020",
@@ -578,8 +559,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一上·20以内的进位加法；北师大一上·加与减（二）",
-      "engine_hint": "template"
+      "source": "人教一上·20以内的进位加法；北师大一上·加与减（二）"
     }
   ]
 }

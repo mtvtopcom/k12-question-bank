@@ -35,8 +35,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Phonics",
-      "engine_hint": "template"
+      "source": "人教PEP四上·Phonics"
     },
     {
       "id": "primary-g4-s1-english-K002",
@@ -62,8 +61,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Unit 1",
-      "engine_hint": "template"
+      "source": "人教PEP四上·Unit 1"
     },
     {
       "id": "primary-g4-s1-english-K003",
@@ -91,8 +89,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Unit 1",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·Unit 1"
     },
     {
       "id": "primary-g4-s1-english-K004",
@@ -120,8 +117,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Unit 1",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·Unit 1"
     },
     {
       "id": "primary-g4-s1-english-K005",
@@ -147,8 +143,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Unit 4",
-      "engine_hint": "template"
+      "source": "人教PEP四上·Unit 4"
     },
     {
       "id": "primary-g4-s1-english-K006",
@@ -176,8 +171,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Unit 4",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·Unit 4"
     },
     {
       "id": "primary-g4-s1-english-K007",
@@ -203,8 +197,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Unit 3",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·Unit 3"
     },
     {
       "id": "primary-g4-s1-english-K008",
@@ -232,8 +225,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Unit 3",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·Unit 3"
     },
     {
       "id": "primary-g4-s1-english-K009",
@@ -261,8 +253,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Unit 2",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·Unit 2"
     },
     {
       "id": "primary-g4-s1-english-K010",
@@ -290,8 +281,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Unit 2",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·Unit 2"
     },
     {
       "id": "primary-g4-s1-english-K011",
@@ -319,8 +309,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Reading",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·Reading"
     },
     {
       "id": "primary-g4-s1-english-K012",
@@ -348,8 +337,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Writing",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·Writing"
     },
     {
       "id": "primary-g4-s1-english-K013",
@@ -375,8 +363,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Culture",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·Culture"
     },
     {
       "id": "primary-g4-s1-english-K014",
@@ -404,8 +391,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·学习策略",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·学习策略"
     },
     {
       "id": "primary-g4-s1-english-K015",
@@ -433,8 +419,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Reading",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·Reading"
     },
     {
       "id": "primary-g4-s1-english-K016",
@@ -462,8 +447,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教PEP四上·Review",
-      "engine_hint": "llm"
+      "source": "人教PEP四上·Review"
     }
   ]
 }

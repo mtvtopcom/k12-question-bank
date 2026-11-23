@@ -34,8 +34,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十一章",
-      "engine_hint": "template"
+      "source": "人教八上·第十一章"
     },
     {
       "id": "junior-g8-s1-math-K002",
@@ -63,8 +62,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十一章",
-      "engine_hint": "template"
+      "source": "人教八上·第十一章"
     },
     {
       "id": "junior-g8-s1-math-K003",
@@ -92,8 +90,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十一章",
-      "engine_hint": "llm"
+      "source": "人教八上·第十一章"
     },
     {
       "id": "junior-g8-s1-math-K004",
@@ -121,8 +118,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十一章",
-      "engine_hint": "template"
+      "source": "人教八上·第十一章"
     },
     {
       "id": "junior-g8-s1-math-K005",
@@ -152,8 +148,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十二章",
-      "engine_hint": "llm"
+      "source": "人教八上·第十二章"
     },
     {
       "id": "junior-g8-s1-math-K006",
@@ -181,8 +176,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十二章",
-      "engine_hint": "template"
+      "source": "人教八上·第十二章"
     },
     {
       "id": "junior-g8-s1-math-K007",
@@ -210,8 +204,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十二章",
-      "engine_hint": "llm"
+      "source": "人教八上·第十二章"
     },
     {
       "id": "junior-g8-s1-math-K008",
@@ -239,8 +232,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十三章",
-      "engine_hint": "template"
+      "source": "人教八上·第十三章"
     },
     {
       "id": "junior-g8-s1-math-K009",
@@ -268,8 +260,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十三章",
-      "engine_hint": "template"
+      "source": "人教八上·第十三章"
     },
     {
       "id": "junior-g8-s1-math-K010",
@@ -297,8 +288,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十三章",
-      "engine_hint": "llm"
+      "source": "人教八上·第十三章"
     },
     {
       "id": "junior-g8-s1-math-K011",
@@ -326,8 +316,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十三章",
-      "engine_hint": "template"
+      "source": "人教八上·第十三章"
     },
     {
       "id": "junior-g8-s1-math-K012",
@@ -355,8 +344,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十三章",
-      "engine_hint": "template"
+      "source": "人教八上·第十三章"
     },
     {
       "id": "junior-g8-s1-math-K013",
@@ -385,8 +373,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十三章",
-      "engine_hint": "llm"
+      "source": "人教八上·第十三章"
     },
     {
       "id": "junior-g8-s1-math-K014",
@@ -412,8 +399,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十四章",
-      "engine_hint": "template"
+      "source": "人教八上·第十四章"
     },
     {
       "id": "junior-g8-s1-math-K015",
@@ -442,8 +428,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十四章",
-      "engine_hint": "template"
+      "source": "人教八上·第十四章"
     },
     {
       "id": "junior-g8-s1-math-K016",
@@ -472,8 +457,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十四章",
-      "engine_hint": "template"
+      "source": "人教八上·第十四章"
     },
     {
       "id": "junior-g8-s1-math-K017",
@@ -501,8 +485,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十四章",
-      "engine_hint": "template"
+      "source": "人教八上·第十四章"
     },
     {
       "id": "junior-g8-s1-math-K018",
@@ -531,8 +514,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十四章",
-      "engine_hint": "llm"
+      "source": "人教八上·第十四章"
     },
     {
       "id": "junior-g8-s1-math-K019",
@@ -561,8 +543,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十四章",
-      "engine_hint": "template"
+      "source": "人教八上·第十四章"
     },
     {
       "id": "junior-g8-s1-math-K020",
@@ -592,8 +573,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十四章",
-      "engine_hint": "llm"
+      "source": "人教八上·第十四章"
     },
     {
       "id": "junior-g8-s1-math-K021",
@@ -621,8 +601,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十五章",
-      "engine_hint": "template"
+      "source": "人教八上·第十五章"
     },
     {
       "id": "junior-g8-s1-math-K022",
@@ -651,8 +630,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十五章",
-      "engine_hint": "template"
+      "source": "人教八上·第十五章"
     },
     {
       "id": "junior-g8-s1-math-K023",
@@ -681,8 +659,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十五章",
-      "engine_hint": "llm"
+      "source": "人教八上·第十五章"
     },
     {
       "id": "junior-g8-s1-math-K024",
@@ -711,8 +688,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十五章",
-      "engine_hint": "llm"
+      "source": "人教八上·第十五章"
     },
     {
       "id": "junior-g8-s1-math-K025",
@@ -741,8 +717,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "人教八上·第十四章 14.1.2",
-      "engine_hint": "template"
+      "source": "人教八上·第十四章 14.1.2"
     }
   ]
 }

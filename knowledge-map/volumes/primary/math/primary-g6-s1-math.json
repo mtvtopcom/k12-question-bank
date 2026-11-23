@@ -35,8 +35,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·分数乘法",
-      "engine_hint": "template"
+      "source": "人教六上·分数乘法"
     },
     {
       "id": "primary-g6-s1-math-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·分数乘法",
-      "engine_hint": "template"
+      "source": "人教六上·分数乘法"
     },
     {
       "id": "primary-g6-s1-math-K003",
@@ -93,8 +91,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·分数乘法",
-      "engine_hint": "llm"
+      "source": "人教六上·分数乘法"
     },
     {
       "id": "primary-g6-s1-math-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·分数乘法",
-      "engine_hint": "template"
+      "source": "人教六上·分数乘法"
     },
     {
       "id": "primary-g6-s1-math-K005",
@@ -151,8 +147,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·分数乘法",
-      "engine_hint": "llm"
+      "source": "人教六上·分数乘法"
     },
     {
       "id": "primary-g6-s1-math-K006",
@@ -180,8 +175,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·位置与方向（二）",
-      "engine_hint": "llm"
+      "source": "人教六上·位置与方向（二）"
     },
     {
       "id": "primary-g6-s1-math-K007",
@@ -209,8 +203,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·位置与方向（二）",
-      "engine_hint": "llm"
+      "source": "人教六上·位置与方向（二）"
     },
     {
       "id": "primary-g6-s1-math-K008",
@@ -238,8 +231,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·分数除法",
-      "engine_hint": "template"
+      "source": "人教六上·分数除法"
     },
     {
       "id": "primary-g6-s1-math-K009",
@@ -267,8 +259,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·分数除法",
-      "engine_hint": "template"
+      "source": "人教六上·分数除法"
     },
     {
       "id": "primary-g6-s1-math-K010",
@@ -296,8 +287,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·分数除法",
-      "engine_hint": "llm"
+      "source": "人教六上·分数除法"
     },
     {
       "id": "primary-g6-s1-math-K011",
@@ -325,8 +315,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·分数除法",
-      "engine_hint": "llm"
+      "source": "人教六上·分数除法"
     },
     {
       "id": "primary-g6-s1-math-K012",
@@ -354,8 +343,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·比",
-      "engine_hint": "llm"
+      "source": "人教六上·比"
     },
     {
       "id": "primary-g6-s1-math-K013",
@@ -383,8 +371,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·比",
-      "engine_hint": "template"
+      "source": "人教六上·比"
     },
     {
       "id": "primary-g6-s1-math-K014",
@@ -412,8 +399,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·比",
-      "engine_hint": "llm"
+      "source": "人教六上·比"
     },
     {
       "id": "primary-g6-s1-math-K015",
@@ -439,8 +425,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·圆",
-      "engine_hint": "llm"
+      "source": "人教六上·圆"
     },
     {
       "id": "primary-g6-s1-math-K016",
@@ -468,8 +453,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·圆",
-      "engine_hint": "llm"
+      "source": "人教六上·圆"
     },
     {
       "id": "primary-g6-s1-math-K017",
@@ -497,8 +481,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·圆",
-      "engine_hint": "llm"
+      "source": "人教六上·圆"
     },
     {
       "id": "primary-g6-s1-math-K018",
@@ -526,8 +509,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·圆",
-      "engine_hint": "llm"
+      "source": "人教六上·圆"
     },
     {
       "id": "primary-g6-s1-math-K019",
@@ -555,8 +537,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·百分数（一）",
-      "engine_hint": "llm"
+      "source": "人教六上·百分数（一）"
     },
     {
       "id": "primary-g6-s1-math-K020",
@@ -584,8 +565,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·百分数（一）",
-      "engine_hint": "template"
+      "source": "人教六上·百分数（一）"
     },
     {
       "id": "primary-g6-s1-math-K021",
@@ -613,8 +593,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·扇形统计图",
-      "engine_hint": "llm"
+      "source": "人教六上·扇形统计图"
     },
     {
       "id": "primary-g6-s1-math-K022",
@@ -640,8 +619,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教六上·数学广角—数与形",
-      "engine_hint": "llm"
+      "source": "人教六上·数学广角—数与形"
     }
   ]
 }

@@ -35,8 +35,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·语音",
-      "engine_hint": "template"
+      "source": "人教七下·语音"
     },
     {
       "id": "junior-g7-s2-english-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 1、Unit 6",
-      "engine_hint": "template"
+      "source": "人教七下·Unit 1、Unit 6"
     },
     {
       "id": "junior-g7-s2-english-K003",
@@ -93,8 +91,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 2、Unit 4",
-      "engine_hint": "template"
+      "source": "人教七下·Unit 2、Unit 4"
     },
     {
       "id": "junior-g7-s2-english-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 2",
-      "engine_hint": "llm"
+      "source": "人教七下·Unit 2"
     },
     {
       "id": "junior-g7-s2-english-K005",
@@ -151,8 +147,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 2",
-      "engine_hint": "template"
+      "source": "人教七下·Unit 2"
     },
     {
       "id": "junior-g7-s2-english-K006",
@@ -181,8 +176,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 5",
-      "engine_hint": "llm"
+      "source": "人教七下·Unit 5"
     },
     {
       "id": "junior-g7-s2-english-K007",
@@ -210,8 +204,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 7",
-      "engine_hint": "llm"
+      "source": "人教七下·Unit 7"
     },
     {
       "id": "junior-g7-s2-english-K008",
@@ -239,8 +232,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 7—8",
-      "engine_hint": "template"
+      "source": "人教七下·Unit 7—8"
     },
     {
       "id": "junior-g7-s2-english-K009",
@@ -268,8 +260,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 3",
-      "engine_hint": "template"
+      "source": "人教七下·Unit 3"
     },
     {
       "id": "junior-g7-s2-english-K010",
@@ -297,8 +288,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 7",
-      "engine_hint": "llm"
+      "source": "人教七下·Unit 7"
     },
     {
       "id": "junior-g7-s2-english-K011",
@@ -326,8 +316,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 8",
-      "engine_hint": "llm"
+      "source": "人教七下·Unit 8"
     },
     {
       "id": "junior-g7-s2-english-K012",
@@ -355,8 +344,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 2",
-      "engine_hint": "template"
+      "source": "人教七下·Unit 2"
     },
     {
       "id": "junior-g7-s2-english-K013",
@@ -384,8 +372,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 6",
-      "engine_hint": "template"
+      "source": "人教七下·Unit 6"
     },
     {
       "id": "junior-g7-s2-english-K014",
@@ -413,8 +400,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 1",
-      "engine_hint": "llm"
+      "source": "人教七下·Unit 1"
     },
     {
       "id": "junior-g7-s2-english-K015",
@@ -442,8 +428,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·Unit 2",
-      "engine_hint": "llm"
+      "source": "人教七下·Unit 2"
     },
     {
       "id": "junior-g7-s2-english-K016",
@@ -471,8 +456,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·听力训练",
-      "engine_hint": "llm"
+      "source": "人教七下·听力训练"
     },
     {
       "id": "junior-g7-s2-english-K017",
@@ -500,8 +484,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·写作",
-      "engine_hint": "llm"
+      "source": "人教七下·写作"
     },
     {
       "id": "junior-g7-s2-english-K018",
@@ -529,8 +512,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·文化专栏",
-      "engine_hint": "template"
+      "source": "人教七下·文化专栏"
     },
     {
       "id": "junior-g7-s2-english-K019",
@@ -558,8 +540,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·学习策略",
-      "engine_hint": "llm"
+      "source": "人教七下·学习策略"
     },
     {
       "id": "junior-g7-s2-english-K020",
@@ -587,8 +568,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "人教七下·项目活动",
-      "engine_hint": "llm"
+      "source": "人教七下·项目活动"
     }
   ]
 }

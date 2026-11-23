@@ -35,8 +35,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·汉语拼音复习",
-      "engine_hint": "template"
+      "source": "统编一下·汉语拼音复习"
     },
     {
       "id": "primary-g1-s2-chinese-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·汉语拼音复习",
-      "engine_hint": "template"
+      "source": "统编一下·汉语拼音复习"
     },
     {
       "id": "primary-g1-s2-chinese-K003",
@@ -93,8 +91,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·识字",
-      "engine_hint": "template"
+      "source": "统编一下·识字"
     },
     {
       "id": "primary-g1-s2-chinese-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·识字",
-      "engine_hint": "llm"
+      "source": "统编一下·识字"
     },
     {
       "id": "primary-g1-s2-chinese-K005",
@@ -151,8 +147,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·识字",
-      "engine_hint": "llm"
+      "source": "统编一下·识字"
     },
     {
       "id": "primary-g1-s2-chinese-K006",
@@ -180,8 +175,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·识字",
-      "engine_hint": "llm"
+      "source": "统编一下·识字"
     },
     {
       "id": "primary-g1-s2-chinese-K007",
@@ -207,8 +201,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·词语",
-      "engine_hint": "template"
+      "source": "统编一下·词语"
     },
     {
       "id": "primary-g1-s2-chinese-K008",
@@ -236,8 +229,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·词语",
-      "engine_hint": "template"
+      "source": "统编一下·词语"
     },
     {
       "id": "primary-g1-s2-chinese-K009",
@@ -265,8 +257,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·词语",
-      "engine_hint": "template"
+      "source": "统编一下·词语"
     },
     {
       "id": "primary-g1-s2-chinese-K010",
@@ -292,8 +283,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·句子",
-      "engine_hint": "llm"
+      "source": "统编一下·句子"
     },
     {
       "id": "primary-g1-s2-chinese-K011",
@@ -321,8 +311,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·句子",
-      "engine_hint": "llm"
+      "source": "统编一下·句子"
     },
     {
       "id": "primary-g1-s2-chinese-K012",
@@ -350,8 +339,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·标点符号",
-      "engine_hint": "template"
+      "source": "统编一下·标点符号"
     },
     {
       "id": "primary-g1-s2-chinese-K013",
@@ -379,8 +367,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·课文",
-      "engine_hint": "llm"
+      "source": "统编一下·课文"
     },
     {
       "id": "primary-g1-s2-chinese-K014",
@@ -408,8 +395,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·课文",
-      "engine_hint": "llm"
+      "source": "统编一下·课文"
     },
     {
       "id": "primary-g1-s2-chinese-K015",
@@ -437,8 +423,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·古诗",
-      "engine_hint": "llm"
+      "source": "统编一下·古诗"
     },
     {
       "id": "primary-g1-s2-chinese-K016",
@@ -466,8 +451,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·语文园地",
-      "engine_hint": "llm"
+      "source": "统编一下·语文园地"
     },
     {
       "id": "primary-g1-s2-chinese-K017",
@@ -495,8 +479,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·口语交际",
-      "engine_hint": "llm"
+      "source": "统编一下·口语交际"
     },
     {
       "id": "primary-g1-s2-chinese-K018",
@@ -524,8 +507,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·口语交际",
-      "engine_hint": "llm"
+      "source": "统编一下·口语交际"
     },
     {
       "id": "primary-g1-s2-chinese-K019",
@@ -553,8 +535,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·写话",
-      "engine_hint": "llm"
+      "source": "统编一下·写话"
     },
     {
       "id": "primary-g1-s2-chinese-K020",
@@ -582,8 +563,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·识字写字",
-      "engine_hint": "llm"
+      "source": "统编一下·识字写字"
     },
     {
       "id": "primary-g1-s2-chinese-K021",
@@ -611,8 +591,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·语文园地",
-      "engine_hint": "template"
+      "source": "统编一下·语文园地"
     },
     {
       "id": "primary-g1-s2-chinese-K022",
@@ -640,8 +619,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "统编一下·快乐读书吧",
-      "engine_hint": "llm"
+      "source": "统编一下·快乐读书吧"
     }
   ]
 }

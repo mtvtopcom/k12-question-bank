@@ -35,8 +35,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·大数的认识",
-      "engine_hint": "template"
+      "source": "人教四上·大数的认识"
     },
     {
       "id": "primary-g4-s1-math-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·大数的认识",
-      "engine_hint": "template"
+      "source": "人教四上·大数的认识"
     },
     {
       "id": "primary-g4-s1-math-K003",
@@ -93,8 +91,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·大数的认识",
-      "engine_hint": "template"
+      "source": "人教四上·大数的认识"
     },
     {
       "id": "primary-g4-s1-math-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·大数的认识",
-      "engine_hint": "template"
+      "source": "人教四上·大数的认识"
     },
     {
       "id": "primary-g4-s1-math-K005",
@@ -151,8 +147,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·大数的认识",
-      "engine_hint": "llm"
+      "source": "人教四上·大数的认识"
     },
     {
       "id": "primary-g4-s1-math-K006",
@@ -180,8 +175,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·公顷和平方千米",
-      "engine_hint": "llm"
+      "source": "人教四上·公顷和平方千米"
     },
     {
       "id": "primary-g4-s1-math-K007",
@@ -207,8 +201,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·角的度量；北师大四上·线与角",
-      "engine_hint": "llm"
+      "source": "人教四上·角的度量；北师大四上·线与角"
     },
     {
       "id": "primary-g4-s1-math-K008",
@@ -236,8 +229,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·角的度量",
-      "engine_hint": "llm"
+      "source": "人教四上·角的度量"
     },
     {
       "id": "primary-g4-s1-math-K009",
@@ -265,8 +257,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·角的度量",
-      "engine_hint": "llm"
+      "source": "人教四上·角的度量"
     },
     {
       "id": "primary-g4-s1-math-K010",
@@ -294,8 +285,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·角的度量",
-      "engine_hint": "llm"
+      "source": "人教四上·角的度量"
     },
     {
       "id": "primary-g4-s1-math-K011",
@@ -323,8 +313,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·三位数乘两位数",
-      "engine_hint": "template"
+      "source": "人教四上·三位数乘两位数"
     },
     {
       "id": "primary-g4-s1-math-K012",
@@ -352,8 +341,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·三位数乘两位数",
-      "engine_hint": "llm"
+      "source": "人教四上·三位数乘两位数"
     },
     {
       "id": "primary-g4-s1-math-K013",
@@ -381,8 +369,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·三位数乘两位数",
-      "engine_hint": "llm"
+      "source": "人教四上·三位数乘两位数"
     },
     {
       "id": "primary-g4-s1-math-K014",
@@ -410,8 +397,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·三位数乘两位数",
-      "engine_hint": "llm"
+      "source": "人教四上·三位数乘两位数"
     },
     {
       "id": "primary-g4-s1-math-K015",
@@ -439,8 +425,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·平行四边形和梯形",
-      "engine_hint": "llm"
+      "source": "人教四上·平行四边形和梯形"
     },
     {
       "id": "primary-g4-s1-math-K016",
@@ -468,8 +453,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·平行四边形和梯形",
-      "engine_hint": "llm"
+      "source": "人教四上·平行四边形和梯形"
     },
     {
       "id": "primary-g4-s1-math-K017",
@@ -497,8 +481,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·除数是两位数的除法",
-      "engine_hint": "template"
+      "source": "人教四上·除数是两位数的除法"
     },
     {
       "id": "primary-g4-s1-math-K018",
@@ -526,8 +509,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·除数是两位数的除法",
-      "engine_hint": "llm"
+      "source": "人教四上·除数是两位数的除法"
     },
     {
       "id": "primary-g4-s1-math-K019",
@@ -555,8 +537,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·条形统计图",
-      "engine_hint": "llm"
+      "source": "人教四上·条形统计图"
     },
     {
       "id": "primary-g4-s1-math-K020",
@@ -582,8 +563,7 @@
       "grade_range": [
         "g4"
       ],
-      "source": "人教四上·数学广角—优化",
-      "engine_hint": "llm"
+      "source": "人教四上·数学广角—优化"
     }
   ]
 }

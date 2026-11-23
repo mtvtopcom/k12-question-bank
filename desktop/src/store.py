@@ -3,12 +3,15 @@
 
 直接读写 knowledge-map/volumes/**/*.json（下游 merge/validate/pipeline 实际消费的数据）。
 所有写操作：写前备份 → 原子替换 → 追加变更日志，支持按操作撤销。
+「恢复原始配置」从 desktop/original/ 的出厂快照整体还原（同样先备份再覆盖）。
 仅用 Python 标准库。
 """
 from __future__ import annotations
 
 import csv
 import datetime as dt
+import gzip
+import hashlib
 import io
 import json
 import os
@@ -32,6 +35,10 @@ if SRC_ROOT not in sys.path:
 
 BACKUP_ROOT = os.path.join(APP_ROOT, "backups")
 CHANGELOG = os.path.join(APP_ROOT, "changelog.jsonl")
+# 出厂快照：安装包里附带的 63 册 / 1225 个知识点原始配置
+ORIGINAL_DIR = os.path.join(APP_ROOT, "original")
+ORIGINAL_ARCHIVE = os.path.join(ORIGINAL_DIR, "library.json.gz")
+ORIGINAL_MANIFEST = os.path.join(ORIGINAL_DIR, "manifest.json")
 
 STAGE_NAMES = {"kg": "幼儿园", "primary": "小学", "junior": "初中"}
 SUBJECT_NAMES = {"chinese": "语文", "math": "数学", "english": "英语"}
@@ -43,7 +50,7 @@ GRADE_ORDER = {"k1": 1, "k2": 2, "k3": 3, "g1": 1, "g2": 2, "g3": 3,
 EDITABLE = [
     "domain", "theme", "unit", "name", "objective", "difficulty",
     "bloom", "prerequisites", "concept", "common_mistakes",
-    "suggested_types", "grade_range", "source", "engine_hint",
+    "suggested_types", "grade_range", "source",
 ]
 LIST_FIELDS = {"prerequisites", "common_mistakes", "suggested_types", "grade_range"}
 
@@ -121,7 +128,7 @@ def stats() -> Dict[str, Any]:
 
 # ---------------- 搜索与筛选 ----------------
 def query(q: str = "", stage: str = "", subject: str = "", domain: str = "",
-          difficulty: Optional[int] = None, bloom: str = "", engine: str = "",
+          difficulty: Optional[int] = None, bloom: str = "",
           limit: int = 0, grade: str = "") -> List[Tuple[Dict[str, Any], Dict[str, Any]]]:
     """返回 (知识点, 册元数据) 列表。多条件为 AND，q 在多个文本字段中模糊匹配。"""
     q = (q or "").strip().lower()
@@ -139,8 +146,6 @@ def query(q: str = "", stage: str = "", subject: str = "", domain: str = "",
             if difficulty and kp.get("difficulty") != difficulty:
                 continue
             if bloom and kp.get("bloom") != bloom:
-                continue
-            if engine and kp.get("engine_hint") != engine:
                 continue
             if q:
                 hay = " ".join(str(kp.get(f, "")) for f in
@@ -221,8 +226,6 @@ def _validate_fields(fields: Dict[str, Any]) -> None:
         raise StoreError("难度必须是 1-4 的整数")
     if fields.get("bloom") not in ("记忆", "理解", "应用", "分析", "评价", "创造"):
         raise StoreError("认知层级非法")
-    if fields.get("engine_hint") not in ("template", "llm"):
-        raise StoreError("引擎提示非法")
     # 难度-认知一致性（与校验器一致）
     band = {"记忆": (1, 2), "理解": (1, 3), "应用": (2, 3),
             "分析": (3, 4), "评价": (3, 4), "创造": (3, 4)}
@@ -316,6 +319,14 @@ def undo() -> str:
     if not rows:
         raise StoreError("没有可撤销的变更")
     rec = rows[0]
+    if rec["op"] == "restore":
+        # 恢复原始配置是整库覆盖，撤销 = 从恢复前的整目录快照再覆盖回来
+        src = rec.get("backup") or ""
+        if not os.path.isdir(src):
+            raise StoreError("恢复前的备份目录已丢失，无法自动撤销")
+        count, _ = _apply_tree(src)
+        _mark_undo(rec, f"撤销 恢复原始配置（{count} 册）")
+        return "已撤销：恢复原始配置（回到恢复前的数据）"
     path = None
     for v in load_all_volumes():
         if v["volume_id"] == rec["volume_id"]:
@@ -330,14 +341,145 @@ def undo() -> str:
     with open(backup, encoding="utf-8") as f:
         old_doc = json.load(f)
     _atomic_write(path, old_doc)
-    # 标记该记录已撤销（追加一条 undo 记录，保留审计轨迹）
+    _mark_undo(rec)
+    return f"已撤销：{rec['op']} {rec['topic_id']}"
+
+
+def _mark_undo(rec: Dict[str, Any], note: str = "") -> None:
+    """追加一条 undo 记录，保留审计轨迹。"""
     with open(CHANGELOG, "a", encoding="utf-8") as f:
         f.write(json.dumps({
             "ts": dt.datetime.now().isoformat(timespec="seconds"),
-            "op": "undo", "volume_id": rec["volume_id"],
-            "topic_id": rec["topic_id"], "note": f"撤销 {rec['op']}",
+            "op": "undo", "volume_id": rec.get("volume_id", ""),
+            "topic_id": rec.get("topic_id", ""),
+            "note": note or f"撤销 {rec['op']}",
         }, ensure_ascii=False) + "\n")
-    return f"已撤销：{rec['op']} {rec['topic_id']}"
+
+
+# ---------------- 出厂快照与恢复 ----------------
+def original_info() -> Optional[Dict[str, Any]]:
+    """读取出厂快照清单；没有快照时返回 None。"""
+    if not (os.path.exists(ORIGINAL_ARCHIVE) and os.path.exists(ORIGINAL_MANIFEST)):
+        return None
+    try:
+        return _load_json(ORIGINAL_MANIFEST)
+    except Exception:
+        return None
+
+
+def create_original_snapshot(version: str = "") -> Dict[str, Any]:
+    """把当前 volumes 打包成出厂快照（发布前运行一次）。
+
+    存成单个 gzip JSON（约 150 KB），避免在仓库里再复制 1.2 MB 的册文件；
+    清单记录册数、知识点数、SHA-256，恢复时可校验完整性。
+    """
+    bundle: Dict[str, Any] = {}
+    for path in volume_files():
+        rel = os.path.relpath(path, VOL_ROOT).replace(os.sep, "/")
+        bundle[rel] = _load_json(path)
+    payload = json.dumps(bundle, ensure_ascii=False, sort_keys=True).encode("utf-8")
+    os.makedirs(ORIGINAL_DIR, exist_ok=True)
+    tmp = ORIGINAL_ARCHIVE + ".tmp"
+    with open(tmp, "wb") as raw:
+        with gzip.GzipFile(fileobj=raw, mode="wb", mtime=0) as gz:
+            gz.write(payload)
+    os.replace(tmp, ORIGINAL_ARCHIVE)
+
+    points = sum(len(d.get("knowledge_points", [])) for d in bundle.values())
+    manifest = {
+        "version": version,
+        "created_at": dt.datetime.now().isoformat(timespec="seconds"),
+        "volumes": len(bundle),
+        "points": points,
+        "sha256": hashlib.sha256(payload).hexdigest(),
+        "archive": os.path.basename(ORIGINAL_ARCHIVE),
+    }
+    tmp = ORIGINAL_MANIFEST + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    os.replace(tmp, ORIGINAL_MANIFEST)
+    return manifest
+
+
+def _apply_tree(src_root: str) -> Tuple[int, List[str]]:
+    """用 src_root 下的全部 .json 覆盖 VOL_ROOT，并删除快照里没有的册。
+
+    返回 (写入册数, 被删除的多余册相对路径)。
+    """
+    src_files = []
+    for dirpath, _, files in os.walk(src_root):
+        for fn in files:
+            if fn.endswith(".json"):
+                src_files.append(os.path.join(dirpath, fn))
+    if not src_files:
+        raise StoreError("快照里没有可恢复的册文件")
+    keep = set()
+    for path in src_files:
+        rel = os.path.relpath(path, src_root)
+        keep.add(rel.replace(os.sep, "/"))
+        dst = os.path.join(VOL_ROOT, rel)
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        tmp = dst + ".tmp"
+        shutil.copy2(path, tmp)
+        os.replace(tmp, dst)
+    return len(src_files), _prune_extra(keep)
+
+
+def _prune_extra(keep: set) -> List[str]:
+    """删除不在 keep 集合里的册文件（快照之外的额外册）。"""
+    removed = []
+    for path in volume_files():
+        rel = os.path.relpath(path, VOL_ROOT).replace(os.sep, "/")
+        if rel not in keep:
+            os.remove(path)
+            removed.append(rel)
+    return removed
+
+
+def restore_original() -> Dict[str, Any]:
+    """把知识点库整体恢复为软件出厂配置（63 册 / 1225 个知识点）。
+
+    先整目录备份当前 volumes，再按快照覆盖，最后清掉快照之外的额外册。
+    返回 {volumes, points, removed, backup}。
+    """
+    if not os.path.exists(ORIGINAL_ARCHIVE):
+        raise StoreError("未找到出厂快照（desktop/original/library.json.gz），无法恢复")
+    try:
+        with gzip.open(ORIGINAL_ARCHIVE, "rb") as f:
+            bundle = json.loads(f.read().decode("utf-8"))
+    except Exception as exc:  # noqa: BLE001
+        raise StoreError(f"出厂快照损坏：{exc}")
+    if not isinstance(bundle, dict) or not bundle:
+        raise StoreError("出厂快照内容为空，无法恢复")
+
+    # 1) 整目录备份当前数据
+    os.makedirs(BACKUP_ROOT, exist_ok=True)
+    stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+    folder = os.path.join(BACKUP_ROOT, f"restore-{stamp}")
+    shutil.copytree(VOL_ROOT, folder)
+
+    # 2) 按快照逐册原子写回
+    keep = set()
+    for rel, doc in bundle.items():
+        keep.add(rel)
+        dst = os.path.join(VOL_ROOT, *rel.split("/"))
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        tmp = dst + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(doc, f, ensure_ascii=False, indent=2)
+            f.write("\n")
+        os.replace(tmp, dst)
+
+    # 3) 清掉快照之外多出来的册
+    removed = _prune_extra(keep)
+
+    points = sum(len(d.get("knowledge_points", [])) for d in bundle.values())
+    _log("restore", "-", "", None,
+         {"volumes": len(bundle), "points": points, "removed": removed},
+         folder, note="恢复原始配置")
+    return {"volumes": len(bundle), "points": points,
+            "removed": removed, "backup": folder}
 
 
 # ---------------- 校验与导出 ----------------
@@ -370,7 +512,7 @@ def export_csv(rows: List[Tuple[Dict[str, Any], Dict[str, Any]]]) -> str:
     cols = ["id", "volume", "stage", "subject", "grade", "index",
             "domain", "theme", "unit", "name", "objective", "difficulty",
             "bloom", "prerequisites", "concept", "common_mistakes",
-            "suggested_types", "grade_range", "source", "engine_hint"]
+            "suggested_types", "grade_range", "source"]
     buf = io.StringIO()
     w = csv.writer(buf)
     w.writerow(cols)
@@ -384,7 +526,7 @@ def export_csv(rows: List[Tuple[Dict[str, Any], Dict[str, Any]]]) -> str:
             " | ".join(kp.get("common_mistakes", [])),
             " | ".join(kp.get("suggested_types", [])),
             " | ".join(kp.get("grade_range", [])),
-            kp.get("source", ""), kp.get("engine_hint", ""),
+            kp.get("source", ""),
         ])
     return buf.getvalue()
 
@@ -400,10 +542,10 @@ def export_json(rows: List[Tuple[Dict[str, Any], Dict[str, Any]]]) -> str:
 
 
 # ---------------- 题目生成（内容感知型引擎）----------------
-# 桌面界面直接读写 volumes/*.json（字段名 name/unit/concept/common_mistakes/
-# engine_hint，年级是 g3+s2 代码）。生成引擎消费的是 knowledge_points.jsonl
-# 格式（topic/chapter/explanation/engine，年级是「三年级下」）。这里做纯内存
-# 字段适配，绝不落盘，避免改动正在管理的知识点数据。
+# 桌面界面直接读写 volumes/*.json（字段名 name/unit/concept/common_mistakes，
+# 年级是 g3+s2 代码）。生成引擎消费的是 knowledge_points.jsonl 格式
+# （topic/chapter/explanation，年级是「三年级下」）。这里做纯内存字段适配，
+# 绝不落盘，避免改动正在管理的知识点数据。
 
 _GRADE_CN = {
     "k1": "小班", "k2": "中班", "k3": "大班",
@@ -451,7 +593,6 @@ def _as_generator_topic(kp: Dict[str, Any], v: Dict[str, Any]) -> Dict[str, Any]
         "difficulty": int(kp.get("difficulty", 1) or 1),
         "bloom": kp.get("bloom", "理解"),
         "prerequisites": list(kp.get("prerequisites") or []),
-        "engine": kp.get("engine_hint", "template"),
         "source": kp.get("source", ""),
     }
 

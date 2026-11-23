@@ -36,8 +36,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·各单元读读写写",
-      "engine_hint": "template"
+      "source": "统编八上·各单元读读写写"
     },
     {
       "id": "junior-g8-s1-chinese-K002",
@@ -66,8 +65,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·语法知识",
-      "engine_hint": "llm"
+      "source": "统编八上·语法知识"
     },
     {
       "id": "junior-g8-s1-chinese-K003",
@@ -96,8 +94,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第二单元",
-      "engine_hint": "llm"
+      "source": "统编八上·第二单元"
     },
     {
       "id": "junior-g8-s1-chinese-K004",
@@ -125,8 +122,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·各单元注释",
-      "engine_hint": "template"
+      "source": "统编八上·各单元注释"
     },
     {
       "id": "junior-g8-s1-chinese-K005",
@@ -154,8 +150,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第一单元",
-      "engine_hint": "llm"
+      "source": "统编八上·第一单元"
     },
     {
       "id": "junior-g8-s1-chinese-K006",
@@ -183,8 +178,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第二单元《藤野先生》",
-      "engine_hint": "llm"
+      "source": "统编八上·第二单元《藤野先生》"
     },
     {
       "id": "junior-g8-s1-chinese-K007",
@@ -212,8 +206,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第二单元《美丽的颜色》",
-      "engine_hint": "llm"
+      "source": "统编八上·第二单元《美丽的颜色》"
     },
     {
       "id": "junior-g8-s1-chinese-K008",
@@ -241,8 +234,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第四单元《背影》",
-      "engine_hint": "llm"
+      "source": "统编八上·第四单元《背影》"
     },
     {
       "id": "junior-g8-s1-chinese-K009",
@@ -270,8 +262,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第四单元《白杨礼赞》",
-      "engine_hint": "llm"
+      "source": "统编八上·第四单元《白杨礼赞》"
     },
     {
       "id": "junior-g8-s1-chinese-K010",
@@ -299,8 +290,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第四单元《散文二篇》",
-      "engine_hint": "llm"
+      "source": "统编八上·第四单元《散文二篇》"
     },
     {
       "id": "junior-g8-s1-chinese-K011",
@@ -328,8 +318,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第四单元《昆明的雨》",
-      "engine_hint": "llm"
+      "source": "统编八上·第四单元《昆明的雨》"
     },
     {
       "id": "junior-g8-s1-chinese-K012",
@@ -355,8 +344,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第五单元《中国石拱桥》",
-      "engine_hint": "llm"
+      "source": "统编八上·第五单元《中国石拱桥》"
     },
     {
       "id": "junior-g8-s1-chinese-K013",
@@ -384,8 +372,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第五单元《苏州园林》",
-      "engine_hint": "llm"
+      "source": "统编八上·第五单元《苏州园林》"
     },
     {
       "id": "junior-g8-s1-chinese-K014",
@@ -413,8 +400,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第五单元",
-      "engine_hint": "llm"
+      "source": "统编八上·第五单元"
     },
     {
       "id": "junior-g8-s1-chinese-K015",
@@ -442,8 +428,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第五单元《蝉》",
-      "engine_hint": "llm"
+      "source": "统编八上·第五单元《蝉》"
     },
     {
       "id": "junior-g8-s1-chinese-K016",
@@ -472,8 +457,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第六单元",
-      "engine_hint": "llm"
+      "source": "统编八上·第六单元"
     },
     {
       "id": "junior-g8-s1-chinese-K017",
@@ -502,8 +486,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第六单元",
-      "engine_hint": "llm"
+      "source": "统编八上·第六单元"
     },
     {
       "id": "junior-g8-s1-chinese-K018",
@@ -531,8 +514,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第六单元《〈孟子〉二章》",
-      "engine_hint": "llm"
+      "source": "统编八上·第六单元《〈孟子〉二章》"
     },
     {
       "id": "junior-g8-s1-chinese-K019",
@@ -560,8 +542,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第六单元《愚公移山》",
-      "engine_hint": "llm"
+      "source": "统编八上·第六单元《愚公移山》"
     },
     {
       "id": "junior-g8-s1-chinese-K020",
@@ -589,8 +570,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第六单元《周亚夫军细柳》",
-      "engine_hint": "llm"
+      "source": "统编八上·第六单元《周亚夫军细柳》"
     },
     {
       "id": "junior-g8-s1-chinese-K021",
@@ -618,8 +598,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第三单元",
-      "engine_hint": "llm"
+      "source": "统编八上·第三单元"
     },
     {
       "id": "junior-g8-s1-chinese-K022",
@@ -647,8 +626,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·第三单元、第六单元诗词",
-      "engine_hint": "llm"
+      "source": "统编八上·第三单元、第六单元诗词"
     },
     {
       "id": "junior-g8-s1-chinese-K023",
@@ -676,8 +654,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·非连续性文本",
-      "engine_hint": "llm"
+      "source": "统编八上·非连续性文本"
     },
     {
       "id": "junior-g8-s1-chinese-K024",
@@ -705,8 +682,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·综合性学习",
-      "engine_hint": "llm"
+      "source": "统编八上·综合性学习"
     },
     {
       "id": "junior-g8-s1-chinese-K025",
@@ -734,8 +710,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·名著导读",
-      "engine_hint": "llm"
+      "source": "统编八上·名著导读"
     },
     {
       "id": "junior-g8-s1-chinese-K026",
@@ -763,8 +738,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·综合性学习",
-      "engine_hint": "llm"
+      "source": "统编八上·综合性学习"
     },
     {
       "id": "junior-g8-s1-chinese-K027",
@@ -792,8 +766,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八上·名著导读【2024秋新版新增必读】",
-      "engine_hint": "llm"
+      "source": "统编八上·名著导读【2024秋新版新增必读】"
     }
   ]
 }

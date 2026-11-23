@@ -33,8 +33,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·长度单位；北师大二上·测量",
-      "engine_hint": "llm"
+      "source": "人教二上·长度单位；北师大二上·测量"
     },
     {
       "id": "primary-g2-s1-math-K002",
@@ -62,8 +61,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·长度单位",
-      "engine_hint": "template"
+      "source": "人教二上·长度单位"
     },
     {
       "id": "primary-g2-s1-math-K003",
@@ -91,8 +89,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·长度单位",
-      "engine_hint": "llm"
+      "source": "人教二上·长度单位"
     },
     {
       "id": "primary-g2-s1-math-K004",
@@ -120,8 +117,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·100以内的加法和减法（二）",
-      "engine_hint": "template"
+      "source": "人教二上·100以内的加法和减法（二）"
     },
     {
       "id": "primary-g2-s1-math-K005",
@@ -149,8 +145,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·100以内的加法和减法（二）",
-      "engine_hint": "template"
+      "source": "人教二上·100以内的加法和减法（二）"
     },
     {
       "id": "primary-g2-s1-math-K006",
@@ -178,8 +173,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·100以内的加法和减法（二）",
-      "engine_hint": "template"
+      "source": "人教二上·100以内的加法和减法（二）"
     },
     {
       "id": "primary-g2-s1-math-K007",
@@ -207,8 +201,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·100以内的加法和减法（二）",
-      "engine_hint": "llm"
+      "source": "人教二上·100以内的加法和减法（二）"
     },
     {
       "id": "primary-g2-s1-math-K008",
@@ -234,8 +227,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·角的初步认识；北师大二下·认识角",
-      "engine_hint": "llm"
+      "source": "人教二上·角的初步认识；北师大二下·认识角"
     },
     {
       "id": "primary-g2-s1-math-K009",
@@ -263,8 +255,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·角的初步认识",
-      "engine_hint": "llm"
+      "source": "人教二上·角的初步认识"
     },
     {
       "id": "primary-g2-s1-math-K010",
@@ -292,8 +283,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·角的初步认识",
-      "engine_hint": "llm"
+      "source": "人教二上·角的初步认识"
     },
     {
       "id": "primary-g2-s1-math-K011",
@@ -321,8 +311,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·表内乘法（一）；北师大二上·数一数与乘法",
-      "engine_hint": "llm"
+      "source": "人教二上·表内乘法（一）；北师大二上·数一数与乘法"
     },
     {
       "id": "primary-g2-s1-math-K012",
@@ -350,8 +339,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·表内乘法（一）",
-      "engine_hint": "template"
+      "source": "人教二上·表内乘法（一）"
     },
     {
       "id": "primary-g2-s1-math-K013",
@@ -379,8 +367,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·表内乘法（一）",
-      "engine_hint": "template"
+      "source": "人教二上·表内乘法（一）"
     },
     {
       "id": "primary-g2-s1-math-K014",
@@ -408,8 +395,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·表内乘法（一）",
-      "engine_hint": "template"
+      "source": "人教二上·表内乘法（一）"
     },
     {
       "id": "primary-g2-s1-math-K015",
@@ -435,8 +421,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·观察物体（一）；北师大三上·观察物体",
-      "engine_hint": "llm"
+      "source": "人教二上·观察物体（一）；北师大三上·观察物体"
     },
     {
       "id": "primary-g2-s1-math-K016",
@@ -464,8 +449,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·表内乘法（二）",
-      "engine_hint": "template"
+      "source": "人教二上·表内乘法（二）"
     },
     {
       "id": "primary-g2-s1-math-K017",
@@ -493,8 +477,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·表内乘法（二）",
-      "engine_hint": "llm"
+      "source": "人教二上·表内乘法（二）"
     },
     {
       "id": "primary-g2-s1-math-K018",
@@ -522,8 +505,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·认识时间；北师大二上·时、分、秒",
-      "engine_hint": "llm"
+      "source": "人教二上·认识时间；北师大二上·时、分、秒"
     },
     {
       "id": "primary-g2-s1-math-K019",
@@ -551,8 +533,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·认识时间",
-      "engine_hint": "llm"
+      "source": "人教二上·认识时间"
     },
     {
       "id": "primary-g2-s1-math-K020",
@@ -578,8 +559,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教二上·数学广角—搭配（一）",
-      "engine_hint": "llm"
+      "source": "人教二上·数学广角—搭配（一）"
     }
   ]
 }

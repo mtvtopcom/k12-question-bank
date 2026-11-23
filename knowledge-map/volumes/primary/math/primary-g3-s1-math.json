@@ -35,8 +35,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·时分秒；北师大二上·时、分、秒",
-      "engine_hint": "llm"
+      "source": "人教三上·时分秒；北师大二上·时、分、秒"
     },
     {
       "id": "primary-g3-s1-math-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·时分秒",
-      "engine_hint": "llm"
+      "source": "人教三上·时分秒"
     },
     {
       "id": "primary-g3-s1-math-K003",
@@ -93,8 +91,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·万以内的加法和减法（一）",
-      "engine_hint": "template"
+      "source": "人教三上·万以内的加法和减法（一）"
     },
     {
       "id": "primary-g3-s1-math-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·万以内的加法和减法（一）",
-      "engine_hint": "template"
+      "source": "人教三上·万以内的加法和减法（一）"
     },
     {
       "id": "primary-g3-s1-math-K005",
@@ -151,8 +147,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·万以内的加法和减法（一）",
-      "engine_hint": "template"
+      "source": "人教三上·万以内的加法和减法（一）"
     },
     {
       "id": "primary-g3-s1-math-K006",
@@ -180,8 +175,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·测量",
-      "engine_hint": "llm"
+      "source": "人教三上·测量"
     },
     {
       "id": "primary-g3-s1-math-K007",
@@ -209,8 +203,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·测量",
-      "engine_hint": "llm"
+      "source": "人教三上·测量"
     },
     {
       "id": "primary-g3-s1-math-K008",
@@ -238,8 +231,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·测量",
-      "engine_hint": "llm"
+      "source": "人教三上·测量"
     },
     {
       "id": "primary-g3-s1-math-K009",
@@ -267,8 +259,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·万以内的加法和减法（二）",
-      "engine_hint": "template"
+      "source": "人教三上·万以内的加法和减法（二）"
     },
     {
       "id": "primary-g3-s1-math-K010",
@@ -296,8 +287,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·万以内的加法和减法（二）",
-      "engine_hint": "template"
+      "source": "人教三上·万以内的加法和减法（二）"
     },
     {
       "id": "primary-g3-s1-math-K011",
@@ -325,8 +315,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·万以内的加法和减法（二）",
-      "engine_hint": "template"
+      "source": "人教三上·万以内的加法和减法（二）"
     },
     {
       "id": "primary-g3-s1-math-K012",
@@ -354,8 +343,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·万以内的加法和减法（二）",
-      "engine_hint": "template"
+      "source": "人教三上·万以内的加法和减法（二）"
     },
     {
       "id": "primary-g3-s1-math-K013",
@@ -383,8 +371,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·倍的认识",
-      "engine_hint": "llm"
+      "source": "人教三上·倍的认识"
     },
     {
       "id": "primary-g3-s1-math-K014",
@@ -412,8 +399,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·倍的认识",
-      "engine_hint": "llm"
+      "source": "人教三上·倍的认识"
     },
     {
       "id": "primary-g3-s1-math-K015",
@@ -441,8 +427,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·多位数乘一位数",
-      "engine_hint": "template"
+      "source": "人教三上·多位数乘一位数"
     },
     {
       "id": "primary-g3-s1-math-K016",
@@ -470,8 +455,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·多位数乘一位数",
-      "engine_hint": "template"
+      "source": "人教三上·多位数乘一位数"
     },
     {
       "id": "primary-g3-s1-math-K017",
@@ -499,8 +483,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·多位数乘一位数",
-      "engine_hint": "template"
+      "source": "人教三上·多位数乘一位数"
     },
     {
       "id": "primary-g3-s1-math-K018",
@@ -528,8 +511,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·长方形和正方形",
-      "engine_hint": "llm"
+      "source": "人教三上·长方形和正方形"
     },
     {
       "id": "primary-g3-s1-math-K019",
@@ -555,8 +537,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·分数的初步认识",
-      "engine_hint": "llm"
+      "source": "人教三上·分数的初步认识"
     },
     {
       "id": "primary-g3-s1-math-K020",
@@ -582,8 +563,7 @@
       "grade_range": [
         "g3"
       ],
-      "source": "人教三上·数学广角—集合",
-      "engine_hint": "llm"
+      "source": "人教三上·数学广角—集合"
     }
   ]
 }

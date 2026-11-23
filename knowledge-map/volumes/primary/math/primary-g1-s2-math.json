@@ -33,8 +33,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·认识图形（二）；北师大一下·认识图形",
-      "engine_hint": "llm"
+      "source": "人教一下·认识图形（二）；北师大一下·认识图形"
     },
     {
       "id": "primary-g1-s2-math-K002",
@@ -62,8 +61,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·认识图形（二）",
-      "engine_hint": "llm"
+      "source": "人教一下·认识图形（二）"
     },
     {
       "id": "primary-g1-s2-math-K003",
@@ -91,8 +89,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·20以内的退位减法；北师大一下·加与减（一）",
-      "engine_hint": "template"
+      "source": "人教一下·20以内的退位减法；北师大一下·加与减（一）"
     },
     {
       "id": "primary-g1-s2-math-K004",
@@ -118,8 +115,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·分类与整理；北师大一下·分类",
-      "engine_hint": "llm"
+      "source": "人教一下·分类与整理；北师大一下·分类"
     },
     {
       "id": "primary-g1-s2-math-K005",
@@ -147,8 +143,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·分类与整理",
-      "engine_hint": "llm"
+      "source": "人教一下·分类与整理"
     },
     {
       "id": "primary-g1-s2-math-K006",
@@ -176,8 +171,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·100以内数的认识",
-      "engine_hint": "template"
+      "source": "人教一下·100以内数的认识"
     },
     {
       "id": "primary-g1-s2-math-K007",
@@ -205,8 +199,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·100以内数的认识",
-      "engine_hint": "template"
+      "source": "人教一下·100以内数的认识"
     },
     {
       "id": "primary-g1-s2-math-K008",
@@ -234,8 +227,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·100以内数的认识",
-      "engine_hint": "template"
+      "source": "人教一下·100以内数的认识"
     },
     {
       "id": "primary-g1-s2-math-K009",
@@ -263,8 +255,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·认识人民币；北师大二上·购物",
-      "engine_hint": "llm"
+      "source": "人教一下·认识人民币；北师大二上·购物"
     },
     {
       "id": "primary-g1-s2-math-K010",
@@ -292,8 +283,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·认识人民币",
-      "engine_hint": "llm"
+      "source": "人教一下·认识人民币"
     },
     {
       "id": "primary-g1-s2-math-K011",
@@ -321,8 +311,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·100以内的加法和减法（一）",
-      "engine_hint": "template"
+      "source": "人教一下·100以内的加法和减法（一）"
     },
     {
       "id": "primary-g1-s2-math-K012",
@@ -350,8 +339,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·100以内的加法和减法（一）",
-      "engine_hint": "template"
+      "source": "人教一下·100以内的加法和减法（一）"
     },
     {
       "id": "primary-g1-s2-math-K013",
@@ -379,8 +367,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·100以内的加法和减法（一）",
-      "engine_hint": "template"
+      "source": "人教一下·100以内的加法和减法（一）"
     },
     {
       "id": "primary-g1-s2-math-K014",
@@ -408,8 +395,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·100以内的加法和减法（一）",
-      "engine_hint": "template"
+      "source": "人教一下·100以内的加法和减法（一）"
     },
     {
       "id": "primary-g1-s2-math-K015",
@@ -437,8 +423,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·100以内的加法和减法（一）",
-      "engine_hint": "llm"
+      "source": "人教一下·100以内的加法和减法（一）"
     },
     {
       "id": "primary-g1-s2-math-K016",
@@ -466,8 +451,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·找规律；北师大一下·数学好玩",
-      "engine_hint": "llm"
+      "source": "人教一下·找规律；北师大一下·数学好玩"
     },
     {
       "id": "primary-g1-s2-math-K017",
@@ -495,8 +479,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·找规律",
-      "engine_hint": "llm"
+      "source": "人教一下·找规律"
     },
     {
       "id": "primary-g1-s2-math-K018",
@@ -524,8 +507,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·100以内数的认识",
-      "engine_hint": "llm"
+      "source": "人教一下·100以内数的认识"
     },
     {
       "id": "primary-g1-s2-math-K019",
@@ -553,8 +535,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·分类与整理",
-      "engine_hint": "llm"
+      "source": "人教一下·分类与整理"
     },
     {
       "id": "primary-g1-s2-math-K020",
@@ -582,8 +563,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教一下·综合与实践",
-      "engine_hint": "llm"
+      "source": "人教一下·综合与实践"
     }
   ]
 }

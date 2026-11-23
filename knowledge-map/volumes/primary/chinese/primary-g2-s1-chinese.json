@@ -35,8 +35,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·识字",
-      "engine_hint": "template"
+      "source": "统编二上·识字"
     },
     {
       "id": "primary-g2-s1-chinese-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·识字",
-      "engine_hint": "llm"
+      "source": "统编二上·识字"
     },
     {
       "id": "primary-g2-s1-chinese-K003",
@@ -91,8 +89,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·语文园地",
-      "engine_hint": "template"
+      "source": "统编二上·语文园地"
     },
     {
       "id": "primary-g2-s1-chinese-K004",
@@ -118,8 +115,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·语文园地",
-      "engine_hint": "template"
+      "source": "统编二上·语文园地"
     },
     {
       "id": "primary-g2-s1-chinese-K005",
@@ -145,8 +141,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·词语",
-      "engine_hint": "template"
+      "source": "统编二上·词语"
     },
     {
       "id": "primary-g2-s1-chinese-K006",
@@ -174,8 +169,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·词语",
-      "engine_hint": "template"
+      "source": "统编二上·词语"
     },
     {
       "id": "primary-g2-s1-chinese-K007",
@@ -203,8 +197,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·词语",
-      "engine_hint": "template"
+      "source": "统编二上·词语"
     },
     {
       "id": "primary-g2-s1-chinese-K008",
@@ -232,8 +225,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·词语",
-      "engine_hint": "template"
+      "source": "统编二上·词语"
     },
     {
       "id": "primary-g2-s1-chinese-K009",
@@ -261,8 +253,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·语文园地",
-      "engine_hint": "llm"
+      "source": "统编二上·语文园地"
     },
     {
       "id": "primary-g2-s1-chinese-K010",
@@ -288,8 +279,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·句子",
-      "engine_hint": "llm"
+      "source": "统编二上·句子"
     },
     {
       "id": "primary-g2-s1-chinese-K011",
@@ -317,8 +307,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·句子",
-      "engine_hint": "llm"
+      "source": "统编二上·句子"
     },
     {
       "id": "primary-g2-s1-chinese-K012",
@@ -346,8 +335,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·标点符号",
-      "engine_hint": "template"
+      "source": "统编二上·标点符号"
     },
     {
       "id": "primary-g2-s1-chinese-K013",
@@ -375,8 +363,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·课文",
-      "engine_hint": "llm"
+      "source": "统编二上·课文"
     },
     {
       "id": "primary-g2-s1-chinese-K014",
@@ -404,8 +391,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·课文",
-      "engine_hint": "llm"
+      "source": "统编二上·课文"
     },
     {
       "id": "primary-g2-s1-chinese-K015",
@@ -433,8 +419,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·课文",
-      "engine_hint": "llm"
+      "source": "统编二上·课文"
     },
     {
       "id": "primary-g2-s1-chinese-K016",
@@ -462,8 +447,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·古诗",
-      "engine_hint": "llm"
+      "source": "统编二上·古诗"
     },
     {
       "id": "primary-g2-s1-chinese-K017",
@@ -491,8 +475,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·寓言",
-      "engine_hint": "llm"
+      "source": "统编二上·寓言"
     },
     {
       "id": "primary-g2-s1-chinese-K018",
@@ -520,8 +503,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·写话",
-      "engine_hint": "llm"
+      "source": "统编二上·写话"
     },
     {
       "id": "primary-g2-s1-chinese-K019",
@@ -549,8 +531,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·口语交际",
-      "engine_hint": "llm"
+      "source": "统编二上·口语交际"
     },
     {
       "id": "primary-g2-s1-chinese-K020",
@@ -578,8 +559,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·识字写字",
-      "engine_hint": "llm"
+      "source": "统编二上·识字写字"
     },
     {
       "id": "primary-g2-s1-chinese-K021",
@@ -607,8 +587,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·语文园地",
-      "engine_hint": "template"
+      "source": "统编二上·语文园地"
     },
     {
       "id": "primary-g2-s1-chinese-K022",
@@ -636,8 +615,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "统编二上·快乐读书吧",
-      "engine_hint": "llm"
+      "source": "统编二上·快乐读书吧"
     }
   ]
 }

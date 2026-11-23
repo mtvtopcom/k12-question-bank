@@ -35,8 +35,7 @@
       "grade_range": [
         "k3"
       ],
-      "source": "英语启蒙·语音意识（大班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·语音意识（大班）"
     },
     {
       "id": "kg-k3-full-english-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "k3"
       ],
-      "source": "英语启蒙·日常用语（大班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·日常用语（大班）"
     },
     {
       "id": "kg-k3-full-english-K003",
@@ -93,8 +91,7 @@
       "grade_range": [
         "k3"
       ],
-      "source": "英语启蒙·句型（大班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·句型（大班）"
     },
     {
       "id": "kg-k3-full-english-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "k3"
       ],
-      "source": "英语启蒙·句型（大班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·句型（大班）"
     },
     {
       "id": "kg-k3-full-english-K005",
@@ -151,8 +147,7 @@
       "grade_range": [
         "k3"
       ],
-      "source": "英语启蒙·词汇（大班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·词汇（大班）"
     },
     {
       "id": "kg-k3-full-english-K006",
@@ -180,8 +175,7 @@
       "grade_range": [
         "k3"
       ],
-      "source": "英语启蒙·词汇（大班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·词汇（大班）"
     },
     {
       "id": "kg-k3-full-english-K007",
@@ -209,8 +203,7 @@
       "grade_range": [
         "k3"
       ],
-      "source": "《指南》语言·阅读（大班）；英语启蒙",
-      "engine_hint": "template"
+      "source": "《指南》语言·阅读（大班）；英语启蒙"
     },
     {
       "id": "kg-k3-full-english-K008",
@@ -238,8 +231,7 @@
       "grade_range": [
         "k3"
       ],
-      "source": "英语启蒙·歌谣（大班）",
-      "engine_hint": "template"
+      "source": "英语启蒙·歌谣（大班）"
     },
     {
       "id": "kg-k3-full-english-K009",
@@ -267,8 +259,7 @@
       "grade_range": [
         "k3"
       ],
-      "source": "《指南》社会·文化认同（大班）；英语启蒙",
-      "engine_hint": "template"
+      "source": "《指南》社会·文化认同（大班）；英语启蒙"
     },
     {
       "id": "kg-k3-full-english-K010",
@@ -296,8 +287,7 @@
       "grade_range": [
         "k3"
       ],
-      "source": "《指南》语言·表达（大班）；幼小衔接指导意见",
-      "engine_hint": "template"
+      "source": "《指南》语言·表达（大班）；幼小衔接指导意见"
     }
   ]
 }

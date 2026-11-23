@@ -36,8 +36,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·各单元读读写写",
-      "engine_hint": "template"
+      "source": "统编九上·各单元读读写写"
     },
     {
       "id": "junior-g9-s1-chinese-K002",
@@ -66,8 +65,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·语法知识",
-      "engine_hint": "llm"
+      "source": "统编九上·语法知识"
     },
     {
       "id": "junior-g9-s1-chinese-K003",
@@ -96,8 +94,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·语言运用",
-      "engine_hint": "llm"
+      "source": "统编九上·语言运用"
     },
     {
       "id": "junior-g9-s1-chinese-K004",
@@ -126,8 +123,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·各单元注释",
-      "engine_hint": "template"
+      "source": "统编九上·各单元注释"
     },
     {
       "id": "junior-g9-s1-chinese-K005",
@@ -155,8 +151,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第一单元《沁园春·雪》",
-      "engine_hint": "llm"
+      "source": "统编九上·第一单元《沁园春·雪》"
     },
     {
       "id": "junior-g9-s1-chinese-K006",
@@ -185,8 +180,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第一单元诗歌活动",
-      "engine_hint": "llm"
+      "source": "统编九上·第一单元诗歌活动"
     },
     {
       "id": "junior-g9-s1-chinese-K007",
@@ -215,8 +209,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第二单元《敬业与乐业》",
-      "engine_hint": "llm"
+      "source": "统编九上·第二单元《敬业与乐业》"
     },
     {
       "id": "junior-g9-s1-chinese-K008",
@@ -245,8 +238,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第二单元《论教养》",
-      "engine_hint": "llm"
+      "source": "统编九上·第二单元《论教养》"
     },
     {
       "id": "junior-g9-s1-chinese-K009",
@@ -274,8 +266,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第五单元",
-      "engine_hint": "llm"
+      "source": "统编九上·第五单元"
     },
     {
       "id": "junior-g9-s1-chinese-K010",
@@ -304,8 +295,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第三单元",
-      "engine_hint": "llm"
+      "source": "统编九上·第三单元"
     },
     {
       "id": "junior-g9-s1-chinese-K011",
@@ -333,8 +323,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第三单元",
-      "engine_hint": "llm"
+      "source": "统编九上·第三单元"
     },
     {
       "id": "junior-g9-s1-chinese-K012",
@@ -362,8 +351,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第三单元《岳阳楼记》",
-      "engine_hint": "llm"
+      "source": "统编九上·第三单元《岳阳楼记》"
     },
     {
       "id": "junior-g9-s1-chinese-K013",
@@ -391,8 +379,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第三单元《醉翁亭记》",
-      "engine_hint": "llm"
+      "source": "统编九上·第三单元《醉翁亭记》"
     },
     {
       "id": "junior-g9-s1-chinese-K014",
@@ -420,8 +407,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第三单元《湖心亭看雪》",
-      "engine_hint": "llm"
+      "source": "统编九上·第三单元《湖心亭看雪》"
     },
     {
       "id": "junior-g9-s1-chinese-K015",
@@ -449,8 +435,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第三单元诗词三首",
-      "engine_hint": "llm"
+      "source": "统编九上·第三单元诗词三首"
     },
     {
       "id": "junior-g9-s1-chinese-K016",
@@ -478,8 +463,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第四单元《故乡》",
-      "engine_hint": "llm"
+      "source": "统编九上·第四单元《故乡》"
     },
     {
       "id": "junior-g9-s1-chinese-K017",
@@ -507,8 +491,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第四单元《我的叔叔于勒》",
-      "engine_hint": "llm"
+      "source": "统编九上·第四单元《我的叔叔于勒》"
     },
     {
       "id": "junior-g9-s1-chinese-K018",
@@ -536,8 +519,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第四单元《孤独之旅》",
-      "engine_hint": "llm"
+      "source": "统编九上·第四单元《孤独之旅》"
     },
     {
       "id": "junior-g9-s1-chinese-K019",
@@ -565,8 +547,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第六单元《智取生辰纲》",
-      "engine_hint": "llm"
+      "source": "统编九上·第六单元《智取生辰纲》"
     },
     {
       "id": "junior-g9-s1-chinese-K020",
@@ -594,8 +575,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第六单元《范进中举》",
-      "engine_hint": "llm"
+      "source": "统编九上·第六单元《范进中举》"
     },
     {
       "id": "junior-g9-s1-chinese-K021",
@@ -623,8 +603,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第六单元《三顾茅庐》",
-      "engine_hint": "llm"
+      "source": "统编九上·第六单元《三顾茅庐》"
     },
     {
       "id": "junior-g9-s1-chinese-K022",
@@ -652,8 +631,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第六单元《刘姥姥进大观园》",
-      "engine_hint": "llm"
+      "source": "统编九上·第六单元《刘姥姥进大观园》"
     },
     {
       "id": "junior-g9-s1-chinese-K023",
@@ -681,8 +659,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·第五单元",
-      "engine_hint": "llm"
+      "source": "统编九上·第五单元"
     },
     {
       "id": "junior-g9-s1-chinese-K024",
@@ -710,8 +687,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·名著导读【旧版；2024秋新版已移出必读名录】",
-      "engine_hint": "llm"
+      "source": "统编九上·名著导读【旧版；2024秋新版已移出必读名录】"
     },
     {
       "id": "junior-g9-s1-chinese-K025",
@@ -739,8 +715,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·名著导读【旧版；2024秋新版移至九下】",
-      "engine_hint": "llm"
+      "source": "统编九上·名著导读【旧版；2024秋新版移至九下】"
     },
     {
       "id": "junior-g9-s1-chinese-K026",
@@ -768,8 +743,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·综合性学习",
-      "engine_hint": "llm"
+      "source": "统编九上·综合性学习"
     },
     {
       "id": "junior-g9-s1-chinese-K027",
@@ -797,8 +771,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·名著导读【2024秋新版新增必读】",
-      "engine_hint": "llm"
+      "source": "统编九上·名著导读【2024秋新版新增必读】"
     }
   ]
 }

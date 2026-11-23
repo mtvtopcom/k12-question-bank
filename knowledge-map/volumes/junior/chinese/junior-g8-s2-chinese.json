@@ -35,8 +35,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·各单元读读写写",
-      "engine_hint": "template"
+      "source": "统编八下·各单元读读写写"
     },
     {
       "id": "junior-g8-s2-chinese-K002",
@@ -65,8 +64,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·语法知识",
-      "engine_hint": "llm"
+      "source": "统编八下·语法知识"
     },
     {
       "id": "junior-g8-s2-chinese-K003",
@@ -94,8 +92,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第一单元",
-      "engine_hint": "llm"
+      "source": "统编八下·第一单元"
     },
     {
       "id": "junior-g8-s2-chinese-K004",
@@ -123,8 +120,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·各单元注释",
-      "engine_hint": "template"
+      "source": "统编八下·各单元注释"
     },
     {
       "id": "junior-g8-s2-chinese-K005",
@@ -152,8 +148,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第一单元《社戏》《安塞腰鼓》",
-      "engine_hint": "llm"
+      "source": "统编八下·第一单元《社戏》《安塞腰鼓》"
     },
     {
       "id": "junior-g8-s2-chinese-K006",
@@ -181,8 +176,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第二单元《大自然的语言》",
-      "engine_hint": "llm"
+      "source": "统编八下·第二单元《大自然的语言》"
     },
     {
       "id": "junior-g8-s2-chinese-K007",
@@ -210,8 +204,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第二单元《阿西莫夫短文两篇》",
-      "engine_hint": "llm"
+      "source": "统编八下·第二单元《阿西莫夫短文两篇》"
     },
     {
       "id": "junior-g8-s2-chinese-K008",
@@ -239,8 +232,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第二单元《大雁归来》《时间的脚印》",
-      "engine_hint": "llm"
+      "source": "统编八下·第二单元《大雁归来》《时间的脚印》"
     },
     {
       "id": "junior-g8-s2-chinese-K009",
@@ -268,8 +260,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第三、六单元",
-      "engine_hint": "llm"
+      "source": "统编八下·第三、六单元"
     },
     {
       "id": "junior-g8-s2-chinese-K010",
@@ -297,8 +288,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·文言课文",
-      "engine_hint": "llm"
+      "source": "统编八下·文言课文"
     },
     {
       "id": "junior-g8-s2-chinese-K011",
@@ -326,8 +316,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第三单元《桃花源记》",
-      "engine_hint": "llm"
+      "source": "统编八下·第三单元《桃花源记》"
     },
     {
       "id": "junior-g8-s2-chinese-K012",
@@ -355,8 +344,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第三单元《小石潭记》",
-      "engine_hint": "llm"
+      "source": "统编八下·第三单元《小石潭记》"
     },
     {
       "id": "junior-g8-s2-chinese-K013",
@@ -384,8 +372,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第三单元《核舟记》",
-      "engine_hint": "llm"
+      "source": "统编八下·第三单元《核舟记》"
     },
     {
       "id": "junior-g8-s2-chinese-K014",
@@ -413,8 +400,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第三单元《〈诗经〉二首》",
-      "engine_hint": "llm"
+      "source": "统编八下·第三单元《〈诗经〉二首》"
     },
     {
       "id": "junior-g8-s2-chinese-K015",
@@ -442,8 +428,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第四单元《最后一次讲演》",
-      "engine_hint": "llm"
+      "source": "统编八下·第四单元《最后一次讲演》"
     },
     {
       "id": "junior-g8-s2-chinese-K016",
@@ -471,8 +456,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第四单元《应有格物致知精神》",
-      "engine_hint": "llm"
+      "source": "统编八下·第四单元《应有格物致知精神》"
     },
     {
       "id": "junior-g8-s2-chinese-K017",
@@ -500,8 +484,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第五单元《壶口瀑布》",
-      "engine_hint": "llm"
+      "source": "统编八下·第五单元《壶口瀑布》"
     },
     {
       "id": "junior-g8-s2-chinese-K018",
@@ -529,8 +512,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第五单元《一滴水经过丽江》",
-      "engine_hint": "llm"
+      "source": "统编八下·第五单元《一滴水经过丽江》"
     },
     {
       "id": "junior-g8-s2-chinese-K019",
@@ -558,8 +540,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第六单元《〈庄子〉二则》",
-      "engine_hint": "llm"
+      "source": "统编八下·第六单元《〈庄子〉二则》"
     },
     {
       "id": "junior-g8-s2-chinese-K020",
@@ -587,8 +568,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第六单元《〈礼记〉二则》",
-      "engine_hint": "llm"
+      "source": "统编八下·第六单元《〈礼记〉二则》"
     },
     {
       "id": "junior-g8-s2-chinese-K021",
@@ -616,8 +596,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第六单元《马说》",
-      "engine_hint": "llm"
+      "source": "统编八下·第六单元《马说》"
     },
     {
       "id": "junior-g8-s2-chinese-K022",
@@ -645,8 +624,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第六单元《唐诗三首》",
-      "engine_hint": "llm"
+      "source": "统编八下·第六单元《唐诗三首》"
     },
     {
       "id": "junior-g8-s2-chinese-K023",
@@ -674,8 +652,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·第四单元",
-      "engine_hint": "llm"
+      "source": "统编八下·第四单元"
     },
     {
       "id": "junior-g8-s2-chinese-K024",
@@ -703,8 +680,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·名著导读【旧版；2024秋新版移至七下】",
-      "engine_hint": "llm"
+      "source": "统编八下·名著导读【旧版；2024秋新版移至七下】"
     },
     {
       "id": "junior-g8-s2-chinese-K025",
@@ -732,8 +708,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·名著导读",
-      "engine_hint": "llm"
+      "source": "统编八下·名著导读"
     },
     {
       "id": "junior-g8-s2-chinese-K026",
@@ -761,8 +736,7 @@
       "grade_range": [
         "g8"
       ],
-      "source": "统编八下·综合性学习",
-      "engine_hint": "llm"
+      "source": "统编八下·综合性学习"
     }
   ]
 }

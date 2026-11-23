@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""K12 知识点地图桌面管理台（macOS / tkinter）。
+"""K12 题库工厂桌面管理台（macOS / tkinter）。
 
 双击 .app 启动，或 python3 desktop/src/app.py。
 仅依赖 Python 标准库 + 系统 Tcl/Tk。
@@ -16,7 +16,7 @@ import store  # noqa: E402
 import prompt as prompt_mod  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "3.4"
+VERSION = "3.5"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -168,6 +168,7 @@ class App:
         self._build_menu()
         self._build_layout()
         self._refresh_tree()
+        self.refresh_list()               # 未选册时列出全部册的知识点
         self._update_status()
 
     # ---------------- 样式 ----------------
@@ -350,23 +351,17 @@ class App:
         cb2 = ClickCombo(flt, self.var_bloom, ["全部"] + self.tax["bloom"],
                          width=7, command=self.refresh_list)
         cb2.pack(side="left", padx=(4, 10))
-
-        ttk.Label(flt, text="引擎").pack(side="left")
-        self.var_engine = tk.StringVar(value="全部")
-        cb3 = ClickCombo(flt, self.var_engine, ["全部", "template", "llm"],
-                         width=9, command=self.refresh_list)
-        cb3.pack(side="left", padx=(4, 10))
         ttk.Button(flt, text="清除筛选", command=self.clear_filters).pack(side="left")
 
-        # 列表
+        # 列表：去掉引擎列，新增学科、年级列（均取自所属册）
         self.lbl_list = ttk.Label(right, text="知识点", style="Head.TLabel")
         self.lbl_list.grid(row=1, column=0, sticky="w")
-        cols = ("id", "name", "domain", "difficulty", "bloom", "engine_hint")
+        cols = ("id", "name", "subject", "grade", "domain", "difficulty", "bloom")
         self.list = ttk.Treeview(right, columns=cols, show="headings", selectmode="browse")
-        heads = {"id": "ID", "name": "知识点", "domain": "课标领域",
-                 "difficulty": "难度", "bloom": "认知层级", "engine_hint": "引擎"}
-        widths = {"id": 190, "name": 300, "domain": 150,
-                  "difficulty": 55, "bloom": 80, "engine_hint": 80}
+        heads = {"id": "ID", "name": "知识点", "subject": "学科", "grade": "年级",
+                 "domain": "课标领域", "difficulty": "难度", "bloom": "认知层级"}
+        widths = {"id": 190, "name": 280, "subject": 60, "grade": 80,
+                  "domain": 150, "difficulty": 55, "bloom": 80}
         for c in cols:
             self.list.heading(c, text=heads[c], command=lambda cc=c: self.sort_by(cc))
             self.list.column(c, width=widths[c], anchor="w")
@@ -395,6 +390,7 @@ class App:
             ("编辑所选", self.edit_dialog),
             ("删除所选", self.delete_selected),
             ("撤销", self.undo),
+            ("恢复原始配置", self.restore_original_config),
             ("运行校验", self.run_checks),
             ("导出 CSV", lambda: self.export("csv")),
             ("刷新", self.reload_all),
@@ -766,7 +762,20 @@ class App:
         self._ai_repaint()
 
     # ---------------- 树 ----------------
+    def _tree_open_state(self) -> dict:
+        """记录当前展开状态，刷新后原样保留（首次启动为空 = 全部收起）。"""
+        state = {}
+
+        def walk(parent):
+            for iid in self.tree.get_children(parent):
+                state[iid] = bool(self.tree.item(iid, "open"))
+                walk(iid)
+
+        walk("")
+        return state
+
     def _refresh_tree(self, keep: str = ""):
+        opened = self._tree_open_state()
         self.tree.delete(*self.tree.get_children())
         vols = store.load_all_volumes()
         stages: dict = {}
@@ -780,24 +789,33 @@ class App:
                 continue
             sname = self.tax["stage_names"].get(stage, stage)
             sid = f"stage::{stage}"
-            self.tree.insert("", "end", sid, text=f"{sname}（{sum(len(x) for g in stages[stage].values() for x in g.values())} 点）", open=True)
+            n_vol = sum(len(x) for g in stages[stage].values() for x in g.values())
+            n_pt = sum(len(v["knowledge_points"])
+                       for g in stages[stage].values() for x in g.values() for v in x)
+            self.tree.insert("", "end", sid, text=f"{sname}（{n_vol} 册 / {n_pt} 点）",
+                             open=opened.get(sid, False))
             for subject in ("chinese", "math", "english"):
                 if subject not in stages[stage]:
                     continue
                 suname = self.tax["subject_names"].get(subject, subject)
                 uid = f"subject::{stage}::{subject}"
-                self.tree.insert(sid, "end", uid, text=suname, open=True)
+                self.tree.insert(sid, "end", uid, text=suname, open=opened.get(uid, False))
                 for grade in sorted(stages[stage][subject],
                                     key=lambda g: store.GRADE_ORDER.get(g, 9)):
                     glabel = store._grade_label(grade)
                     gid = f"grade::{stage}::{subject}::{grade}"
-                    self.tree.insert(uid, "end", gid, text=glabel, open=True)
+                    self.tree.insert(uid, "end", gid, text=glabel, open=opened.get(gid, False))
                     for v in stages[stage][subject][grade]:
                         vid = f"vol::{v['volume_id']}"
                         self.tree.insert(gid, "end", vid,
                                          text=f"{self.tax['term_names'].get(v['term'], v['term'])} · {len(v['knowledge_points'])} 点")
         if keep:
             try:
+                # 只展开到当前选中的册，其余层级保持用户原来的展开/收起状态
+                parent = self.tree.parent(keep)
+                while parent:
+                    self.tree.item(parent, open=True)
+                    parent = self.tree.parent(parent)
                 self.tree.selection_set(keep)
                 self.tree.see(keep)
             except tk.TclError:
@@ -825,7 +843,6 @@ class App:
             domain="",
             difficulty=DIFFICULTY_CODE.get(self.var_diff.get()),
             bloom=self.var_bloom.get() if self.var_bloom.get() != "全部" else "",
-            engine=self.var_engine.get() if self.var_engine.get() != "全部" else "",
         )
         if self.current_volume:
             rows = [(kp, v) for kp, v in rows if v["volume_id"] == self.current_volume]
@@ -837,19 +854,30 @@ class App:
         self.lbl_list.configure(text=f"知识点 · {scope}（{len(rows)} 条）")
 
     def _fill_knowledge_list(self, rows):
-        """统一渲染模块一列表（难度列展示文字描述）。"""
+        """统一渲染模块一列表（难度显示文字；学科、年级取自所属册）。"""
         self.list.delete(*self.list.get_children())
         for kp, v in rows:
             self.list.insert("", "end", iid=kp["id"], values=(
-                kp["id"], kp["name"], kp.get("domain", ""),
+                kp["id"], kp["name"],
+                self.tax["subject_names"].get(v["subject"], v["subject"]),
+                store._grade_label(v["grade"]),
+                kp.get("domain", ""),
                 _diff_label(kp.get("difficulty", "")), kp.get("bloom", ""),
-                kp.get("engine_hint", ""),
             ))
 
     def sort_by(self, col: str):
-        rows = sorted(self.current_rows, key=lambda pair: str(pair[0].get(col, "")))
-        self.current_rows = rows
-        self._fill_knowledge_list(rows)
+        def key(pair):
+            kp, v = pair
+            if col == "subject":
+                return self.tax["subject_names"].get(v["subject"], v["subject"])
+            if col == "grade":
+                return (store.GRADE_ORDER.get(v["grade"], 9), v["term"])
+            if col == "difficulty":
+                return int(kp.get("difficulty") or 0)
+            return str(kp.get(col, ""))
+
+        self.current_rows = sorted(self.current_rows, key=key)
+        self._fill_knowledge_list(self.current_rows)
 
     def on_list_select(self, _=None):
         sel = self.list.selection()
@@ -863,6 +891,7 @@ class App:
         self._show_detail(kp, v)
 
     def _show_detail(self, kp, v):
+        """详情：首行为标题 + 元信息，其余字段统一「字段名: 值」单行紧凑展示。"""
         self.detail.configure(state="normal")
         self.detail.delete("1.0", "end")
         self.detail.insert("end", f"{kp['name']}\n", ("title",))
@@ -874,17 +903,24 @@ class App:
             ("学习目标 objective", kp.get("objective")),
             ("难度 difficulty", f"{kp.get('difficulty')} · {self.tax['difficulty'].get(str(kp.get('difficulty')), '')}"),
             ("认知层级 bloom", kp.get("bloom")),
-            ("前置关系 prerequisites", "、".join(kp.get("prerequisites", [])) or "无"),
+            ("前置关系 prerequisites", "、".join(kp.get("prerequisites", []))),
             ("核心概念 concept", kp.get("concept")),
-            ("易错点 common_mistakes", "\n    · ".join(kp.get("common_mistakes", []))),
+            ("易错点 common_mistakes", list(kp.get("common_mistakes", []))),
             ("建议题型 suggested_types", "、".join(kp.get("suggested_types", []))),
             ("年级范围 grade_range", "、".join(kp.get("grade_range", []))),
             ("权威来源 source", kp.get("source")),
-            ("引擎提示 engine_hint", kp.get("engine_hint")),
         ]
         for label, value in fields:
-            self.detail.insert("end", f"{label}\n", ("label",))
-            self.detail.insert("end", f"    {value or '—'}\n\n")
+            self.detail.insert("end", f"{label}: ", ("label",))
+            if isinstance(value, list):
+                if value:
+                    self.detail.insert("end", f"{value[0]}\n")
+                    for item in value[1:]:
+                        self.detail.insert("end", f"    · {item}\n")
+                else:
+                    self.detail.insert("end", "—\n")
+            else:
+                self.detail.insert("end", f"{value or '—'}\n")
         self.detail.tag_configure("title", font=("", 14, "bold"))
         self.detail.tag_configure("label", font=("", 11, "bold"), foreground="#185FA5")
         self.detail.configure(state="disabled")
@@ -893,7 +929,6 @@ class App:
         self.var_q.set("")
         self.var_diff.set("全部")
         self.var_bloom.set("全部")
-        self.var_engine.set("全部")
         self.refresh_list()
 
     # ---------------- 编辑弹窗 ----------------
@@ -923,7 +958,7 @@ class App:
             "concept": "核心概念 *", "common_mistakes": "易错点（逗号分隔）",
             "suggested_types": "建议题型（逗号分隔）",
             "grade_range": "年级范围（逗号分隔）",
-            "source": "权威来源 *", "engine_hint": "引擎（template / llm）",
+            "source": "权威来源 *",
         }
         r = 0
         for key in store.EDITABLE:
@@ -939,9 +974,6 @@ class App:
             elif key == "bloom":
                 v = tk.StringVar(value=str(val))
                 w = ClickCombo(form, v, self.tax["bloom"], width=60)
-            elif key == "engine_hint":
-                v = tk.StringVar(value=str(val))
-                w = ClickCombo(form, v, ["template", "llm"], width=60)
             elif key in ("objective", "concept"):
                 w = tk.Text(form, width=68, height=5, wrap="word",
                             background=LIGHT_PANEL, foreground=LIGHT_TEXT,
@@ -1011,7 +1043,6 @@ class App:
             "objective": "", "difficulty": 2, "bloom": "理解",
             "prerequisites": [], "concept": "", "common_mistakes": [],
             "suggested_types": [], "grade_range": [], "source": "",
-            "engine_hint": "template",
         }
         self._editor(f"新增知识点 · {self.current_volume}", tpl, self._do_add)
 
@@ -1045,6 +1076,46 @@ class App:
             return
         self.toast(msg)
         self.reload_all()
+
+    def restore_original_config(self):
+        """整库恢复为软件安装时的原始配置（63 册 / 1225 个知识点）。"""
+        info = store.original_info()
+        if not info:
+            messagebox.showerror(
+                "无法恢复",
+                "未找到随软件附带的原始配置快照：\n"
+                f"{store.ORIGINAL_ARCHIVE}\n\n"
+                "请重新安装或从项目仓库补齐 desktop/original/ 后再试。")
+            return
+        cur = store.stats()
+        if not messagebox.askyesno(
+                "恢复原始配置",
+                "将把整个知识点库恢复为软件安装时的原始配置：\n\n"
+                f"    原始：{info.get('volumes', '?')} 册 · {info.get('points', '?')} 个知识点\n"
+                f"    当前：{cur['volumes']} 册 · {cur['points']} 个知识点\n\n"
+                "所有新增、编辑、删除都会被覆盖。\n"
+                "恢复前会自动整库备份，仍可用「撤销」回到恢复前的状态。\n\n确定继续？",
+                icon="warning", default="no", parent=self.root):
+            return
+        try:
+            result = store.restore_original()
+        except store.StoreError as e:
+            messagebox.showerror("恢复失败", str(e), parent=self.root)
+            return
+        except Exception as e:  # noqa: BLE001
+            messagebox.showerror("恢复失败", f"写入数据时出错：{e}", parent=self.root)
+            return
+
+        self.current_volume = ""
+        self.selected_id = ""
+        self.detail.configure(state="normal")
+        self.detail.delete("1.0", "end")
+        self.detail.configure(state="disabled")
+        self.reload_all()
+        msg = f"已恢复原始配置：{result['volumes']} 册 / {result['points']} 个知识点"
+        if result["removed"]:
+            msg += f"，清理额外册 {len(result['removed'])} 个"
+        self.toast(msg)
 
     # ---------------- 工具 ----------------
     def generate_prompt(self):
@@ -1166,38 +1237,51 @@ class App:
 
     def help_dialog(self):
         messagebox.showinfo("使用说明", """【模块一 · 知识点管理】
-1. 左侧树按 学段 → 科目 → 年级 → 册 展开，点册查看知识点。
-2. 顶部可按关键词、难度、认知层级、引擎筛选；点列标题排序。
+1. 左侧知识地图按 学段 → 科目 → 年级 → 册 组织，默认全部收起，
+   点箭头逐层展开，点册查看该册知识点。
+2. 顶部可按关键词、难度、认知层级筛选；点列标题排序。列表含学科、年级列。
 3. 双击列表项或点「新增/编辑/删除」管理知识点，改动写入 volumes/ 下的 JSON，
    自动备份到 desktop/backups/ 并记入 changelog.jsonl；「撤销」恢复上次快照。
-4. 「运行校验」调用结构校验 + 字段校验 + 课标交叉校验三套脚本。
+4. 「恢复原始配置」把整库还原为软件安装时的 63 册 / 1225 个知识点：
+   恢复前自动整库备份，误操作可再点「撤销」回到恢复前状态。
+5. 「运行校验」调用结构校验 + 字段校验 + 课标交叉校验三套脚本。
 
 【模块二 · AI 提示词】（主推）
-5. 筛选栏的学段 / 科目 / 年级默认均为「全部」；选了学段后年级只显示对应年级
+6. 筛选栏的学段 / 科目 / 年级默认均为「全部」；选了学段后年级只显示对应年级
    （如选小学只列 1—6 年级，不再显示 7/8/9 年级）。点一下下拉菜单展开，
    再点一下选项即完成选择。列表含学科、认知层级列。
-6. 直接点任意一行即可勾选 / 取消（选中的知识点整行变蓝），按住 Shift 再点另一行
+7. 直接点任意一行即可勾选 / 取消（选中的知识点整行变蓝），按住 Shift 再点另一行
    可连选两行之间的全部数据；点「选」列表头可按已选 / 未选排序，再点切换方向。
    「全选当前」=全选本页结果，「清空选择」重来。
-7. 「每知识点题数」可选 1/3/5/10/15/20/50/100，或选「自定义」填任意正整数。
+8. 「每知识点题数」可选 1/3/5/10/15/20/50/100，或选「自定义」填任意正整数。
    难度用「容易/中等/较难/难」四档：预设默认「基础为主」（50/30/15/5），
    也可选均衡/进阶/挑战或直接改四个百分比，实时显示按题数换算的各档题数。
    「输出格式」可选 JSON / TXT / Excel / CSV：JSON 便于入库，TXT 便于阅读，
    Excel 输出制表符表格（复制到 Excel 另存 .xlsx），CSV 可直接导入表格。
-8. 点「生成提示词」：勾 1 个出单点提示词，勾多个出批量提示词。
+9. 点「生成提示词」：勾 1 个出单点提示词，勾多个出批量提示词。
    提示词含完整知识点档案、年级红线（禁止超出该知识点所属年级水平）、
    难度分布、题目来源知识点字段（topic_id/topic_name），以及所选输出格式的
    字段说明与示例。
-9. 生成后可在文本框直接微调，「复制全部」粘贴到 DeepSeek / 元宝 / ChatGPT，
+10. 生成后可在文本框直接微调，「复制全部」粘贴到 DeepSeek / 元宝 / ChatGPT，
    或导出 .txt / .md。
 
 【其它】
-10. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
-11. 注意：volumes/ 是 data/*.py 生成的产物。若要永久固化修改，
-   请把改动同步回 knowledge-map/data/ 下对应的源文件，再运行 build_volumes.py。""")
+11. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
+12. 注意：volumes/ 是 data/*.py 生成的产物。「恢复原始配置」只还原运行数据；
+    若要永久固化修改，请把改动同步回 knowledge-map/data/ 下的源文件，
+    再运行 build_volumes.py。""")
 
     def about_dialog(self):
-        messagebox.showinfo("关于", f"{APP_TITLE}\nv{VERSION}\n\n63 册 / 1225 知识点\n内容感知型出题引擎 · Python 标准库 + Tcl/Tk")
+        s = store.stats()
+        info = store.original_info() or {}
+        original = (f"出厂配置：{info.get('volumes')} 册 / {info.get('points')} 知识点\n"
+                    if info else "")
+        messagebox.showinfo(
+            "关于",
+            f"{APP_TITLE}\nv{VERSION}\n\n"
+            f"当前：{s['volumes']} 册 / {s['points']} 知识点\n"
+            f"{original}"
+            "内容感知型出题引擎 · Python 标准库 + Tcl/Tk")
 
 
 class PromptDialog:

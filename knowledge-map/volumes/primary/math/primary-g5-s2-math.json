@@ -35,8 +35,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·观察物体（三）",
-      "engine_hint": "llm"
+      "source": "人教五下·观察物体（三）"
     },
     {
       "id": "primary-g5-s2-math-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·因数与倍数",
-      "engine_hint": "llm"
+      "source": "人教五下·因数与倍数"
     },
     {
       "id": "primary-g5-s2-math-K003",
@@ -93,8 +91,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·因数与倍数",
-      "engine_hint": "template"
+      "source": "人教五下·因数与倍数"
     },
     {
       "id": "primary-g5-s2-math-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·因数与倍数",
-      "engine_hint": "template"
+      "source": "人教五下·因数与倍数"
     },
     {
       "id": "primary-g5-s2-math-K005",
@@ -151,8 +147,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·因数与倍数",
-      "engine_hint": "template"
+      "source": "人教五下·因数与倍数"
     },
     {
       "id": "primary-g5-s2-math-K006",
@@ -180,8 +175,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·因数与倍数",
-      "engine_hint": "llm"
+      "source": "人教五下·因数与倍数"
     },
     {
       "id": "primary-g5-s2-math-K007",
@@ -209,8 +203,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·长方体和正方体",
-      "engine_hint": "llm"
+      "source": "人教五下·长方体和正方体"
     },
     {
       "id": "primary-g5-s2-math-K008",
@@ -238,8 +231,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·长方体和正方体",
-      "engine_hint": "llm"
+      "source": "人教五下·长方体和正方体"
     },
     {
       "id": "primary-g5-s2-math-K009",
@@ -267,8 +259,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·长方体和正方体",
-      "engine_hint": "llm"
+      "source": "人教五下·长方体和正方体"
     },
     {
       "id": "primary-g5-s2-math-K010",
@@ -296,8 +287,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·长方体和正方体",
-      "engine_hint": "llm"
+      "source": "人教五下·长方体和正方体"
     },
     {
       "id": "primary-g5-s2-math-K011",
@@ -325,8 +315,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·分数的意义和性质",
-      "engine_hint": "llm"
+      "source": "人教五下·分数的意义和性质"
     },
     {
       "id": "primary-g5-s2-math-K012",
@@ -354,8 +343,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·分数的意义和性质",
-      "engine_hint": "llm"
+      "source": "人教五下·分数的意义和性质"
     },
     {
       "id": "primary-g5-s2-math-K013",
@@ -383,8 +371,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·分数的意义和性质",
-      "engine_hint": "template"
+      "source": "人教五下·分数的意义和性质"
     },
     {
       "id": "primary-g5-s2-math-K014",
@@ -412,8 +399,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·分数的意义和性质",
-      "engine_hint": "template"
+      "source": "人教五下·分数的意义和性质"
     },
     {
       "id": "primary-g5-s2-math-K015",
@@ -441,8 +427,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·分数的意义和性质",
-      "engine_hint": "template"
+      "source": "人教五下·分数的意义和性质"
     },
     {
       "id": "primary-g5-s2-math-K016",
@@ -470,8 +455,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·分数的意义和性质",
-      "engine_hint": "template"
+      "source": "人教五下·分数的意义和性质"
     },
     {
       "id": "primary-g5-s2-math-K017",
@@ -499,8 +483,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·图形的运动（三）",
-      "engine_hint": "llm"
+      "source": "人教五下·图形的运动（三）"
     },
     {
       "id": "primary-g5-s2-math-K018",
@@ -528,8 +511,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·分数的加法和减法",
-      "engine_hint": "template"
+      "source": "人教五下·分数的加法和减法"
     },
     {
       "id": "primary-g5-s2-math-K019",
@@ -557,8 +539,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·折线统计图",
-      "engine_hint": "llm"
+      "source": "人教五下·折线统计图"
     },
     {
       "id": "primary-g5-s2-math-K020",
@@ -584,8 +565,7 @@
       "grade_range": [
         "g5"
       ],
-      "source": "人教五下·数学广角—找次品",
-      "engine_hint": "llm"
+      "source": "人教五下·数学广角—找次品"
     }
   ]
 }

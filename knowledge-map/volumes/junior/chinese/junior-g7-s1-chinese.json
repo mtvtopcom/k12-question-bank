@@ -34,8 +34,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·各单元读读写写",
-      "engine_hint": "template"
+      "source": "统编七上·各单元读读写写"
     },
     {
       "id": "junior-g7-s1-chinese-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·语文园地",
-      "engine_hint": "llm"
+      "source": "统编七上·语文园地"
     },
     {
       "id": "junior-g7-s1-chinese-K003",
@@ -92,8 +90,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·语法知识",
-      "engine_hint": "llm"
+      "source": "统编七上·语法知识"
     },
     {
       "id": "junior-g7-s1-chinese-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·第一单元",
-      "engine_hint": "llm"
+      "source": "统编七上·第一单元"
     },
     {
       "id": "junior-g7-s1-chinese-K005",
@@ -150,8 +146,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·各单元注释",
-      "engine_hint": "template"
+      "source": "统编七上·各单元注释"
     },
     {
       "id": "junior-g7-s1-chinese-K006",
@@ -179,8 +174,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·第一单元《春》《济南的冬天》",
-      "engine_hint": "llm"
+      "source": "统编七上·第一单元《春》《济南的冬天》"
     },
     {
       "id": "junior-g7-s1-chinese-K007",
@@ -208,8 +202,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·第一单元",
-      "engine_hint": "llm"
+      "source": "统编七上·第一单元"
     },
     {
       "id": "junior-g7-s1-chinese-K008",
@@ -236,8 +229,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·第二单元《散步》",
-      "engine_hint": "llm"
+      "source": "统编七上·第二单元《散步》"
     },
     {
       "id": "junior-g7-s1-chinese-K009",
@@ -266,8 +258,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·第三单元《从百草园到三味书屋》",
-      "engine_hint": "llm"
+      "source": "统编七上·第三单元《从百草园到三味书屋》"
     },
     {
       "id": "junior-g7-s1-chinese-K010",
@@ -295,8 +286,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·第二单元《秋天的怀念》",
-      "engine_hint": "llm"
+      "source": "统编七上·第二单元《秋天的怀念》"
     },
     {
       "id": "junior-g7-s1-chinese-K011",
@@ -325,8 +315,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·古代诗歌四首",
-      "engine_hint": "llm"
+      "source": "统编七上·古代诗歌四首"
     },
     {
       "id": "junior-g7-s1-chinese-K012",
@@ -354,8 +343,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·第六单元",
-      "engine_hint": "llm"
+      "source": "统编七上·第六单元"
     },
     {
       "id": "junior-g7-s1-chinese-K013",
@@ -381,8 +369,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·《世说新语》二则》《论语》十二章",
-      "engine_hint": "llm"
+      "source": "统编七上·《世说新语》二则》《论语》十二章"
     },
     {
       "id": "junior-g7-s1-chinese-K014",
@@ -410,8 +397,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·文言课文",
-      "engine_hint": "llm"
+      "source": "统编七上·文言课文"
     },
     {
       "id": "junior-g7-s1-chinese-K015",
@@ -440,8 +426,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·《论语》十二章》《诫子书》",
-      "engine_hint": "llm"
+      "source": "统编七上·《论语》十二章》《诫子书》"
     },
     {
       "id": "junior-g7-s1-chinese-K016",
@@ -469,8 +454,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·第一单元",
-      "engine_hint": "template"
+      "source": "统编七上·第一单元"
     },
     {
       "id": "junior-g7-s1-chinese-K017",
@@ -496,8 +480,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·第三单元",
-      "engine_hint": "template"
+      "source": "统编七上·第三单元"
     },
     {
       "id": "junior-g7-s1-chinese-K018",
@@ -526,8 +509,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·口语交际",
-      "engine_hint": "llm"
+      "source": "统编七上·口语交际"
     },
     {
       "id": "junior-g7-s1-chinese-K019",
@@ -554,8 +536,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·写作",
-      "engine_hint": "template"
+      "source": "统编七上·写作"
     },
     {
       "id": "junior-g7-s1-chinese-K020",
@@ -581,8 +562,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·第四单元《纪念白求恩》",
-      "engine_hint": "llm"
+      "source": "统编七上·第四单元《纪念白求恩》"
     },
     {
       "id": "junior-g7-s1-chinese-K021",
@@ -610,8 +590,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·第六单元《寓言四则》",
-      "engine_hint": "llm"
+      "source": "统编七上·第六单元《寓言四则》"
     },
     {
       "id": "junior-g7-s1-chinese-K022",
@@ -639,8 +618,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·综合性学习",
-      "engine_hint": "llm"
+      "source": "统编七上·综合性学习"
     },
     {
       "id": "junior-g7-s1-chinese-K023",
@@ -669,8 +647,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·名著导读",
-      "engine_hint": "llm"
+      "source": "统编七上·名著导读"
     },
     {
       "id": "junior-g7-s1-chinese-K024",
@@ -698,8 +675,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·综合性学习",
-      "engine_hint": "llm"
+      "source": "统编七上·综合性学习"
     },
     {
       "id": "junior-g7-s1-chinese-K025",
@@ -728,8 +704,7 @@
       "grade_range": [
         "g7"
       ],
-      "source": "统编七上·写作",
-      "engine_hint": "llm"
+      "source": "统编七上·写作"
     }
   ]
 }

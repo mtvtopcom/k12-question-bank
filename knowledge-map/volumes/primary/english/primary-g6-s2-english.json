@@ -35,8 +35,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Review",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Review"
     },
     {
       "id": "primary-g6-s2-english-K002",
@@ -64,8 +63,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Review",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Review"
     },
     {
       "id": "primary-g6-s2-english-K003",
@@ -93,8 +91,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Review",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Review"
     },
     {
       "id": "primary-g6-s2-english-K004",
@@ -122,8 +119,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Review",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Review"
     },
     {
       "id": "primary-g6-s2-english-K005",
@@ -151,8 +147,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Review",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Review"
     },
     {
       "id": "primary-g6-s2-english-K006",
@@ -180,8 +175,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Reading",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Reading"
     },
     {
       "id": "primary-g6-s2-english-K007",
@@ -207,8 +201,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Reading",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Reading"
     },
     {
       "id": "primary-g6-s2-english-K008",
@@ -236,8 +229,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Writing",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Writing"
     },
     {
       "id": "primary-g6-s2-english-K009",
@@ -265,8 +257,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Review",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Review"
     },
     {
       "id": "primary-g6-s2-english-K010",
@@ -294,8 +285,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Culture",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Culture"
     },
     {
       "id": "primary-g6-s2-english-K011",
@@ -323,8 +313,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·学习策略",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·学习策略"
     },
     {
       "id": "primary-g6-s2-english-K012",
@@ -352,8 +341,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Reading",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Reading"
     },
     {
       "id": "primary-g6-s2-english-K013",
@@ -381,8 +369,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Speaking",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Speaking"
     },
     {
       "id": "primary-g6-s2-english-K014",
@@ -410,8 +397,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Speaking",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Speaking"
     },
     {
       "id": "primary-g6-s2-english-K015",
@@ -439,8 +425,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Review",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Review"
     },
     {
       "id": "primary-g6-s2-english-K016",
@@ -468,8 +453,7 @@
       "grade_range": [
         "g6"
       ],
-      "source": "人教PEP六下·Review",
-      "engine_hint": "llm"
+      "source": "人教PEP六下·Review"
     }
   ]
 }

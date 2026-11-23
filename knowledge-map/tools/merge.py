@@ -2,9 +2,9 @@
 """合并所有已完成册 → 统一知识点清单，作为题目生成管道的唯一数据源。
 
 输出 knowledge-map/output/knowledge_points.jsonl，字段包含
-topic_id/grade/subject/topic/explanation/engine 等，供 pipeline 直接消费。
+topic_id/grade/subject/topic/explanation 等，供 pipeline 直接消费。
 
-同时输出一份校验报告：知识点总数、分科分布、学段覆盖、engine分流。
+同时输出一份校验报告：知识点总数、分科分布、学段覆盖。
 """
 from __future__ import annotations
 
@@ -56,7 +56,6 @@ def kp_to_topic(vol: dict, kp: dict) -> dict:
         "difficulty": kp.get("difficulty", 1),
         "bloom": kp.get("bloom", "理解"),
         "prerequisites": kp.get("prerequisites", []),
-        "engine": kp.get("engine_hint", "llm"),
         "source": kp.get("source", ""),
     }
 
@@ -101,12 +100,10 @@ def main():
                 dangling += 1
 
     by_subject = Counter(t["subject"] for t in topics)
-    by_engine = Counter(t["engine"] for t in topics)
     by_domain = Counter(t["domain"] for t in topics)
     print(f"合并完成: {len(done_vols)} 册 -> {len(topics)} 个知识点")
     print(f"输出: {out}")
     print(f"分科: {dict(by_subject)}")
-    print(f"分流: {dict(by_engine)}")
     print(f"领域TOP: {dict(by_domain.most_common(10))}")
     if dangling:
         print(f"[提示] {dangling} 条先修引用指向未梳理的知识点（不影响生成，可用于后续补全）")
