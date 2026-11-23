@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import store  # noqa: E402
 
 APP_TITLE = "K12 知识点地图 · 管理台"
-VERSION = "2.0"
+VERSION = "2.0.1"
 
 
 class App:
@@ -478,12 +478,15 @@ class App:
         if not self.selected_id:
             messagebox.showinfo("提示", "请先在列表中选择一个知识点")
             return
-        found = store.find_point(self.selected_id)
+        # 用局部变量固定当前选中的知识点：PromptDialog 只会回调 builder(n)，
+        # 这里必须把 topic_id 绑定进去，否则题数会被误当成 topic_id（"知识点不存在: 5"）。
+        topic_id = self.selected_id
+        found = store.find_point(topic_id)
         if not found:
             return
         kp, _ = found
-        PromptDialog(self.root, store.build_point_prompt, title=f"出题提示词 · {kp['name']}",
-                     default_n=5)
+        PromptDialog(self.root, lambda n: store.build_point_prompt(topic_id, n),
+                     title=f"出题提示词 · {kp['name']}", default_n=5)
 
     def generate_batch_prompt(self):
         rows = self.current_rows
