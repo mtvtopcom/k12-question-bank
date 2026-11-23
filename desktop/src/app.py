@@ -16,7 +16,7 @@ import store  # noqa: E402
 import prompt as prompt_mod  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "3.1"
+VERSION = "3.2"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -125,6 +125,8 @@ class App:
         self.ai_var_n_custom = tk.StringVar(value="")  # 「自定义」题数
         self.ai_cmb_grade = None               # 年级下拉（学段联动用）
         self.ai_ent_n = None                   # 自定义题数输入框
+        self.ai_anchor = ""                    # Shift 连选的起始行
+        self.ai_sort_sel_desc = None           # 「选」列排序方向：None/True/False
         self.logo_img = None                   # 防止 PhotoImage 被回收
 
         self._build_style()
@@ -139,6 +141,9 @@ class App:
         if "aqua" in st.theme_names():
             st.theme_use("aqua")
         st.configure("Treeview", rowheight=25)
+        # AI 选点列表：行更高、字号更大，勾选框更容易看清
+        st.configure("AI.Treeview", rowheight=32, font=("", 13))
+        st.configure("AI.Treeview.Heading", font=("", 12, "bold"))
         st.configure("TButton", padding=5)
         st.configure("Toolbar.TButton", padding=6)
         st.configure("Title.TLabel", font=("", 15, "bold"))
@@ -161,6 +166,32 @@ class App:
             except (tk.TclError, ValueError):
                 continue
         return None
+
+    def _make_check_images(self, size=22):
+        """像素画生成大号勾选框：选中=蓝底白勾，未选=白底灰框。"""
+        def blank(fill, border):
+            img = tk.PhotoImage(width=size, height=size)
+            img.put(fill, to=(0, 0, size, size))
+            for i in range(size):
+                img.put(border, to=(i, 0, i + 1, 2))
+                img.put(border, to=(i, size - 2, i + 1, size))
+                img.put(border, to=(0, i, 2, i + 1))
+                img.put(border, to=(size - 2, i, size, i + 1))
+            return img
+
+        off = blank("#FFFFFF", "#8A8A8A")
+        on = blank("#2F6FEB", "#2F6FEB")
+
+        def segment(x0, y0, x1, y1, color):
+            steps = max(abs(x1 - x0), abs(y1 - y0))
+            for s in range(steps + 1):
+                x = round(x0 + (x1 - x0) * s / steps)
+                y = round(y0 + (y1 - y0) * s / steps)
+                on.put(color, to=(x - 1, y - 1, x + 2, y + 2))
+
+        segment(6, 11, 10, 15, "#FFFFFF")
+        segment(10, 15, 17, 7, "#FFFFFF")
+        return off, on
 
     def _build_menu(self):
         menubar = tk.Menu(self.root)
@@ -368,18 +399,25 @@ class App:
         ttk.Button(lbar, text="反选", command=self.ai_invert).pack(side="right", padx=(4, 0))
         ttk.Button(lbar, text="清空选择", command=self.ai_clear_sel).pack(side="right", padx=(4, 0))
 
-        # 勾选列表：首列点 ☑ 勾选，可单选 / 多选；含学科、认知层级列
-        cols = ("sel", "id", "name", "subject", "grade", "domain", "difficulty", "bloom")
-        self.ai_list = ttk.Treeview(parent, columns=cols, show="headings", selectmode="browse")
-        heads = {"sel": "选", "id": "ID", "name": "知识点", "subject": "学科",
+        # 勾选列表：首列用自绘大号勾选框（Treeview 只有树列支持图片）
+        self._chk_off, self._chk_on = self._make_check_images()
+        cols = ("id", "name", "subject", "grade", "domain", "difficulty", "bloom")
+        self.ai_list = ttk.Treeview(parent, columns=cols, show="tree headings",
+                                    selectmode="none", takefocus=False,
+                                    style="AI.Treeview")
+        heads = {"id": "ID", "name": "知识点", "subject": "学科",
                  "grade": "年级", "domain": "课标领域", "difficulty": "难度",
                  "bloom": "认知层级"}
-        widths = {"sel": 36, "id": 165, "name": 235, "subject": 55, "grade": 72,
+        widths = {"id": 165, "name": 235, "subject": 55, "grade": 72,
                   "domain": 130, "difficulty": 60, "bloom": 78}
+        self.ai_list.heading("#0", text="选")
+        self.ai_list.column("#0", width=66, minwidth=66, stretch=False, anchor="center")
         for c in cols:
             self.ai_list.heading(c, text=heads[c])
             self.ai_list.column(c, width=widths[c],
-                                anchor="center" if c in ("sel", "subject", "difficulty", "bloom") else "w")
+                                anchor="center" if c in ("subject", "difficulty", "bloom") else "w")
+        # 已选行整行浅蓝，未选恢复白底
+        self.ai_list.tag_configure("sel", background="#C9DEFF", foreground="#0B3D6B")
         self.ai_list.grid(row=2, column=0, sticky="nsew")
         sb = ttk.Scrollbar(parent, orient="vertical", command=self.ai_list.yview)
         sb.grid(row=2, column=1, sticky="ns")
@@ -450,17 +488,27 @@ class App:
             grade=AI_GRADE.get(self.ai_var_grade.get(), ""),
         )
         self.ai_rows = rows
+        self.ai_anchor = ""
+        self.ai_sort_sel_desc = None
+        self.ai_list.heading("#0", text="选")
+        self._ai_fill_rows()
+
+    def _ai_fill_rows(self):
+        """按当前 ai_rows 重建列表，并恢复每行的勾选图标与蓝色底色。"""
         self.ai_list.delete(*self.ai_list.get_children())
-        for kp, v in rows:
-            self.ai_list.insert("", "end", iid=kp["id"], values=(
-                "☑" if kp["id"] in self.ai_selected else "☐",
-                kp["id"], kp["name"],
-                store.SUBJECT_NAMES.get(v.get("subject", ""), v.get("subject", "")),
-                store._grade_label(v["grade"]),
-                kp.get("domain", ""),
-                _diff_label(kp.get("difficulty", "")),
-                kp.get("bloom", ""),
-            ))
+        for kp, v in self.ai_rows:
+            selected = kp["id"] in self.ai_selected
+            self.ai_list.insert(
+                "", "end", iid=kp["id"],
+                image=self._chk_on if selected else self._chk_off,
+                values=(
+                    kp["id"], kp["name"],
+                    store.SUBJECT_NAMES.get(v.get("subject", ""), v.get("subject", "")),
+                    store._grade_label(v["grade"]),
+                    kp.get("domain", ""),
+                    _diff_label(kp.get("difficulty", "")),
+                    kp.get("bloom", ""),
+                ), tags=("sel",) if selected else ())
         self._ai_count()
 
     def ai_reset_filters(self):
@@ -473,26 +521,67 @@ class App:
 
     def _ai_count(self):
         self.ai_lbl_list.configure(
-            text=f"知识点 · 已勾选 {len(self.ai_selected)} / {len(self.ai_rows)}（点击「选」列 ☑ 勾选）")
+            text=(f"知识点 · 已勾选 {len(self.ai_selected)} / {len(self.ai_rows)}"
+                  "（点行勾选 · Shift 连选 · 点「选」表头排序）"))
+
+    def _ai_apply_row_states(self, rows=None):
+        """按 ai_selected 同步某批行的勾选图标与整行蓝色底色。"""
+        for iid in (rows if rows is not None else self.ai_list.get_children()):
+            selected = iid in self.ai_selected
+            self.ai_list.item(
+                iid, image=self._chk_on if selected else self._chk_off,
+                tags=("sel",) if selected else ())
 
     def ai_on_click(self, event):
-        if self.ai_list.identify_column(event.x) != "#1":
+        region = self.ai_list.identify("region", event.x, event.y)
+        # 点「选」列表头 → 按选中 / 未选中排序
+        if region == "heading":
+            if self.ai_list.identify_column(event.x) == "#0":
+                self.ai_sort_by_selected()
+                return "break"
+            return
+        if region not in ("cell", "tree"):
             return
         iid = self.ai_list.identify_row(event.y)
         if not iid:
             return
-        if iid in self.ai_selected:
-            self.ai_selected.discard(iid)
+        children = list(self.ai_list.get_children())
+        if iid not in children:
+            return
+        shift = bool(event.state & 0x0001)   # Shift 键
+        if shift and self.ai_anchor in children:
+            # Shift 连选：锚点行到当前行之间全部选中
+            start, end = sorted((children.index(self.ai_anchor), children.index(iid)))
+            span = children[start:end + 1]
+            self.ai_selected.update(span)
+            self._ai_apply_row_states(span)
         else:
-            self.ai_selected.add(iid)
-        self.ai_list.set(iid, "sel", "☑" if iid in self.ai_selected else "☐")
+            # 普通点击：整行切换选中 / 取消
+            if iid in self.ai_selected:
+                self.ai_selected.discard(iid)
+            else:
+                self.ai_selected.add(iid)
+            self._ai_apply_row_states([iid])
+            self.ai_anchor = iid
         self._ai_count()
         return "break"
 
     def _ai_repaint(self):
-        for iid in self.ai_list.get_children():
-            self.ai_list.set(iid, "sel", "☑" if iid in self.ai_selected else "☐")
+        self._ai_apply_row_states()
         self._ai_count()
+
+    def ai_sort_by_selected(self):
+        """点「选」表头：已选在前 ↔ 未选在前，来回切换。"""
+        if self.ai_sort_sel_desc is None:
+            self.ai_sort_sel_desc = True
+        else:
+            self.ai_sort_sel_desc = not self.ai_sort_sel_desc
+        sel_first = self.ai_sort_sel_desc
+        self.ai_rows.sort(
+            key=lambda pair: 0 if (pair[0]["id"] in self.ai_selected) == sel_first else 1)
+        self.ai_anchor = ""
+        self._ai_fill_rows()
+        self.ai_list.heading("#0", text="选 ↓" if sel_first else "选 ↑")
 
     def ai_select_all(self):
         self.ai_selected.update(kp["id"] for kp, _ in self.ai_rows)
@@ -1018,8 +1107,9 @@ class App:
 5. 筛选栏的学段 / 科目 / 年级默认均为「全部」；选了学段后年级只显示对应年级
    （如选小学只列 1—6 年级，不再显示 7/8/9 年级）。点一下下拉菜单展开，
    再点一下选项即完成选择。列表含学科、认知层级列。
-6. 点列表首列的 ☑ 勾选：点一个=单选，点多个=多选，「全选当前」=全选本页结果，
-   「清空选择」重来。
+6. 直接点任意一行即可勾选 / 取消（选中的知识点整行变蓝），按住 Shift 再点另一行
+   可连选两行之间的全部数据；点「选」列表头可按已选 / 未选排序，再点切换方向。
+   「全选当前」=全选本页结果，「清空选择」重来。
 7. 「每知识点题数」可选 1/3/5/10/15/20/50/100，或选「自定义」填任意正整数。
    难度用「容易/中等/较难/难」四档：可用预设（基础为主/均衡/进阶/挑战），
    也可直接改四个百分比，下方实时显示按题数换算的各档题数。
