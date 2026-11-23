@@ -1,22 +1,27 @@
 #!/usr/bin/env python3
-"""把桌面管理台打包成 macOS .app bundle（无需 Xcode / 第三方依赖）。
+"""把桌面工作台打包成 macOS .app bundle（无需 Xcode / 第三方依赖）。
 
 结构：
-    desktop/K12知识点地图.app/
+    desktop/K12 题库工厂.app/
         Contents/
             Info.plist
             MacOS/launcher        # shell 启动器，找到 python3 并运行 app.py
-            Resources/app.icns    # 可选图标
+            Resources/app.icns    # 由 assets/logo.png 生成的多尺寸图标
+            Resources/logo.png    # 项目 Logo 副本
 """
 from __future__ import annotations
 
 import os
+import shutil
 import stat
+import subprocess
 import sys
 import plistlib
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-APP_NAME = "K12知识点地图"
+PROJECT_ROOT = os.path.dirname(HERE)
+LOGO_SRC = os.path.join(PROJECT_ROOT, "assets", "logo.png")
+APP_NAME = "K12 题库工厂"
 BUNDLE = os.path.join(HERE, f"{APP_NAME}.app")
 CONTENTS = os.path.join(BUNDLE, "Contents")
 MACOS = os.path.join(CONTENTS, "MacOS")
@@ -70,7 +75,37 @@ exit 1
 
 
 def make_icon():
-    """用标准库生成一个简单的 ICNS（单色 PNG 风格占位）；失败则跳过。"""
+    """用项目 Logo 生成多尺寸 ICNS；系统工具缺失时回退占位图标。"""
+    if os.path.exists(LOGO_SRC):
+        iconset = os.path.join(HERE, "build", "app.iconset")
+        shutil.rmtree(iconset, ignore_errors=True)
+        os.makedirs(iconset, exist_ok=True)
+        sizes = [
+            ("icon_16x16.png", 16), ("icon_16x16@2x.png", 32),
+            ("icon_32x32.png", 32), ("icon_32x32@2x.png", 64),
+            ("icon_128x128.png", 128), ("icon_128x128@2x.png", 256),
+            ("icon_256x256.png", 256), ("icon_256x256@2x.png", 512),
+            ("icon_512x512.png", 512), ("icon_512x512@2x.png", 1024),
+        ]
+        try:
+            for name, px in sizes:
+                subprocess.run(
+                    ["/usr/bin/sips", "-z", str(px), str(px), LOGO_SRC,
+                     "--out", os.path.join(iconset, name)],
+                    check=True, capture_output=True)
+            subprocess.run(
+                ["/usr/bin/iconutil", "-c", "icns", iconset,
+                 "-o", os.path.join(RESOURCES, "app.icns")],
+                check=True, capture_output=True)
+            shutil.copy2(LOGO_SRC, os.path.join(RESOURCES, "logo.png"))
+            return True
+        except Exception as e:
+            print(f"[图标] 系统工具生成失败，改用占位图标: {e}")
+    return _make_placeholder_icon()
+
+
+def _make_placeholder_icon():
+    """用标准库生成一个简单的 ICNS（无 Logo 时的兜底）。"""
     try:
         import struct
         import zlib
@@ -112,6 +147,11 @@ def build():
     for d in (MACOS, RESOURCES):
         os.makedirs(d, exist_ok=True)
 
+    # 清掉旧名字的 bundle，避免桌面上出现两个入口
+    legacy = os.path.join(HERE, "K12知识点地图.app")
+    if os.path.exists(legacy):
+        shutil.rmtree(legacy)
+
     py = find_python()
     launcher = os.path.join(MACOS, "launcher")
     with open(launcher, "w", encoding="utf-8") as f:
@@ -121,9 +161,9 @@ def build():
     info = {
         "CFBundleName": APP_NAME,
         "CFBundleDisplayName": APP_NAME,
-        "CFBundleIdentifier": "com.k12.knowledgemap.console",
-        "CFBundleVersion": "3.0",
-        "CFBundleShortVersionString": "3.0",
+        "CFBundleIdentifier": "com.k12.questionfactory",
+        "CFBundleVersion": "3.1",
+        "CFBundleShortVersionString": "3.1",
         "CFBundleExecutable": "launcher",
         "CFBundlePackageType": "APPL",
         "CFBundleIconFile": "app.icns",

@@ -25,7 +25,8 @@ GRADE_CN = {
     "g7": "七年级", "g8": "八年级", "g9": "九年级",
 }
 TERM_CN = {"s1": "上册", "s2": "下册"}
-DIFFICULTY_CN = {1: "基础识记", 2: "理解应用", 3: "分析综合", 4: "挑战探究"}
+# 难度展示名与界面保持一致（JSON 字段仍用数字 1-4）
+DIFFICULTY_CN = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
 
 # 按学科给的 few-shot 示例：只展示「情境化题干 + 内容型选项 + 解析」的范式，
 # 不照抄任何真实知识点，避免模型把示例内容当成答案来源。
@@ -145,10 +146,10 @@ def difficulty_spec(n: int, mix: Optional[Dict[int, int]],
     """把难度分配转成一句可直接写进提示词的说明。"""
     alloc = allocate_difficulty(n, mix)
     if mix and sum(max(0, int(v or 0)) for v in mix.values()) > 0:
-        return "；".join(f"难度 {d}（{DIFFICULTY_CN[d]}）{alloc[d]} 题"
+        return "；".join(f"{DIFFICULTY_CN[d]}（对应 difficulty={d}）{alloc[d]} 题"
                         for d in (1, 2, 3, 4))
     level = int(default_level or 2)
-    return f"难度 {level}（{DIFFICULTY_CN.get(level, '理解应用')}）"
+    return f"{DIFFICULTY_CN.get(level, '中等')}（对应 difficulty={level}）"
 
 
 def build_prompt(kp: Dict[str, Any], vol: Dict[str, Any], n: int = 5,
@@ -217,7 +218,7 @@ def build_prompt(kp: Dict[str, Any], vol: Dict[str, Any], n: int = 5,
 3. **干扰项有迷惑性且同质**：至少 1 个干扰项直接取自或改编自本知识点的「易错点」；其余干扰项应是同学科、同主题下学生常见的错误认识，长度和表述风格与正确项相当。禁止出现明显荒谬、跨科串味或与题干无关的干扰项。
 4. **年级红线（硬性约束）**：本知识点属于{grade_label}（{STAGE_CN.get(stage, stage)}）水平。**题目禁止超出当前选择年级的水平**。{_grade_redline(stage, grade)}
    同时注意：{_buddy_age_note(stage, grade)}
-5. **难度分布**：严格按上面「难度分布」指定的各难度题数出题；每题的 difficulty 字段必须填写该题实际难度对应的数字（1=基础识记、2=理解应用、3=分析综合、4=挑战探究），不得随意填写或与题目要求不符。
+5. **难度分布**：严格按上面「难度分布」指定的各难度题数出题；每题的 difficulty 字段必须填写该题实际难度对应的数字（1=容易、2=中等、3=较难、4=难），不得随意填写或与题目要求不符。
 6. **避免机械重复**：{n} 道题的题干要有不同的情境和问法，不要只是替换个别词语的同一道题。
 7. **解析到位**：每题解析要说明正确项为什么对、干扰项为什么错，能帮助学生理解。
 8. **选项规范**：每题 4 个选项（A/B/C/D），正确答案的位置尽量分散，不要集中在某一项。

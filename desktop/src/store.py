@@ -56,7 +56,10 @@ def _load_json(path: str) -> Any:
 
 def _grade_label(grade: str) -> str:
     if grade.startswith("g"):
-        return f"{int(grade[1:])}年级"
+        cn = {"1": "一", "2": "二", "3": "三", "4": "四",
+              "5": "五", "6": "六", "7": "七", "8": "八", "9": "九"}
+        n = str(int(grade[1:]))
+        return f"{cn.get(n, n)}年级"
     return {"k1": "小班", "k2": "中班", "k3": "大班"}.get(grade, grade)
 
 

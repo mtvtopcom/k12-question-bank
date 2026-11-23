@@ -15,16 +15,30 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import store  # noqa: E402
 import prompt as prompt_mod  # noqa: E402
 
-APP_TITLE = "K12 知识点地图 · 管理台"
-VERSION = "3.0"
+APP_TITLE = "K12 题库工厂"
+VERSION = "3.1"
+
+# 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
+DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
+DIFFICULTY_CODE = {v: k for k, v in DIFFICULTY_LABEL.items()}
 
 # AI 提示词模块的筛选值映射（界面显示 → 数据层代码）
-AI_STAGE = {"": "", "幼儿园": "kg", "小学": "primary", "初中": "junior"}
-AI_SUBJECT = {"": "", "语文": "chinese", "数学": "math", "英语": "english"}
-AI_GRADE = {"": "", "小班": "k1", "中班": "k2", "大班": "k3",
+# 「全部」为默认值，映射到空串表示不筛选
+AI_STAGE = {"全部": "", "幼儿园": "kg", "小学": "primary", "初中": "junior"}
+AI_SUBJECT = {"全部": "", "语文": "chinese", "数学": "math", "英语": "english"}
+AI_GRADE = {"全部": "", "小班": "k1", "中班": "k2", "大班": "k3",
             "一年级": "g1", "二年级": "g2", "三年级": "g3",
             "四年级": "g4", "五年级": "g5", "六年级": "g6",
             "七年级": "g7", "八年级": "g8", "九年级": "g9"}
+# 学段 → 可选年级（学段选定后年级下拉只显示对应范围）
+STAGE_GRADE_LABELS = {
+    "": [k for k in AI_GRADE if k != "全部"],
+    "kg": ["小班", "中班", "大班"],
+    "primary": ["一年级", "二年级", "三年级", "四年级", "五年级", "六年级"],
+    "junior": ["七年级", "八年级", "九年级"],
+}
+# 每知识点题数：自定义 + 常用档位（含大批量 50 / 100）
+QUESTION_COUNT_OPTIONS = ["自定义", "1", "3", "5", "10", "15", "20", "50", "100"]
 AI_PRESETS = {
     "自定义": None,
     "基础为主": {1: 50, 2: 30, 3: 15, 4: 5},
@@ -32,6 +46,65 @@ AI_PRESETS = {
     "进阶": {1: 10, 2: 30, 3: 40, 4: 20},
     "挑战": {1: 5, 2: 15, 3: 30, 4: 50},
 }
+
+
+class ClickCombo(tk.Menubutton):
+    """单击展开、单击选项即完成选择的下拉菜单。
+
+    macOS 的 ttk.Combobox（aqua 主题）常需多次点击才能选中，这里改用原生
+    Menubutton + Menu：点一下展开，再点一下选项即写入变量并触发 command。
+    对外提供与 Combobox 相近的 get()/set()/set_values() 接口。
+    """
+
+    def __init__(self, master, variable, values, width=10, command=None, **kw):
+        self._values = [str(v) for v in values]
+        self._command = command
+        self._ready = False
+        super().__init__(master, textvariable=variable, indicatoron=True,
+                         relief="raised", width=width, anchor="w", **kw)
+        self.var = variable
+        self.menu = tk.Menu(self, tearoff=0, font=("", 12))
+        self.configure(menu=self.menu)
+        self._rebuild_menu()
+        self.var.trace_add("write", self._on_var_write)
+        self._ready = True
+
+    def _rebuild_menu(self):
+        self.menu.delete(0, "end")
+        for v in self._values:
+            self.menu.add_radiobutton(label=v, command=lambda value=v: self.var.set(value))
+        if self._values and self.var.get() not in self._values:
+            self.var.set(self._values[0])
+
+    def set_values(self, values, keep=True):
+        """更新可选项；keep=False 或当前值不在新列表时回退到第一项。"""
+        self._values = [str(v) for v in values]
+        self._rebuild_menu()
+        if not keep and self._values:
+            self.var.set(self._values[0])
+        if self._ready and self._command:
+            self._command()
+
+    def _on_var_write(self, *_):
+        if self._ready and self._command:
+            self._command()
+
+    def get(self):
+        return self.var.get()
+
+    def set(self, value):
+        value = str(value)
+        if value in self._values:
+            self.var.set(value)
+
+
+def _diff_label(value) -> str:
+    """难度数字 → 容易/中等/较难/难；已是文字则原样返回。"""
+    text = str(value)
+    try:
+        return DIFFICULTY_LABEL.get(int(text), text)
+    except (TypeError, ValueError):
+        return text
 
 
 class App:
@@ -49,6 +122,10 @@ class App:
         self.ai_rows = []                      # 当前筛选结果 [(kp, vol)]
         self.ai_selected: set = set()          # 勾选的知识点 id
         self.ai_vars_ratio = {}                # 难度 1-4 占比 StringVar
+        self.ai_var_n_custom = tk.StringVar(value="")  # 「自定义」题数
+        self.ai_cmb_grade = None               # 年级下拉（学段联动用）
+        self.ai_ent_n = None                   # 自定义题数输入框
+        self.logo_img = None                   # 防止 PhotoImage 被回收
 
         self._build_style()
         self._build_menu()
@@ -67,6 +144,23 @@ class App:
         st.configure("Title.TLabel", font=("", 15, "bold"))
         st.configure("Sub.TLabel", foreground="#555555")
         st.configure("Head.TLabel", font=("", 11, "bold"))
+
+    def _logo_image(self, target=52):
+        """加载项目 logo 并按整数倍缩小；Tk 不支持 PNG 时返回 None。"""
+        candidates = [
+            os.path.join(store.PROJECT_ROOT, "assets", "logo.png"),
+            os.path.join(store.PROJECT_ROOT, "黑底K12黄色勾选清单图标.png"),
+        ]
+        for path in candidates:
+            if not os.path.exists(path):
+                continue
+            try:
+                img = tk.PhotoImage(file=path)
+                factor = max(1, min(img.width(), img.height()) // target)
+                return img.subsample(factor)
+            except (tk.TclError, ValueError):
+                continue
+        return None
 
     def _build_menu(self):
         menubar = tk.Menu(self.root)
@@ -111,9 +205,12 @@ class App:
 
     # ---------------- 布局 ----------------
     def _build_layout(self):
-        # 顶部标题
+        # 顶部标题（左侧展示项目 Logo）
         head = ttk.Frame(self.root, padding=(14, 10))
         head.pack(fill="x")
+        self.logo_img = self._logo_image(48)
+        if self.logo_img is not None:
+            ttk.Label(head, image=self.logo_img).pack(side="left", padx=(0, 12))
         ttk.Label(head, text=APP_TITLE, style="Title.TLabel").pack(side="left")
         self.lbl_stat = ttk.Label(head, text="", style="Sub.TLabel")
         self.lbl_stat.pack(side="left", padx=16)
@@ -161,25 +258,23 @@ class App:
         ttk.Button(flt, text="查找", command=self.refresh_list).pack(side="left", padx=(0, 12))
 
         ttk.Label(flt, text="难度").pack(side="left")
-        self.var_diff = tk.StringVar(value="")
-        cb = ttk.Combobox(flt, textvariable=self.var_diff, width=7,
-                          values=["", "1", "2", "3", "4"], state="readonly")
+        self.var_diff = tk.StringVar(value="全部")
+        cb = ClickCombo(flt, self.var_diff,
+                        ["全部"] + [DIFFICULTY_LABEL[d] for d in (1, 2, 3, 4)],
+                        width=7, command=self.refresh_list)
         cb.pack(side="left", padx=(4, 10))
-        cb.bind("<<ComboboxSelected>>", lambda _: self.refresh_list())
 
         ttk.Label(flt, text="认知").pack(side="left")
-        self.var_bloom = tk.StringVar(value="")
-        cb2 = ttk.Combobox(flt, textvariable=self.var_bloom, width=7,
-                           values=[""] + self.tax["bloom"], state="readonly")
+        self.var_bloom = tk.StringVar(value="全部")
+        cb2 = ClickCombo(flt, self.var_bloom, ["全部"] + self.tax["bloom"],
+                         width=7, command=self.refresh_list)
         cb2.pack(side="left", padx=(4, 10))
-        cb2.bind("<<ComboboxSelected>>", lambda _: self.refresh_list())
 
         ttk.Label(flt, text="引擎").pack(side="left")
-        self.var_engine = tk.StringVar(value="")
-        cb3 = ttk.Combobox(flt, textvariable=self.var_engine, width=9,
-                           values=["", "template", "llm"], state="readonly")
+        self.var_engine = tk.StringVar(value="全部")
+        cb3 = ClickCombo(flt, self.var_engine, ["全部", "template", "llm"],
+                         width=9, command=self.refresh_list)
         cb3.pack(side="left", padx=(4, 10))
-        cb3.bind("<<ComboboxSelected>>", lambda _: self.refresh_list())
         ttk.Button(flt, text="清除筛选", command=self.clear_filters).pack(side="left")
 
         # 列表
@@ -239,21 +334,23 @@ class App:
         parent.rowconfigure(2, weight=3)
         parent.rowconfigure(6, weight=2)
 
-        # 筛选栏
+        # 筛选栏：学段 / 科目 / 年级默认「全部」，学段选定后年级联动收窄
         flt = ttk.Frame(parent)
         flt.grid(row=0, column=0, sticky="ew", pady=(2, 8))
         ttk.Label(flt, text="学段").pack(side="left")
-        self.ai_var_stage = tk.StringVar(value="")
-        ttk.Combobox(flt, textvariable=self.ai_var_stage, width=9,
-                     values=list(AI_STAGE), state="readonly").pack(side="left", padx=(4, 10))
+        self.ai_var_stage = tk.StringVar(value="全部")
+        ClickCombo(flt, self.ai_var_stage, list(AI_STAGE), width=9,
+                   command=self.ai_on_stage_change).pack(side="left", padx=(4, 10))
         ttk.Label(flt, text="科目").pack(side="left")
-        self.ai_var_subject = tk.StringVar(value="")
-        ttk.Combobox(flt, textvariable=self.ai_var_subject, width=8,
-                     values=list(AI_SUBJECT), state="readonly").pack(side="left", padx=(4, 10))
+        self.ai_var_subject = tk.StringVar(value="全部")
+        ClickCombo(flt, self.ai_var_subject, list(AI_SUBJECT), width=8,
+                   command=self.ai_refresh).pack(side="left", padx=(4, 10))
         ttk.Label(flt, text="年级").pack(side="left")
-        self.ai_var_grade = tk.StringVar(value="")
-        ttk.Combobox(flt, textvariable=self.ai_var_grade, width=9,
-                     values=list(AI_GRADE), state="readonly").pack(side="left", padx=(4, 10))
+        self.ai_var_grade = tk.StringVar(value="全部")
+        self.ai_cmb_grade = ClickCombo(flt, self.ai_var_grade,
+                                       ["全部"] + STAGE_GRADE_LABELS[""], width=11,
+                                       command=self.ai_refresh)
+        self.ai_cmb_grade.pack(side="left", padx=(4, 10))
         ttk.Label(flt, text="搜索").pack(side="left")
         self.ai_var_q = tk.StringVar()
         eq = ttk.Entry(flt, textvariable=self.ai_var_q, width=22)
@@ -271,46 +368,47 @@ class App:
         ttk.Button(lbar, text="反选", command=self.ai_invert).pack(side="right", padx=(4, 0))
         ttk.Button(lbar, text="清空选择", command=self.ai_clear_sel).pack(side="right", padx=(4, 0))
 
-        # 勾选列表：首列点 ☑ 勾选，可单选 / 多选
-        cols = ("sel", "id", "name", "grade", "domain", "difficulty")
+        # 勾选列表：首列点 ☑ 勾选，可单选 / 多选；含学科、认知层级列
+        cols = ("sel", "id", "name", "subject", "grade", "domain", "difficulty", "bloom")
         self.ai_list = ttk.Treeview(parent, columns=cols, show="headings", selectmode="browse")
-        heads = {"sel": "选", "id": "ID", "name": "知识点", "grade": "年级",
-                 "domain": "课标领域", "difficulty": "难度"}
-        widths = {"sel": 38, "id": 190, "name": 280, "grade": 90,
-                  "domain": 150, "difficulty": 55}
+        heads = {"sel": "选", "id": "ID", "name": "知识点", "subject": "学科",
+                 "grade": "年级", "domain": "课标领域", "difficulty": "难度",
+                 "bloom": "认知层级"}
+        widths = {"sel": 36, "id": 165, "name": 235, "subject": 55, "grade": 72,
+                  "domain": 130, "difficulty": 60, "bloom": 78}
         for c in cols:
             self.ai_list.heading(c, text=heads[c])
             self.ai_list.column(c, width=widths[c],
-                                anchor="center" if c in ("sel", "difficulty") else "w")
+                                anchor="center" if c in ("sel", "subject", "difficulty", "bloom") else "w")
         self.ai_list.grid(row=2, column=0, sticky="nsew")
         sb = ttk.Scrollbar(parent, orient="vertical", command=self.ai_list.yview)
         sb.grid(row=2, column=1, sticky="ns")
         self.ai_list.configure(yscrollcommand=sb.set)
         self.ai_list.bind("<Button-1>", self.ai_on_click)
 
-        # 参数行一：题数 + 难度预设
+        # 参数行一：题数（支持自定义）+ 难度预设
         p1 = ttk.Frame(parent)
         p1.grid(row=3, column=0, sticky="ew", pady=(8, 4))
         ttk.Label(p1, text="每知识点题数").pack(side="left")
+        nf = ttk.Frame(p1)
+        nf.pack(side="left", padx=(4, 14))
         self.ai_var_n = tk.StringVar(value="5")
-        cbn = ttk.Combobox(p1, textvariable=self.ai_var_n, width=6,
-                           values=["3", "5", "8", "10", "15", "20"], state="readonly")
-        cbn.pack(side="left", padx=(4, 14))
-        cbn.bind("<<ComboboxSelected>>", lambda _: self.ai_update_alloc())
+        ClickCombo(nf, self.ai_var_n, QUESTION_COUNT_OPTIONS, width=9,
+                   command=self.ai_on_n_change).pack(side="left")
+        self.ai_ent_n = ttk.Entry(nf, textvariable=self.ai_var_n_custom, width=6)
+        self.ai_ent_n.bind("<KeyRelease>", lambda _: self.ai_update_alloc())
         ttk.Label(p1, text="难度预设").pack(side="left")
         self.ai_var_preset = tk.StringVar(value="自定义")
-        cbp = ttk.Combobox(p1, textvariable=self.ai_var_preset, width=10,
-                           values=list(AI_PRESETS), state="readonly")
-        cbp.pack(side="left", padx=(4, 14))
-        cbp.bind("<<ComboboxSelected>>", lambda _: self.ai_apply_preset())
+        ClickCombo(p1, self.ai_var_preset, list(AI_PRESETS), width=11,
+                   command=self.ai_apply_preset).pack(side="left", padx=(4, 14))
         self.ai_lbl_alloc = ttk.Label(p1, text="", foreground="#0F6E56")
         self.ai_lbl_alloc.pack(side="left")
 
-        # 参数行二：四级占比
+        # 参数行二：四级占比（容易 / 中等 / 较难 / 难）
         p2 = ttk.Frame(parent)
         p2.grid(row=4, column=0, sticky="ew", pady=(0, 6))
         for d in (1, 2, 3, 4):
-            ttk.Label(p2, text=f"难度{d}%").pack(side="left")
+            ttk.Label(p2, text=f"{DIFFICULTY_LABEL[d]}%").pack(side="left")
             var = tk.StringVar(value=str({1: 20, 2: 40, 3: 30, 4: 10}[d]))
             ent = ttk.Entry(p2, textvariable=var, width=5)
             ent.pack(side="left", padx=(3, 10))
@@ -337,6 +435,13 @@ class App:
         self.ai_text.grid(row=6, column=0, sticky="nsew", columnspan=2)
 
     # ---- AI 模块：筛选与勾选 ----
+    def ai_on_stage_change(self):
+        """学段变化 → 年级下拉只显示对应学段；失效年级回到「全部」。"""
+        stage = AI_STAGE.get(self.ai_var_stage.get(), "")
+        labels = STAGE_GRADE_LABELS.get(stage, STAGE_GRADE_LABELS[""])
+        self.ai_cmb_grade.set_values(["全部"] + labels, keep=False)
+        self.ai_refresh()
+
     def ai_refresh(self):
         rows = store.query(
             q=self.ai_var_q.get(),
@@ -349,15 +454,20 @@ class App:
         for kp, v in rows:
             self.ai_list.insert("", "end", iid=kp["id"], values=(
                 "☑" if kp["id"] in self.ai_selected else "☐",
-                kp["id"], kp["name"], store._grade_label(v["grade"]),
-                kp.get("domain", ""), kp.get("difficulty", ""),
+                kp["id"], kp["name"],
+                store.SUBJECT_NAMES.get(v.get("subject", ""), v.get("subject", "")),
+                store._grade_label(v["grade"]),
+                kp.get("domain", ""),
+                _diff_label(kp.get("difficulty", "")),
+                kp.get("bloom", ""),
             ))
         self._ai_count()
 
     def ai_reset_filters(self):
-        self.ai_var_stage.set("")
-        self.ai_var_subject.set("")
-        self.ai_var_grade.set("")
+        self.ai_var_stage.set("全部")
+        self.ai_var_subject.set("全部")
+        self.ai_var_grade.set("全部")
+        self.ai_cmb_grade.set_values(["全部"] + STAGE_GRADE_LABELS[""], keep=False)
         self.ai_var_q.set("")
         self.ai_refresh()
 
@@ -405,6 +515,24 @@ class App:
             return None
         return mix if sum(mix.values()) > 0 else None
 
+    def ai_on_n_change(self):
+        """题数选「自定义」才显示输入框；其余档位直接隐藏。"""
+        if self.ai_var_n.get() == "自定义":
+            self.ai_ent_n.pack(side="left", padx=(4, 2))
+        else:
+            self.ai_ent_n.pack_forget()
+        self.ai_update_alloc()
+
+    def _ai_current_n(self) -> int:
+        """当前有效题数；自定义为空或非法时回退 5。"""
+        raw = self.ai_var_n_custom.get().strip() if self.ai_var_n.get() == "自定义" \
+            else self.ai_var_n.get()
+        try:
+            n = int(raw)
+            return n if n > 0 else 5
+        except (ValueError, TypeError):
+            return 5
+
     def ai_apply_preset(self):
         mix = AI_PRESETS.get(self.ai_var_preset.get())
         if mix:
@@ -413,15 +541,12 @@ class App:
         self.ai_update_alloc()
 
     def ai_update_alloc(self):
-        try:
-            n = int(self.ai_var_n.get() or 5)
-        except ValueError:
-            n = 5
+        n = self._ai_current_n()
         mix = self._ai_mix()
         alloc = prompt_mod.allocate_difficulty(n, mix)
         self.ai_lbl_alloc.configure(
             text=f"按 {n} 题分配：" + " / ".join(
-                f"难度{d} {alloc[d]}题" for d in (1, 2, 3, 4)))
+                f"{DIFFICULTY_LABEL[d]} {alloc[d]}题" for d in (1, 2, 3, 4)))
         total = sum(mix.values()) if mix else 0
         self.ai_lbl_ratio_sum.configure(
             text=f"占比合计 {total}%" + ("" if total == 100 else "（非 100% 将按比例归一）"))
@@ -432,7 +557,7 @@ class App:
         if not ids:
             messagebox.showinfo("提示", "请先勾选至少一个知识点（点击列表首列的 ☑）")
             return
-        n = int(self.ai_var_n.get() or 5)
+        n = self._ai_current_n()
         mix = self._ai_mix()
         try:
             if len(ids) == 1:
@@ -549,35 +674,33 @@ class App:
             q=self.var_q.get(),
             stage="", subject="",
             domain="",
-            difficulty=int(self.var_diff.get()) if self.var_diff.get() else None,
-            bloom=self.var_bloom.get(),
-            engine=self.var_engine.get(),
+            difficulty=DIFFICULTY_CODE.get(self.var_diff.get()),
+            bloom=self.var_bloom.get() if self.var_bloom.get() != "全部" else "",
+            engine=self.var_engine.get() if self.var_engine.get() != "全部" else "",
         )
         if self.current_volume:
             rows = [(kp, v) for kp, v in rows if v["volume_id"] == self.current_volume]
         self.current_rows = rows
-        self.list.delete(*self.list.get_children())
-        for kp, v in rows:
-            self.list.insert("", "end", iid=kp["id"], values=(
-                kp["id"], kp["name"], kp.get("domain", ""),
-                kp.get("difficulty", ""), kp.get("bloom", ""),
-                kp.get("engine_hint", ""),
-            ))
+        self._fill_knowledge_list(rows)
         vol = next((v for v in store.load_all_volumes()
                     if v["volume_id"] == self.current_volume), None)
         scope = vol["title"] if vol else "全部册"
         self.lbl_list.configure(text=f"知识点 · {scope}（{len(rows)} 条）")
 
-    def sort_by(self, col: str):
-        rows = sorted(self.current_rows, key=lambda pair: str(pair[0].get(col, "")))
-        self.current_rows = rows
+    def _fill_knowledge_list(self, rows):
+        """统一渲染模块一列表（难度列展示文字描述）。"""
         self.list.delete(*self.list.get_children())
         for kp, v in rows:
             self.list.insert("", "end", iid=kp["id"], values=(
                 kp["id"], kp["name"], kp.get("domain", ""),
-                kp.get("difficulty", ""), kp.get("bloom", ""),
+                _diff_label(kp.get("difficulty", "")), kp.get("bloom", ""),
                 kp.get("engine_hint", ""),
             ))
+
+    def sort_by(self, col: str):
+        rows = sorted(self.current_rows, key=lambda pair: str(pair[0].get(col, "")))
+        self.current_rows = rows
+        self._fill_knowledge_list(rows)
 
     def on_list_select(self, _=None):
         sel = self.list.selection()
@@ -619,9 +742,9 @@ class App:
 
     def clear_filters(self):
         self.var_q.set("")
-        self.var_diff.set("")
-        self.var_bloom.set("")
-        self.var_engine.set("")
+        self.var_diff.set("全部")
+        self.var_bloom.set("全部")
+        self.var_engine.set("全部")
         self.refresh_list()
 
     # ---------------- 编辑弹窗 ----------------
@@ -645,7 +768,7 @@ class App:
         labels = {
             "domain": "课标领域 *", "theme": "主题 *", "unit": "单元 *",
             "name": "知识点名称 *", "objective": "学习目标 *",
-            "difficulty": "难度（1-4）*", "bloom": "认知层级 *",
+            "difficulty": "难度（容易/中等/较难/难）*", "bloom": "认知层级 *",
             "prerequisites": "前置关系（ID，逗号分隔）",
             "concept": "核心概念 *", "common_mistakes": "易错点（逗号分隔）",
             "suggested_types": "建议题型（逗号分隔）",
@@ -660,14 +783,15 @@ class App:
             if isinstance(val, list):
                 val = ", ".join(str(x) for x in val)
             if key == "difficulty":
-                w = ttk.Combobox(form, values=["1", "2", "3", "4"], width=60)
-                w.set(str(val))
+                v = tk.StringVar(value=_diff_label(val))
+                w = ClickCombo(form, v, [DIFFICULTY_LABEL[d] for d in (1, 2, 3, 4)],
+                               width=60)
             elif key == "bloom":
-                w = ttk.Combobox(form, values=self.tax["bloom"], width=60)
-                w.set(str(val))
+                v = tk.StringVar(value=str(val))
+                w = ClickCombo(form, v, self.tax["bloom"], width=60)
             elif key == "engine_hint":
-                w = ttk.Combobox(form, values=["template", "llm"], width=60)
-                w.set(str(val))
+                v = tk.StringVar(value=str(val))
+                w = ClickCombo(form, v, ["template", "llm"], width=60)
             elif key in ("objective", "concept"):
                 w = tk.Text(form, width=68, height=5, wrap="word")
                 w.insert("1.0", str(val))
@@ -686,6 +810,9 @@ class App:
                     out[k] = w.get("1.0", "end").strip()
                 else:
                     out[k] = w.get().strip()
+                if k == "difficulty":
+                    # 界面显示「容易/中等/较难/难」，存回数据时换回 1-4
+                    out[k] = str(DIFFICULTY_CODE.get(out[k], out[k]))
             return out
 
         def save():
@@ -888,19 +1015,23 @@ class App:
 4. 「运行校验」调用结构校验 + 字段校验 + 课标交叉校验三套脚本。
 
 【模块二 · AI 提示词】（主推）
-5. 先按学段/科目/年级/搜索筛出知识点，再点列表首列的 ☑ 勾选：
-   点一个=单选，点多个=多选，「全选当前」=全选本页结果，「清空选择」重来。
-6. 设置「每知识点题数」；难度可用预设（基础为主/均衡/进阶/挑战），
-   也可直接改四个百分比，下方实时显示按题数换算的各难度题数。
-7. 点「生成提示词」：勾 1 个出单点提示词，勾多个出批量提示词。
+5. 筛选栏的学段 / 科目 / 年级默认均为「全部」；选了学段后年级只显示对应年级
+   （如选小学只列 1—6 年级，不再显示 7/8/9 年级）。点一下下拉菜单展开，
+   再点一下选项即完成选择。列表含学科、认知层级列。
+6. 点列表首列的 ☑ 勾选：点一个=单选，点多个=多选，「全选当前」=全选本页结果，
+   「清空选择」重来。
+7. 「每知识点题数」可选 1/3/5/10/15/20/50/100，或选「自定义」填任意正整数。
+   难度用「容易/中等/较难/难」四档：可用预设（基础为主/均衡/进阶/挑战），
+   也可直接改四个百分比，下方实时显示按题数换算的各档题数。
+8. 点「生成提示词」：勾 1 个出单点提示词，勾多个出批量提示词。
    提示词含完整知识点档案、年级红线（禁止超出该知识点所属年级水平）、
    难度分布、题目来源知识点字段（topic_id/topic_name）、JSON 格式与示例。
-8. 生成后可在文本框直接微调，「复制全部」粘贴到 DeepSeek / 元宝 / ChatGPT，
+9. 生成后可在文本框直接微调，「复制全部」粘贴到 DeepSeek / 元宝 / ChatGPT，
    或导出 .txt / .md。
 
 【其它】
-9. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
-10. 注意：volumes/ 是 data/*.py 生成的产物。若要永久固化修改，
+10. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
+11. 注意：volumes/ 是 data/*.py 生成的产物。若要永久固化修改，
    请把改动同步回 knowledge-map/data/ 下对应的源文件，再运行 build_volumes.py。""")
 
     def about_dialog(self):
@@ -922,9 +1053,8 @@ class PromptDialog:
         bar.pack(fill="x")
         ttk.Label(bar, text="每题数").pack(side="left")
         self.var_n = tk.StringVar(value=str(default_n))
-        ttk.Combobox(bar, textvariable=self.var_n, width=6,
-                     values=["3", "5", "8", "10", "15", "20"],
-                     state="readonly").pack(side="left", padx=(4, 12))
+        ClickCombo(bar, self.var_n, QUESTION_COUNT_OPTIONS[1:], width=7,
+                   command=self.refresh).pack(side="left", padx=(4, 12))
         ttk.Button(bar, text="重新生成", command=self.refresh).pack(side="left")
         self.lbl = ttk.Label(bar, text="", foreground="#0F6E56")
         self.lbl.pack(side="left", padx=12)
@@ -996,9 +1126,8 @@ class QuestionDialog:
         bar.pack(fill="x")
         ttk.Label(bar, text="每点题数").pack(side="left")
         self.var_n = tk.StringVar(value="12" if len(self.topics) == 1 else "6")
-        ttk.Combobox(bar, textvariable=self.var_n, width=6,
-                     values=["4", "6", "8", "12", "20", "30"],
-                     state="readonly").pack(side="left", padx=(4, 14))
+        ClickCombo(bar, self.var_n, ["4", "6", "8", "12", "20", "30"],
+                   width=7).pack(side="left", padx=(4, 14))
         ttk.Label(bar, text="随机种子").pack(side="left")
         self.var_seed = tk.StringVar(value="20261120")
         ttk.Entry(bar, textvariable=self.var_seed, width=12).pack(side="left", padx=(4, 14))
