@@ -130,9 +130,32 @@ k12-question-bank/
 规模化必须依赖 LLM 引擎——地图已把 764 个语义类知识点路由到 `llm`、458 个规则类路由到 `template`，
 方向是对的，缺的是给模板引擎换上「读知识点内容」的内容感知型生成器。
 
+## macOS 桌面管理台
+
+不写网页，做成双击即开的原生 macOS 桌面窗口（Python 标准库 + 系统 Tcl/Tk，零第三方依赖、无需 Xcode）。
+
+```bash
+python3 desktop/build_app.py     # 生成 desktop/K12知识点地图.app（只需一次）
+open "desktop/K12知识点地图.app"  # 或直接双击
+```
+
+功能：
+
+- **浏览**：左侧按 学段 → 科目 → 年级 → 册 展开 63 册，中间表格列出知识点，下方显示 15 个字段的完整详情
+- **筛选**：关键词全文搜索 + 难度 / 认知层级 / 引擎过滤，点列头排序
+- **管理**：新增 / 编辑 / 删除知识点，改动直接写入 `knowledge-map/volumes/`（下游出题实际消费的数据）
+- **安全**：每次写操作自动备份到 `desktop/backups/`、记入 `desktop/changelog.jsonl`，「撤销」可恢复
+- **校验**：内置「运行校验」按钮，一键跑结构校验 + 字段校验 + 课标交叉校验三套脚本
+- **导出**：当前结果导出 CSV / JSON
+
+> 注意：`volumes/` 是 `data/*.py` 经 `build_volumes.py` 生成的产物。桌面端的改动若要永久固化，需同步回 `knowledge-map/data/` 对应源文件，再重新生成；这一约束在 app 的「使用说明」里也有提示。
+
+也可直接运行源码：`python3 desktop/src/app.py`。
+
 ## 路线图
 
 - [x] 按册补齐全部 63 册知识点地图
+- [x] macOS 桌面管理台（浏览 / 筛选 / 编辑 / 校验 / 导出 / 撤销）
 - [ ] 内容感知型模板生成器（读取 knowledge point 的 name/concept/mistakes 出题）
 - [ ] 接入 LLM 引擎并抽检语义类题目质量
 - [ ] 补量至 10 万题 + 全库质量报告

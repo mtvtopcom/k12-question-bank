@@ -25,3 +25,8 @@ secrets.*
 .vscode/
 .idea/
 *.swp
+
+# 桌面管理台的运行时数据（备份与变更日志，用户本机产生）
+desktop/backups/
+desktop/changelog.jsonl
+desktop/build/
