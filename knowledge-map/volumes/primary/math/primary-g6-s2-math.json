@@ -12,8 +12,8 @@
     {
       "id": "primary-g6-s2-math-K001",
       "index": 1,
-      "domain": "数与代数",
-      "theme": "数与运算",
+      "domain": "综合与实践",
+      "theme": "主题式学习",
       "unit": "负数",
       "name": "负数的认识与意义",
       "objective": "理解负数的意义，能读写负数",
@@ -39,8 +39,8 @@
     {
       "id": "primary-g6-s2-math-K002",
       "index": 2,
-      "domain": "数与代数",
-      "theme": "数量关系",
+      "domain": "综合与实践",
+      "theme": "主题式学习",
       "unit": "负数",
       "name": "数轴与正负数的大小比较",
       "objective": "能在数轴上表示正负数并比较大小",
@@ -49,7 +49,7 @@
       "prerequisites": [
         "primary-g6-s2-math-K001"
       ],
-      "concept": "数轴上右边的数总比左边的大；两个负数比较，绝对值大的反而小",
+      "concept": "数轴上右边的数总比左边的大；负数都在0的左边，越往左的数越小（小学只作直观描述，不涉及绝对值术语）",
       "common_mistakes": [
         "认为-5大于-2",
         "数轴方向理解错误"
@@ -330,7 +330,7 @@
       "id": "primary-g6-s2-math-K012",
       "index": 12,
       "domain": "图形与几何",
-      "theme": "图形的变化",
+      "theme": "图形的认识与测量",
       "unit": "比例",
       "name": "图形的放大与缩小",
       "objective": "理解图形按比放大或缩小的规律",

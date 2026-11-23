@@ -43,9 +43,11 @@ knowledge-map/
 │   ├── build_volumes.py            # data/ → volumes/（编号、前置解析、全量校验）
 │   ├── gen_volumes.py              # 生成63册清单和占位文件
 │   ├── validate.py                 # 校验结构/领域/ID/先修引用/难度一致性
+│   ├── cross_validate.py           # 内容级交叉验证：逐条比对权威课标基准
 │   ├── merge.py                    # 合并 → output/knowledge_points.jsonl
 │   └── progress.py                 # 进度看板 + 生成梳理提示词
-└── output/knowledge_points.jsonl   # 合并后的统一知识点清单
+├── output/knowledge_points.jsonl   # 合并后的统一知识点清单
+└── CROSS_VALIDATION.md             # 交叉验证报告：方法/来源/修正记录/残余风险
 ```
 
 ### 为什么要 `data/` 这一层

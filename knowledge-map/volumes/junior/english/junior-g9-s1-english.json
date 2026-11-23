@@ -283,7 +283,7 @@
       "prerequisites": [
         "junior-g8-s1-english-K005"
       ],
-      "concept": "被动语态强调动作承受者；结构为 be + 过去分词，be 随主语与 Tense 变化；执行者用 by 引出可省略",
+      "concept": "被动语态强调动作承受者；结构为 be + 过去分词，be 随主语的人称、数和时态变化，过去分词不变；执行者用 by 引出可省略",
       "common_mistakes": [
         "漏写 be 动词",
         "过去分词与过去式混淆",
@@ -362,7 +362,7 @@
       "id": "junior-g9-s1-english-K013",
       "index": 13,
       "domain": "语篇",
-      "theme": "语篇类型",
+      "theme": "语篇",
       "unit": "语篇",
       "name": "说明文：节日习俗的说明结构",
       "objective": "能读懂节日习俗类说明文，梳理「来源—习俗—意义」结构",
@@ -391,7 +391,7 @@
       "id": "junior-g9-s1-english-K014",
       "index": 14,
       "domain": "语篇",
-      "theme": "语篇类型",
+      "theme": "语篇",
       "unit": "语篇",
       "name": "科普说明文：材料与制造",
       "objective": "能读懂物品制造类说明文，梳理工艺流程与因果关系",

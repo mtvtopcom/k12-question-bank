@@ -7,7 +7,7 @@
   "subject": "english",
   "school_stage": "S1",
   "status": "done",
-  "source_basis": "人教版PEP/外研版/译林版二年级启蒙内容；2022版英语课标（一二年级为兴趣启蒙，不作为起始年级）",
+  "source_basis": "人教新起点（一年级起点）/外研版（一起点）/译林版低年级启蒙二年级启蒙内容；2022版英语课标（一二年级为兴趣启蒙，不作为起始年级）",
   "knowledge_points": [
     {
       "id": "primary-g2-s1-english-K001",
@@ -35,7 +35,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·Phonics",
+      "source": "人教新起点二上·Phonics",
       "engine_hint": "template"
     },
     {
@@ -64,7 +64,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·Numbers",
+      "source": "人教新起点二上·Numbers",
       "engine_hint": "template"
     },
     {
@@ -93,7 +93,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·Time",
+      "source": "人教新起点二上·Time",
       "engine_hint": "llm"
     },
     {
@@ -120,7 +120,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·My school",
+      "source": "人教新起点二上·My school",
       "engine_hint": "template"
     },
     {
@@ -149,7 +149,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·My school",
+      "source": "人教新起点二上·My school",
       "engine_hint": "llm"
     },
     {
@@ -178,7 +178,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·My school",
+      "source": "人教新起点二上·My school",
       "engine_hint": "llm"
     },
     {
@@ -205,7 +205,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·Toys",
+      "source": "人教新起点二上·Toys",
       "engine_hint": "template"
     },
     {
@@ -234,7 +234,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·Toys",
+      "source": "人教新起点二上·Toys",
       "engine_hint": "llm"
     },
     {
@@ -261,7 +261,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·Descriptions",
+      "source": "人教新起点二上·Descriptions",
       "engine_hint": "template"
     },
     {
@@ -290,7 +290,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·Descriptions",
+      "source": "人教新起点二上·Descriptions",
       "engine_hint": "llm"
     },
     {
@@ -317,7 +317,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·Weather",
+      "source": "人教新起点二上·Weather",
       "engine_hint": "template"
     },
     {
@@ -346,7 +346,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·Weather",
+      "source": "人教新起点二上·Weather",
       "engine_hint": "llm"
     },
     {
@@ -375,14 +375,14 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·Let's sing",
+      "source": "人教新起点二上·Let's sing",
       "engine_hint": "llm"
     },
     {
       "id": "primary-g2-s1-english-K014",
       "index": 14,
       "domain": "文化知识",
-      "theme": "文化",
+      "theme": "文化知识",
       "unit": "儿童生活",
       "name": "英语国家儿童的生活",
       "objective": "初步了解英语国家儿童的学校与日常生活",
@@ -402,14 +402,14 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·Culture",
+      "source": "人教新起点二上·Culture",
       "engine_hint": "llm"
     },
     {
       "id": "primary-g2-s1-english-K015",
       "index": 15,
       "domain": "学习策略",
-      "theme": "策略",
+      "theme": "学习策略",
       "unit": "借助图片",
       "name": "学习策略：借助图片理解",
       "objective": "能借助图片猜测词义和句意",
@@ -429,7 +429,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·学习策略",
+      "source": "人教新起点二上·学习策略",
       "engine_hint": "llm"
     },
     {
@@ -458,7 +458,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二上·Dialogue",
+      "source": "人教新起点二上·Dialogue",
       "engine_hint": "llm"
     }
   ]

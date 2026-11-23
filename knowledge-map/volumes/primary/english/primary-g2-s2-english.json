@@ -7,7 +7,7 @@
   "subject": "english",
   "school_stage": "S1",
   "status": "done",
-  "source_basis": "人教版PEP/外研版/译林版二年级启蒙内容；2022版英语课标（一二年级为兴趣启蒙，不作为起始年级）",
+  "source_basis": "人教新起点（一年级起点）/外研版（一起点）/译林版低年级启蒙二年级启蒙内容；2022版英语课标（一二年级为兴趣启蒙，不作为起始年级）",
   "knowledge_points": [
     {
       "id": "primary-g2-s2-english-K001",
@@ -35,7 +35,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Phonics",
+      "source": "人教新起点二下·Phonics",
       "engine_hint": "template"
     },
     {
@@ -62,7 +62,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Food",
+      "source": "人教新起点二下·Food",
       "engine_hint": "template"
     },
     {
@@ -91,7 +91,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Food",
+      "source": "人教新起点二下·Food",
       "engine_hint": "llm"
     },
     {
@@ -120,7 +120,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Food",
+      "source": "人教新起点二下·Food",
       "engine_hint": "template"
     },
     {
@@ -147,7 +147,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Daily life",
+      "source": "人教新起点二下·Daily life",
       "engine_hint": "template"
     },
     {
@@ -176,7 +176,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Daily life",
+      "source": "人教新起点二下·Daily life",
       "engine_hint": "llm"
     },
     {
@@ -203,7 +203,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Days of the week",
+      "source": "人教新起点二下·Days of the week",
       "engine_hint": "template"
     },
     {
@@ -230,7 +230,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Seasons",
+      "source": "人教新起点二下·Seasons",
       "engine_hint": "template"
     },
     {
@@ -259,7 +259,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Seasons",
+      "source": "人教新起点二下·Seasons",
       "engine_hint": "llm"
     },
     {
@@ -286,7 +286,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Clothes",
+      "source": "人教新起点二下·Clothes",
       "engine_hint": "template"
     },
     {
@@ -315,7 +315,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Clothes",
+      "source": "人教新起点二下·Clothes",
       "engine_hint": "llm"
     },
     {
@@ -344,14 +344,14 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Classroom",
+      "source": "人教新起点二下·Classroom",
       "engine_hint": "llm"
     },
     {
       "id": "primary-g2-s2-english-K013",
       "index": 13,
       "domain": "文化知识",
-      "theme": "文化",
+      "theme": "文化知识",
       "unit": "饮食文化",
       "name": "中外饮食差异",
       "objective": "初步了解中外饮食文化的差异",
@@ -373,14 +373,14 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Culture",
+      "source": "人教新起点二下·Culture",
       "engine_hint": "llm"
     },
     {
       "id": "primary-g2-s2-english-K014",
       "index": 14,
       "domain": "学习策略",
-      "theme": "策略",
+      "theme": "学习策略",
       "unit": "跟读模仿",
       "name": "学习策略：跟读与模仿",
       "objective": "能通过跟读模仿改善语音语调",
@@ -402,7 +402,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·学习策略",
+      "source": "人教新起点二下·学习策略",
       "engine_hint": "llm"
     },
     {
@@ -431,7 +431,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Let's chant",
+      "source": "人教新起点二下·Let's chant",
       "engine_hint": "llm"
     },
     {
@@ -460,7 +460,7 @@
       "grade_range": [
         "g2"
       ],
-      "source": "人教PEP二下·Review",
+      "source": "人教新起点二下·Review",
       "engine_hint": "llm"
     }
   ]

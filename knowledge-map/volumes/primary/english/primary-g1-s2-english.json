@@ -7,7 +7,7 @@
   "subject": "english",
   "school_stage": "S1",
   "status": "done",
-  "source_basis": "人教版PEP/外研版/译林版一年级启蒙内容；2022版英语课标（一二年级为兴趣启蒙，不作为起始年级）",
+  "source_basis": "人教新起点（一年级起点）/外研版（一起点）/译林版低年级启蒙一年级启蒙内容；2022版英语课标（一二年级为兴趣启蒙，不作为起始年级）",
   "knowledge_points": [
     {
       "id": "primary-g1-s2-english-K001",
@@ -35,7 +35,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·字母复习",
+      "source": "人教新起点一下·字母复习",
       "engine_hint": "template"
     },
     {
@@ -64,7 +64,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·语音启蒙",
+      "source": "人教新起点一下·语音启蒙",
       "engine_hint": "template"
     },
     {
@@ -91,7 +91,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·My family",
+      "source": "人教新起点一下·My family",
       "engine_hint": "template"
     },
     {
@@ -120,7 +120,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·My family",
+      "source": "人教新起点一下·My family",
       "engine_hint": "llm"
     },
     {
@@ -147,7 +147,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·Animals",
+      "source": "人教新起点一下·Animals",
       "engine_hint": "template"
     },
     {
@@ -176,7 +176,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·Animals",
+      "source": "人教新起点一下·Animals",
       "engine_hint": "llm"
     },
     {
@@ -203,7 +203,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·Fruit",
+      "source": "人教新起点一下·Fruit",
       "engine_hint": "template"
     },
     {
@@ -232,7 +232,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·Fruit",
+      "source": "人教新起点一下·Fruit",
       "engine_hint": "llm"
     },
     {
@@ -259,7 +259,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·Body",
+      "source": "人教新起点一下·Body",
       "engine_hint": "template"
     },
     {
@@ -288,7 +288,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·Colours",
+      "source": "人教新起点一下·Colours",
       "engine_hint": "llm"
     },
     {
@@ -317,7 +317,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·Greetings",
+      "source": "人教新起点一下·Greetings",
       "engine_hint": "llm"
     },
     {
@@ -346,7 +346,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·Greetings",
+      "source": "人教新起点一下·Greetings",
       "engine_hint": "llm"
     },
     {
@@ -375,7 +375,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·Polite words",
+      "source": "人教新起点一下·Polite words",
       "engine_hint": "llm"
     },
     {
@@ -404,14 +404,14 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·Let's sing",
+      "source": "人教新起点一下·Let's sing",
       "engine_hint": "llm"
     },
     {
       "id": "primary-g1-s2-english-K015",
       "index": 15,
       "domain": "文化知识",
-      "theme": "文化",
+      "theme": "文化知识",
       "unit": "节日文化",
       "name": "中外节日初步",
       "objective": "初步了解中外有代表性的节日",
@@ -433,14 +433,14 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·Culture",
+      "source": "人教新起点一下·Culture",
       "engine_hint": "llm"
     },
     {
       "id": "primary-g1-s2-english-K016",
       "index": 16,
       "domain": "学习策略",
-      "theme": "策略",
+      "theme": "学习策略",
       "unit": "模仿发音",
       "name": "学习策略：模仿发音",
       "objective": "能通过模仿培养正确的语音语调",
@@ -462,7 +462,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一下·学习策略",
+      "source": "人教新起点一下·学习策略",
       "engine_hint": "llm"
     }
   ]

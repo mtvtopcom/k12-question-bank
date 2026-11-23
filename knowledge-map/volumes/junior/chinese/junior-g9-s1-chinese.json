@@ -710,7 +710,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·名著导读",
+      "source": "统编九上·名著导读【旧版；2024秋新版已移出必读名录】",
       "engine_hint": "llm"
     },
     {
@@ -739,7 +739,7 @@
       "grade_range": [
         "g9"
       ],
-      "source": "统编九上·名著导读",
+      "source": "统编九上·名著导读【旧版；2024秋新版移至九下】",
       "engine_hint": "llm"
     },
     {
@@ -769,6 +769,35 @@
         "g9"
       ],
       "source": "统编九上·综合性学习",
+      "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g9-s1-chinese-K027",
+      "index": 27,
+      "domain": "整本书阅读",
+      "theme": "名著导读",
+      "unit": "整本书阅读",
+      "name": "《唐诗三百首》整本书阅读",
+      "objective": "能按题材与体裁分类诵读唐诗，感受唐诗的意境与格律之美",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g9-s1-chinese-K006"
+      ],
+      "concept": "《唐诗三百首》为清人孙洙（蘅塘退士）编选的唐诗选本；2024秋新版列为九上必读，阅读宜按体裁（古体/律诗/绝句）或题材（山水/边塞/咏史）分类比读",
+      "common_mistakes": [
+        "只背诵不理解意象",
+        "忽视诗人风格差异"
+      ],
+      "suggested_types": [
+        "诵读",
+        "分类",
+        "鉴赏"
+      ],
+      "grade_range": [
+        "g9"
+      ],
+      "source": "统编九上·名著导读【2024秋新版新增必读】",
       "engine_hint": "llm"
     }
   ]

@@ -765,6 +765,35 @@
       ],
       "source": "统编八上·综合性学习",
       "engine_hint": "llm"
+    },
+    {
+      "id": "junior-g8-s1-chinese-K027",
+      "index": 27,
+      "domain": "整本书阅读",
+      "theme": "名著导读",
+      "unit": "整本书阅读",
+      "name": "《红岩》整本书阅读",
+      "objective": "能把握革命现实主义小说的群像塑造，理解「红岩精神」的内涵",
+      "difficulty": 4,
+      "bloom": "分析",
+      "prerequisites": [
+        "junior-g8-s1-chinese-K006"
+      ],
+      "concept": "《红岩》以重庆地下党狱中斗争为背景，塑造江姐、许云峰等群像；2024秋新版列为八上必读名著，阅读要抓住人物在极限情境下的信仰抉择",
+      "common_mistakes": [
+        "把群像读成单一主角",
+        "脱离历史背景空谈精神"
+      ],
+      "suggested_types": [
+        "梳理",
+        "分析",
+        "综合"
+      ],
+      "grade_range": [
+        "g8"
+      ],
+      "source": "统编八上·名著导读【2024秋新版新增必读】",
+      "engine_hint": "llm"
     }
   ]
 }

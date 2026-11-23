@@ -7,7 +7,7 @@
   "subject": "english",
   "school_stage": "S1",
   "status": "done",
-  "source_basis": "人教版PEP/外研版/译林版一年级启蒙内容；2022版英语课标（一二年级为兴趣启蒙，不作为起始年级）",
+  "source_basis": "人教新起点（一年级起点）/外研版（一起点）/译林版低年级启蒙一年级启蒙内容；2022版英语课标（一二年级为兴趣启蒙，不作为起始年级）",
   "knowledge_points": [
     {
       "id": "primary-g1-s1-english-K001",
@@ -33,7 +33,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·字母启蒙",
+      "source": "人教新起点一上·字母启蒙",
       "engine_hint": "template"
     },
     {
@@ -62,7 +62,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·字母启蒙",
+      "source": "人教新起点一上·字母启蒙",
       "engine_hint": "template"
     },
     {
@@ -91,7 +91,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·字母启蒙",
+      "source": "人教新起点一上·字母启蒙",
       "engine_hint": "template"
     },
     {
@@ -120,7 +120,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·字母启蒙",
+      "source": "人教新起点一上·字母启蒙",
       "engine_hint": "template"
     },
     {
@@ -149,7 +149,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·字母启蒙",
+      "source": "人教新起点一上·字母启蒙",
       "engine_hint": "template"
     },
     {
@@ -176,7 +176,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·Greetings",
+      "source": "人教新起点一上·Greetings",
       "engine_hint": "llm"
     },
     {
@@ -205,7 +205,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·Introductions",
+      "source": "人教新起点一上·Introductions",
       "engine_hint": "llm"
     },
     {
@@ -234,7 +234,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·Introductions",
+      "source": "人教新起点一上·Introductions",
       "engine_hint": "llm"
     },
     {
@@ -261,7 +261,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·Numbers",
+      "source": "人教新起点一上·Numbers",
       "engine_hint": "template"
     },
     {
@@ -290,7 +290,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·Numbers",
+      "source": "人教新起点一上·Numbers",
       "engine_hint": "template"
     },
     {
@@ -317,7 +317,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·Colours",
+      "source": "人教新起点一上·Colours",
       "engine_hint": "template"
     },
     {
@@ -346,7 +346,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·School things",
+      "source": "人教新起点一上·School things",
       "engine_hint": "template"
     },
     {
@@ -375,7 +375,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·Classroom",
+      "source": "人教新起点一上·Classroom",
       "engine_hint": "llm"
     },
     {
@@ -404,7 +404,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·Let's sing",
+      "source": "人教新起点一上·Let's sing",
       "engine_hint": "llm"
     },
     {
@@ -433,14 +433,14 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·语音启蒙",
+      "source": "人教新起点一上·语音启蒙",
       "engine_hint": "llm"
     },
     {
       "id": "primary-g1-s1-english-K016",
       "index": 16,
       "domain": "文化知识",
-      "theme": "文化",
+      "theme": "文化知识",
       "unit": "问候文化",
       "name": "英语国家的问候方式",
       "objective": "了解英语国家见面问候的常见方式",
@@ -462,7 +462,7 @@
       "grade_range": [
         "g1"
       ],
-      "source": "人教PEP一上·Culture",
+      "source": "人教新起点一上·Culture",
       "engine_hint": "llm"
     }
   ]

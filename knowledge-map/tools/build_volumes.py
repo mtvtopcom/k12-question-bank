@@ -116,6 +116,31 @@ def get_valid_domains(standards: dict, stage: str, subject: str) -> set:
     return set(standards["domains"][subject]["items"])
 
 
+def get_valid_themes(standards: dict, school_stage: str, subject: str) -> set:
+    """按学段返回合法的主题取值（课标主题与学段严格对应）。
+
+    - 数学： themes_by_stage 中该学段的全部主题（2022课标表2）
+    - 语文： 六大任务群（不区分学段）
+    - 英语： 六要素 + 三主题范畴 + 语言知识/语言技能子项
+    - 幼儿园：五大领域下的子领域无需细分，theme 可空，不校验
+    """
+    if school_stage == "S0":  # 幼儿园：theme 用《指南》子领域，不按学科课标校验
+        return set()
+    if subject == "math":
+        themes = standards["domains"]["math"]["themes_by_stage"]
+        return {t for dom in themes.values() for t in dom.get(school_stage, [])}
+    if subject == "chinese":
+        # 语文任务群是宏观组织方式（贯穿全学段），知识点粒度允许用细分教学主题
+        # （散文阅读/文言文阅读/写作等），故不设严格白名单，仅要求非空（见校验循环）
+        return set()
+    if subject == "english":
+        en = standards["domains"]["english"]
+        return (set(en["items"]) | set(en["themes"]) |
+                set(en["language_knowledge"]) | set(en["language_skills"]) |
+                {"综合技能"})  # 听/说/读/看/写 的综合运用
+    return set()  # kg 不校验 theme
+
+
 def expand_volume(vid: str, vol: dict, errors: list) -> dict:
     """把紧凑定义展开成标准册 JSON。"""
     rows = vol.get("rows") or []
@@ -212,11 +237,17 @@ def validate_all(expanded: dict, standards: dict, meta: dict, errors: list) -> d
                 errors.append(f"{vid}: {key}={doc[key]!r} 与清单 {m[key]!r} 不一致")
 
         valid_domains = get_valid_domains(standards, doc["stage"], doc["subject"])
+        valid_themes = get_valid_themes(standards, doc["school_stage"], doc["subject"])
         names = {}
         for kp in doc["knowledge_points"]:
             if kp["domain"] not in valid_domains:
                 errors.append(
                     f"{vid} {kp['id']}: domain={kp['domain']!r} 不在合法集合 {sorted(valid_domains)}"
+                )
+            if valid_themes and kp.get("theme") and kp["theme"] not in valid_themes:
+                errors.append(
+                    f"{vid} {kp['id']}: theme={kp['theme']!r} 与学段 {doc['school_stage']} 不符 "
+                    f"（合法主题示例 {sorted(valid_themes)[:6]}）"
                 )
             if kp["bloom"] not in standards["bloom"]:
                 errors.append(f"{vid} {kp['id']}: bloom={kp['bloom']!r} 非法")

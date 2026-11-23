@@ -283,7 +283,7 @@
       "prerequisites": [
         "junior-g8-s2-english-K003"
       ],
-      "concept": "短语动词分三类：动词+介词（不及物）、动词+副词（及物，代词宾语须置中间）、动词+副词+介词（及物）",
+      "concept": "短语动词分三类：动词+介词（不及物）、动词+副词（可及物或不及物；及物时代词宾语须置中间，如 pick it up；不及物如 get up）、动词+副词+介词（及物）",
       "common_mistakes": [
         "代词宾语位置错误（pick up it）",
         "介词与副词混淆"
@@ -332,7 +332,7 @@
       "id": "junior-g8-s2-english-K012",
       "index": 12,
       "domain": "语篇",
-      "theme": "语篇类型",
+      "theme": "语篇",
       "unit": "语篇",
       "name": "问题求助与建议类语篇",
       "objective": "能读懂求助信并提取问题、分析建议的针对性",
@@ -361,7 +361,7 @@
       "id": "junior-g8-s2-english-K013",
       "index": 13,
       "domain": "语篇",
-      "theme": "语篇类型",
+      "theme": "语篇",
       "unit": "语篇",
       "name": "民间故事与传说的语篇特征",
       "objective": "能梳理故事脉络，理解反复出现的情节模式与文化意涵",
