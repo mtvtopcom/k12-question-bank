@@ -2,14 +2,14 @@
 """为单个知识点生成「大模型出题提示词」。
 
 设计目标：把知识点的完整档案（考核要求、核心概念、易错点、年级认知水平等）
-组织成一份可直接复制到 DeepSeek / 元宝 / ChatGPT 的指令，让模型按 JSON
-Schema 输出高质量选择题。
+组织成一份可直接复制到 DeepSeek / 元宝 / ChatGPT 的指令，让模型按指定格式
+（JSON / TXT / Excel(TSV) / CSV）输出高质量选择题。
 
 关键约束（对应用户反馈）：
   - 禁止把知识点名称当题干主语、禁止「属于哪个领域 / 学习目标是什么 /
     前置知识点是谁」这类档案题——考的是知识内容本身。
   - 干扰项优先用本知识点的易错点，且贴合年级认知水平。
-  - 输出严格 JSON 数组，便于后续导入题库。
+  - 输出格式可选，便于直接入库或粘贴到表格。
 仅依赖 Python 标准库。
 """
 from __future__ import annotations
@@ -27,6 +27,16 @@ GRADE_CN = {
 TERM_CN = {"s1": "上册", "s2": "下册"}
 # 难度展示名与界面保持一致（JSON 字段仍用数字 1-4）
 DIFFICULTY_CN = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
+
+# 大模型输出格式：json / txt / xlsx（Excel 可粘贴的制表符表格）/ csv
+OUTPUT_FORMATS = ("json", "txt", "xlsx", "csv")
+FORMAT_LABEL = {"json": "JSON", "txt": "TXT", "xlsx": "Excel", "csv": "CSV"}
+FORMAT_CLOSING = {
+    "json": "严格 JSON 数组",
+    "txt": "纯文本分段格式",
+    "xlsx": "含表头的制表符表格，可直接粘贴到 Excel",
+    "csv": "含表头的 CSV 文本",
+}
 
 # 按学科给的 few-shot 示例：只展示「情境化题干 + 内容型选项 + 解析」的范式，
 # 不照抄任何真实知识点，避免模型把示例内容当成答案来源。
@@ -81,6 +91,25 @@ EXAMPLES: Dict[str, str] = {
 ]""",
 }
 DEFAULT_EXAMPLE = EXAMPLES["chinese"]
+
+# 非 JSON 格式的 few-shot：内容与上面的示例一致，仅换成目标排版
+TXT_EXAMPLE = """示例（仅参考题型风格与解析写法，不要照抄内容）：
+第 1 题
+【题干】一个长方形花坛长 8 米、宽 5 米，绕它走一圈是多少米？
+【选项】A. 26 米　B. 13 米　C. 40 米　D. 21 米
+【答案】A
+【解析】绕一圈即周长，(8+5)×2=26 米。13 米只是长加宽，忘了乘 2；40 米是误把长乘宽当作周长。
+【难度】中等
+【知识点】示例知识点（example-001）"""
+
+CSV_EXAMPLE = """示例（仅参考题型风格与解析写法，不要照抄内容）：
+topic_id,topic_name,stem,option_a,option_b,option_c,option_d,answer,explanation,difficulty,bloom,type
+example-001,示例知识点,"一个长方形花坛长 8 米、宽 5 米，绕它走一圈是多少米？",26 米,13 米,40 米,21 米,A,"绕一圈即周长，(8+5)×2=26 米。13 米只是长加宽，忘了乘 2；40 米是误把长乘宽当作周长。",2,应用,single_choice"""
+
+TSV_EXAMPLE = ("示例（仅参考题型风格与解析写法，不要照抄内容）：\n"
+               "topic_id\ttopic_name\tstem\toption_a\toption_b\toption_c\toption_d\tanswer\texplanation\tdifficulty\tbloom\ttype\n"
+               "example-001\t示例知识点\t一个长方形花坛长 8 米、宽 5 米，绕它走一圈是多少米？\t26 米\t13 米\t40 米\t21 米\tA\t"
+               "绕一圈即周长，(8+5)×2=26 米。13 米只是长加宽，忘了乘 2；40 米是误把长乘宽当作周长。\t2\t应用\tsingle_choice")
 
 
 def _grade_label(grade: str, term: str, stage: str) -> str:
@@ -152,9 +181,76 @@ def difficulty_spec(n: int, mix: Optional[Dict[int, int]],
     return f"{DIFFICULTY_CN.get(level, '中等')}（对应 difficulty={level}）"
 
 
+def _format_block(fmt: str, kp: Dict[str, Any]) -> str:
+    """按目标输出格式给出「输出格式」段落的指令。"""
+    if fmt == "txt":
+        return """## 输出格式（严格遵守）
+用纯文本输出：不要 JSON、不要 Markdown 表格、不要代码块标记。每道题按下面的分段格式输出，题与题之间空一行：
+第 1 题
+【题干】……
+【选项】A. ……　B. ……　C. ……　D. ……
+【答案】A
+【解析】……
+【难度】容易 / 中等 / 较难 / 难
+【知识点】知识点名称（topic_id）
+
+题号从 1 开始连续编号；每题必须有【知识点】一行，写明该题来源知识点的名称和 topic_id。"""
+    if fmt == "csv":
+        return """## 输出格式（严格遵守）
+只输出 CSV 文本：第一行是表头，从第二行起每行一道题，字段之间用英文逗号分隔。字段内容含逗号、双引号或换行时，用英文双引号包裹整个字段，字段内的双引号写成两个双引号。不要在 CSV 前后添加标题、解释或代码块标记。
+表头固定为（顺序不要改）：
+topic_id,topic_name,stem,option_a,option_b,option_c,option_d,answer,explanation,difficulty,bloom,type
+其中 answer 只填 A/B/C/D，difficulty 填 1/2/3/4，type 固定填 single_choice。"""
+    if fmt == "xlsx":
+        return """## 输出格式（严格遵守）
+大模型无法直接生成二进制 .xlsx 文件，因此请输出「制表符表格（TSV）」：第一行是表头，从第二行起每行一道题，字段之间用 Tab 制表符分隔；不要用引号包裹字段，不要用 Markdown 表格，不要代码块标记。用户会把整段内容复制到 Excel，再另存为 .xlsx。
+表头固定为（顺序不要改，字段之间是 Tab）：
+topic_id	topic_name	stem	option_a	option_b	option_c	option_d	answer	explanation	difficulty	bloom	type
+其中 answer 只填 A/B/C/D，difficulty 填 1/2/3/4，type 固定填 single_choice。"""
+    return f"""## 输出格式（严格遵守）
+只输出一个 JSON 数组，不要任何 Markdown 代码块标记、不要解释文字、不要前后缀。每个元素格式如下（difficulty 按该题实际难度填 1/2/3/4，不要照抄示例里的值）：
+[
+  {{
+    "topic_id": "{kp.get('id', '')}",
+    "topic_name": "{kp.get('name', '')}",
+    "stem": "题干文字",
+    "options": ["A 选项内容", "B 选项内容", "C 选项内容", "D 选项内容"],
+    "answer": "A",
+    "explanation": "解析文字",
+    "difficulty": {int(kp.get('difficulty', 2) or 2)},
+    "bloom": "{kp.get('bloom', '理解')}",
+    "type": "single_choice"
+  }}
+]
+每道题都必须原样带上 topic_id 和 topic_name 两个字段，标明该题来源于上面「知识点档案」中的这个知识点，便于入库后溯源。"""
+
+
+def _difficulty_rule(fmt: str) -> str:
+    """不同输出格式下「难度」该怎么写。"""
+    if fmt == "txt":
+        return "每题的【难度】行必须写该题实际难度（容易 / 中等 / 较难 / 难），不得与分配不符。"
+    if fmt in ("csv", "xlsx"):
+        return ("每题的 difficulty 列必须填该题实际难度对应的数字（1=容易、2=中等、3=较难、4=难），"
+                "不得随意填写或与要求不符。")
+    return ("每题的 difficulty 字段必须填写该题实际难度对应的数字（1=容易、2=中等、3=较难、4=难），"
+            "不得随意填写或与题目要求不符。")
+
+
+def _example_for(fmt: str, subject: str) -> str:
+    """按输出格式挑选 few-shot 示例。"""
+    if fmt == "txt":
+        return TXT_EXAMPLE
+    if fmt == "csv":
+        return CSV_EXAMPLE
+    if fmt == "xlsx":
+        return TSV_EXAMPLE
+    return EXAMPLES.get(subject, DEFAULT_EXAMPLE)
+
+
 def build_prompt(kp: Dict[str, Any], vol: Dict[str, Any], n: int = 5,
                  title_by_id: Optional[Dict[str, str]] = None,
-                 difficulty_mix: Optional[Dict[int, int]] = None) -> str:
+                 difficulty_mix: Optional[Dict[int, int]] = None,
+                 output_format: str = "json") -> str:
     """为单个知识点生成完整的大模型出题提示词。
 
     kp: 知识点 dict（volumes/*.json 里的原始字段）
@@ -195,7 +291,7 @@ def build_prompt(kp: Dict[str, Any], vol: Dict[str, Any], n: int = 5,
 | 建议题型 | {types_text} |
 | 权威来源 | {kp.get('source', '')} |"""
 
-    example = EXAMPLES.get(subject, DEFAULT_EXAMPLE)
+    output_format = output_format if output_format in OUTPUT_FORMATS else "json"
     spec = difficulty_spec(n, difficulty_mix, int(kp.get("difficulty", 2) or 2))
 
     return f"""你是一位资深的中小学命题专家，熟悉中国教育部课程标准和《3-6岁儿童学习与发展指南》，擅长根据知识点命制高质量的选择题。
@@ -218,39 +314,26 @@ def build_prompt(kp: Dict[str, Any], vol: Dict[str, Any], n: int = 5,
 3. **干扰项有迷惑性且同质**：至少 1 个干扰项直接取自或改编自本知识点的「易错点」；其余干扰项应是同学科、同主题下学生常见的错误认识，长度和表述风格与正确项相当。禁止出现明显荒谬、跨科串味或与题干无关的干扰项。
 4. **年级红线（硬性约束）**：本知识点属于{grade_label}（{STAGE_CN.get(stage, stage)}）水平。**题目禁止超出当前选择年级的水平**。{_grade_redline(stage, grade)}
    同时注意：{_buddy_age_note(stage, grade)}
-5. **难度分布**：严格按上面「难度分布」指定的各难度题数出题；每题的 difficulty 字段必须填写该题实际难度对应的数字（1=容易、2=中等、3=较难、4=难），不得随意填写或与题目要求不符。
+5. **难度分布**：严格按上面「难度分布」指定的各难度题数出题；{_difficulty_rule(output_format)}
 6. **避免机械重复**：{n} 道题的题干要有不同的情境和问法，不要只是替换个别词语的同一道题。
 7. **解析到位**：每题解析要说明正确项为什么对、干扰项为什么错，能帮助学生理解。
 8. **选项规范**：每题 4 个选项（A/B/C/D），正确答案的位置尽量分散，不要集中在某一项。
 
-## 输出格式（严格遵守）
-只输出一个 JSON 数组，不要任何 Markdown 代码块标记、不要解释文字、不要前后缀。每个元素格式如下（difficulty 按该题实际难度填 1/2/3/4，不要照抄示例里的值）：
-[
-  {{
-    "topic_id": "{kp.get('id', '')}",
-    "topic_name": "{kp.get('name', '')}",
-    "stem": "题干文字",
-    "options": ["A 选项内容", "B 选项内容", "C 选项内容", "D 选项内容"],
-    "answer": "A",
-    "explanation": "解析文字",
-    "difficulty": {int(kp.get('difficulty', 2) or 2)},
-    "bloom": "{kp.get('bloom', '理解')}",
-    "type": "single_choice"
-  }}
-]
-每道题都必须原样带上 topic_id 和 topic_name 两个字段，标明该题来源于上面「知识点档案」中的这个知识点，便于入库后溯源。
+{_format_block(output_format, kp)}
 
-{example}
+{_example_for(output_format, subject)}
 
 ## 现在开始
-请针对上面的知识点，输出 {n} 道符合全部规则的题目（严格 JSON 数组）。"""
+请针对上面的知识点，输出 {n} 道符合全部规则的题目（{FORMAT_CLOSING[output_format]}）。"""
 
 
 def build_batch_prompt(points: List[Dict[str, Any]], n_per: int = 3,
                        title_by_id: Optional[Dict[str, str]] = None,
-                       difficulty_mix: Optional[Dict[int, int]] = None) -> str:
+                       difficulty_mix: Optional[Dict[int, int]] = None,
+                       output_format: str = "json") -> str:
     """为多个知识点生成一条批量提示词（每点 n_per 题）。"""
     title_by_id = title_by_id or {}
+    output_format = output_format if output_format in OUTPUT_FORMATS else "json"
     chunks = []
     for i, item in enumerate(points, 1):
         kp, vol = item["kp"], item["vol"]
@@ -274,30 +357,16 @@ def build_batch_prompt(points: List[Dict[str, Any]], n_per: int = 3,
 1. **考内容，不考档案**：围绕每个知识点的「学习目标」创设情境题，严禁把知识点名称当题干来问，禁止「属于哪个领域 / 学习目标是什么 / 前置知识点是谁」这类档案题。
 2. 正确项唯一明确，能从核心概念推出；至少 1 个干扰项取自该知识点的易错点，其余为同学科同主题的典型错误认识；禁止明显荒谬或跨科串味的选项。
 3. **年级红线（硬性约束）**：题目禁止超出当前选择年级的水平。每组题目必须严格遵守该组知识点标注的「年级红线」，不得使用该年级课标范围之外的概念、运算、词汇与推理难度。
-4. 每组难度分布按上面的指定执行；每题 difficulty 字段填写实际难度数字（1/2/3/4）。题干情境化、不机械重复。
+4. 每组难度分布按上面的指定执行；{_difficulty_rule(output_format)}题干情境化、不机械重复。
 5. 每组题目之间用 topic_name 字段标明所属知识点，不要混淆。
 
 ## 知识点清单
 {chr(10).join(chunks)}
 
-## 输出格式（严格遵守）
-只输出一个 JSON 数组，不要 Markdown 代码块标记、不要解释文字。每道题都必须带 topic_id 和 topic_name 两个字段，原样填写该题所属知识点清单中的 id 与名称，标明题目来源以便入库溯源：
-[
-  {{
-    "topic_id": "知识点ID",
-    "topic_name": "知识点名称",
-    "stem": "题干文字",
-    "options": ["A 选项", "B 选项", "C 选项", "D 选项"],
-    "answer": "A",
-    "explanation": "解析文字",
-    "difficulty": 2,
-    "bloom": "理解",
-    "type": "single_choice"
-  }}
-]
+{_format_block(output_format, {"id": "知识点ID", "name": "知识点名称", "difficulty": 2, "bloom": "理解"})}
 
 ## 示例（参考风格）
-{DEFAULT_EXAMPLE}
+{_example_for(output_format, "")}
 
 ## 现在开始
-请输出 {len(points) * n_per} 道符合全部规则的题目（严格 JSON 数组）。"""
+请输出 {len(points) * n_per} 道符合全部规则的题目（{FORMAT_CLOSING[output_format]}）。"""

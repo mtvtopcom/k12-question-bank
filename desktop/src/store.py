@@ -529,7 +529,8 @@ def question_kind(q: Dict[str, Any]) -> str:
 
 
 def build_point_prompt(topic_id: str, n: int = 5,
-                       difficulty_mix: Optional[Dict[int, int]] = None) -> str:
+                       difficulty_mix: Optional[Dict[int, int]] = None,
+                       output_format: str = "json") -> str:
     """为单个知识点生成大模型出题提示词（前置 ID 自动补成名称）。"""
     import prompt as prompt_mod
     found = find_point(topic_id)
@@ -541,11 +542,13 @@ def build_point_prompt(topic_id: str, n: int = 5,
         for item in vol["knowledge_points"]:
             titles[item["id"]] = item.get("name", item["id"])
     return prompt_mod.build_prompt(kp, v, n, title_by_id=titles,
-                                   difficulty_mix=difficulty_mix)
+                                   difficulty_mix=difficulty_mix,
+                                   output_format=output_format)
 
 
 def build_batch_prompt(topic_ids: List[str], n_per: int = 3,
-                       difficulty_mix: Optional[Dict[int, int]] = None) -> str:
+                       difficulty_mix: Optional[Dict[int, int]] = None,
+                       output_format: str = "json") -> str:
     """为多个知识点生成一条批量出题提示词。"""
     import prompt as prompt_mod
     titles = {}
@@ -562,7 +565,8 @@ def build_batch_prompt(topic_ids: List[str], n_per: int = 3,
     if not points:
         raise StoreError("没有可生成提示词的知识点")
     return prompt_mod.build_batch_prompt(points, n_per, title_by_id=titles,
-                                         difficulty_mix=difficulty_mix)
+                                         difficulty_mix=difficulty_mix,
+                                         output_format=output_format)
 
 
 def export_questions(questions: List[Dict[str, Any]], fmt: str) -> str:

@@ -16,7 +16,7 @@ import store  # noqa: E402
 import prompt as prompt_mod  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "3.3"
+VERSION = "3.4"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -39,6 +39,9 @@ STAGE_GRADE_LABELS = {
 }
 # 每知识点题数：自定义 + 常用档位（含大批量 50 / 100）
 QUESTION_COUNT_OPTIONS = ["自定义", "1", "3", "5", "10", "15", "20", "50", "100"]
+# 大模型输出格式（界面显示 → 提示词引擎代码）
+# Excel 用制表符表格：模型无法直接产出二进制 .xlsx，复制到 Excel 另存即可
+AI_FORMAT = {"JSON": "json", "TXT": "txt", "Excel": "xlsx", "CSV": "csv"}
 AI_PRESETS = {
     "自定义": None,
     "基础为主": {1: 50, 2: 30, 3: 15, 4: 5},
@@ -484,9 +487,13 @@ class App:
         self.ai_ent_n = ttk.Entry(nf, textvariable=self.ai_var_n_custom, width=6)
         self.ai_ent_n.bind("<KeyRelease>", lambda _: self.ai_update_alloc())
         ttk.Label(p1, text="难度预设").pack(side="left")
-        self.ai_var_preset = tk.StringVar(value="自定义")
+        self.ai_var_preset = tk.StringVar(value="基础为主")
         ClickCombo(p1, self.ai_var_preset, list(AI_PRESETS), width=11,
                    command=self.ai_apply_preset).pack(side="left", padx=(4, 14))
+        ttk.Label(p1, text="输出格式").pack(side="left")
+        self.ai_var_format = tk.StringVar(value="JSON")
+        ClickCombo(p1, self.ai_var_format, list(AI_FORMAT), width=7).pack(
+            side="left", padx=(4, 14))
         self.ai_lbl_alloc = ttk.Label(p1, text="", foreground="#0F6E56")
         self.ai_lbl_alloc.pack(side="left")
 
@@ -495,7 +502,7 @@ class App:
         p2.grid(row=4, column=0, sticky="ew", pady=(0, 6))
         for d in (1, 2, 3, 4):
             ttk.Label(p2, text=f"{DIFFICULTY_LABEL[d]}%").pack(side="left")
-            var = tk.StringVar(value=str({1: 20, 2: 40, 3: 30, 4: 10}[d]))
+            var = tk.StringVar(value=str(AI_PRESETS["基础为主"][d]))
             ent = ttk.Entry(p2, textvariable=var, width=5)
             ent.pack(side="left", padx=(3, 10))
             ent.bind("<KeyRelease>", lambda _: self.ai_update_alloc())
@@ -697,19 +704,23 @@ class App:
             return
         n = self._ai_current_n()
         mix = self._ai_mix()
+        fmt = AI_FORMAT.get(self.ai_var_format.get(), "json")
         try:
             if len(ids) == 1:
-                text = store.build_point_prompt(ids[0], n, difficulty_mix=mix)
+                text = store.build_point_prompt(ids[0], n, difficulty_mix=mix,
+                                                output_format=fmt)
                 scope = "单个知识点"
             else:
-                text = store.build_batch_prompt(ids, n, difficulty_mix=mix)
+                text = store.build_batch_prompt(ids, n, difficulty_mix=mix,
+                                                output_format=fmt)
                 scope = f"{len(ids)} 个知识点"
         except store.StoreError as e:
             messagebox.showerror("生成失败", str(e))
             return
         self.ai_text.delete("1.0", "end")
         self.ai_text.insert("1.0", text)
-        self.ai_lbl_status.configure(text=f"已生成 {len(text)} 字 · {scope} · 每点 {n} 题")
+        self.ai_lbl_status.configure(
+            text=f"已生成 {len(text)} 字 · {scope} · 每点 {n} 题 · {self.ai_var_format.get()}")
 
     def ai_copy(self):
         text = self.ai_text.get("1.0", "end").strip()
@@ -1040,14 +1051,15 @@ class App:
         if not self.selected_id:
             messagebox.showinfo("提示", "请先在列表中选择一个知识点")
             return
-        # 用局部变量固定当前选中的知识点：PromptDialog 只会回调 builder(n)，
+        # 用局部变量固定当前选中的知识点：PromptDialog 回调 builder(n, fmt)，
         # 这里必须把 topic_id 绑定进去，否则题数会被误当成 topic_id（"知识点不存在: 5"）。
         topic_id = self.selected_id
         found = store.find_point(topic_id)
         if not found:
             return
         kp, _ = found
-        PromptDialog(self.root, lambda n: store.build_point_prompt(topic_id, n),
+        PromptDialog(self.root,
+                     lambda n, fmt: store.build_point_prompt(topic_id, n, output_format=fmt),
                      title=f"出题提示词 · {kp['name']}", default_n=5)
 
     def generate_batch_prompt(self):
@@ -1056,7 +1068,8 @@ class App:
             messagebox.showinfo("提示", "当前列表没有知识点，请先选择册或设置筛选")
             return
         ids = [kp["id"] for kp, _ in rows]
-        PromptDialog(self.root, lambda n: store.build_batch_prompt(ids, n),
+        PromptDialog(self.root,
+                     lambda n, fmt: store.build_batch_prompt(ids, n, output_format=fmt),
                      title=f"批量出题提示词 · {len(ids)} 个知识点", default_n=3)
 
     def generate_questions(self):
@@ -1167,11 +1180,14 @@ class App:
    可连选两行之间的全部数据；点「选」列表头可按已选 / 未选排序，再点切换方向。
    「全选当前」=全选本页结果，「清空选择」重来。
 7. 「每知识点题数」可选 1/3/5/10/15/20/50/100，或选「自定义」填任意正整数。
-   难度用「容易/中等/较难/难」四档：可用预设（基础为主/均衡/进阶/挑战），
-   也可直接改四个百分比，下方实时显示按题数换算的各档题数。
+   难度用「容易/中等/较难/难」四档：预设默认「基础为主」（50/30/15/5），
+   也可选均衡/进阶/挑战或直接改四个百分比，实时显示按题数换算的各档题数。
+   「输出格式」可选 JSON / TXT / Excel / CSV：JSON 便于入库，TXT 便于阅读，
+   Excel 输出制表符表格（复制到 Excel 另存 .xlsx），CSV 可直接导入表格。
 8. 点「生成提示词」：勾 1 个出单点提示词，勾多个出批量提示词。
    提示词含完整知识点档案、年级红线（禁止超出该知识点所属年级水平）、
-   难度分布、题目来源知识点字段（topic_id/topic_name）、JSON 格式与示例。
+   难度分布、题目来源知识点字段（topic_id/topic_name），以及所选输出格式的
+   字段说明与示例。
 9. 生成后可在文本框直接微调，「复制全部」粘贴到 DeepSeek / 元宝 / ChatGPT，
    或导出 .txt / .md。
 
@@ -1188,7 +1204,7 @@ class PromptDialog:
     """大模型出题提示词窗口：生成 → 预览 → 复制 / 导出。"""
 
     def __init__(self, parent: tk.Tk, builder, title: str, default_n: int = 5):
-        self.builder = builder                  # fn(n) -> prompt 文本
+        self.builder = builder                  # fn(n, fmt) -> prompt 文本
         self.win = tk.Toplevel(parent)
         self.win.title(title)
         self.win.geometry("900x760")
@@ -1201,6 +1217,10 @@ class PromptDialog:
         ttk.Label(bar, text="每题数").pack(side="left")
         self.var_n = tk.StringVar(value=str(default_n))
         ClickCombo(bar, self.var_n, QUESTION_COUNT_OPTIONS[1:], width=7,
+                   command=self.refresh).pack(side="left", padx=(4, 12))
+        ttk.Label(bar, text="输出格式").pack(side="left")
+        self.var_format = tk.StringVar(value="JSON")
+        ClickCombo(bar, self.var_format, list(AI_FORMAT), width=7,
                    command=self.refresh).pack(side="left", padx=(4, 12))
         ttk.Button(bar, text="重新生成", command=self.refresh).pack(side="left")
         self.lbl = ttk.Label(bar, text="", foreground="#0F6E56")
@@ -1224,7 +1244,7 @@ class PromptDialog:
     def refresh(self):
         try:
             n = int(self.var_n.get())
-            text = self.builder(n)
+            text = self.builder(n, AI_FORMAT.get(self.var_format.get(), "json"))
         except Exception as exc:  # noqa: BLE001
             messagebox.showerror("生成失败", str(exc), parent=self.win)
             return
