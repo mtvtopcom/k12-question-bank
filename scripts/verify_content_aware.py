@@ -64,7 +64,8 @@ def main():
                 # 不做文本溯源要求——这是设计如此，不是缺陷。
                 concept, mistakes = split_explanation(t.get("explanation", ""))
                 seeds = [t.get("topic", ""), t.get("objective", ""), concept] + mistakes
-                is_numeric = bool(re.search(r"\d\s*[+\-×÷=]\s*\d", q.stem))
+                # 数值题的算式可能在题干（71+118=?）也可能只在解析（应用题「共有多少本？」→ 解析 71+118=189）
+                is_numeric = bool(re.search(r"\d\s*[+\-×÷=]\s*\d", q.stem + " " + q.explanation))
                 if not is_numeric and not any(s and s[:8] in (q.stem + q.explanation) for s in seeds):
                     fails.append(f"内容未溯源 {q.id} ({t['topic'][:10]})")
 

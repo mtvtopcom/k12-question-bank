@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
-"""内容感知型模板生成器。
+"""内容感知型模板生成器（考查知识内容，而非知识点档案）。
 
 与旧 TemplateGenerator 的根本区别：不从硬编码词表出题，而是读取每个知识点
-自身的内容字段（topic / objective / explanation 中的 concept 与 mistakes /
-prerequisites / domain / theme）来构造题干、正确项与干扰项。
+自身的内容字段来命题。v2.1 起去掉了「领域归类 / 目标匹配 / 前置知识」等
+元数据题型——那些题把知识点名称当题干、考它的档案字段，不是考查学习内容。
+现在的题：题干围绕学习目标（考核要求）设置情境，选项全部是**内容陈述**
+（具体做法、概念事实、典型误区、关键术语），考的是知识点本身。
 
 数据来源（knowledge_points.jsonl 的实际字段）：
     explanation = "<概念讲解>\n易错点：<错误1>；<错误2>……"
-    objective   = 一条正确的学习目标陈述
-    mistakes    = 天然的错误选项（来自 explanation 的易错点部分）
+    objective   = 学习目标（考核要求），用作题干情境
+    concept     = 概念讲解中的具体事实/做法，用作正确项
+    mistakes    = 典型误区，用作错误项或考查对象
 
 题型策略（答案均可从知识点自身判定，不依赖外部事实）：
-    goal_match     目标匹配：给出 objective，问是哪个知识点
-    statement      正误辨析：objective 为正确项，mistakes 为干扰项
-    error_spot     易错识别：mistake 为答案，objective 等为干扰项
-    key_term       核心要领：concept 中的「术语」为答案
-    prerequisite   前置知识：prerequisites 指向的知识点为答案
-    domain_class   领域/主题归类：domain / theme 为答案
-    math_numeric   数学参数化：委托旧引擎的数值题，提供无限不重复题干
+    fact_choice   要点判断：concept 的具体做法为正确项，mistakes + 同学科其他要点为干扰项
+    mistake_spot  误区识别：mistake 为答案，concept 要点 + 同学科其他要点为干扰项
+    term_cloze    术语填空：把 concept 中含「术语」的句子挖空，术语为答案
+    math_numeric  数学参数化：委托旧引擎的数值题，提供无限不重复题干（真正考运算能力）
 
 每种策略配多套「句子结构不同」的问法模板，使题干差异足够大，
 能通过 quality.py 的字符 3-gram Jaccard 去重门禁。
@@ -44,53 +44,32 @@ PREFIXES = ["", "基础巩固：", "概念辨析：", "想一想：", "练一练
 
 # 每种策略多套问法模板，句子结构差异大（降低互相的 n-gram 相似度）
 TEMPLATES: Dict[str, List[str]] = {
-    "goal_match": [
-        "“{obj}”是下列哪个知识点的学习目标？",
-        "下列哪个知识点以“{obj}”为学习目标？",
-        "哪一课的学习目标是“{obj}”？",
-        "“{obj}”这一描述针对的是哪个知识点？",
-        "要把“{obj}”作为目标，应学习下面哪一课？",
-        "下面哪一项知识点，其目标可以概括为“{obj}”？",
+    # 正确项是 concept 里的具体做法/事实，干扰项含真实误区——考「怎么做才对」
+    "fact_choice": [
+        "围绕学习目标“{obj}”，下列哪种做法是正确的？",
+        "为了做到“{obj}”，下面哪一项做法恰当？",
+        "在学习「{topic}」时，哪种处理方式符合要求？",
+        "要达成“{obj}”，应当采取下面哪一做法？",
+        "关于「{topic}」，下列做法中合理的是？",
+        "按照“{obj}”的要求，应选择哪一项？",
     ],
-    "statement": [
-        "依据“{anchor}”，关于「{topic}」的要求，下列说法正确的是？",
-        "结合“{anchor}”，下面对「{topic}」的描述哪一项准确？",
-        "「{topic}」强调“{anchor}”，下列表述正确的是？",
-        "关于「{topic}」，下列说法与“{anchor}”一致的是？",
-        "“{anchor}”体现了「{topic}」的要求，以下哪项正确？",
-        "对照“{anchor}”，选出关于「{topic}」的正确说法。",
+    # 正确项是典型误区——考「哪种做法是错的/要避免」
+    "mistake_spot": [
+        "学习「{topic}」时，下面哪种做法容易出错？",
+        "要达成“{obj}”，下列哪一项是需要避免的？",
+        "关于「{topic}」，哪种情况属于常见误区？",
+        "在「{topic}」的学习中，哪一做法不恰当？",
+        "对照“{obj}”，下面哪项做法会偏离目标？",
+        "「{topic}」学习中，老师最应避免的是？",
     ],
-    "error_spot": [
-        "学习「{topic}」时，下列哪种情形属于常见错误？",
-        "关于「{topic}」，以下哪项是学习中的典型错误？",
-        "下列做法中，哪一个不符合「{topic}」的学习要求？",
-        "在「{topic}」的学习中，哪种情况需要避免？",
-        "以下哪项是学习「{topic}」时容易犯的错误？",
-        "学习「{topic}」时，老师或学生应避免出现的是？",
-    ],
-    "key_term": [
-        "“{anchor}”强调的是下列哪个核心要领？",
-        "下面哪个术语最能概括“{anchor}”？",
-        "“{anchor}”这一说法指向的核心概念是？",
-        "要理解“{anchor}”，关键是把握下列哪个要领？",
-        "“{anchor}”体现的核心要领是哪一个？",
-        "下列哪个概念与“{anchor}”的含义最吻合？",
-    ],
-    "prerequisite": [
-        "按知识体系的先后安排，学习「{topic}」之前应先掌握？",
-        "要顺利学习「{topic}」，下面哪项是应先具备的基础？",
-        "「{topic}」的先修知识点是下列哪一个？",
-        "在学习「{topic}」之前，最先需要掌握的是？",
-        "下列哪个知识点是学习「{topic}」的前提？",
-        "为学好「{topic}」，应先铺垫下面哪一课？",
-    ],
-    "domain_class": [
-        "知识点「{topic}」在课标中归入下列哪个{label}？",
-        "按课标体系，「{topic}」属于下面哪个{label}？",
-        "「{topic}」这一内容应划入下列哪个{label}？",
-        "下列哪个{label}包含知识点「{topic}」？",
-        "从课标分类看，「{topic}」归属于哪个{label}？",
-        "「{topic}」对应的课标{label}是？",
+    # 把 concept 中含「术语」的句子挖空——考核心要领本身
+    "term_cloze": [
+        "“{anchor}”——空缺处应填入下列哪个要领？",
+        "下面哪个术语最适合填入：“{anchor}”？",
+        "“{anchor}”这句话中的关键要领是？",
+        "补全这句话：“{anchor}”，应选？",
+        "“{anchor}”——横线处对应哪个概念？",
+        "要使这句话成立：“{anchor}”，关键术语是？",
     ],
 }
 
@@ -155,6 +134,8 @@ class ContentAwareGenerator(BaseGenerator):
         self._terms: List[str] = []
         self._terms_by_subject: Dict[str, List[str]] = {}
         self._title_by_id: Dict[str, str] = {}
+        self._facts_by_subject: Dict[str, List[str]] = {}   # 同学科 concept 事实，做同质干扰项
+        self._facts_by_domain: Dict[Tuple[str, str], List[str]] = {}  # (学科, 领域) → 事实，优先同领域内聚
         if corpus:
             self.set_corpus(corpus)
 
@@ -167,6 +148,8 @@ class ContentAwareGenerator(BaseGenerator):
         obj_by_subj: Dict[str, List[str]] = {}
         domains, themes, terms = [], [], []
         terms_by_subj: Dict[str, List[str]] = {}
+        facts_by_subj: Dict[str, List[str]] = {}
+        facts_by_domain: Dict[Tuple[str, str], List[str]] = {}
         title_by_id: Dict[str, str] = {}
         for t in topics:
             subj = t.get("subject", "")
@@ -192,6 +175,17 @@ class ContentAwareGenerator(BaseGenerator):
                 subj_terms = terms_by_subj.setdefault(subj, [])
                 if term not in subj_terms:
                     subj_terms.append(term)
+            for fact in clauses(concept):
+                bucket = facts_by_subj.setdefault(subj, [])
+                if fact not in bucket:
+                    bucket.append(fact)
+                domain = t.get("domain", "")
+                if domain:
+                    dbucket = facts_by_domain.setdefault((subj, domain), [])
+                    if fact not in dbucket:
+                        dbucket.append(fact)
+        self._facts_by_domain = facts_by_domain
+        self._facts_by_subject = facts_by_subj
         self._titles_by_subject = titles
         self._objectives = objectives
         self._objectives_by_subject = obj_by_subj
@@ -206,6 +200,16 @@ class ContentAwareGenerator(BaseGenerator):
 
     def _objectives_for(self, topic: Dict[str, Any]) -> List[str]:
         return self._objectives_by_subject.get(topic.get("subject", ""), self._objectives)
+
+    def _peer_facts(self, topic: Dict[str, Any]) -> List[str]:
+        """同学科干扰项：优先同领域的事实要点，不足再补同学科其他领域的。"""
+        subj = topic.get("subject", "")
+        domain = topic.get("domain", "")
+        out = list(self._facts_by_domain.get((subj, domain), [])) if domain else []
+        for f in self._facts_by_subject.get(subj, []):
+            if f not in out:
+                out.append(f)
+        return out
 
     @staticmethod
     def _sample(pool: List[str], exclude: Tuple[str, ...], k: int,
@@ -256,17 +260,14 @@ class ContentAwareGenerator(BaseGenerator):
         return out[:n]
 
     def _strategies(self, topic: Dict[str, Any], ctx: Dict[str, Any]) -> List[str]:
+        # 只保留考查知识内容的策略；元数据题（领域/目标匹配/前置）已移除。
         s: List[str] = []
-        if ctx["objective"]:
-            s += ["statement", "goal_match", "statement", "goal_match"]
+        if ctx["clauses"]:
+            s += ["fact_choice", "fact_choice", "fact_choice"]
         if ctx["mistakes"]:
-            s += ["error_spot", "error_spot"]
-        if ctx["terms"] or self._terms:
-            s += ["key_term"]
-        if topic.get("prerequisites"):
-            s += ["prerequisite"]
-        if topic.get("domain") or topic.get("theme"):
-            s += ["domain_class"]
+            s += ["mistake_spot", "mistake_spot"]
+        if ctx["terms"]:
+            s += ["term_cloze", "term_cloze"]
         grade = topic.get("grade", "")
         is_kg = any(k in grade for k in ("小班", "中班", "大班", "幼儿园"))
         # 幼儿园数学严格执行「去小学化」：不出竖式/算式，只用内容辨析题。
@@ -274,7 +275,7 @@ class ContentAwareGenerator(BaseGenerator):
         # 运算，数值题在 _s_math_numeric 内被拒，自动退化为内容辨析题。
         if self.math_numeric and topic.get("subject") == "math" and not is_kg:
             s += ["math_numeric"] * 10
-        return s or ["domain_class"]
+        return s or ["fact_choice"]
 
     def _pack(self, topic: Dict[str, Any], strategy: str, stem: str,
               correct: str, distractors: List[str], explanation: str,
@@ -305,98 +306,69 @@ class ContentAwareGenerator(BaseGenerator):
         )
 
     # ---------- 题型策略 ----------
-    def _s_goal_match(self, topic, ctx, v, rng):
-        obj = ctx["objective"]
-        if not obj or len(self._titles(topic)) < 4:
+    def _s_fact_choice(self, topic, ctx, v, rng):
+        """考「怎么做才对」：正确项是 concept 的具体做法，干扰项含真实误区。"""
+        facts = ctx["clauses"]
+        if not facts:
             return None
-        stem = self._ask("goal_match", v, obj=obj)
-        dis = self._sample(self._titles(topic), (topic.get("topic", ""),), 3, rng)
-        if len(dis) < 3:
-            return None
-        return self._pack(topic, "goal_match", stem, topic.get("topic", ""), dis,
-                          f"该目标正是「{topic.get('topic','')}」的学习目标：{obj}；其余为其他知识点的目标。",
-                          rng, v)
-
-    def _s_statement(self, topic, ctx, v, rng):
+        ans = _clip(facts[v % len(facts)], 80)
         obj = ctx["objective"]
         if not obj:
             return None
-        anchor = _clip(ctx["clauses"][v % len(ctx["clauses"])], 46) if ctx["clauses"] \
-            else topic.get("theme", "")
-        stem = self._ask("statement", v, anchor=anchor, topic=topic.get("topic", ""))
-        pool = list(ctx["mistakes"]) + [o for o in self._objectives_for(topic) if o != obj]
-        dis = self._sample(pool, (obj,), 3, rng)
-        if len(dis) < 3:
-            return None
-        return self._pack(topic, "statement", stem, obj, dis,
-                          f"正确说法来自「{topic.get('topic','')}」的学习目标“{obj}”；其余说法与本知识点要求不符，属于常见易错点或其他知识点的目标。",
-                          rng, v)
-
-    def _s_error_spot(self, topic, ctx, v, rng):
-        mistakes = ctx["mistakes"]
-        if not mistakes:
-            return None
-        ans = mistakes[v % len(mistakes)]
-        stem = self._ask("error_spot", v, topic=topic.get("topic", ""))
-        pool = [ctx["objective"]] + ctx["clauses"] + \
-               [o for o in self._objectives_for(topic) if o != ctx["objective"]]
+        stem = self._ask("fact_choice", v, obj=obj, topic=topic.get("topic", ""))
+        # 干扰项：本知识点的典型误区 + 同学科其他知识点的要点（内容同质）
+        pool = [m for m in ctx["mistakes"] if m != ans]
+        pool += self._peer_facts(topic)
         dis = self._sample(pool, (ans,), 3, rng)
         if len(dis) < 3:
             return None
-        return self._pack(topic, "error_spot", stem, ans, dis,
-                          f"“{ans}”是「{topic.get('topic','')}」的常见易错点；其余为符合要求的表述。",
+        return self._pack(topic, "fact_choice", stem, ans, dis,
+                          f"“{ans}”是「{topic.get('topic','')}」讲解中的正确做法，"
+                          f"契合学习目标“{obj}”；其余是常见误区或其他内容的做法。",
+                          rng, v, bloom="应用")
+
+    def _s_mistake_spot(self, topic, ctx, v, rng):
+        """考「哪种做法是错的」：正确项是典型误区，干扰项是正确做法。"""
+        mistakes = ctx["mistakes"]
+        if not mistakes:
+            return None
+        ans = _clip(mistakes[v % len(mistakes)], 80)
+        obj = ctx["objective"]
+        stem = self._ask("mistake_spot", v, obj=obj, topic=topic.get("topic", ""))
+        pool = list(ctx["clauses"])
+        pool += self._peer_facts(topic)
+        dis = self._sample(pool, (ans,), 3, rng)
+        if len(dis) < 3:
+            return None
+        return self._pack(topic, "mistake_spot", stem, ans, dis,
+                          f"“{ans}”是「{topic.get('topic','')}」讲解中明确列出的常见误区；"
+                          f"其余为符合要求或有价值的做法。",
                           rng, v, bloom="分析")
 
-    def _s_key_term(self, topic, ctx, v, rng):
-        # 只用本知识点 concept 中的术语。绝不能从全库兜底抽术语当答案——
-        # 那样会给「整式的乘法」出答案为「听懂一步指令」的荒谬题。
+    def _s_term_cloze(self, topic, ctx, v, rng):
+        """考核心要领：把 concept 中含「术语」的原句挖空，术语为答案。"""
         local = ctx["terms"]
-        if len(local) < 1:
+        if not local:
             return None
         ans = local[v % len(local)]
-        anchor_src = ctx["clauses"] or [topic.get("topic", "")]
-        safe = [c for c in anchor_src if ans not in c] or anchor_src
-        anchor = safe[v % len(safe)]
-        stem = self._ask("key_term", v, anchor=_clip(anchor, 46))
+        # 找到含该术语的原句作为锚点（保证题干本身携带内容语境）
+        anchor = ""
+        for fact in ctx["clauses"]:
+            if f"「{ans}」" in fact:
+                anchor = fact.replace(f"「{ans}」", "＿＿")
+                break
+        if not anchor:
+            anchor = _clip(topic.get("topic", ""), 46) + "的关键要领是＿＿"
+        stem = self._ask("term_cloze", v, anchor=_clip(anchor, 60))
         # 干扰项取同学科其他知识点的术语，避免跨科串味
         peer = self._terms_by_subject.get(topic.get("subject", ""), [])
         dis = self._sample(peer, (ans,), 3, rng)
         if len(dis) < 3:
             return None
-        return self._pack(topic, "key_term", stem, ans, dis,
-                          f"「{ans}」是「{topic.get('topic','')}」概念讲解中的关键要领；其余术语对应其他知识点或环节。",
-                          rng, v)
-
-    def _s_prerequisite(self, topic, ctx, v, rng):
-        pre_ids = topic.get("prerequisites") or []
-        if not pre_ids:
-            return None
-        ans = self._title_by_id.get(pre_ids[v % len(pre_ids)], "")
-        if not ans:
-            return None
-        stem = self._ask("prerequisite", v, topic=topic.get("topic", ""))
-        dis = self._sample(self._titles(topic), (topic.get("topic", ""), ans), 3, rng)
-        if len(dis) < 3:
-            return None
-        return self._pack(topic, "prerequisite", stem, ans, dis,
-                          f"「{topic.get('topic','')}」的前置知识点包含「{ans}」，应先掌握它再学习本知识点。",
+        return self._pack(topic, "term_cloze", stem, ans, dis,
+                          f"「{ans}」是「{topic.get('topic','')}」概念讲解中的关键术语；"
+                          f"其余术语属于同学科其他知识点。",
                           rng, v, bloom="理解")
-
-    def _s_domain_class(self, topic, ctx, v, rng):
-        use_theme = bool(topic.get("theme")) and (v % 2 == 1)
-        key = "theme" if use_theme else "domain"
-        ans = topic.get(key, "")
-        pool = self._themes if use_theme else self._domains
-        if not ans or len(pool) < 4:
-            return None
-        label = "主题" if use_theme else "领域"
-        stem = self._ask("domain_class", v, topic=topic.get("topic", ""), label=label)
-        dis = self._sample(pool, (ans,), 3, rng)
-        if len(dis) < 3:
-            return None
-        return self._pack(topic, "domain_class", stem, ans, dis,
-                          f"「{topic.get('topic','')}」归属{label}「{ans}」（依据 {topic.get('source','课标')}）。",
-                          rng, v, bloom="记忆")
 
     def _s_math_numeric(self, topic, ctx, v, rng):
         """数值题：只在章节/主题确实是运算类时出题，避免给位置、统计、

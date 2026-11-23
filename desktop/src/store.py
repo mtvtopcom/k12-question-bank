@@ -413,8 +413,7 @@ _GEN_CFG = {"quality": {
 }}
 
 KIND_LABELS = {
-    "goal_match": "目标匹配", "statement": "正误辨析", "error_spot": "易错识别",
-    "key_term": "核心要领", "prerequisite": "前置知识", "domain_class": "领域归类",
+    "fact_choice": "要点判断", "mistake_spot": "误区识别", "term_cloze": "术语填空",
     "percentage": "百分数计算", "equation": "方程求解", "fraction": "分数运算",
     "geometry": "图形计算", "arithmetic": "四则运算",
 }
@@ -510,27 +509,18 @@ def generate_batch(topic_ids: List[str], n: int = 8, seed: int = 20261120,
 
 
 def question_kind(q: Dict[str, Any]) -> str:
-    """从题干/来源判断题型标签，供界面展示。"""
+    """从题干判断题型标签，供界面展示。题只考内容，无元数据题型。"""
     text = q.get("stem", "")
-    for key in ("学习目标", "哪一课"):
+    for key in ("空缺", "填入", "补全", "横线", "关键术语", "＿＿"):
         if key in text:
-            return KIND_LABELS["goal_match"]
-    for key in ("常见错误", "典型错误", "容易犯", "需要避免", "应避免出现"):
+            return KIND_LABELS["term_cloze"]
+    for key in ("容易出错", "需要避免", "常见误区", "不恰当", "偏离目标", "最应避免"):
         if key in text:
-            return KIND_LABELS["error_spot"]
-    for key in ("核心要领", "术语", "核心概念", "关键要领"):
-        if key in text:
-            return KIND_LABELS["key_term"]
-    for key in ("先修", "先掌握", "先具备", "前提", "先铺垫"):
-        if key in text:
-            return KIND_LABELS["prerequisite"]
-    for key in ("归入", "属于下面", "划入", "归属于", "课标"):
-        if key in text:
-            return KIND_LABELS["domain_class"]
-    if any(op in text for op in (" + ", " - ", " × ", "÷", "=", "？")) and \
+            return KIND_LABELS["mistake_spot"]
+    if any(op in text for op in (" + ", " - ", " × ", "÷", "=", "多少", "?")) and \
             any(ch.isdigit() for ch in text):
         return KIND_LABELS["arithmetic"]
-    return KIND_LABELS["statement"]
+    return KIND_LABELS["fact_choice"]
 
 
 def export_questions(questions: List[Dict[str, Any]], fmt: str) -> str:

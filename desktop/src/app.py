@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import store  # noqa: E402
 
 APP_TITLE = "K12 知识点地图 · 管理台"
-VERSION = "1.1"
+VERSION = "1.2"
 
 
 class App:
