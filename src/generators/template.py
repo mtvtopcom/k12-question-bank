@@ -156,8 +156,9 @@ class TemplateGenerator(BaseGenerator):
     # ---------------- 数学 ----------------
     def _gen_arithmetic(self, topic, i, rng):
         lo, hi = self._num_range(topic["grade"])
-        # 高年级扩大取值上限，增加组合空间
-        span = max(hi - lo, 10)
+        # 只在小学中段以后扩大取值上限以增加组合空间；
+        # 低年级必须守住学段上限，否则会出现「20以内」知识点出五位数加法。
+        span = 0 if hi <= 20 else max((hi - lo) // 2, 10)
         a, b = rng.randint(lo, hi + span), rng.randint(lo, hi + span)
         mode = rng.choice(["add", "sub", "mul", "word"])
         if mode == "word":
@@ -326,10 +327,21 @@ class TemplateGenerator(BaseGenerator):
 
     @staticmethod
     def _num_range(grade: str):
-        if any(k in grade for k in ("一年级", "幼儿园")):
+        # 幼儿园年级键是「小班/中班/大班」，旧版只认「幼儿园」，会落到默认
+        # 大数区间，给小班出「16359+13152」这类严重超纲题。此处补全。
+        if "小班" in grade:
+            return (1, 5)
+        if "中班" in grade:
+            return (1, 10)
+        if "大班" in grade:
+            return (1, 20)
+        if "一年级" in grade:
             return (1, 20)
         if "二年级" in grade:
             return (10, 99)
         if "三年级" in grade:
             return (50, 999)
+        if any(k in grade for k in ("四年级", "五年级", "六年级")):
+            return (100, 9999)
+        # 初中及以上
         return (100, 9999)

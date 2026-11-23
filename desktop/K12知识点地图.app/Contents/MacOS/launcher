@@ -1,6 +1,9 @@
 #!/bin/bash
 # 由 build_app.py 生成，请勿手改
-APP_SRC="$(cd "$(dirname "$0")/../../../src" && pwd)/app.py"
+APP_SRC=/Users/H/WorkBuddy/spaces/2026_11_20_13-19-05/question-bank/desktop/src/app.py
+if [ ! -f "$APP_SRC" ]; then
+  APP_SRC="$(cd "$(dirname "$0")/../../../src" && pwd)/app.py"
+fi
 if [ ! -f "$APP_SRC" ]; then
   APP_SRC="$(cd "$(dirname "$0")/../.." && pwd)/src/app.py"
 fi

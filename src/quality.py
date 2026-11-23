@@ -47,8 +47,21 @@ class QualityGate:
         self.min_explanation_chars = int(q.get("min_explanation_chars", 8))
         self.threshold = float(q.get("dedup_jaccard_threshold", 0.85))
         self.check_answer = bool(q.get("check_answer_in_options", True))
-        self._seen_grams: List[Tuple[str, set]] = []  # (id, grams)
+        # 按 n-gram 数量分桶：Jaccard>=t 的两个集合，其规模之比必在 [t, 1/t]
+        # 内，故只需与相邻尺寸的桶比对。全库数万题时避免 O(n^2) 全表扫描。
+        self._bucket_size = 8
+        self._buckets: Dict[int, List[Tuple[str, set]]] = {}
         self._seen_hashes: Dict[str, str] = {}
+
+    @staticmethod
+    def _bucket_key(size: int, bucket_size: int) -> int:
+        return size // bucket_size
+
+    def _bucket_range(self, size: int):
+        k = self._bucket_key(size, self._bucket_size)
+        lo = max(0, int(k * self.threshold) - 1)
+        hi = int(k / self.threshold) + 2
+        return range(lo, hi + 1)
 
     def validate_structure(self, q: Question) -> Tuple[bool, List[str]]:
         notes: List[str] = []
@@ -76,12 +89,13 @@ class QualityGate:
         if h in self._seen_hashes:
             return True, self._seen_hashes[h]
         grams = ngrams(q.stem)
-        for prev_id, prev_grams in self._seen_grams:
-            sim = jaccard(grams, prev_grams)
-            if sim >= self.threshold:
-                return True, prev_id
+        for k in self._bucket_range(len(grams)):
+            for prev_id, prev_grams in self._buckets.get(k, ()):
+                if jaccard(grams, prev_grams) >= self.threshold:
+                    return True, prev_id
         self._seen_hashes[h] = q.id
-        self._seen_grams.append((q.id, grams))
+        self._buckets.setdefault(self._bucket_key(len(grams), self._bucket_size), []) \
+            .append((q.id, grams))
         return False, ""
 
     def load_existing(self, questions: List[Dict[str, Any]]) -> None:
@@ -91,7 +105,9 @@ class QualityGate:
             qid = d.get("id", "")
             h = dedup_hash(stem)
             self._seen_hashes[h] = qid
-            self._seen_grams.append((qid, ngrams(stem)))
+            grams = ngrams(stem)
+            self._buckets.setdefault(self._bucket_key(len(grams), self._bucket_size), []) \
+                .append((qid, grams))
 
     def check(self, q: Question) -> Tuple[bool, List[str]]:
         ok, notes = self.validate_structure(q)

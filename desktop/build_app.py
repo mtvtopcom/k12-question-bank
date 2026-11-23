@@ -44,11 +44,17 @@ def find_python() -> str:
 
 
 def make_launcher() -> str:
-    # app.py 在 bundle 外（desktop/src/app.py），用相对路径定位。
-    # 运行时再探测一次 python，避免构建机与运行机路径不同。
-    return r'''#!/bin/bash
+    # app.py 在 bundle 外（desktop/src/app.py）。优先使用构建时写入的
+    # 绝对路径，这样把 .app 复制到桌面 / Applications 也能启动；
+    # 相对路径作为换机器、迁移项目后的兜底。
+    import shlex
+    abs_app_src = shlex.quote(os.path.join(HERE, "src", "app.py"))
+    return f'''#!/bin/bash
 # 由 build_app.py 生成，请勿手改
-APP_SRC="$(cd "$(dirname "$0")/../../../src" && pwd)/app.py"
+APP_SRC={abs_app_src}
+if [ ! -f "$APP_SRC" ]; then
+  APP_SRC="$(cd "$(dirname "$0")/../../../src" && pwd)/app.py"
+fi
 if [ ! -f "$APP_SRC" ]; then
   APP_SRC="$(cd "$(dirname "$0")/../.." && pwd)/src/app.py"
 fi
