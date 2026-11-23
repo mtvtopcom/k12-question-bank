@@ -13,9 +13,25 @@ from tkinter import ttk, messagebox, filedialog, scrolledtext
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import store  # noqa: E402
+import prompt as prompt_mod  # noqa: E402
 
 APP_TITLE = "K12 知识点地图 · 管理台"
-VERSION = "2.0.1"
+VERSION = "3.0"
+
+# AI 提示词模块的筛选值映射（界面显示 → 数据层代码）
+AI_STAGE = {"": "", "幼儿园": "kg", "小学": "primary", "初中": "junior"}
+AI_SUBJECT = {"": "", "语文": "chinese", "数学": "math", "英语": "english"}
+AI_GRADE = {"": "", "小班": "k1", "中班": "k2", "大班": "k3",
+            "一年级": "g1", "二年级": "g2", "三年级": "g3",
+            "四年级": "g4", "五年级": "g5", "六年级": "g6",
+            "七年级": "g7", "八年级": "g8", "九年级": "g9"}
+AI_PRESETS = {
+    "自定义": None,
+    "基础为主": {1: 50, 2: 30, 3: 15, 4: 5},
+    "均衡": {1: 25, 2: 25, 3: 25, 4: 25},
+    "进阶": {1: 10, 2: 30, 3: 40, 4: 20},
+    "挑战": {1: 5, 2: 15, 3: 30, 4: 50},
+}
 
 
 class App:
@@ -29,6 +45,10 @@ class App:
         self.current_volume: str = ""          # 选中的册 volume_id
         self.current_rows = []                 # 当前列表 [(kp, vol)]
         self.selected_id: str = ""             # 选中的知识点 id
+        # AI 提示词模块独立状态（与知识点模块的选择互不干扰）
+        self.ai_rows = []                      # 当前筛选结果 [(kp, vol)]
+        self.ai_selected: set = set()          # 勾选的知识点 id
+        self.ai_vars_ratio = {}                # 难度 1-4 占比 StringVar
 
         self._build_style()
         self._build_menu()
@@ -70,8 +90,8 @@ class App:
         menubar.add_cascade(label="编辑", menu=m_edit)
 
         m_tools = tk.Menu(menubar, tearoff=0)
-        m_tools.add_command(label="生成提示词（所选知识点）", command=self.generate_prompt)
-        m_tools.add_command(label="批量生成提示词（当前列表）", command=self.generate_batch_prompt)
+        m_tools.add_command(label="AI 提示词 · 当前知识点", command=self.goto_ai_single)
+        m_tools.add_command(label="AI 提示词 · 当前列表", command=self.goto_ai_batch)
         m_tools.add_separator()
         m_local = tk.Menu(m_tools, tearoff=0)
         m_local.add_command(label="本地模板出题（所选知识点）", command=self.generate_questions)
@@ -98,9 +118,18 @@ class App:
         self.lbl_stat = ttk.Label(head, text="", style="Sub.TLabel")
         self.lbl_stat.pack(side="left", padx=16)
 
+        # 两大模块
+        nb = ttk.Notebook(self.root)
+        nb.pack(fill="both", expand=True, padx=10, pady=(0, 6))
+        self.nb = nb
+
+        # ===== 模块一：知识点管理 =====
+        tab_km = ttk.Frame(nb, padding=6)
+        nb.add(tab_km, text="知识点管理")
+
         # 主体：左右分栏
-        main = ttk.PanedWindow(self.root, orient="horizontal")
-        main.pack(fill="both", expand=True, padx=10, pady=(0, 6))
+        main = ttk.PanedWindow(tab_km, orient="horizontal")
+        main.pack(fill="both", expand=True)
 
         # 左：册树
         left = ttk.Frame(main, width=270)
@@ -181,16 +210,14 @@ class App:
         self.detail.configure(state="disabled")
         main.add(right, weight=1)
 
-        # 底部工具栏
-        bar = ttk.Frame(self.root, padding=(10, 8))
-        bar.pack(fill="x")
+        # 模块一底部工具栏
+        bar = ttk.Frame(tab_km, padding=(4, 8))
+        bar.pack(fill="x", side="bottom")
         for text, cmd in [
             ("新增知识点", self.add_dialog),
             ("编辑所选", self.edit_dialog),
             ("删除所选", self.delete_selected),
             ("撤销", self.undo),
-            ("生成提示词", self.generate_prompt),
-            ("批量提示词", self.generate_batch_prompt),
             ("运行校验", self.run_checks),
             ("导出 CSV", lambda: self.export("csv")),
             ("刷新", self.reload_all),
@@ -198,6 +225,271 @@ class App:
             ttk.Button(bar, text=text, command=cmd, style="Toolbar.TButton").pack(side="left", padx=(0, 8))
         self.lbl_msg = ttk.Label(bar, text="", foreground="#0F6E56")
         self.lbl_msg.pack(side="right")
+
+        # ===== 模块二：AI 提示词 =====
+        tab_ai = ttk.Frame(nb, padding=6)
+        nb.add(tab_ai, text="AI 提示词")
+        self._build_ai_tab(tab_ai)
+        self.ai_update_alloc()
+        self.ai_refresh()
+
+    # ---------------- AI 提示词模块 ----------------
+    def _build_ai_tab(self, parent):
+        parent.columnconfigure(0, weight=1)
+        parent.rowconfigure(2, weight=3)
+        parent.rowconfigure(6, weight=2)
+
+        # 筛选栏
+        flt = ttk.Frame(parent)
+        flt.grid(row=0, column=0, sticky="ew", pady=(2, 8))
+        ttk.Label(flt, text="学段").pack(side="left")
+        self.ai_var_stage = tk.StringVar(value="")
+        ttk.Combobox(flt, textvariable=self.ai_var_stage, width=9,
+                     values=list(AI_STAGE), state="readonly").pack(side="left", padx=(4, 10))
+        ttk.Label(flt, text="科目").pack(side="left")
+        self.ai_var_subject = tk.StringVar(value="")
+        ttk.Combobox(flt, textvariable=self.ai_var_subject, width=8,
+                     values=list(AI_SUBJECT), state="readonly").pack(side="left", padx=(4, 10))
+        ttk.Label(flt, text="年级").pack(side="left")
+        self.ai_var_grade = tk.StringVar(value="")
+        ttk.Combobox(flt, textvariable=self.ai_var_grade, width=9,
+                     values=list(AI_GRADE), state="readonly").pack(side="left", padx=(4, 10))
+        ttk.Label(flt, text="搜索").pack(side="left")
+        self.ai_var_q = tk.StringVar()
+        eq = ttk.Entry(flt, textvariable=self.ai_var_q, width=22)
+        eq.pack(side="left", padx=(4, 6))
+        eq.bind("<Return>", lambda _: self.ai_refresh())
+        ttk.Button(flt, text="筛选", command=self.ai_refresh).pack(side="left", padx=(0, 6))
+        ttk.Button(flt, text="重置", command=self.ai_reset_filters).pack(side="left")
+
+        # 列表标题 + 选择操作
+        lbar = ttk.Frame(parent)
+        lbar.grid(row=1, column=0, sticky="ew")
+        self.ai_lbl_list = ttk.Label(lbar, text="知识点", style="Head.TLabel")
+        self.ai_lbl_list.pack(side="left")
+        ttk.Button(lbar, text="全选当前", command=self.ai_select_all).pack(side="right", padx=(4, 0))
+        ttk.Button(lbar, text="反选", command=self.ai_invert).pack(side="right", padx=(4, 0))
+        ttk.Button(lbar, text="清空选择", command=self.ai_clear_sel).pack(side="right", padx=(4, 0))
+
+        # 勾选列表：首列点 ☑ 勾选，可单选 / 多选
+        cols = ("sel", "id", "name", "grade", "domain", "difficulty")
+        self.ai_list = ttk.Treeview(parent, columns=cols, show="headings", selectmode="browse")
+        heads = {"sel": "选", "id": "ID", "name": "知识点", "grade": "年级",
+                 "domain": "课标领域", "difficulty": "难度"}
+        widths = {"sel": 38, "id": 190, "name": 280, "grade": 90,
+                  "domain": 150, "difficulty": 55}
+        for c in cols:
+            self.ai_list.heading(c, text=heads[c])
+            self.ai_list.column(c, width=widths[c],
+                                anchor="center" if c in ("sel", "difficulty") else "w")
+        self.ai_list.grid(row=2, column=0, sticky="nsew")
+        sb = ttk.Scrollbar(parent, orient="vertical", command=self.ai_list.yview)
+        sb.grid(row=2, column=1, sticky="ns")
+        self.ai_list.configure(yscrollcommand=sb.set)
+        self.ai_list.bind("<Button-1>", self.ai_on_click)
+
+        # 参数行一：题数 + 难度预设
+        p1 = ttk.Frame(parent)
+        p1.grid(row=3, column=0, sticky="ew", pady=(8, 4))
+        ttk.Label(p1, text="每知识点题数").pack(side="left")
+        self.ai_var_n = tk.StringVar(value="5")
+        cbn = ttk.Combobox(p1, textvariable=self.ai_var_n, width=6,
+                           values=["3", "5", "8", "10", "15", "20"], state="readonly")
+        cbn.pack(side="left", padx=(4, 14))
+        cbn.bind("<<ComboboxSelected>>", lambda _: self.ai_update_alloc())
+        ttk.Label(p1, text="难度预设").pack(side="left")
+        self.ai_var_preset = tk.StringVar(value="自定义")
+        cbp = ttk.Combobox(p1, textvariable=self.ai_var_preset, width=10,
+                           values=list(AI_PRESETS), state="readonly")
+        cbp.pack(side="left", padx=(4, 14))
+        cbp.bind("<<ComboboxSelected>>", lambda _: self.ai_apply_preset())
+        self.ai_lbl_alloc = ttk.Label(p1, text="", foreground="#0F6E56")
+        self.ai_lbl_alloc.pack(side="left")
+
+        # 参数行二：四级占比
+        p2 = ttk.Frame(parent)
+        p2.grid(row=4, column=0, sticky="ew", pady=(0, 6))
+        for d in (1, 2, 3, 4):
+            ttk.Label(p2, text=f"难度{d}%").pack(side="left")
+            var = tk.StringVar(value=str({1: 20, 2: 40, 3: 30, 4: 10}[d]))
+            ent = ttk.Entry(p2, textvariable=var, width=5)
+            ent.pack(side="left", padx=(3, 10))
+            ent.bind("<KeyRelease>", lambda _: self.ai_update_alloc())
+            self.ai_vars_ratio[d] = var
+        ttk.Button(p2, text="刷新分配", command=self.ai_update_alloc).pack(side="left", padx=(0, 10))
+        self.ai_lbl_ratio_sum = ttk.Label(p2, text="")
+        self.ai_lbl_ratio_sum.pack(side="left")
+
+        # 操作栏
+        ops = ttk.Frame(parent)
+        ops.grid(row=5, column=0, sticky="ew", pady=(2, 6))
+        ttk.Button(ops, text="生成提示词", command=self.ai_generate,
+                   style="Toolbar.TButton").pack(side="left", padx=(0, 8))
+        ttk.Button(ops, text="复制全部", command=self.ai_copy).pack(side="left", padx=(0, 8))
+        ttk.Button(ops, text="导出 .txt", command=lambda: self.ai_export("txt")).pack(side="left", padx=(0, 8))
+        ttk.Button(ops, text="导出 .md", command=lambda: self.ai_export("md")).pack(side="left", padx=(0, 8))
+        self.ai_lbl_status = ttk.Label(ops, text="", foreground="#0F6E56")
+        self.ai_lbl_status.pack(side="left", padx=12)
+
+        # 提示词输出（可编辑微调）
+        self.ai_text = scrolledtext.ScrolledText(parent, wrap="word", font=("", 12),
+                                                 background="#FBFBFB", padx=10, pady=8)
+        self.ai_text.grid(row=6, column=0, sticky="nsew", columnspan=2)
+
+    # ---- AI 模块：筛选与勾选 ----
+    def ai_refresh(self):
+        rows = store.query(
+            q=self.ai_var_q.get(),
+            stage=AI_STAGE.get(self.ai_var_stage.get(), ""),
+            subject=AI_SUBJECT.get(self.ai_var_subject.get(), ""),
+            grade=AI_GRADE.get(self.ai_var_grade.get(), ""),
+        )
+        self.ai_rows = rows
+        self.ai_list.delete(*self.ai_list.get_children())
+        for kp, v in rows:
+            self.ai_list.insert("", "end", iid=kp["id"], values=(
+                "☑" if kp["id"] in self.ai_selected else "☐",
+                kp["id"], kp["name"], store._grade_label(v["grade"]),
+                kp.get("domain", ""), kp.get("difficulty", ""),
+            ))
+        self._ai_count()
+
+    def ai_reset_filters(self):
+        self.ai_var_stage.set("")
+        self.ai_var_subject.set("")
+        self.ai_var_grade.set("")
+        self.ai_var_q.set("")
+        self.ai_refresh()
+
+    def _ai_count(self):
+        self.ai_lbl_list.configure(
+            text=f"知识点 · 已勾选 {len(self.ai_selected)} / {len(self.ai_rows)}（点击「选」列 ☑ 勾选）")
+
+    def ai_on_click(self, event):
+        if self.ai_list.identify_column(event.x) != "#1":
+            return
+        iid = self.ai_list.identify_row(event.y)
+        if not iid:
+            return
+        if iid in self.ai_selected:
+            self.ai_selected.discard(iid)
+        else:
+            self.ai_selected.add(iid)
+        self.ai_list.set(iid, "sel", "☑" if iid in self.ai_selected else "☐")
+        self._ai_count()
+        return "break"
+
+    def _ai_repaint(self):
+        for iid in self.ai_list.get_children():
+            self.ai_list.set(iid, "sel", "☑" if iid in self.ai_selected else "☐")
+        self._ai_count()
+
+    def ai_select_all(self):
+        self.ai_selected.update(kp["id"] for kp, _ in self.ai_rows)
+        self._ai_repaint()
+
+    def ai_clear_sel(self):
+        self.ai_selected.clear()
+        self._ai_repaint()
+
+    def ai_invert(self):
+        ids = {kp["id"] for kp, _ in self.ai_rows}
+        self.ai_selected = ids - self.ai_selected
+        self._ai_repaint()
+
+    # ---- AI 模块：参数 ----
+    def _ai_mix(self):
+        try:
+            mix = {d: max(0, int(self.ai_vars_ratio[d].get() or 0)) for d in (1, 2, 3, 4)}
+        except (ValueError, KeyError):
+            return None
+        return mix if sum(mix.values()) > 0 else None
+
+    def ai_apply_preset(self):
+        mix = AI_PRESETS.get(self.ai_var_preset.get())
+        if mix:
+            for d in (1, 2, 3, 4):
+                self.ai_vars_ratio[d].set(str(mix[d]))
+        self.ai_update_alloc()
+
+    def ai_update_alloc(self):
+        try:
+            n = int(self.ai_var_n.get() or 5)
+        except ValueError:
+            n = 5
+        mix = self._ai_mix()
+        alloc = prompt_mod.allocate_difficulty(n, mix)
+        self.ai_lbl_alloc.configure(
+            text=f"按 {n} 题分配：" + " / ".join(
+                f"难度{d} {alloc[d]}题" for d in (1, 2, 3, 4)))
+        total = sum(mix.values()) if mix else 0
+        self.ai_lbl_ratio_sum.configure(
+            text=f"占比合计 {total}%" + ("" if total == 100 else "（非 100% 将按比例归一）"))
+
+    # ---- AI 模块：生成 / 复制 / 导出 ----
+    def ai_generate(self):
+        ids = [kp["id"] for kp, _ in self.ai_rows if kp["id"] in self.ai_selected]
+        if not ids:
+            messagebox.showinfo("提示", "请先勾选至少一个知识点（点击列表首列的 ☑）")
+            return
+        n = int(self.ai_var_n.get() or 5)
+        mix = self._ai_mix()
+        try:
+            if len(ids) == 1:
+                text = store.build_point_prompt(ids[0], n, difficulty_mix=mix)
+                scope = "单个知识点"
+            else:
+                text = store.build_batch_prompt(ids, n, difficulty_mix=mix)
+                scope = f"{len(ids)} 个知识点"
+        except store.StoreError as e:
+            messagebox.showerror("生成失败", str(e))
+            return
+        self.ai_text.delete("1.0", "end")
+        self.ai_text.insert("1.0", text)
+        self.ai_lbl_status.configure(text=f"已生成 {len(text)} 字 · {scope} · 每点 {n} 题")
+
+    def ai_copy(self):
+        text = self.ai_text.get("1.0", "end").strip()
+        if not text:
+            return
+        self.root.clipboard_clear()
+        self.root.clipboard_append(text)
+        self.root.update()
+        self.ai_lbl_status.configure(text="已复制到剪贴板 ✓")
+
+    def ai_export(self, fmt: str):
+        text = self.ai_text.get("1.0", "end").strip()
+        if not text:
+            return
+        ext = "md" if fmt == "md" else "txt"
+        path = filedialog.asksaveasfilename(
+            parent=self.root, title=f"导出提示词 .{ext}", defaultextension=f".{ext}",
+            filetypes=[(f"{ext.upper()} 文件", f"*.{ext}"), ("所有文件", "*.*")])
+        if not path:
+            return
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(text)
+        self.ai_lbl_status.configure(text=f"已导出 → {os.path.basename(path)}")
+
+    # ---- 菜单快捷入口：切到 AI 模块并预选 ----
+    def goto_ai_single(self):
+        if not self.selected_id:
+            messagebox.showinfo("提示", "请先在「知识点管理」选择一个知识点")
+            return
+        self.nb.select(1)
+        self.ai_reset_filters()
+        self.ai_selected = {self.selected_id}
+        self._ai_repaint()
+
+    def goto_ai_batch(self):
+        ids = [kp["id"] for kp, _ in self.current_rows]
+        if not ids:
+            messagebox.showinfo("提示", "当前列表没有知识点")
+            return
+        self.nb.select(1)
+        self.ai_reset_filters()
+        self.ai_selected = set(ids)
+        self._ai_repaint()
 
     # ---------------- 树 ----------------
     def _refresh_tree(self, keep: str = ""):
@@ -588,20 +880,26 @@ class App:
         self.root.after(5000, lambda: self.lbl_msg.configure(text=""))
 
     def help_dialog(self):
-        messagebox.showinfo("使用说明", """1. 左侧树按 学段 → 科目 → 年级 → 册 展开，点册查看知识点。
+        messagebox.showinfo("使用说明", """【模块一 · 知识点管理】
+1. 左侧树按 学段 → 科目 → 年级 → 册 展开，点册查看知识点。
 2. 顶部可按关键词、难度、认知层级、引擎筛选；点列标题排序。
-3. 双击列表项或点「编辑所选」修改知识点。
-4. 编辑直接写入 knowledge-map/volumes/ 下的 JSON（下游出题用的数据）。
-   每次写操作都会自动备份到 desktop/backups/，并记入 changelog.jsonl。
-5. 「撤销」恢复最近一次变更所在册的完整快照。
-6. 「运行校验」调用结构校验 + 字段校验 + 课标交叉校验三套脚本。
-7. 「生成提示词」（主推）：选中知识点后生成一份大模型出题提示词，
-   包含完整知识点档案、命题规则、JSON 输出格式和示例。点「复制全部」
-   粘贴到 DeepSeek / 元宝 / ChatGPT 即可得到结构化题目。可调节每题数、
-   直接编辑提示词微调、导出 .txt / .md。
-8. 「批量生成提示词」对当前列表一次生成多条知识点的提示词。
-9. 工具菜单里的「本地模板引擎（旧）」保留旧的内容感知直接出题，
-   仅作对比——它用的是固定模板，质量不及大模型。
+3. 双击列表项或点「新增/编辑/删除」管理知识点，改动写入 volumes/ 下的 JSON，
+   自动备份到 desktop/backups/ 并记入 changelog.jsonl；「撤销」恢复上次快照。
+4. 「运行校验」调用结构校验 + 字段校验 + 课标交叉校验三套脚本。
+
+【模块二 · AI 提示词】（主推）
+5. 先按学段/科目/年级/搜索筛出知识点，再点列表首列的 ☑ 勾选：
+   点一个=单选，点多个=多选，「全选当前」=全选本页结果，「清空选择」重来。
+6. 设置「每知识点题数」；难度可用预设（基础为主/均衡/进阶/挑战），
+   也可直接改四个百分比，下方实时显示按题数换算的各难度题数。
+7. 点「生成提示词」：勾 1 个出单点提示词，勾多个出批量提示词。
+   提示词含完整知识点档案、年级红线（禁止超出该知识点所属年级水平）、
+   难度分布、题目来源知识点字段（topic_id/topic_name）、JSON 格式与示例。
+8. 生成后可在文本框直接微调，「复制全部」粘贴到 DeepSeek / 元宝 / ChatGPT，
+   或导出 .txt / .md。
+
+【其它】
+9. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
 10. 注意：volumes/ 是 data/*.py 生成的产物。若要永久固化修改，
    请把改动同步回 knowledge-map/data/ 下对应的源文件，再运行 build_volumes.py。""")
 

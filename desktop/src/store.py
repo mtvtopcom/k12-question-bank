@@ -119,7 +119,7 @@ def stats() -> Dict[str, Any]:
 # ---------------- 搜索与筛选 ----------------
 def query(q: str = "", stage: str = "", subject: str = "", domain: str = "",
           difficulty: Optional[int] = None, bloom: str = "", engine: str = "",
-          limit: int = 0) -> List[Tuple[Dict[str, Any], Dict[str, Any]]]:
+          limit: int = 0, grade: str = "") -> List[Tuple[Dict[str, Any], Dict[str, Any]]]:
     """返回 (知识点, 册元数据) 列表。多条件为 AND，q 在多个文本字段中模糊匹配。"""
     q = (q or "").strip().lower()
     out = []
@@ -127,6 +127,8 @@ def query(q: str = "", stage: str = "", subject: str = "", domain: str = "",
         if stage and v["stage"] != stage:
             continue
         if subject and v["subject"] != subject:
+            continue
+        if grade and v["grade"] != grade:
             continue
         for kp in v["knowledge_points"]:
             if domain and kp.get("domain") != domain:
@@ -523,7 +525,8 @@ def question_kind(q: Dict[str, Any]) -> str:
     return KIND_LABELS["fact_choice"]
 
 
-def build_point_prompt(topic_id: str, n: int = 5) -> str:
+def build_point_prompt(topic_id: str, n: int = 5,
+                       difficulty_mix: Optional[Dict[int, int]] = None) -> str:
     """为单个知识点生成大模型出题提示词（前置 ID 自动补成名称）。"""
     import prompt as prompt_mod
     found = find_point(topic_id)
@@ -534,10 +537,12 @@ def build_point_prompt(topic_id: str, n: int = 5) -> str:
     for vol in load_all_volumes():
         for item in vol["knowledge_points"]:
             titles[item["id"]] = item.get("name", item["id"])
-    return prompt_mod.build_prompt(kp, v, n, title_by_id=titles)
+    return prompt_mod.build_prompt(kp, v, n, title_by_id=titles,
+                                   difficulty_mix=difficulty_mix)
 
 
-def build_batch_prompt(topic_ids: List[str], n_per: int = 3) -> str:
+def build_batch_prompt(topic_ids: List[str], n_per: int = 3,
+                       difficulty_mix: Optional[Dict[int, int]] = None) -> str:
     """为多个知识点生成一条批量出题提示词。"""
     import prompt as prompt_mod
     titles = {}
@@ -553,7 +558,8 @@ def build_batch_prompt(topic_ids: List[str], n_per: int = 3) -> str:
             points.append({"kp": kp, "vol": vol})
     if not points:
         raise StoreError("没有可生成提示词的知识点")
-    return prompt_mod.build_batch_prompt(points, n_per, title_by_id=titles)
+    return prompt_mod.build_batch_prompt(points, n_per, title_by_id=titles,
+                                         difficulty_mix=difficulty_mix)
 
 
 def export_questions(questions: List[Dict[str, Any]], fmt: str) -> str:
