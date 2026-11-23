@@ -22,10 +22,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(HERE)
 LOGO_SRC = os.path.join(PROJECT_ROOT, "assets", "logo.png")
 APP_NAME = "K12 题库工厂"
+APP_VERSION = "1.3.5"
 BUNDLE = os.path.join(HERE, f"{APP_NAME}.app")
 CONTENTS = os.path.join(BUNDLE, "Contents")
 MACOS = os.path.join(CONTENTS, "MacOS")
 RESOURCES = os.path.join(CONTENTS, "Resources")
+BUNDLE_PROJECT = os.path.join(RESOURCES, "project")
 
 
 def find_python() -> str:
@@ -49,19 +51,20 @@ def find_python() -> str:
 
 
 def make_launcher() -> str:
-    # app.py 在 bundle 外（desktop/src/app.py）。优先使用构建时写入的
-    # 绝对路径，这样把 .app 复制到桌面 / Applications 也能启动；
-    # 相对路径作为换机器、迁移项目后的兜底。
+    # app.py 在 bundle 外（desktop/src/app.py）。查找顺序：
+    # 1) .app 仍在项目 desktop/ 下 → 用项目源码（开发时改代码立即生效）
+    # 2) 构建时写入的绝对路径（.app 单独拖到桌面 / Applications 时兜底）
+    # 3) bundle 内自带的源码副本（Release 分发用，整个 .app 可独立移动）
     import shlex
     abs_app_src = shlex.quote(os.path.join(HERE, "src", "app.py"))
     return f'''#!/bin/bash
 # 由 build_app.py 生成，请勿手改
-APP_SRC={abs_app_src}
+APP_SRC="$(cd "$(dirname "$0")/../../../src" 2>/dev/null && pwd)/app.py"
 if [ ! -f "$APP_SRC" ]; then
-  APP_SRC="$(cd "$(dirname "$0")/../../../src" && pwd)/app.py"
+  APP_SRC={abs_app_src}
 fi
 if [ ! -f "$APP_SRC" ]; then
-  APP_SRC="$(cd "$(dirname "$0")/../.." && pwd)/src/app.py"
+  APP_SRC="$(cd "$(dirname "$0")/../Resources/project/desktop/src" 2>/dev/null && pwd)/app.py"
 fi
 for PY in "$WORKBUDDY_PYTHON" /opt/homebrew/bin/python3 /usr/local/bin/python3 /usr/bin/python3 python3; do
   [ -n "$PY" ] || continue
@@ -143,6 +146,26 @@ def _make_placeholder_icon():
         return False
 
 
+def bundle_sources():
+    """把运行所需的数据与源码复制进 .app，分发后整个 .app 可独立移动/运行。"""
+    shutil.rmtree(BUNDLE_PROJECT, ignore_errors=True)
+    ignore = shutil.ignore_patterns("__pycache__", "*.pyc", "*.pyo",
+                                    "output", "backups", "build", "*.app")
+    for rel in ("desktop/src", "desktop/original", "knowledge-map", "src", "assets"):
+        src = os.path.join(PROJECT_ROOT, rel)
+        if os.path.isdir(src):
+            shutil.copytree(src, os.path.join(BUNDLE_PROJECT, rel),
+                            dirs_exist_ok=True, ignore=ignore)
+    # 出厂快照与知识点地图必须存在，否则 .app 独立运行时会缺数据
+    required = [
+        os.path.join(BUNDLE_PROJECT, "knowledge-map", "volumes"),
+        os.path.join(BUNDLE_PROJECT, "desktop", "original", "library.json.gz"),
+    ]
+    missing = [p for p in required if not os.path.exists(p)]
+    if missing:
+        raise SystemExit("打包失败，缺少运行数据：" + ", ".join(missing))
+
+
 def build():
     for d in (MACOS, RESOURCES):
         os.makedirs(d, exist_ok=True)
@@ -162,8 +185,8 @@ def build():
         "CFBundleName": APP_NAME,
         "CFBundleDisplayName": APP_NAME,
         "CFBundleIdentifier": "com.k12.questionfactory",
-        "CFBundleVersion": "3.5",
-        "CFBundleShortVersionString": "3.5",
+        "CFBundleVersion": APP_VERSION,
+        "CFBundleShortVersionString": APP_VERSION,
         "CFBundleExecutable": "launcher",
         "CFBundlePackageType": "APPL",
         "CFBundleIconFile": "app.icns",
@@ -176,9 +199,12 @@ def build():
         plistlib.dump(info, f)
 
     icon_ok = make_icon()
+    bundle_sources()
     print(f"已生成 {BUNDLE}")
+    print(f"  版本: {APP_VERSION}")
     print(f"  构建时探测到可用 Python: {py}（运行时会重新探测）")
     print(f"  图标: {'app.icns' if icon_ok else '无（不影响运行）'}")
+    print("  .app 已内置源码与知识点数据，可连同项目或单独移动运行。")
     print("双击 .app 即可启动；若 macOS 提示未验证开发者，右键 → 打开。")
 
 

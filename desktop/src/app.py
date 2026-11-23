@@ -16,7 +16,7 @@ import store  # noqa: E402
 import prompt as prompt_mod  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "3.5"
+VERSION = "1.3.5"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}

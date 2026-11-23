@@ -35,7 +35,7 @@ from schema import Question, make_id
 from generators.base import BaseGenerator
 from generators.template import TemplateGenerator
 
-VERSION = "v2.0-content-aware"
+VERSION = "v1.2.1-content-aware"
 MISTAKE_MARK = "\n易错点："
 
 # 题干前缀：与既有 LLM 变体扩展一致，作为最轻量的问法变化
