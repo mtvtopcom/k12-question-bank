@@ -1223,6 +1223,7 @@ class App:
             found = store.find_point(self.selected_id)
             if found:
                 self._show_detail(*found)
+        self.ai_refresh()                 # AI 模块同步最新数据（筛选与勾选保留）
         self._update_status()
 
     def _update_status(self):
