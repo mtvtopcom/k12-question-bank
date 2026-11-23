@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import store  # noqa: E402
 
 APP_TITLE = "K12 知识点地图 · 管理台"
-VERSION = "1.2"
+VERSION = "2.0"
 
 
 class App:
@@ -70,8 +70,13 @@ class App:
         menubar.add_cascade(label="编辑", menu=m_edit)
 
         m_tools = tk.Menu(menubar, tearoff=0)
-        m_tools.add_command(label="生成题目（所选知识点）", command=self.generate_questions)
-        m_tools.add_command(label="批量生成（当前列表）", command=self.generate_batch_questions)
+        m_tools.add_command(label="生成提示词（所选知识点）", command=self.generate_prompt)
+        m_tools.add_command(label="批量生成提示词（当前列表）", command=self.generate_batch_prompt)
+        m_tools.add_separator()
+        m_local = tk.Menu(m_tools, tearoff=0)
+        m_local.add_command(label="本地模板出题（所选知识点）", command=self.generate_questions)
+        m_local.add_command(label="本地模板批量出题（当前列表）", command=self.generate_batch_questions)
+        m_tools.add_cascade(label="本地模板引擎（旧）", menu=m_local)
         m_tools.add_separator()
         m_tools.add_command(label="运行全部校验", command=self.run_checks)
         m_tools.add_command(label="刷新数据", command=self.reload_all)
@@ -184,8 +189,8 @@ class App:
             ("编辑所选", self.edit_dialog),
             ("删除所选", self.delete_selected),
             ("撤销", self.undo),
-            ("生成题目", self.generate_questions),
-            ("批量生成", self.generate_batch_questions),
+            ("生成提示词", self.generate_prompt),
+            ("批量提示词", self.generate_batch_prompt),
             ("运行校验", self.run_checks),
             ("导出 CSV", lambda: self.export("csv")),
             ("刷新", self.reload_all),
@@ -469,6 +474,26 @@ class App:
         self.reload_all()
 
     # ---------------- 工具 ----------------
+    def generate_prompt(self):
+        if not self.selected_id:
+            messagebox.showinfo("提示", "请先在列表中选择一个知识点")
+            return
+        found = store.find_point(self.selected_id)
+        if not found:
+            return
+        kp, _ = found
+        PromptDialog(self.root, store.build_point_prompt, title=f"出题提示词 · {kp['name']}",
+                     default_n=5)
+
+    def generate_batch_prompt(self):
+        rows = self.current_rows
+        if not rows:
+            messagebox.showinfo("提示", "当前列表没有知识点，请先选择册或设置筛选")
+            return
+        ids = [kp["id"] for kp, _ in rows]
+        PromptDialog(self.root, lambda n: store.build_batch_prompt(ids, n),
+                     title=f"批量出题提示词 · {len(ids)} 个知识点", default_n=3)
+
     def generate_questions(self):
         if not self.selected_id:
             messagebox.showinfo("提示", "请先在列表中选择一个知识点")
@@ -567,14 +592,89 @@ class App:
    每次写操作都会自动备份到 desktop/backups/，并记入 changelog.jsonl。
 5. 「撤销」恢复最近一次变更所在册的完整快照。
 6. 「运行校验」调用结构校验 + 字段校验 + 课标交叉校验三套脚本。
-7. 「生成题目」用内容感知引擎为所选知识点现场出题；「批量生成」对当前列表
-   统一出题并全局去重。可设置每点题数与随机种子，双击题目看完整选项和解析，
-   支持导出 JSONL / CSV。生成在后台线程进行，不卡界面。
-8. 注意：volumes/ 是 data/*.py 生成的产物。若要永久固化修改，
+7. 「生成提示词」（主推）：选中知识点后生成一份大模型出题提示词，
+   包含完整知识点档案、命题规则、JSON 输出格式和示例。点「复制全部」
+   粘贴到 DeepSeek / 元宝 / ChatGPT 即可得到结构化题目。可调节每题数、
+   直接编辑提示词微调、导出 .txt / .md。
+8. 「批量生成提示词」对当前列表一次生成多条知识点的提示词。
+9. 工具菜单里的「本地模板引擎（旧）」保留旧的内容感知直接出题，
+   仅作对比——它用的是固定模板，质量不及大模型。
+10. 注意：volumes/ 是 data/*.py 生成的产物。若要永久固化修改，
    请把改动同步回 knowledge-map/data/ 下对应的源文件，再运行 build_volumes.py。""")
 
     def about_dialog(self):
         messagebox.showinfo("关于", f"{APP_TITLE}\nv{VERSION}\n\n63 册 / 1225 知识点\n内容感知型出题引擎 · Python 标准库 + Tcl/Tk")
+
+
+class PromptDialog:
+    """大模型出题提示词窗口：生成 → 预览 → 复制 / 导出。"""
+
+    def __init__(self, parent: tk.Tk, builder, title: str, default_n: int = 5):
+        self.builder = builder                  # fn(n) -> prompt 文本
+        self.win = tk.Toplevel(parent)
+        self.win.title(title)
+        self.win.geometry("900x760")
+        self.win.minsize(700, 500)
+        self.win.transient(parent)
+
+        bar = ttk.Frame(self.win, padding=(12, 10))
+        bar.pack(fill="x")
+        ttk.Label(bar, text="每题数").pack(side="left")
+        self.var_n = tk.StringVar(value=str(default_n))
+        ttk.Combobox(bar, textvariable=self.var_n, width=6,
+                     values=["3", "5", "8", "10", "15", "20"],
+                     state="readonly").pack(side="left", padx=(4, 12))
+        ttk.Button(bar, text="重新生成", command=self.refresh).pack(side="left")
+        self.lbl = ttk.Label(bar, text="", foreground="#0F6E56")
+        self.lbl.pack(side="left", padx=12)
+
+        ttk.Label(self.win, text="提示词（可直接编辑微调，复制后粘贴到大模型）",
+                  style="Head.TLabel").pack(anchor="w", padx=14, pady=(2, 4))
+        self.txt = scrolledtext.ScrolledText(self.win, wrap="word", font=("", 12),
+                                             background="#FBFBFB", padx=10, pady=8)
+        self.txt.pack(fill="both", expand=True, padx=12)
+
+        bottom = ttk.Frame(self.win, padding=(12, 10))
+        bottom.pack(fill="x")
+        ttk.Button(bottom, text="复制全部", command=self.copy).pack(side="left", padx=(0, 8))
+        ttk.Button(bottom, text="导出 .txt", command=lambda: self.export("txt")).pack(side="left", padx=(0, 8))
+        ttk.Button(bottom, text="导出 .md", command=lambda: self.export("md")).pack(side="left", padx=(0, 8))
+        ttk.Button(bottom, text="关闭", command=self.win.destroy).pack(side="right")
+        self.refresh()
+
+    def refresh(self):
+        try:
+            n = int(self.var_n.get())
+            text = self.builder(n)
+        except Exception as exc:  # noqa: BLE001
+            messagebox.showerror("生成失败", str(exc), parent=self.win)
+            return
+        self.txt.delete("1.0", "end")
+        self.txt.insert("1.0", text)
+        self.lbl.configure(text=f"已生成 · {len(text)} 字")
+
+    def copy(self):
+        text = self.txt.get("1.0", "end").strip()
+        if not text:
+            return
+        self.win.clipboard_clear()
+        self.win.clipboard_append(text)
+        self.win.update()
+        self.lbl.configure(text="已复制到剪贴板 ✓")
+
+    def export(self, fmt: str):
+        text = self.txt.get("1.0", "end").strip()
+        if not text:
+            return
+        ext = "md" if fmt == "md" else "txt"
+        path = filedialog.asksaveasfilename(
+            parent=self.win, title=f"导出提示词 .{ext}", defaultextension=f".{ext}",
+            filetypes=[(f"{ext.upper()} 文件", f"*.{ext}"), ("所有文件", "*.*")])
+        if not path:
+            return
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(text)
+        self.lbl.configure(text=f"已导出 → {os.path.basename(path)}")
 
 
 class QuestionDialog:

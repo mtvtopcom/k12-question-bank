@@ -523,6 +523,39 @@ def question_kind(q: Dict[str, Any]) -> str:
     return KIND_LABELS["fact_choice"]
 
 
+def build_point_prompt(topic_id: str, n: int = 5) -> str:
+    """为单个知识点生成大模型出题提示词（前置 ID 自动补成名称）。"""
+    import prompt as prompt_mod
+    found = find_point(topic_id)
+    if not found:
+        raise StoreError(f"知识点不存在: {topic_id}")
+    kp, v = found
+    titles = {}
+    for vol in load_all_volumes():
+        for item in vol["knowledge_points"]:
+            titles[item["id"]] = item.get("name", item["id"])
+    return prompt_mod.build_prompt(kp, v, n, title_by_id=titles)
+
+
+def build_batch_prompt(topic_ids: List[str], n_per: int = 3) -> str:
+    """为多个知识点生成一条批量出题提示词。"""
+    import prompt as prompt_mod
+    titles = {}
+    vols = load_all_volumes()
+    for vol in vols:
+        for item in vol["knowledge_points"]:
+            titles[item["id"]] = item.get("name", item["id"])
+    index = {kp["id"]: (kp, vol) for vol in vols for kp in vol["knowledge_points"]}
+    points = []
+    for tid in topic_ids:
+        if tid in index:
+            kp, vol = index[tid]
+            points.append({"kp": kp, "vol": vol})
+    if not points:
+        raise StoreError("没有可生成提示词的知识点")
+    return prompt_mod.build_batch_prompt(points, n_per, title_by_id=titles)
+
+
 def export_questions(questions: List[Dict[str, Any]], fmt: str) -> str:
     """导出题目：jsonl / csv。"""
     if fmt == "jsonl":
