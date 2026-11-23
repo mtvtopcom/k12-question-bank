@@ -16,7 +16,7 @@ import store  # noqa: E402
 import prompt as prompt_mod  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "3.2"
+VERSION = "3.3"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -61,7 +61,10 @@ class ClickCombo(tk.Menubutton):
         self._command = command
         self._ready = False
         super().__init__(master, textvariable=variable, indicatoron=True,
-                         relief="raised", width=width, anchor="w", **kw)
+                         relief="raised", width=width, anchor="w",
+                         background=LIGHT_PANEL, foreground=LIGHT_TEXT,
+                         activebackground="#EAF1FE", activeforeground=LIGHT_TEXT,
+                         highlightthickness=0, borderwidth=1, **kw)
         self.var = variable
         self.menu = tk.Menu(self, tearoff=0, font=("", 12))
         self.configure(menu=self.menu)
@@ -107,12 +110,41 @@ def _diff_label(value) -> str:
         return text
 
 
+# 全局固定浅色配色（不做昼夜模式，始终使用白天的默认色）
+LIGHT_BG = "#F5F5F7"
+LIGHT_PANEL = "#FFFFFF"
+LIGHT_TEXT = "#1D1D1F"
+
+
+def use_light_appearance(win) -> None:
+    """把窗口固定为浅色外观，避免跟随 macOS 深色模式变黑。
+
+    macOS 要求窗口先完成布局才能读写外观，因此先 update_idletasks，
+    失败时再延迟重试几次。
+    """
+    def apply(attempt: int = 0) -> None:
+        try:
+            win.update_idletasks()
+            win.tk.call("tk::unsupported::MacWindowStyle", "appearance",
+                        win._w, "aqua")
+        except Exception:
+            if attempt < 4:
+                try:
+                    win.after(50, lambda: apply(attempt + 1))
+                except Exception:
+                    pass
+
+    apply()
+
+
 class App:
     def __init__(self, root: tk.Tk):
         self.root = root
         self.root.title(APP_TITLE)
         self.root.geometry("1360x860")
         self.root.minsize(1080, 700)
+        self.root.configure(background=LIGHT_BG)
+        use_light_appearance(self.root)          # 固定浅色，不跟随系统深色模式
 
         self.tax = store.load_taxonomy()
         self.current_volume: str = ""          # 选中的册 volume_id
@@ -141,14 +173,25 @@ class App:
         if "aqua" in st.theme_names():
             st.theme_use("aqua")
         st.configure("Treeview", rowheight=25)
-        # AI 选点列表：行更高、字号更大，勾选框更容易看清
-        st.configure("AI.Treeview", rowheight=32, font=("", 13))
-        st.configure("AI.Treeview.Heading", font=("", 12, "bold"))
+        # AI 选点列表：行高与字号、勾选框比例协调
+        st.configure("AI.Treeview", rowheight=28, font=("", 12),
+                     background=LIGHT_PANEL, fieldbackground=LIGHT_PANEL,
+                     foreground=LIGHT_TEXT)
+        st.configure("AI.Treeview.Heading", font=("", 11, "bold"))
         st.configure("TButton", padding=5)
         st.configure("Toolbar.TButton", padding=6)
         st.configure("Title.TLabel", font=("", 15, "bold"))
         st.configure("Sub.TLabel", foreground="#555555")
         st.configure("Head.TLabel", font=("", 11, "bold"))
+        # 固定浅色配色：所有面板、列表、标签统一白天色
+        st.configure("TFrame", background=LIGHT_BG)
+        st.configure("TLabel", background=LIGHT_BG, foreground=LIGHT_TEXT)
+        st.configure("TCheckbutton", background=LIGHT_BG, foreground=LIGHT_TEXT)
+        st.configure("TRadiobutton", background=LIGHT_BG, foreground=LIGHT_TEXT)
+        st.configure("TNotebook", background=LIGHT_BG)
+        st.configure("Treeview", background=LIGHT_PANEL,
+                     fieldbackground=LIGHT_PANEL, foreground=LIGHT_TEXT)
+        st.configure("Treeview.Heading", background="#F2F2F4", foreground=LIGHT_TEXT)
 
     def _logo_image(self, target=52):
         """加载项目 logo 并按整数倍缩小；Tk 不支持 PNG 时返回 None。"""
@@ -167,30 +210,34 @@ class App:
                 continue
         return None
 
-    def _make_check_images(self, size=22):
-        """像素画生成大号勾选框：选中=蓝底白勾，未选=白底灰框。"""
+    def _make_check_images(self, size=16):
+        """像素画生成勾选框：选中=蓝底白勾，未选=白底灰框（尺寸与行高协调）。"""
         def blank(fill, border):
             img = tk.PhotoImage(width=size, height=size)
             img.put(fill, to=(0, 0, size, size))
+            edge = max(1, round(size / 8))
             for i in range(size):
-                img.put(border, to=(i, 0, i + 1, 2))
-                img.put(border, to=(i, size - 2, i + 1, size))
-                img.put(border, to=(0, i, 2, i + 1))
-                img.put(border, to=(size - 2, i, size, i + 1))
+                img.put(border, to=(i, 0, i + 1, edge))
+                img.put(border, to=(i, size - edge, i + 1, size))
+                img.put(border, to=(0, i, edge, i + 1))
+                img.put(border, to=(size - edge, i, size, i + 1))
             return img
 
         off = blank("#FFFFFF", "#8A8A8A")
         on = blank("#2F6FEB", "#2F6FEB")
 
         def segment(x0, y0, x1, y1, color):
+            x0, y0, x1, y1 = round(x0), round(y0), round(x1), round(y1)
             steps = max(abs(x1 - x0), abs(y1 - y0))
             for s in range(steps + 1):
                 x = round(x0 + (x1 - x0) * s / steps)
                 y = round(y0 + (y1 - y0) * s / steps)
-                on.put(color, to=(x - 1, y - 1, x + 2, y + 2))
+                on.put(color, to=(x - 1, y - 1, x + 1, y + 1))
 
-        segment(6, 11, 10, 15, "#FFFFFF")
-        segment(10, 15, 17, 7, "#FFFFFF")
+        # 勾形按尺寸等比缩放：短边 → 转折点 → 长边
+        u = size / 16.0
+        segment(4.2 * u, 8.2 * u, 6.8 * u, 10.9 * u, "#FFFFFF")
+        segment(6.8 * u, 10.9 * u, 11.8 * u, 5.2 * u, "#FFFFFF")
         return off, on
 
     def _build_menu(self):
@@ -331,7 +378,8 @@ class App:
         self.lbl_detail = ttk.Label(right, text="详情（选中知识点）", style="Head.TLabel")
         self.lbl_detail.grid(row=3, column=0, sticky="w", pady=(8, 4))
         self.detail = scrolledtext.ScrolledText(right, wrap="word", height=10,
-                                                font=("", 12), background="#FBFBFB")
+                                                font=("", 12), background=LIGHT_PANEL,
+                                                foreground=LIGHT_TEXT, insertbackground=LIGHT_TEXT)
         self.detail.grid(row=4, column=0, sticky="nsew", columnspan=2)
         self.detail.configure(state="disabled")
         main.add(right, weight=1)
@@ -399,7 +447,7 @@ class App:
         ttk.Button(lbar, text="反选", command=self.ai_invert).pack(side="right", padx=(4, 0))
         ttk.Button(lbar, text="清空选择", command=self.ai_clear_sel).pack(side="right", padx=(4, 0))
 
-        # 勾选列表：首列用自绘大号勾选框（Treeview 只有树列支持图片）
+        # 勾选列表：首列用自绘勾选框（Treeview 只有树列支持图片）
         self._chk_off, self._chk_on = self._make_check_images()
         cols = ("id", "name", "subject", "grade", "domain", "difficulty", "bloom")
         self.ai_list = ttk.Treeview(parent, columns=cols, show="tree headings",
@@ -411,7 +459,7 @@ class App:
         widths = {"id": 165, "name": 235, "subject": 55, "grade": 72,
                   "domain": 130, "difficulty": 60, "bloom": 78}
         self.ai_list.heading("#0", text="选")
-        self.ai_list.column("#0", width=66, minwidth=66, stretch=False, anchor="center")
+        self.ai_list.column("#0", width=48, minwidth=48, stretch=False, anchor="center")
         for c in cols:
             self.ai_list.heading(c, text=heads[c])
             self.ai_list.column(c, width=widths[c],
@@ -469,7 +517,8 @@ class App:
 
         # 提示词输出（可编辑微调）
         self.ai_text = scrolledtext.ScrolledText(parent, wrap="word", font=("", 12),
-                                                 background="#FBFBFB", padx=10, pady=8)
+                                                 background=LIGHT_PANEL, foreground=LIGHT_TEXT,
+                                                 insertbackground=LIGHT_TEXT, padx=10, pady=8)
         self.ai_text.grid(row=6, column=0, sticky="nsew", columnspan=2)
 
     # ---- AI 模块：筛选与勾选 ----
@@ -644,7 +693,7 @@ class App:
     def ai_generate(self):
         ids = [kp["id"] for kp, _ in self.ai_rows if kp["id"] in self.ai_selected]
         if not ids:
-            messagebox.showinfo("提示", "请先勾选至少一个知识点（点击列表首列的 ☑）")
+            messagebox.showinfo("提示", "请先勾选至少一个知识点（点击列表中的任意一行）")
             return
         n = self._ai_current_n()
         mix = self._ai_mix()
@@ -843,8 +892,9 @@ class App:
         win.geometry("760x760")
         win.transient(self.root)
         win.grab_set()
+        use_light_appearance(win)
 
-        canvas = tk.Canvas(win)
+        canvas = tk.Canvas(win, background=LIGHT_PANEL, highlightthickness=0)
         sb = ttk.Scrollbar(win, orient="vertical", command=canvas.yview)
         canvas.configure(yscrollcommand=sb.set)
         canvas.pack(side="left", fill="both", expand=True)
@@ -882,7 +932,11 @@ class App:
                 v = tk.StringVar(value=str(val))
                 w = ClickCombo(form, v, ["template", "llm"], width=60)
             elif key in ("objective", "concept"):
-                w = tk.Text(form, width=68, height=5, wrap="word")
+                w = tk.Text(form, width=68, height=5, wrap="word",
+                            background=LIGHT_PANEL, foreground=LIGHT_TEXT,
+                            insertbackground=LIGHT_TEXT, relief="flat",
+                            borderwidth=0, highlightthickness=1,
+                            highlightbackground="#C8C8CC", highlightcolor="#2F6FEB")
                 w.insert("1.0", str(val))
                 w._is_text = True
             else:
@@ -1031,7 +1085,9 @@ class App:
         win = tk.Toplevel(self.root)
         win.title("校验结果")
         win.geometry("900x680")
-        txt = scrolledtext.ScrolledText(win, wrap="none", font=("Menlo", 11))
+        use_light_appearance(win)
+        txt = scrolledtext.ScrolledText(win, wrap="none", font=("Menlo", 11),
+                                        background=LIGHT_PANEL, foreground=LIGHT_TEXT)
         txt.pack(fill="both", expand=True, padx=8, pady=8)
         txt.insert("end", "正在运行校验，请稍候…\n")
         txt.configure(state="disabled")
@@ -1138,6 +1194,7 @@ class PromptDialog:
         self.win.geometry("900x760")
         self.win.minsize(700, 500)
         self.win.transient(parent)
+        use_light_appearance(self.win)
 
         bar = ttk.Frame(self.win, padding=(12, 10))
         bar.pack(fill="x")
@@ -1152,7 +1209,8 @@ class PromptDialog:
         ttk.Label(self.win, text="提示词（可直接编辑微调，复制后粘贴到大模型）",
                   style="Head.TLabel").pack(anchor="w", padx=14, pady=(2, 4))
         self.txt = scrolledtext.ScrolledText(self.win, wrap="word", font=("", 12),
-                                             background="#FBFBFB", padx=10, pady=8)
+                                             background=LIGHT_PANEL, foreground=LIGHT_TEXT,
+                                             insertbackground=LIGHT_TEXT, padx=10, pady=8)
         self.txt.pack(fill="both", expand=True, padx=12)
 
         bottom = ttk.Frame(self.win, padding=(12, 10))
@@ -1210,6 +1268,7 @@ class QuestionDialog:
         self.win.geometry("1000x680")
         self.win.minsize(820, 520)
         self.win.transient(parent)
+        use_light_appearance(self.win)
 
         # 参数栏
         bar = ttk.Frame(self.win, padding=(12, 10))
@@ -1330,7 +1389,9 @@ class QuestionDialog:
         win.title("题目详情")
         win.geometry("760x560")
         win.transient(self.win)
-        txt = scrolledtext.ScrolledText(win, wrap="word", font=("", 13), padx=14, pady=12)
+        use_light_appearance(win)
+        txt = scrolledtext.ScrolledText(win, wrap="word", font=("", 13), padx=14, pady=12,
+                                        background=LIGHT_PANEL, foreground=LIGHT_TEXT)
         txt.pack(fill="both", expand=True)
         txt.insert("end", f"{store.question_kind(q)} · 难度 {q['difficulty']} · {q['bloom']}\n", ("meta",))
         txt.insert("end", f"知识点：{q['topic']}  ·  {q['grade']} {q['subject']}\n\n", ("meta",))

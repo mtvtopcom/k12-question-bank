@@ -162,13 +162,15 @@ def build():
         "CFBundleName": APP_NAME,
         "CFBundleDisplayName": APP_NAME,
         "CFBundleIdentifier": "com.k12.questionfactory",
-        "CFBundleVersion": "3.2",
-        "CFBundleShortVersionString": "3.2",
+        "CFBundleVersion": "3.3",
+        "CFBundleShortVersionString": "3.3",
         "CFBundleExecutable": "launcher",
         "CFBundlePackageType": "APPL",
         "CFBundleIconFile": "app.icns",
         "LSMinimumSystemVersion": "10.14",
         "NSHighResolutionCapable": True,
+        # 固定浅色外观：不跟随 macOS 深色模式，始终使用白天配色
+        "NSRequiresAquaSystemAppearance": True,
     }
     with open(os.path.join(CONTENTS, "Info.plist"), "wb") as f:
         plistlib.dump(info, f)
