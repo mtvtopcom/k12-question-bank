@@ -26,7 +26,7 @@ import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.8.0"
+VERSION = "1.8.1"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -1067,8 +1067,10 @@ class App:
             "输出上限（专业叫法：max_tokens）\n\n"
             "模型一次回答最多能写多少内容。这里按 token 算，1 个汉字大约 1~2 个 token。\n"
             "· 太小（如 2000）：一批 10 题会被截断，拿不到完整结果\n"
-            "· 推荐 8000 ~ 16000：够一次写 6~10 道带解析的题；40960 更保险\n"
-            "· 填得大不会多花钱，费用只按实际写出来的内容算\n\n"
+            "· 推荐 8000 ~ 16000：够一次写 6~10 道带解析的题\n"
+            "· 每次题数很多时（如 50 ~ 100 题）：建议 32000 以上，否则容易写一半断掉\n"
+            "· 可填 64 ~ 1000000；填得大不会多花钱，费用只按实际写出来的内容算\n"
+            "  （填得超过服务商上限时，接口会直接报错提示，不会悄悄截断）\n\n"
             "如果日志出现「输出被截断」，就把它调大，或把「每次题数」调小。")
         adv_item(
             "等待上限(秒)", self.api_var_timeout, 5, "等待上限（超时）",
@@ -1090,12 +1092,14 @@ class App:
         adv_item(
             "每次题数", self.api_var_batch, 4, "每次题数（batch）",
             "一次请求让模型出几题。越小越稳，越大越快。默认 6。",
-            "每次题数（一次请求生成几道题）\n\n"
-            "软件会把每个知识点的题数拆成几批去请求：\n"
+            "每次题数（一次请求生成几道题，可填 1 ~ 100）\n\n"
+            "软件会把每个知识点的题数拆成几批去请求，填多少就每批请求多少：\n"
             "· 6 ~ 10 题：速度和稳定性比较平衡（推荐）\n"
             "· 1 ~ 3 题：最稳，不容易被截断或漏题，但请求次数多\n"
-            "· 15 题以上：更快，但模型容易写崩、格式出错\n\n"
-            "提示：单次题数越多，「输出上限」也要相应给够。")
+            "· 20 ~ 100 题：一次要更多，速度快，但一次写得长、更容易被截断；\n"
+            "  被截断时软件会自动折半重试（日志里会写明），不用你手动改\n\n"
+            "提示：题数填得大，「输出上限」也要跟着给够（如 100 题给 32000 以上），\n"
+            "等待上限也会自动放宽，避免长回答被提前掐断。")
 
         json_cell = ttk.Frame(self.api_adv)
         json_cell.pack(side="left")
@@ -1373,12 +1377,19 @@ class App:
         provider = api_config.LABEL_TO_PROVIDER.get(self.api_var_provider.get(), "openai")
 
         def number(var, label, cast, low, high):
+            """超出范围直接提示，不再悄悄改成边界值。
+
+            以前是静默裁剪：填 100 实际按 10 保存，界面上却还显示 100，
+            看起来像「设置了没生效」。现在会明确告诉你范围是多少。
+            """
             raw = var.get().strip()
             try:
                 value = cast(raw)
             except (TypeError, ValueError):
                 raise ValueError(f"「{label}」需要填写数字，当前是：{raw or '空'}")
-            return max(low, min(high, value))
+            if not low <= value <= high:
+                raise ValueError(f"「{label}」可填 {low:g} ~ {high:g}，当前是 {raw}")
+            return value
 
         base = self.api_var_base.get().strip()
         model = self.api_var_model.get().strip()
@@ -1398,10 +1409,10 @@ class App:
             "model": model,
             "api_key": key,
             "temperature": number(self.api_var_temp, "灵活度", float, 0.0, 2.0),
-            "max_tokens": number(self.api_var_max_tokens, "输出上限", int, 64, 64000),
+            "max_tokens": number(self.api_var_max_tokens, "输出上限", int, 64, 1000000),
             "timeout": number(self.api_var_timeout, "等待上限（秒）", int, 10, 900),
             "interval": number(self.api_var_interval, "请求间隔（秒）", float, 0.0, 120.0),
-            "batch": number(self.api_var_batch, "每次题数", int, 1, 10),
+            "batch": number(self.api_var_batch, "每次题数", int, 1, 100),
             "json_mode": bool(self.api_var_json.get()),
         }
 

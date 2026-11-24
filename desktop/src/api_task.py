@@ -306,7 +306,7 @@ def new_task(pairs: Sequence[Tuple[Dict[str, Any], Dict[str, Any]]], n: int,
         "model": profile.get("model", ""),
         "base_url": profile.get("base_url", ""),
         "n_per_point": n,
-        "batch": int(profile.get("batch") or 6),
+        "batch": max(1, min(100, int(profile.get("batch") or 6))),
         "ratios": {str(k): int(v) for k, v in (ratios or {}).items()},
         "items": items,
         "usage": {"prompt_tokens": 0, "completion_tokens": 0, "requests": 0},
@@ -519,19 +519,22 @@ class Runner(threading.Thread):
         return box.get("reply")
 
     def _check_timeout(self) -> None:
-        """输出上限放得很大时，90 秒超时必然掐断长回答；本次运行先放宽并说明。"""
+        """按输出上限与每批题数估算等待时间，避免长回答被 90 秒掐断。"""
         client = self.client
         if client is None:
             return
         limit = int(getattr(client, "max_tokens", 8192) or 8192)
-        # 按 200 tokens/秒的保守下限估算生成耗时，再留 60 秒给排队与传输
-        need = int(min(240, max(90, 60 + limit / 200)))
+        batch = max(1, min(100, int(self.profile.get("batch") or 6)))
+        # 按 200 tokens/秒的保守下限估算生成耗时，再留 60 秒排队与传输；
+        # 一批题越多写得越久，按每批题数再加时间（100 题约多给 250 秒）
+        need = int(min(600, max(90, 60 + limit / 200, 60 + batch * 2.5)))
         if client.timeout < need:
             old = int(client.timeout)
             client.timeout = need
-            self._log(f"超时 {old} 秒对当前输出上限（{limit} tokens）偏短："
-                      f"本次运行按 {need} 秒等待")
-            self._log("  可在上方「超时(秒)」改成同样数值后点「保存配置」，下次就不用再调")
+            self._log(f"超时 {old} 秒对当前设置（输出上限 {limit} tokens、"
+                      f"每批 {batch} 题）偏短：本次运行按 {need} 秒等待")
+            self._log("  可在「高级设置 → 等待上限(秒)」改成同样数值后点「保存配置」，"
+                      "下次就不用再调")
 
     # ---- 主循环 ----
     def run(self) -> None:  # noqa: C901
@@ -559,7 +562,11 @@ class Runner(threading.Thread):
             task["provider_label"] = label
             task["model"] = self.profile.get("model", "")
             task["base_url"] = self.profile.get("base_url", "")
-            task["batch"] = int(self.profile.get("batch") or 6)
+            batch = max(1, min(100, int(self.profile.get("batch") or 6)))
+            task["batch"] = batch
+            if batch > 20:
+                self._log(f"本次每批请求 {batch} 题：一次写得较长，"
+                          "若被长度上限截断会自动折半重试（不用手动改）")
 
             self.index = self._build_index()
             self.known_ids = api_bank.existing_ids(force=True)
@@ -640,7 +647,7 @@ class Runner(threading.Thread):
             return
 
         need = int(item["need"])
-        batch = max(1, min(10, int(self.profile.get("batch") or 6)))
+        batch = max(1, min(100, int(self.profile.get("batch") or 6)))
         task["batch"] = batch
         ratios = {int(k): int(v) for k, v in (task.get("ratios") or {}).items()}
         item["status"] = "running"

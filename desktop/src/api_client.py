@@ -259,7 +259,7 @@ class _BaseClient:
         self.model = str(self.profile.get("model") or "").strip()
         self.api_key = str(self.profile.get("api_key") or "").strip()
         self.temperature = _as_float(self.profile.get("temperature"), 0.8, 0.0, 2.0)
-        self.max_tokens = _as_int(self.profile.get("max_tokens"), 8192, 64, 64000)
+        self.max_tokens = _as_int(self.profile.get("max_tokens"), 8192, 64, 1000000)
         self.timeout = _as_float(self.profile.get("timeout"), 90, 10, 900)
         self.interval = _as_float(self.profile.get("interval"), 0.8, 0.0, 120.0)
         self.json_mode = bool(self.profile.get("json_mode", True))
