@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""API 出题任务：进度持久化 + 后台单线程执行 + 断点续跑。
+"""API 出题任务：进度持久化 + 后台并发执行 + 断点续跑。
 
 一个任务 = 若干知识点 × 每个知识点 N 题。任务文件随时落盘，因此：
 - 暂停 / 停止 / 直接关掉软件，下次都能从已完成题数继续；
@@ -12,6 +12,7 @@ import datetime as dt
 import glob
 import json
 import os
+import queue
 import re
 import threading
 import time
@@ -435,6 +436,16 @@ class Runner(threading.Thread):
         self.emit_raw = emit
         self._stop_evt = threading.Event()
         self._pause_evt = threading.Event()
+        self._abort_evt = threading.Event()      # 致命错误时让所有 worker 一起退
+        self._lock = threading.RLock()           # 保护题库集合、进度、任务文件
+        self._archive_lock = threading.Lock()    # 存档写文件（临时文件名固定，必须串行）
+        self._fatal: Optional[BaseException] = None
+        self._last_save = 0.0
+        self._last_archive = 0.0
+        self._archive_rows = 0
+        self._penalty = 0.0                      # 限流后全局放慢的秒数（自适应）
+        self._cooldown_until = 0.0               # 限流冷却截止时间
+        self._ok_streak = 0
         self.client: Optional[api_client._BaseClient] = None
         self.index: Dict[str, Tuple[Dict[str, Any], Dict[str, Any]]] = {}
         self.known_ids: set = set()
@@ -461,18 +472,86 @@ class Runner(threading.Thread):
     def _log(self, text: str) -> None:
         self._emit(type="log", text=text)
 
-    def _archive(self, announce: bool = False) -> None:
-        """把本任务已生成的题目写成独立 JSON（文件名 = 任务名）。"""
-        try:
-            path = write_archive(self.task, self.records)
-        except Exception as exc:  # noqa: BLE001 —— 存档失败不能影响出题
-            self._log(f"  任务 JSON 存档失败：{type(exc).__name__}: {exc}")
-            return
+    def _archive(self, announce: bool = False, force: bool = False) -> None:
+        """把本任务已生成的题目写成独立 JSON（文件名 = 任务名）。
+
+        几万题时每次全量重写会很慢，运行中改为每 3 分钟写一次，
+        暂停/停止/结束时强制写一次。
+        """
+        with self._archive_lock:
+            now = time.time()
+            with self._lock:
+                rows = list(self.records)
+                if not force:
+                    # 小任务每批都写（几百行成本可忽略）；几万题时按「新增 2000 题
+                    # 或 3 分钟」写一次，否则每批全量重写会越来越慢。
+                    if len(rows) >= 200:
+                        if (len(rows) - self._archive_rows < 2000
+                                and now - self._last_archive < 180):
+                            return
+            self._last_archive = now
+            self._archive_rows = len(rows)
+            try:
+                path = write_archive(self.task, rows)
+            except Exception as exc:  # noqa: BLE001 —— 存档失败不能影响出题
+                self._log(f"  任务 JSON 存档失败：{type(exc).__name__}: {exc}")
+                return
         if announce:
             self._log(f"本题任务的 JSON 存档：{path}")
 
+    def _save(self, force: bool = False) -> None:
+        """落盘任务进度；并发时合并写入，最多每 2 秒一次，避免磁盘成为瓶颈。"""
+        with self._lock:
+            now = time.time()
+            if not force and now - self._last_save < 2.0:
+                return
+            self._last_save = now
+            try:
+                recalc(self.task)
+                save_task(self.task)
+            except Exception:  # noqa: BLE001 —— 落盘失败不打断生成
+                pass
+
     def _cancelled(self) -> bool:
-        return self._stop_evt.is_set() or self._pause_evt.is_set()
+        return (self._stop_evt.is_set() or self._pause_evt.is_set()
+                or self._abort_evt.is_set())
+
+    def _before_request(self) -> None:
+        """限流后的全局冷却与慢速：所有 worker 一起等，别继续撞墙。"""
+        while not self._cancelled():
+            wait = self._cooldown_until - time.time()
+            if wait <= 0:
+                break
+            self._sleep(min(wait, 0.5))
+        if self._penalty > 0:
+            self._sleep(self._penalty)
+
+    def _slow_down(self, retry_after: Any = None) -> None:
+        with self._lock:
+            self._penalty = min(30.0, self._penalty + 2.0)
+            self._ok_streak = 0
+            wait = 0.0
+            try:
+                wait = float(retry_after or 0)
+            except (TypeError, ValueError):
+                wait = 0.0
+            self._cooldown_until = max(self._cooldown_until,
+                                       time.time() + max(3.0, wait))
+            penalty = self._penalty
+        self._log(f"  接口限流：整体降速，请求间隔 +{penalty:.0f} 秒，"
+                  "冷却结束后自动恢复")
+
+    def _speed_up(self) -> None:
+        """连续成功后逐步撤掉降速，避免限流过去还在慢慢爬。"""
+        if self._penalty <= 0:
+            return
+        with self._lock:
+            self._ok_streak += 1
+            if self._ok_streak >= 10:
+                self._penalty = max(0.0, self._penalty * 0.6)
+                self._ok_streak = 0
+                if self._penalty < 0.5:
+                    self._penalty = 0.0
 
     def _sleep(self, seconds: float) -> None:
         """退避等待，暂停/停止能立刻打断，不必等满。"""
@@ -575,17 +654,22 @@ class Runner(threading.Thread):
             self.records = api_bank.rows_for_task(task.get("id", ""))
             if self.records:
                 self._log(f"本任务已有 {len(self.records)} 题，继续写入同一份任务 JSON")
-            self._archive(announce=bool(self.records))
+            self._archive(announce=bool(self.records), force=True)
 
+            pending: List[int] = []
             for idx, item in enumerate(task["items"]):
-                if self._cancelled():
-                    break
                 if int(item.get("done", 0)) >= int(item.get("need", 0)):
                     item["status"] = "done"
-                    continue
-                self._run_item(idx, item)
-                recalc(task)
-                save_task(task)
+                else:
+                    pending.append(idx)
+            workers = max(1, min(16, int(self.profile.get("concurrency") or 4),
+                                 len(pending) or 1))
+            if pending:
+                self._log(f"开始生成：{len(pending)} 个知识点待跑，并行 {workers} 路"
+                          "（可在「高级设置 → 同时生成」调整）")
+                self._run_workers(pending, workers)
+            if self._fatal is not None:
+                raise self._fatal
 
         except api_client.LLMError as exc:
             task["status"] = "error"
@@ -611,9 +695,9 @@ class Runner(threading.Thread):
             else:
                 final_status = "partial"
             task["status"] = final_status
-            save_task(task)
+            self._save(force=True)
             if self.records:
-                self._archive()
+                self._archive(force=True)
             label = STATUS_LABELS.get(final_status, final_status)
             if final_status in ("paused", "stopped"):
                 msg = f"{label} · {totals['done']}/{totals['need']} 题（可点「继续」接着生成）"
@@ -627,6 +711,57 @@ class Runner(threading.Thread):
             self._emit(type="finished", status=final_status, task_id=task.get("id", ""),
                        done=totals["done"], need=totals["need"],
                        failed=totals["failed"], error=task.get("error", ""))
+
+    def _run_workers(self, pending: List[int], workers: int) -> None:
+        """把知识点分给 N 个线程同时跑；暂停/停止时所有线程一起退。"""
+        jobs: "queue.Queue[int]" = queue.Queue()
+        for idx in pending:
+            jobs.put(idx)
+        threads = []
+        for no in range(workers):
+            th = threading.Thread(target=self._worker, args=(jobs,), daemon=True,
+                                  name=f"api-worker-{no}")
+            th.start()
+            threads.append(th)
+        for th in threads:
+            while th.is_alive():
+                th.join(0.3)
+
+    def _worker(self, jobs: "queue.Queue[int]") -> None:
+        task = self.task
+        while not self._cancelled():
+            try:
+                idx = jobs.get_nowait()
+            except queue.Empty:
+                return
+            item = task["items"][idx]
+            if int(item.get("done", 0)) >= int(item.get("need", 0)):
+                item["status"] = "done"
+                continue
+            try:
+                self._run_item(idx, item)
+            except _Aborted:
+                return
+            except api_client.LLMError as exc:
+                if exc.kind in ("auth", "config", "not_found", "ssl"):
+                    with self._lock:
+                        if self._fatal is None:
+                            self._fatal = exc
+                    self._abort_evt.set()
+                    return
+                item["failed"] = int(item.get("failed", 0)) + 1
+                item["status"] = "error"
+                item["error"] = exc.friendly()
+                self._log(f"  {item.get('topic_name', '')}：{item['error']}")
+            except Exception as exc:  # noqa: BLE001 —— 单个知识点出错不拖垮整任务
+                item["status"] = "error"
+                item["error"] = f"{type(exc).__name__}: {exc}"
+                self._log(f"  {item.get('topic_name', '')}：{item['error']}")
+            finally:
+                with self._lock:
+                    self._save(force=False)
+                self._emit(type="item", index=idx, done=item.get("done", 0),
+                           need=item.get("need", 0), status=item.get("status", "pending"))
 
     def _build_index(self) -> Dict[str, Tuple[Dict[str, Any], Dict[str, Any]]]:
         index = {}
@@ -670,9 +805,9 @@ class Runner(threading.Thread):
             remaining = need - int(item["done"])
             n_req = min(batch, remaining)
             try:
-                text = prompt_mod.build_prompt(kp, vol, n_req,
-                                               difficulty_mix=ratios,
-                                               output_format="json")
+                text = prompt_mod.build_lean_prompt(kp, vol, n_req,
+                                                    difficulty_mix=ratios)
+                self._before_request()
                 self._log(f"  请求 {n_req} 题（第 {requests} 次，"
                           f"剩余 {remaining}）…")
                 reply = self._chat(SYSTEM_PROMPT, text, json_mode=True) if self.client \
@@ -686,6 +821,8 @@ class Runner(threading.Thread):
                 return
             except api_client.LLMError as exc:
                 item["failed"] = int(item.get("failed", 0)) + 1
+                if exc.kind == "rate" or getattr(exc, "status", None) == 429:
+                    self._slow_down(getattr(exc, "retry_after", None))
                 if exc.kind in ("auth", "config", "not_found", "ssl"):
                     item["status"] = "error"
                     item["error"] = exc.friendly()
@@ -705,12 +842,16 @@ class Runner(threading.Thread):
                 item["status"] = "error"
                 item["error"] = "客户端未初始化"
                 break
-            usage = task.setdefault("usage", {"prompt_tokens": 0,
-                                              "completion_tokens": 0, "requests": 0})
-            usage["requests"] = int(usage.get("requests", 0)) + 1
-            usage["prompt_tokens"] = int(usage.get("prompt_tokens", 0)) + reply.prompt_tokens
-            usage["completion_tokens"] = int(usage.get("completion_tokens", 0)) + reply.completion_tokens
-            self._emit(type="usage", usage=dict(usage))
+            self._speed_up()
+            with self._lock:
+                usage = task.setdefault("usage", {"prompt_tokens": 0,
+                                                  "completion_tokens": 0, "requests": 0})
+                usage["requests"] = int(usage.get("requests", 0)) + 1
+                usage["prompt_tokens"] = int(usage.get("prompt_tokens", 0)) + reply.prompt_tokens
+                usage["completion_tokens"] = (int(usage.get("completion_tokens", 0))
+                                              + reply.completion_tokens)
+                usage_snapshot = dict(usage)
+            self._emit(type="usage", usage=usage_snapshot)
             truncated = reply.finish_reason in ("length", "max_tokens", "MAX_TOKENS")
             try:
                 items = api_questions.parse_questions(reply.text)
@@ -755,13 +896,19 @@ class Runner(threading.Thread):
                 task_id=task.get("id", ""))
             remaining = need - int(item["done"])
             records = records[:remaining]
-            fresh = []
-            seen = self.topic_seen.setdefault(item["topic_id"], set())
-            for rec in records:
-                if rec["id"] in self.known_ids or rec["id"] in seen:
-                    continue
-                fresh.append(rec)
-            dropped = len(records) - len(fresh)
+            with self._lock:
+                seen = self.topic_seen.setdefault(item["topic_id"], set())
+                fresh = []
+                for rec in records:
+                    if rec["id"] in self.known_ids or rec["id"] in seen:
+                        continue
+                    fresh.append(rec)
+                dropped = len(records) - len(fresh)
+                written = api_bank.append(fresh, known=self.known_ids) if fresh else 0
+                if written:
+                    self.known_ids.update(r["id"] for r in fresh[:written])
+                    seen.update(r["id"] for r in fresh[:written])
+                    self.records.extend(fresh[:written])
 
             if not fresh:
                 item["failed"] = int(item.get("failed", 0)) + 1
@@ -777,7 +924,6 @@ class Runner(threading.Thread):
                 self._sleep(2)
                 continue
 
-            written = api_bank.append(fresh, known=self.known_ids)
             if not written:
                 empty_rounds += 1
                 self._log("  题目均已存在，跳过")
@@ -788,23 +934,21 @@ class Runner(threading.Thread):
                 continue
 
             empty_rounds = 0
-            self.known_ids.update(r["id"] for r in fresh)
-            seen.update(r["id"] for r in fresh)
-            self.records.extend(fresh[:written])
             self._archive()
-            item["done"] = int(item["done"]) + written
-            item["status"] = "done" if item["done"] >= need else "running"
-            if item["status"] == "done":
-                item["error"] = ""
-            recalc(task)
-            save_task(task)
+            with self._lock:
+                item["done"] = int(item["done"]) + written
+                item["status"] = "done" if item["done"] >= need else "running"
+                if item["status"] == "done":
+                    item["error"] = ""
+                recalc(task)
+                self._save(force=False)
+                totals = dict(task["totals"])
             note = f"，丢弃 {len(errors)} 题（{errors[0]}）" if errors else ""
             self._log(f"  入库 {written} 题，累计 {item['done']}/{need}{note}")
             self._emit(type="question", count=written)
             self._emit(type="item", index=idx, done=item["done"], need=need,
                        status=item["status"])
-            self._emit(type="progress", done=task["totals"]["done"],
-                       need=task["totals"]["need"])
+            self._emit(type="progress", done=totals["done"], need=totals["need"])
             if item["done"] < need and not self._stop_evt.is_set() and not self._pause_evt.is_set():
                 self._sleep(float(self.profile.get("interval") or 0))
 

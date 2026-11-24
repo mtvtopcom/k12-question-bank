@@ -247,6 +247,51 @@ def _example_for(fmt: str, subject: str) -> str:
     return EXAMPLES.get(subject, DEFAULT_EXAMPLE)
 
 
+def build_lean_prompt(kp: Dict[str, Any], vol: Dict[str, Any], n: int = 20,
+                      difficulty_mix: Optional[Dict[int, int]] = None) -> str:
+    """精简版出题提示词（批量生成用）。
+
+    与 build_prompt 的区别：只保留考核必需的档案字段，输出只要 5 个字段，
+    解析限 30~60 字，不附 few-shot 示例。每题输出 token 约为完整版的一半，
+    批次越大越明显——批量跑几万题时优先用这一版。
+    界面上的「生成提示词」仍用完整版，方便用户粘到别处精修。
+    """
+    stage = vol.get("stage", "")
+    grade = vol.get("grade", "")
+    term = vol.get("term", "")
+    grade_label = _grade_label(grade, term, stage)
+    subject_cn = SUBJECT_CN.get(vol.get("subject", ""), vol.get("subject", ""))
+    mistakes = kp.get("common_mistakes") or []
+    mistakes_text = "；".join(str(m) for m in mistakes) or "（未标注，按常见错误设计干扰项）"
+    band = DIFFICULTY_CN.get(int(kp.get("difficulty", 2) or 2), "理解应用")
+    spec = difficulty_spec(n, difficulty_mix, int(kp.get("difficulty", 2) or 2))
+
+    return f"""你是资深中小学命题专家。针对下面这一个知识点，命制 **{n} 道单项选择题**。
+
+## 知识点
+- 名称：{kp.get('name', '')}
+- 学段年级：{STAGE_CN.get(stage, stage)} · {grade_label} · {subject_cn}
+- 学习目标：{kp.get('objective', '')}
+- 核心概念：{kp.get('concept', '')}
+- 易错点：{mistakes_text}
+- 难度基准：{kp.get('difficulty', 2)}（{band}）
+- 难度分布（严格执行）：{spec}
+
+## 命题要求
+1. 考内容不考档案：创设情境让学生运用知识作答；禁止问「属于哪个领域」「学习目标是什么」「前置知识是谁」。
+2. 正确答案唯一，能由学习目标与核心概念明确推出。
+3. 至少 1 个干扰项取自上面的易错点，其余为同学科同主题的常见错误认识；禁止明显荒谬的选项。
+4. 不得超出{grade_label}水平：{_grade_redline(stage, grade)}
+5. {n} 道题的情境和问法各不相同，不要只替换数字或个别词语。
+6. 解析只写 30~60 字，点明关键依据即可，不要逐项分析。
+7. 每题 4 个选项，正确项位置尽量分散。
+
+## 输出
+只输出 JSON 数组，不要 Markdown 代码块、不要解释文字。每个元素只要这 5 个字段：
+[{{"stem":"题干","options":["A项","B项","C项","D项"],"answer":"A","explanation":"30~60字解析","difficulty":2}}]
+difficulty 按该题实际难度填 1/2/3/4；不要输出 topic_id、topic_name、bloom、type。"""
+
+
 def build_prompt(kp: Dict[str, Any], vol: Dict[str, Any], n: int = 5,
                  title_by_id: Optional[Dict[str, str]] = None,
                  difficulty_mix: Optional[Dict[int, int]] = None,

@@ -57,6 +57,7 @@ DEFAULT_PROFILE: Dict[str, Any] = {
     "interval": 0.8,       # 两次请求之间的最小间隔（秒），避免触发限流
     "json_mode": True,     # 支持 JSON 模式的服务会返回更稳定的结构
     "batch": 6,            # 单次请求最多生成几道题
+    "concurrency": 4,      # 同时生成的知识点数（并行请求数）
 }
 DEFAULT_GENERATION: Dict[str, Any] = {
     "n": "5",

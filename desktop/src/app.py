@@ -26,7 +26,7 @@ import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.8.1"
+VERSION = "1.9.0"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -1042,10 +1042,16 @@ class App:
         self.api_var_timeout = tk.StringVar()
         self.api_var_interval = tk.StringVar()
         self.api_var_batch = tk.StringVar()
+        self.api_var_concurrency = tk.StringVar()
         self.api_var_json = tk.BooleanVar(value=True)
 
-        def adv_item(label, var, width, title, brief, detail):
-            cell = ttk.Frame(self.api_adv)
+        row1 = ttk.Frame(self.api_adv)
+        row1.pack(fill="x")
+        row2 = ttk.Frame(self.api_adv)
+        row2.pack(fill="x", pady=(6, 0))
+
+        def adv_item(label, var, width, title, brief, detail, row):
+            cell = ttk.Frame(row)
             cell.pack(side="left", padx=(0, 16))
             ttk.Label(cell, text=label).pack(side="left")
             ttk.Entry(cell, textvariable=var, width=width).pack(
@@ -1060,7 +1066,7 @@ class App:
             "· 0        几乎每次都给最标准的答案，题目容易重复\n"
             "· 0.7~1.0  有变化但不跑偏（推荐 0.8，默认值）\n"
             "· 1.5 以上 很发散，可能出怪题、跑题\n\n"
-            "出题建议 0.6 ~ 1.0。范围 0 ~ 2，不知道就保持 0.8。")
+            "出题建议 0.6 ~ 1.0。范围 0 ~ 2，不知道就保持 0.8。", row1)
         adv_item(
             "输出上限", self.api_var_max_tokens, 6, "输出上限（max_tokens）",
             "模型一次最多能写多少内容。太小会被截断，默认 8192 够出 6 题。",
@@ -1071,7 +1077,7 @@ class App:
             "· 每次题数很多时（如 50 ~ 100 题）：建议 32000 以上，否则容易写一半断掉\n"
             "· 可填 64 ~ 1000000；填得大不会多花钱，费用只按实际写出来的内容算\n"
             "  （填得超过服务商上限时，接口会直接报错提示，不会悄悄截断）\n\n"
-            "如果日志出现「输出被截断」，就把它调大，或把「每次题数」调小。")
+            "如果日志出现「输出被截断」，就把它调大，或把「每次题数」调小。", row1)
         adv_item(
             "等待上限(秒)", self.api_var_timeout, 5, "等待上限（超时）",
             "等多久还没回应就判定超时并自动重试。默认 90 秒。",
@@ -1080,7 +1086,7 @@ class App:
             "· 网络正常：默认 90 秒够用\n"
             "· 输出上限很大或模型很慢：可调到 180 ~ 300 秒\n\n"
             "说明：软件会按「输出上限」自动放宽超时（最多 240 秒），\n"
-            "所以这里填小了也不会把长回答掐断，日志里会写明实际等了多久。")
+            "所以这里填小了也不会把长回答掐断，日志里会写明实际等了多久。", row1)
         adv_item(
             "请求间隔(秒)", self.api_var_interval, 5, "请求间隔",
             "两次请求之间歇多久，防止被服务商限流。默认 0.8 秒。",
@@ -1088,7 +1094,7 @@ class App:
             "每生成完一批，等这么久再发下一次请求。\n"
             "· 默认 0.8 秒，基本不会被限流\n"
             "· 遇到「请求太频繁 / 429」：调到 2 ~ 3 秒\n"
-            "· 想跑得更快：调到 0.2 ~ 0.3 秒，但更容易被限流")
+            "· 想跑得更快：调到 0.2 ~ 0.3 秒，但更容易被限流", row2)
         adv_item(
             "每次题数", self.api_var_batch, 4, "每次题数（batch）",
             "一次请求让模型出几题。越小越稳，越大越快。默认 6。",
@@ -1099,9 +1105,21 @@ class App:
             "· 20 ~ 100 题：一次要更多，速度快，但一次写得长、更容易被截断；\n"
             "  被截断时软件会自动折半重试（日志里会写明），不用你手动改\n\n"
             "提示：题数填得大，「输出上限」也要跟着给够（如 100 题给 32000 以上），\n"
-            "等待上限也会自动放宽，避免长回答被提前掐断。")
+            "等待上限也会自动放宽，避免长回答被提前掐断。", row2)
 
-        json_cell = ttk.Frame(self.api_adv)
+        adv_item(
+            "同时生成", self.api_var_concurrency, 4, "同时生成（并发数）",
+            "同时向接口发几个请求。越大越快，单 Key 建议 4~8，默认 4。",
+            "同时生成（并发数 / concurrency）\n\n"
+            "一次同时处理几个知识点。这是提速最直接的一项：\n"
+            "· 1 路：和以前一样，一次只发一个请求，最慢\n"
+            "· 4 路（默认）：速度约 4 倍，绝大多数服务商都不会限流\n"
+            "· 8 ~ 16 路：更快，但要看你的 Key 配额；被限流时软件会自动降速，\n"
+            "  日志会出现「接口限流：整体降速」，冷却后自动恢复\n\n"
+            "填 1 ~ 16。只有一个 Key 时建议 4 ~ 8；多个 Key 可以开到 16。\n"
+            "第一次用可以先跑 20 题看看日志有没有限流，再往上加。", row2)
+
+        json_cell = ttk.Frame(row2)
         json_cell.pack(side="left")
         ttk.Checkbutton(json_cell, text="固定格式（JSON）",
                         variable=self.api_var_json).pack(side="left")
@@ -1117,7 +1135,7 @@ class App:
 
         for _var in (self.api_var_temp, self.api_var_max_tokens,
                      self.api_var_timeout, self.api_var_interval,
-                     self.api_var_batch, self.api_var_json):
+                     self.api_var_batch, self.api_var_concurrency, self.api_var_json):
             _var.trace_add("write", lambda *_: self._api_refresh_adv_summary())
         self.api_adv.grid_remove()
 
@@ -1332,6 +1350,7 @@ class App:
         self.api_var_timeout.set(str(prof.get("timeout", 90)))
         self.api_var_interval.set(str(prof.get("interval", 0.8)))
         self.api_var_batch.set(str(prof.get("batch", 6)))
+        self.api_var_concurrency.set(str(prof.get("concurrency", 4)))
         self.api_var_json.set(bool(prof.get("json_mode", True)))
 
     def api_toggle_key(self):
@@ -1371,6 +1390,7 @@ class App:
                   f"等待 {val(self.api_var_timeout, '90')} 秒 · "
                   f"间隔 {val(self.api_var_interval, '0.8')} 秒 · "
                   f"每次 {val(self.api_var_batch, '6')} 题 · "
+                  f"并行 {val(self.api_var_concurrency, '4')} 路 · "
                   f"固定格式{'开' if self.api_var_json.get() else '关'}"))
 
     def api_collect_profile(self) -> dict:
@@ -1413,6 +1433,7 @@ class App:
             "timeout": number(self.api_var_timeout, "等待上限（秒）", int, 10, 900),
             "interval": number(self.api_var_interval, "请求间隔（秒）", float, 0.0, 120.0),
             "batch": number(self.api_var_batch, "每次题数", int, 1, 100),
+            "concurrency": number(self.api_var_concurrency, "同时生成", int, 1, 16),
             "json_mode": bool(self.api_var_json.get()),
         }
 
@@ -1596,6 +1617,8 @@ class App:
 
     def _api_status_text(self, task, status, live=False) -> str:
         """任务行右侧提示：只写「现在该做什么」，任务名与状态在左边下拉里。"""
+        if getattr(self, "_api_pause_pending", False):
+            return "暂停中 · 正在收尾…"
         totals = task.get("totals") or {}
         done = int(totals.get("done", 0))
         need = int(totals.get("need", 0))
@@ -1624,8 +1647,20 @@ class App:
             self.api_lbl_progress.configure(text="0 题")
             return
         self.api_pb.configure(maximum=need, value=min(done, need))
-        self.api_lbl_progress.configure(
-            text=f"{done} / {need} 题 · {round(done * 100 / need)}%")
+        text = f"{done} / {need} 题 · {round(done * 100 / need)}%"
+        started = getattr(self, "_api_run_started", 0.0)
+        base = getattr(self, "_api_run_base", 0)
+        elapsed = time.time() - started if started else 0
+        gained = done - base
+        if started and elapsed > 20 and gained > 0:
+            per_min = gained / (elapsed / 60.0)
+            text += f" · {per_min:.1f} 题/分"
+            left = need - done
+            if per_min > 0 and left > 0:
+                minutes = left / per_min
+                text += (" · 约剩 " + (f"{minutes / 60:.1f} 小时" if minutes >= 90
+                                       else f"{minutes:.0f} 分钟"))
+        self.api_lbl_progress.configure(text=text)
 
     # ---- API 模块：任务与明细的删除 / 清空 / 改名 ----
     def _api_running(self) -> bool:
@@ -1769,6 +1804,8 @@ class App:
         self._api_log(f"   {len(task['items'])} 个知识点 / {task['totals']['need']} 题 / "
                       f"JSON 存档 {os.path.basename(api_task.archive_path(task))}")
         self.api_runner = api_task.Runner(task, profile, self.api_events.put)
+        self._api_run_started = time.time()
+        self._api_run_base = int((task.get("totals") or {}).get("done", 0))
         self.api_runner.start()
         self._api_pause_pending = False
         self._api_set_buttons(running=True)
@@ -2179,10 +2216,11 @@ class App:
             subject=AI_SUBJECT.get(self.bank_var_subject.get(), ""),
             grade=AI_GRADE.get(self.bank_var_grade.get(), ""),
             difficulty=DIFFICULTY_CODE.get(self.bank_var_diff.get()))
-        self.bank_rows = rows
+        self.bank_rows = rows                       # 导出用完整结果
         self._bank_by_id = {r["id"]: r for r in rows}
+        shown = rows[:2000]                         # 列表只渲染最近 2000 行
         self.bank_tree.delete(*self.bank_tree.get_children())
-        for rec in rows:
+        for rec in shown:
             created = str(rec.get("created_at", ""))[5:16].replace("T", " ")
             self.bank_tree.insert(
                 "", "end", iid=rec["id"],
@@ -2192,8 +2230,10 @@ class App:
                         rec.get("stem", "")[:80], rec.get("answer", ""),
                         _diff_label(rec.get("difficulty", "")), created))
         s = api_bank.stats()
+        extra = f" ｜ 列表显示最近 {len(shown)} 题" if len(rows) > len(shown) else ""
         self.bank_lbl_stats.configure(
-            text=f"共 {s['total']} 题 · 覆盖 {s['topics']} 个知识点 · 今日 +{s['today']} ｜ 当前 {len(rows)} 题")
+            text=f"共 {s['total']} 题 · 覆盖 {s['topics']} 个知识点 · 今日 +{s['today']}"
+                 f" ｜ 当前 {len(rows)} 题{extra}")
 
     def bank_reset_filters(self):
         self.bank_var_q.set("")
@@ -2870,29 +2910,33 @@ class App:
     和模型，再粘贴你自己的 API Key。点「测试连接」确认可用；
     配置自动保存在本机（文件权限 600，不会上传）。
     中间的「高级设置」平时是收起的：灵活度、输出上限、等待上限、请求间隔、
-    每次题数、固定格式（JSON）都在里面，每项旁边有个蓝色 ?，鼠标停一下看一句话，
-    点一下看完整白话说明。不懂就保持默认，不影响正常出题。
+    每次题数、同时生成、固定格式（JSON）都在里面，每项旁边有个蓝色 ?，
+    鼠标停一下看一句话，点一下看完整白话说明。不懂就保持默认。
 12. 生成内容不在本页设置：页面上方会显示当前已选多少个知识点、每点几题、
     难度怎么分配（来自模块二），点「去选择知识点」可回去修改。
-13. 点「开始生成」后，软件按知识点逐个调用接口，进度条、明细表和日志实时刷新，
-    同时统计请求次数与输入/输出 tokens。
+13. 点「开始生成」后，软件会同时跑多个知识点（「同时生成」默认 4 路，可调到 16），
+    进度条、明细表和日志实时刷新，同时统计请求次数与输入/输出 tokens。
+    进度行会显示「X 题/分」和「约剩多少时间」；批量出题自动使用精简输出格式
+    （只回题干/选项/答案/解析/难度，其余字段本地补），比完整版省一半 token。
 14. 任务名按「年级 学科 · 知识点」自动生成（多个知识点显示「首个 等 N 点」），
     点「重命名」可以改；任务名同时用作该任务 JSON 存档的文件名。
-15. 「暂停」「停止」立即生效（当前在途请求直接放弃，半秒内停下）；暂停时明细和
-    任务状态都会显示「已暂停」。已完成的题目都保留，直接关掉软件也不会丢进度，
+15. 「暂停」「停止」立即生效（所有在途请求一起放弃，一秒内停下）；暂停时明细和
+    任务状态都会显示「暂停中 / 已暂停」。已完成的题目都保留，直接关掉软件也不会丢进度，
     下次打开会显示「已暂停」，选中后点「继续」即从断点接着生成。
 16. 进度明细里选中知识点行，点「删除选中」可把它从本次任务移除（按住 Command 可多选）；
     「清空明细」移除当前任务的全部知识点。两者都只改任务，不动已经生成的题目。
     任务下拉旁的「删除任务」会删掉任务进度和它的 JSON 存档，题库里的题目保留。
-17. 每个任务在数据目录 exports/ 下有一份独立 JSON（文件名 = 任务名），每入库一批就更新；
-    点「打开生成文件夹」直接打开这个目录；「题库」页的「按任务导出 JSON」
+17. 每个任务在数据目录 exports/ 下有一份独立 JSON（文件名 = 任务名），运行中会
+    自动更新；点「打开生成文件夹」直接打开这个目录；「题库」页的「按任务导出 JSON」
     可以把筛选结果按任务拆成多个文件。
 18. 「清空日志」只清空右侧的日志显示，不影响任务进度、题库和已生成的题目。
-18. 网络错误/限流会自动退避重试，每次重试都写进日志（第几次、多久后重试），
-    等待模型响应时状态栏会显示「已等待 N 秒」，不会有长时间没反应的错觉。
-    输出上限设得很大（如 32000+）时，超时会自动放宽到够用的秒数并在日志里说明。
-19. Key 无效、模型不存在、证书校验失败会立即中止并给出处理步骤；
-    返回的题目会自动校验选项、答案、解析与难度，重复题干按 id 去重，不会重复入库。
+19. 网络错误与限流会自动处理：遇到 429 会让所有并发一起降速、冷却后自动恢复；
+    其它错误按退避重试，重试过程写进日志（第几次、多久后重试）。
+    等待模型响应时状态栏显示「已等待 N 秒」，不会有长时间没反应的错觉；
+    输出上限或每批题数较大时，超时会自动放宽并在日志说明。
+20. Key 无效、模型不存在、证书校验失败会立即中止全部并发并给出处理步骤；
+    单题解析失败只影响该批，不会拖垮整个任务。返回的题目会自动校验选项、答案、
+    解析与难度，重复题干按 id 去重，不会重复入库。
 21. 生成结果直接写入「题库」，可以继续筛选、预览、删除与导出。
 
 【模块四 · 题库】
