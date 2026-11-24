@@ -202,8 +202,8 @@ class Runner(threading.Thread):
         self.task = task
         self.profile = dict(profile or {})
         self.emit_raw = emit
-        self._stop = threading.Event()
-        self._pause = threading.Event()
+        self._stop_evt = threading.Event()
+        self._pause_evt = threading.Event()
         self.client: Optional[api_client._BaseClient] = None
         self.index: Dict[str, Tuple[Dict[str, Any], Dict[str, Any]]] = {}
         self.known_ids: set = set()
@@ -211,14 +211,14 @@ class Runner(threading.Thread):
 
     # ---- 控制 ----
     def pause(self) -> None:
-        self._pause.set()
+        self._pause_evt.set()
 
     def stop(self) -> None:
-        self._stop.set()
+        self._stop_evt.set()
 
     @property
     def paused(self) -> bool:
-        return self._pause.is_set() and not self._stop.is_set()
+        return self._pause_evt.is_set() and not self._stop_evt.is_set()
 
     def _emit(self, **payload: Any) -> None:
         try:
@@ -231,7 +231,7 @@ class Runner(threading.Thread):
 
     def _sleep(self, seconds: float) -> None:
         if seconds > 0:
-            self._stop.wait(seconds)
+            self._stop_evt.wait(seconds)
 
     # ---- 主循环 ----
     def run(self) -> None:  # noqa: C901
@@ -265,7 +265,7 @@ class Runner(threading.Thread):
             save_task(task)
 
             for idx, item in enumerate(task["items"]):
-                if self._stop.is_set() or self._pause.is_set():
+                if self._stop_evt.is_set() or self._pause_evt.is_set():
                     break
                 if int(item.get("done", 0)) >= int(item.get("need", 0)):
                     item["status"] = "done"
@@ -289,9 +289,9 @@ class Runner(threading.Thread):
             totals = task["totals"]
             if task.get("status") == "error":
                 final_status = "error"
-            elif self._stop.is_set():
+            elif self._stop_evt.is_set():
                 final_status = "stopped"
-            elif self._pause.is_set() and totals["done"] < totals["need"]:
+            elif self._pause_evt.is_set() and totals["done"] < totals["need"]:
                 final_status = "paused"
             elif totals["done"] >= totals["need"]:
                 final_status = "done"
@@ -342,7 +342,7 @@ class Runner(threading.Thread):
         max_requests = need * 2 + 10
         requests = 0
         while int(item["done"]) < need:
-            if self._stop.is_set() or self._pause.is_set():
+            if self._stop_evt.is_set() or self._pause_evt.is_set():
                 break
             if requests >= max_requests:
                 item["error"] = "多次请求仍未获得足够合格题目"
@@ -361,7 +361,7 @@ class Runner(threading.Thread):
                     else None
             except api_client.LLMError as exc:
                 item["failed"] = int(item.get("failed", 0)) + 1
-                if exc.kind in ("auth", "config", "not_found"):
+                if exc.kind in ("auth", "config", "not_found", "ssl"):
                     item["status"] = "error"
                     item["error"] = exc.friendly()
                     self._emit(type="item", index=idx, done=item["done"],
@@ -458,13 +458,13 @@ class Runner(threading.Thread):
                        status=item["status"])
             self._emit(type="progress", done=task["totals"]["done"],
                        need=task["totals"]["need"])
-            if item["done"] < need and not self._stop.is_set() and not self._pause.is_set():
+            if item["done"] < need and not self._stop_evt.is_set() and not self._pause_evt.is_set():
                 self._sleep(float(self.profile.get("interval") or 0))
 
         if int(item["done"]) >= need:
             item["status"] = "done"
             item["error"] = ""
         elif item["status"] == "running":
-            item["status"] = "paused" if self._pause.is_set() else "pending"
+            item["status"] = "paused" if self._pause_evt.is_set() else "pending"
         self._emit(type="item", index=idx, done=item["done"], need=need,
                    status=item["status"], error=item.get("error", ""))

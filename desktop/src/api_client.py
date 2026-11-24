@@ -10,15 +10,48 @@ from __future__ import annotations
 
 import gzip
 import json
+import os
 import re
 import socket
+import ssl
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
 from typing import Any, Dict, Optional, Tuple
 
-USER_AGENT = "K12QuestionBank/1.4 (+https://github.com/mtvtopcom/k12-question-bank)"
+import api_config
+import api_ssl
+
+USER_AGENT = "K12QuestionBank/1.4.1 (+https://github.com/mtvtopcom/k12-question-bank)"
+
+_SSL_STATE: Dict[str, Any] = {"ctx": None, "note": ""}
+
+
+def ssl_context() -> Optional[ssl.SSLContext]:
+    """本机根证书上下文；拿不到可用证书时返回 None（走 Python 默认）。"""
+    if _SSL_STATE["ctx"] is None:
+        try:
+            ctx, note = api_ssl.prepare(os.path.join(api_config.data_dir(), "cacert.pem"))
+        except Exception as exc:  # noqa: BLE001 —— 兜底失败不能拖垮出题
+            return None if not _SSL_STATE["ctx"] else _SSL_STATE["ctx"]
+        _SSL_STATE["ctx"] = ctx
+        _SSL_STATE["note"] = note
+    return _SSL_STATE["ctx"]
+
+
+def ssl_note() -> str:
+    """证书库来源说明，界面在首次请求后可以提示一句。"""
+    ssl_context()
+    return str(_SSL_STATE.get("note") or "")
+
+
+def _is_cert_error(exc: BaseException) -> bool:
+    if isinstance(exc, ssl.SSLCertVerificationError):
+        return True
+    text = str(exc)
+    return ("CERTIFICATE_VERIFY_FAILED" in text
+            or "certificate verify failed" in text.lower())
 
 
 class LLMError(Exception):
@@ -178,7 +211,8 @@ def _post_json(url: str, headers: Dict[str, str], payload: Dict[str, Any],
     data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
     req = urllib.request.Request(url, data=data, method="POST", headers=headers)
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
+        with urllib.request.urlopen(req, timeout=timeout,
+                                    context=ssl_context()) as resp:
             raw = resp.read()
             if (resp.headers.get("Content-Encoding") or "").lower() == "gzip":
                 raw = gzip.decompress(raw)
@@ -190,9 +224,21 @@ def _post_json(url: str, headers: Dict[str, str], payload: Dict[str, Any],
                        hint="可在配置里调大超时，或减少每次请求题数") from None
     except urllib.error.URLError as exc:
         reason = getattr(exc, "reason", exc)
+        if _is_cert_error(reason):
+            raise LLMError(str(reason), kind="ssl", retryable=False,
+                           hint=api_ssl.hint(str(reason))) from None
         raise LLMError(f"网络连接失败：{reason}", kind="network", retryable=True,
                        hint="检查网络 / 代理，以及 Base URL 是否可访问") from None
+    except (ssl.SSLError, ssl.CertificateError) as exc:
+        if _is_cert_error(exc):
+            raise LLMError(str(exc), kind="ssl", retryable=False,
+                           hint=api_ssl.hint(str(exc))) from None
+        raise LLMError(f"TLS 握手失败：{exc}", kind="network", retryable=True,
+                       hint="确认 Base URL 是 https 且未被代理劫持") from None
     except OSError as exc:
+        if _is_cert_error(exc):
+            raise LLMError(str(exc), kind="ssl", retryable=False,
+                           hint=api_ssl.hint(str(exc))) from None
         raise LLMError(f"网络异常：{exc}", kind="network", retryable=True) from None
     if not raw:
         raise LLMError("服务返回空响应", kind="parse", retryable=True)
@@ -500,12 +546,14 @@ def test_connection(profile: Dict[str, Any]) -> Dict[str, Any]:
         ms = int((time.time() - started) * 1000)
         text = re.sub(r"[`\s]+", " ", reply.text or "").strip()[:24]
         return {"ok": True, "ms": ms, "model": reply.model or client.model,
-                "reply": text,
+                "reply": text, "ssl": ssl_note(),
                 "message": f"连接成功 · {ms} ms · {reply.model or client.model}"
                            + (f" · 返回「{text}」" if text else "")}
     except LLMError as exc:
+        short = f"连接失败：{exc}" if exc.kind == "ssl" else f"连接失败：{exc.friendly()}"
         return {"ok": False, "ms": int((time.time() - started) * 1000),
-                "message": f"连接失败：{exc.friendly()}"}
+                "kind": exc.kind, "hint": exc.hint, "message": short}
     except Exception as exc:  # noqa: BLE001
         return {"ok": False, "ms": int((time.time() - started) * 1000),
+                "kind": "unknown", "hint": "",
                 "message": f"连接失败：{exc}"}

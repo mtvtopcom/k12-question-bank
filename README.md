@@ -219,7 +219,7 @@ v1.2.1 移除元数据题型后容量比 v1.2.0（约 1.3 万）略降，这是�
 
 不写网页，做成双击即开的原生 macOS 桌面窗口（Python 标准库 + 系统 Tcl/Tk，零第三方依赖、无需 Xcode）。
 
-**方式一：直接下载**（推荐给非开发者）——到 [Releases](https://github.com/mtvtopcom/k12-question-bank/releases/latest) 下载 `K12-Question-Bank-v1.4.0-macos.zip`，解压后双击 `K12 题库工厂.app`。首次打开若提示「未验证的开发者」，右键 → 打开即可。
+**方式一：直接下载**（推荐给非开发者）——到 [Releases](https://github.com/mtvtopcom/k12-question-bank/releases/latest) 下载 `K12-Question-Bank-v1.4.1-macos.zip`，解压后双击 `K12 题库工厂.app`。首次打开若提示「未验证的开发者」，右键 → 打开即可。
 
 **方式二：从源码构建**
 
@@ -282,6 +282,9 @@ v1.4.0 起界面分为四个标签页，互不干扰（v1.3.1 统一品牌为「
 **Windows / Linux 能用吗？**
 数据与生成管道（Python 3.9+）跨平台；桌面界面基于 Tk，Windows / Linux 理论可运行，目前只在 macOS 上做过完整验证。
 
+**测试连接报 `CERTIFICATE_VERIFY_FAILED` / `unable to get local issuer certificate`？**
+不是网络问题，是本机 Python 的根证书库为空（用 python.org 安装包后没跑过证书脚本）。v1.4.1 起会自动改用 macOS 系统证书库，通常无需处理；若仍失败，执行 `open "/Applications/Python 3.11/Install Certificates.command"`，或把公司代理的根证书装进「钥匙串访问」并设为「始终信任」。
+
 **可以自己增删知识点吗？**
 可以。桌面端「知识点管理」支持新增 / 编辑 / 删除，带自动备份、撤销与一键恢复出厂配置；要永久固化请改 `knowledge-map/data/*.py` 后运行 `build_volumes.py`。
 
@@ -299,6 +302,7 @@ MIT 协议，可自由用于商业产品，保留版权声明即可。知识点�
 - [x] v1.3.4：新增输出格式（JSON / TXT / Excel / CSV），难度预设默认「基础为主」
 - [x] v1.3.5：知识地图默认收起、列表新增学科/年级列、详情改单行紧凑格式、移除引擎提示字段、一键恢复出厂配置（63 册 / 1225 点）
 - [x] v1.4.0：API 直连生成（OpenAI 兼容 / Claude / Gemini）、本地题库与五种格式导出、进度显示与断点续跑
+- [x] v1.4.1：自动载入系统根证书，修复 `CERTIFICATE_VERIFY_FAILED`；证书报错按原因给出中文处理步骤
 - [x] 内容感知型模板生成器 v1.2.1（考知识内容而非知识点档案，全库约 1.1 万题容量）
 - [x] 桌面端集成本地出题：单点 / 批量生成、题目预览、JSONL / CSV 导出
 - [ ] 用 API 直连批量补量至 10 万题 + 全库质量报告

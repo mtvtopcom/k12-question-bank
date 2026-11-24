@@ -9,6 +9,7 @@ from __future__ import annotations
 import copy
 import os
 import queue
+import re
 import sys
 import threading
 import time
@@ -24,7 +25,7 @@ import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.4.0"
+VERSION = "1.4.1"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -1250,6 +1251,27 @@ class App:
 
         threading.Thread(target=work, daemon=True).start()
 
+    def _api_ssl_help(self, hint: str = ""):
+        """证书校验失败时给出可照做的步骤（本机 Python 缺 CA 是最常见原因）。"""
+        script, version = "", ""
+        m = re.search(r"/Python\.framework/Versions/([\d.]+)/", sys.executable or "")
+        if m:
+            version = m.group(1)
+            script = f"/Applications/Python {version}/Install Certificates.command"
+        steps = ["本机 Python 的根证书库是空的（用 python.org 安装包后没运行过证书脚本），",
+                 "所以不是网络问题，也不是 API Key 填错。软件已自动改用 macOS 系统证书库重试。",
+                 "", "如果仍然失败，按任意一条处理："]
+        idx = 1
+        if script:
+            steps.append(f"{idx}) 在终端执行：open \"{script}\"")
+            idx += 1
+        steps.append(f"{idx}) 或在终端执行：\"{sys.executable}\" -m pip install --upgrade certifi")
+        idx += 1
+        steps.append(f"{idx}) 公司网络有代理替换证书时，把代理根证书装进「钥匙串访问」并设为「始终信任」")
+        if hint:
+            steps += ["", f"技术细节：{hint}"]
+        messagebox.showwarning("HTTPS 证书校验失败", "\n".join(steps))
+
     # ---- API 模块：知识点勾选 ----
     def api_on_stage_change(self):
         stage = AI_STAGE.get(self.api_var_stage.get(), "")
@@ -1653,8 +1675,16 @@ class App:
                 foreground="#0F6E56" if ok else "#B3261E")
             if ok:
                 self.api_save_config(silent=True)
+                note = str(result.get("ssl") or "")
+                if note and "Python 自带" not in note:
+                    self._api_log(f"证书：{note}")
             self._api_log(("连接测试成功：" if ok else "连接测试失败：")
                           + str(result.get("message", "")))
+            hint = str(result.get("hint") or "")
+            if hint and not ok:
+                self._api_log(f"处理建议：{hint}")
+            if not ok and result.get("kind") == "ssl":
+                self._api_ssl_help(hint)
 
     def _api_on_finished(self, ev):
         self._api_set_buttons(running=False)
