@@ -43,6 +43,15 @@ TABLE_COLUMNS: List[Tuple[str, str]] = [
 
 _cache: Dict[str, Any] = {"key": None, "rows": []}
 
+_BAD_FILENAME = re.compile(r'[\\/:*?"<>|\x00-\x1f]+')
+
+
+def safe_filename(name: Any, fallback: str = "任务") -> str:
+    """任务名 → 可用的文件名（去掉路径分隔符与非法字符，限长 80）。"""
+    text = _BAD_FILENAME.sub("-", str(name or ""))
+    text = re.sub(r"\s+", " ", text).strip().strip(".").strip()
+    return (text[:80].strip().strip(".") or fallback)
+
 
 # ---------------- 读写 ----------------
 def _key() -> Optional[Tuple[int, int]]:
@@ -80,6 +89,13 @@ def load(force: bool = False) -> List[Dict[str, Any]]:
 
 def existing_ids(force: bool = False) -> set:
     return {r.get("id", "") for r in load(force=force) if r.get("id")}
+
+
+def rows_for_task(task_id: str) -> List[Dict[str, Any]]:
+    """某个任务生成的全部题目（文件顺序，旧 → 新）。"""
+    if not task_id:
+        return []
+    return [r for r in load() if r.get("task_id") == task_id]
 
 
 def append(records: Sequence[Dict[str, Any]], known: Optional[set] = None) -> int:

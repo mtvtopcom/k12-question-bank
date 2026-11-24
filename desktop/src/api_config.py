@@ -101,6 +101,13 @@ def tasks_dir() -> str:
     return path
 
 
+def exports_dir() -> str:
+    """按任务产出的 JSON 存档目录（文件名 = 任务名）。"""
+    path = os.path.join(data_dir(), "exports")
+    os.makedirs(path, exist_ok=True)
+    return path
+
+
 def _default_config() -> Dict[str, Any]:
     profiles: Dict[str, Any] = {}
     for provider in PROVIDER_ORDER:

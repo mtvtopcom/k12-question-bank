@@ -32,6 +32,7 @@ STATUS_LABELS = {
     "partial": "部分完成",
     "done": "已完成",
     "error": "出错",
+    "empty": "已清空",
 }
 SYSTEM_PROMPT = (
     "你是一位资深的中小学命题专家，熟悉中国教育部课程标准和《3-6岁儿童学习与发展指南》，"
@@ -46,9 +47,201 @@ def _task_path(task_id: str) -> str:
     return os.path.join(api_config.tasks_dir(), f"{safe}.json")
 
 
+def _task_files() -> List[str]:
+    return sorted(glob.glob(os.path.join(api_config.tasks_dir(), "*.json")))
+
+
+def _read_raw(path: str) -> Optional[Dict[str, Any]]:
+    try:
+        with open(path, encoding="utf-8") as f:
+            obj = json.load(f)
+    except Exception:  # noqa: BLE001
+        return None
+    return obj if isinstance(obj, dict) and isinstance(obj.get("items"), list) else None
+
+
+def _parse_when(value: Any) -> dt.datetime:
+    try:
+        return dt.datetime.fromisoformat(str(value))
+    except (TypeError, ValueError):
+        return dt.datetime.now()
+
+
+def _as_n(value: Any) -> int:
+    try:
+        return max(1, int(value or 1))
+    except (TypeError, ValueError):
+        return 1
+
+
+def auto_name(items: Sequence[Dict[str, Any]], n: int,
+              when: Any = None) -> str:
+    """自动任务名：时间 + 年级学科范围 + 知识点数 × 每点题数。"""
+    grades: List[str] = []
+    stages: List[str] = []
+    subjects: List[str] = []
+    for it in items or []:
+        grade = str(it.get("grade_label") or "")
+        if grade and grade not in grades:
+            grades.append(grade)
+        stage = str(it.get("stage") or "")
+        if stage and stage not in stages:
+            stages.append(stage)
+        subject = store.SUBJECT_NAMES.get(it.get("subject", ""),
+                                          str(it.get("subject") or ""))
+        if subject and subject not in subjects:
+            subjects.append(subject)
+    if len(grades) == 1:
+        g = grades[0]
+    elif not grades:
+        g = ""
+    elif len(stages) == 1:
+        g = f"{grades[0]}~{grades[-1]}"
+    else:
+        g = f"{len(grades)}个年级"
+    if len(subjects) <= 2:
+        s = "/".join(subjects)
+    else:
+        s = f"{len(subjects)}科"
+    topics = len(items or [])
+    stamp = _parse_when(when).strftime("%m-%d %H:%M")
+    return " · ".join(x for x in (stamp, " ".join(x for x in (g, s) if x),
+                                  f"{topics}点×{_as_n(n)}题") if x)
+
+
+def _name_taken(name: str, exclude_id: str = "") -> bool:
+    for path in _task_files():
+        task = _read_raw(path)
+        if not task or task.get("id") == exclude_id:
+            continue
+        if str(task.get("name") or "") == name:
+            return True
+    return False
+
+
+def unique_name(name: str, exclude_id: str = "") -> str:
+    """重名时自动加 (2)/(3)，避免任务下拉和导出文件名打架。"""
+    base = " ".join(str(name or "").split())[:40].strip()
+    if not base:
+        base = "未命名任务"
+    candidate = base
+    i = 2
+    while _name_taken(candidate, exclude_id):
+        candidate = f"{base} ({i})"
+        i += 1
+    return candidate
+
+
+def _task_name(task: Dict[str, Any]) -> str:
+    name = str(task.get("name") or "").strip()
+    if name:
+        return name
+    return auto_name(task.get("items") or [], _as_n(task.get("n_per_point")),
+                     task.get("created_at"))
+
+
+# ---- 每个任务的独立 JSON 存档 ----
+def archive_path(task: Dict[str, Any]) -> str:
+    name = api_bank.safe_filename(_task_name(task),
+                                  str(task.get("id") or "任务"))
+    return os.path.join(api_config.exports_dir(), name + ".json")
+
+
+def write_archive(task: Dict[str, Any],
+                  records: Optional[Sequence[Dict[str, Any]]] = None) -> str:
+    """把该任务已生成的题目写成 JSON（文件名 = 任务名），返回路径。"""
+    if records is None:
+        records = api_bank.rows_for_task(task.get("id", ""))
+    path = archive_path(task)
+    tmp = path + ".tmp"
+    api_bank.export(tmp, "json", list(records))
+    os.replace(tmp, path)          # 写临时文件再替换，避免中途失败留下半个 JSON
+    return path
+
+
+def remove_archive(task: Dict[str, Any]) -> None:
+    path = archive_path(task)
+    try:
+        if os.path.exists(path):
+            os.remove(path)
+    except OSError:
+        pass
+
+
+# ---------------- 任务增删改 ----------------
+def remove_items(task: Dict[str, Any], indexes: Sequence[Any]) -> int:
+    """从任务里移除知识点行（已入库的题目不动）；全删完标为「已清空」。"""
+    items = task.get("items") or []
+    picked = set()
+    for raw in indexes:
+        try:
+            idx = int(raw)
+        except (TypeError, ValueError):
+            continue
+        if 0 <= idx < len(items):
+            picked.add(idx)
+    for idx in sorted(picked, reverse=True):
+        items.pop(idx)
+    recalc(task)
+    if not items:
+        task["status"] = "empty"
+        task["error"] = ""
+    elif (task.get("status") in ("paused", "stopped", "partial", "pending")
+          and task["totals"]["done"] >= task["totals"]["need"]):
+        task["status"] = "done"      # 删掉没生成的行后，剩下的其实已经齐了
+    save_task(task)
+    return len(picked)
+
+
+def rename_task(task: Dict[str, Any], name: str) -> str:
+    """改名并把已有 JSON 存档一起改名。"""
+    old_path = archive_path(task)
+    task["name"] = unique_name(name, task.get("id", ""))
+    save_task(task)
+    new_path = archive_path(task)
+    if old_path != new_path and os.path.exists(old_path):
+        try:
+            os.replace(old_path, new_path)
+        except OSError:
+            try:
+                os.remove(old_path)
+            except OSError:
+                pass
+    return task["name"]
+
+
+def delete_task(task_id: str) -> bool:
+    """只删任务进度文件；题库里的题目与导出目录里的 JSON 由调用方决定。"""
+    path = _task_path(task_id)
+    try:
+        if os.path.exists(path):
+            os.remove(path)
+            return True
+    except OSError:
+        return False
+    return False
+
+
+def normalize_interrupted() -> int:
+    """启动时把上次残留的 running 改成 paused（软件已退出，不可能还在跑）。"""
+    fixed = 0
+    for path in _task_files():
+        task = _read_raw(path)
+        if not task or task.get("status") != "running":
+            continue
+        task["status"] = "paused"
+        for item in task.get("items") or []:
+            if item.get("status") == "running":
+                item["status"] = "paused"
+        save_task(task)
+        fixed += 1
+    return fixed
+
+
 def new_task(pairs: Sequence[Tuple[Dict[str, Any], Dict[str, Any]]], n: int,
              ratios: Dict[Any, int], profile: Dict[str, Any],
-             task_id: Optional[str] = None) -> Dict[str, Any]:
+             task_id: Optional[str] = None,
+             name: Optional[str] = None) -> Dict[str, Any]:
     """pairs: [(知识点, 册元数据)]；n: 每个知识点题数。"""
     n = max(1, min(100, int(n or 1)))
     items = []
@@ -74,6 +267,7 @@ def new_task(pairs: Sequence[Tuple[Dict[str, Any], Dict[str, Any]]], n: int,
         "schema": 1,
         "id": task_id or (dt.datetime.now().strftime("%Y%m%d-%H%M%S")
                           + "-" + uuid.uuid4().hex[:4]),
+        "name": "",
         "created_at": now,
         "updated_at": now,
         "status": "pending",
@@ -89,6 +283,7 @@ def new_task(pairs: Sequence[Tuple[Dict[str, Any], Dict[str, Any]]], n: int,
         "usage": {"prompt_tokens": 0, "completion_tokens": 0, "requests": 0},
         "error": "",
     }
+    task["name"] = unique_name(name or auto_name(items, n, now))
     recalc(task)
     return task
 
@@ -136,8 +331,10 @@ def load_task(task_id: str) -> Optional[Dict[str, Any]]:
             task = json.load(f)
     except Exception:  # noqa: BLE001
         return None
-    if not isinstance(task, dict) or not task.get("items"):
+    if not isinstance(task, dict) or not isinstance(task.get("items"), list):
         return None
+    if not task.get("name"):
+        task["name"] = _task_name(task)          # 旧任务补一个自动名
     recalc(task)
     return task
 
@@ -151,11 +348,12 @@ def list_tasks(limit: int = 40) -> List[Dict[str, Any]]:
                 task = json.load(f)
         except Exception:  # noqa: BLE001
             continue
-        if not isinstance(task, dict) or not task.get("items"):
+        if not isinstance(task, dict) or not isinstance(task.get("items"), list):
             continue
         recalc(task)
         out.append({
             "id": task.get("id", ""),
+            "name": task.get("name") or _task_name(task),
             "created_at": task.get("created_at", ""),
             "updated_at": task.get("updated_at", ""),
             "status": task.get("status", "pending"),
@@ -172,8 +370,7 @@ def list_tasks(limit: int = 40) -> List[Dict[str, Any]]:
 def task_label(task: Dict[str, Any]) -> str:
     recalc(task)
     t = task["totals"]
-    created = str(task.get("created_at", ""))[5:16].replace("T", " ")
-    return (f"{created} · {t['done']}/{t['need']} 题 · "
+    return (f"{_task_name(task)} · {t['done']}/{t['need']} 题 · "
             f"{STATUS_LABELS.get(task.get('status', ''), task.get('status', ''))}")
 
 
@@ -213,6 +410,7 @@ class Runner(threading.Thread):
         self.index: Dict[str, Tuple[Dict[str, Any], Dict[str, Any]]] = {}
         self.known_ids: set = set()
         self.topic_seen: Dict[str, set] = {}
+        self.records: List[Dict[str, Any]] = []   # 本任务已生成的题目（写独立 JSON 用）
 
     # ---- 控制 ----
     def pause(self) -> None:
@@ -233,6 +431,16 @@ class Runner(threading.Thread):
 
     def _log(self, text: str) -> None:
         self._emit(type="log", text=text)
+
+    def _archive(self, announce: bool = False) -> None:
+        """把本任务已生成的题目写成独立 JSON（文件名 = 任务名）。"""
+        try:
+            path = write_archive(self.task, self.records)
+        except Exception as exc:  # noqa: BLE001 —— 存档失败不能影响出题
+            self._log(f"  任务 JSON 存档失败：{type(exc).__name__}: {exc}")
+            return
+        if announce:
+            self._log(f"本题任务的 JSON 存档：{path}")
 
     def _cancelled(self) -> bool:
         return self._stop_evt.is_set() or self._pause_evt.is_set()
@@ -328,6 +536,10 @@ class Runner(threading.Thread):
             self.known_ids = api_bank.existing_ids(force=True)
             self._log(f"题库现有 {len(self.known_ids)} 题，重复题目会自动跳过")
             save_task(task)
+            self.records = api_bank.rows_for_task(task.get("id", ""))
+            if self.records:
+                self._log(f"本任务已有 {len(self.records)} 题，继续写入同一份任务 JSON")
+            self._archive(announce=bool(self.records))
 
             for idx, item in enumerate(task["items"]):
                 if self._cancelled():
@@ -364,6 +576,8 @@ class Runner(threading.Thread):
                 final_status = "partial"
             task["status"] = final_status
             save_task(task)
+            if self.records:
+                self._archive()
             label = STATUS_LABELS.get(final_status, final_status)
             if final_status in ("paused", "stopped"):
                 msg = f"{label} · {totals['done']}/{totals['need']} 题（可点「继续」接着生成）"
@@ -374,7 +588,7 @@ class Runner(threading.Thread):
             self._log(msg)
             self._emit(type="status", status=final_status)
             self._emit(type="progress", done=totals["done"], need=totals["need"])
-            self._emit(type="finished", status=final_status,
+            self._emit(type="finished", status=final_status, task_id=task.get("id", ""),
                        done=totals["done"], need=totals["need"],
                        failed=totals["failed"], error=task.get("error", ""))
 
@@ -540,6 +754,8 @@ class Runner(threading.Thread):
             empty_rounds = 0
             self.known_ids.update(r["id"] for r in fresh)
             seen.update(r["id"] for r in fresh)
+            self.records.extend(fresh[:written])
+            self._archive()
             item["done"] = int(item["done"]) + written
             item["status"] = "done" if item["done"] >= need else "running"
             if item["status"] == "done":

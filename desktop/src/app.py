@@ -15,7 +15,7 @@ import threading
 import time
 import tkinter as tk
 import traceback
-from tkinter import ttk, messagebox, filedialog, scrolledtext
+from tkinter import ttk, messagebox, filedialog, scrolledtext, simpledialog
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import store  # noqa: E402
@@ -26,7 +26,7 @@ import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.5.0"
+VERSION = "1.6.0"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -293,6 +293,8 @@ class App:
         m_file.add_separator()
         m_file.add_command(label="打开数据目录", command=self.open_data_dir)
         m_file.add_command(label="打开 API 数据目录", command=lambda: subprocess_open(api_config.data_dir()))
+        m_file.add_command(label="打开任务 JSON 目录",
+                           command=lambda: subprocess_open(api_config.exports_dir()))
         m_file.add_command(label="打开变更日志", command=self.open_changelog)
         m_file.add_separator()
         m_file.add_command(label="退出", command=self.root.quit)
@@ -1000,10 +1002,12 @@ class App:
         ttk.Label(ops, text="任务").pack(side="left", padx=(12, 0))
         self.api_var_task = tk.StringVar(value="（暂无任务）")
         self.api_cmb_task = ClickCombo(ops, self.api_var_task, ["（暂无任务）"],
-                                       width=32, command=self.api_on_task_pick)
-        self.api_cmb_task.pack(side="left", padx=(4, 8))
-        ttk.Button(ops, text="打开数据目录",
-                   command=lambda: subprocess_open(api_config.data_dir())).pack(side="left")
+                                       width=38, command=self.api_on_task_pick)
+        self.api_cmb_task.pack(side="left", padx=(4, 6))
+        ttk.Button(ops, text="重命名", command=self.api_rename_task).pack(
+            side="left", padx=(0, 6))
+        ttk.Button(ops, text="删除任务", command=self.api_delete_task).pack(
+            side="left", padx=(0, 12))
         self.api_lbl_task = ttk.Label(ops, text="", style="Hint.TLabel")
         self.api_lbl_task.pack(side="right")
 
@@ -1023,11 +1027,17 @@ class App:
         left = ttk.Frame(pane)
         left.columnconfigure(0, weight=1)
         left.rowconfigure(1, weight=1)
-        ttk.Label(left, text="进度明细（双击跳到该知识点）",
-                  style="Head.TLabel").grid(row=0, column=0, sticky="w", pady=(0, 4))
+        it_head = ttk.Frame(left)
+        it_head.grid(row=0, column=0, columnspan=2, sticky="ew", pady=(0, 4))
+        ttk.Label(it_head, text="进度明细（双击跳到该知识点）",
+                  style="Head.TLabel").pack(side="left")
+        ttk.Button(it_head, text="清空明细", command=self.api_clear_items).pack(
+            side="right")
+        ttk.Button(it_head, text="删除选中", command=self.api_delete_items).pack(
+            side="right", padx=(0, 4))
         cols2 = ("topic", "progress", "status")
         self.api_item_tree = ttk.Treeview(left, columns=cols2, show="headings",
-                                          selectmode="browse", height=6)
+                                          selectmode="extended", height=6)
         for c, title, w in (("topic", "知识点", 260), ("progress", "进度", 80),
                             ("status", "状态", 80)):
             self.api_item_tree.heading(c, text=title)
@@ -1061,9 +1071,14 @@ class App:
         self._api_initializing = True
         self.api_on_provider_change()
         self._api_initializing = False
+        # 上次退出时线程被直接掐断，任务文件会停在 running；软件刚启动不可能在跑
+        fixed = api_task.normalize_interrupted()
         self.api_refresh_task_choices()
         self._api_set_buttons(running=False)
         self._api_refresh_source()
+        if fixed:
+            self._api_log(f"上次退出时有 {fixed} 个任务停在「生成中」，已改为「已暂停」；"
+                          "选中后点「继续」接着生成")
 
     # ---- API 模块：接口配置 ----
     def _api_stash_profile(self):
@@ -1281,8 +1296,8 @@ class App:
         labels = []
         self.api_task_map = {}
         for s in api_task.list_tasks():
-            created = str(s.get("created_at", ""))[5:16].replace("T", " ")
-            label = (f"{created} · {s['done']}/{s['total']} 题 · "
+            name = s.get("name") or s["id"]
+            label = (f"{name} · {s['done']}/{s['total']} 题 · "
                      f"{api_task.STATUS_LABELS.get(s['status'], s['status'])}")
             base = label
             i = 2
@@ -1334,8 +1349,13 @@ class App:
 
     def _api_render_task(self, task):
         self.api_item_tree.delete(*self.api_item_tree.get_children())
+        # 线程已经不在跑（或已点暂停/停止）时，残留的 running 一律显示为已暂停
+        live = (self._api_running() and not self._api_pause_pending
+                and task.get("status") == "running")
         for idx, item in enumerate(task.get("items") or []):
             status = item.get("status", "pending")
+            if status == "running" and not live:
+                status = "paused"
             self.api_item_tree.insert(
                 "", "end", iid=str(idx),
                 values=(item.get("topic_name", ""),
@@ -1344,17 +1364,155 @@ class App:
                 tags=(status,))
         totals = task.get("totals") or {}
         self._api_update_progress(totals.get("done", 0), totals.get("need", 0))
+        status = task.get("status", "")
+        if status == "running" and not live:
+            status = "paused"
+        label = api_task.STATUS_LABELS.get(status, status)
         self.api_lbl_task.configure(
-            text=f"任务 {task.get('id', '')} · "
-                 f"{api_task.STATUS_LABELS.get(task.get('status', ''), task.get('status', ''))}"
+            text=f"任务 {task.get('id', '')} · {label}"
                  + (f" · {task.get('error')}" if task.get("error") else ""))
 
     def _api_update_progress(self, done: int, need: int):
-        need = max(1, int(need))
+        need = int(need)
         done = int(done)
+        if need <= 0:
+            self.api_pb.configure(maximum=1, value=0)
+            self.api_lbl_progress.configure(text="0 题")
+            return
         self.api_pb.configure(maximum=need, value=min(done, need))
         self.api_lbl_progress.configure(
             text=f"{done} / {need} 题 · {round(done * 100 / need)}%")
+
+    # ---- API 模块：任务与明细的删除 / 清空 / 改名 ----
+    def _api_running(self) -> bool:
+        return self.api_runner is not None and self.api_runner.is_alive()
+
+    def _api_refuse_running(self, action: str) -> bool:
+        if not self._api_running():
+            return False
+        messagebox.showinfo(
+            "任务进行中",
+            f"请先「暂停」或「停止」当前任务，再{action}。\n"
+            "暂停后等任务状态变成「已暂停」就可以操作。")
+        return True
+
+    def _api_current_task(self):
+        task = self.api_task
+        if task is None:
+            tid = self.api_task_map.get(self.api_var_task.get())
+            if tid:
+                task = api_task.load_task(tid)
+                if task:
+                    self.api_task = task
+        return task
+
+    def _api_reset_view(self):
+        self.api_item_tree.delete(*self.api_item_tree.get_children())
+        self.api_pb.configure(maximum=1, value=0)
+        self.api_lbl_progress.configure(text="0 题")
+        self.api_lbl_usage.configure(text="")
+        self.api_lbl_task.configure(text="")
+
+    def api_delete_items(self):
+        task = self._api_current_task()
+        if task is None:
+            messagebox.showinfo("没有任务", "先在「任务」下拉里选一个任务，再删除明细。")
+            return
+        if self._api_refuse_running("删除进度明细"):
+            return
+        sel = list(self.api_item_tree.selection())
+        if not sel:
+            messagebox.showinfo("提示", "先在进度明细里选中要删除的知识点"
+                                       "（可按住 Command 多选）。")
+            return
+        names = [str(self.api_item_tree.item(i, "values")[0]) for i in sel]
+        preview = "、".join(names[:3]) + ("…" if len(names) > 3 else "")
+        if not messagebox.askyesno(
+                "删除知识点",
+                f"从任务「{task.get('name') or task['id']}」里移除 {len(sel)} 个知识点？\n"
+                f"{preview}\n\n"
+                "已生成的题目仍留在题库；这个任务以后不再生成这些知识点。"):
+            return
+        removed = api_task.remove_items(task, sel)
+        self._api_render_task(task)
+        self.api_refresh_task_choices(select_id=task["id"])
+        self._api_log(f"已移除 {removed} 个知识点，任务还剩 "
+                      f"{len(task.get('items') or [])} 个")
+
+    def api_clear_items(self):
+        task = self._api_current_task()
+        if task is None:
+            messagebox.showinfo("没有任务", "先在「任务」下拉里选一个任务，再清空明细。")
+            return
+        if self._api_refuse_running("清空进度明细"):
+            return
+        items = task.get("items") or []
+        if not items:
+            messagebox.showinfo("提示", "这个任务已经没有知识点了。")
+            return
+        if not messagebox.askyesno(
+                "清空明细",
+                f"移除任务「{task.get('name') or task['id']}」里的全部 "
+                f"{len(items)} 个知识点？\n\n"
+                "已生成的题目仍留在题库，任务本身保留（可在「任务」下拉里删除它）。"):
+            return
+        removed = api_task.remove_items(task, range(len(items)))
+        self._api_render_task(task)
+        self.api_refresh_task_choices(select_id=task["id"])
+        self._api_log(f"已清空明细：移除 {removed} 个知识点，任务本身保留")
+
+    def api_rename_task(self):
+        task = self._api_current_task()
+        if task is None:
+            messagebox.showinfo("没有任务", "先在「任务」下拉里选一个任务，再改名。")
+            return
+        if self._api_refuse_running("重命名任务"):
+            return
+        name = simpledialog.askstring(
+            "重命名任务", "任务名（同时用作任务 JSON 的文件名）：",
+            initialvalue=str(task.get("name") or ""), parent=self.root)
+        if name is None:
+            return
+        if not name.strip():
+            messagebox.showwarning("任务名不能为空", "请输入一个任务名。")
+            return
+        old = task.get("name") or task["id"]
+        new = api_task.rename_task(task, name)
+        self._api_render_task(task)
+        self.api_refresh_task_choices(select_id=task["id"])
+        self._api_log(f"任务已重命名：{old} → {new}")
+        if new != " ".join(name.split())[:40].strip():
+            self._api_log("  与已有任务重名，已自动加序号区分")
+        self._api_log(f"  JSON 存档：{api_task.archive_path(task)}")
+
+    def api_delete_task(self):
+        task = self._api_current_task()
+        if task is None:
+            messagebox.showinfo("没有任务", "当前没有可删除的任务。")
+            return
+        if self._api_refuse_running("删除任务"):
+            return
+        totals = task.get("totals") or {}
+        done = int(totals.get("done") or 0)
+        name = task.get("name") or task["id"]
+        if not messagebox.askyesno(
+                "删除任务",
+                f"删除任务「{name}」？\n\n"
+                "· 任务进度文件会删除\n"
+                "· 该任务的 JSON 存档会删除\n"
+                f"· 题库里已生成的 {done} 道题保留\n\n"
+                "删除后不能撤销。"):
+            return
+        api_task.delete_task(task["id"])
+        api_task.remove_archive(task)
+        self.api_task = None
+        self._api_reset_view()
+        self._api_log(f"已删除任务：{name}（题库保留 {done} 题）")
+        self.api_refresh_task_choices()
+        if self.api_task_map:
+            self.api_on_task_pick()          # 自动切到剩下的最新任务
+        else:
+            self.api_lbl_task.configure(text="已删除，当前没有任务")
 
     def _api_spawn(self, task, profile) -> bool:
         if self.api_runner is not None and self.api_runner.is_alive():
@@ -1363,8 +1521,9 @@ class App:
         api_task.save_task(task)
         self.api_task = task
         self._api_render_task(task)
-        self._api_log(f"—— 任务 {task['id']} · {len(task['items'])} 个知识点 / "
-                      f"{task['totals']['need']} 题 ——")
+        self._api_log(f"—— 任务 {task['id']} · {task.get('name', '')} ——")
+        self._api_log(f"   {len(task['items'])} 个知识点 / {task['totals']['need']} 题 / "
+                      f"JSON 存档 {os.path.basename(api_task.archive_path(task))}")
         self.api_runner = api_task.Runner(task, profile, self.api_events.put)
         self.api_runner.start()
         self._api_pause_pending = False
@@ -1403,7 +1562,7 @@ class App:
         mix = self._ai_mix() or dict(AI_PRESETS["基础为主"])
         self.api_save_config(silent=True)
         task = api_task.new_task(pairs, n, mix, profile)
-        self._api_log(f"新建任务：{len(pairs)} 个知识点 × {n} 题，"
+        self._api_log(f"新建任务「{task['name']}」：{len(pairs)} 个知识点 × {n} 题，"
                       f"难度 " + "/".join(f"{DIFFICULTY_LABEL[d]}{mix.get(d, 0)}%"
                                           for d in (1, 2, 3, 4)))
         if self._api_spawn(task, profile):
@@ -1417,8 +1576,14 @@ class App:
         self._api_pause_pending = True
         self.api_runner.pause()
         self._api_set_buttons(running=False)
+        # 状态列立刻改成「暂停中」，不用等线程收尾那一两百毫秒
+        for iid in self.api_item_tree.get_children():
+            vals = self.api_item_tree.item(iid, "values")
+            if len(vals) >= 3 and str(vals[2]) == api_task.STATUS_LABELS["running"]:
+                self.api_item_tree.item(iid, values=(vals[0], vals[1], "暂停中"),
+                                        tags=("paused",))
         self._api_log("已暂停：当前请求已放弃，进度保存在断点处。")
-        self.api_lbl_task.configure(text="正在暂停…")
+        self.api_lbl_task.configure(text="暂停中…")
 
     def api_stop(self):
         if self.api_runner is None or not self.api_runner.is_alive():
@@ -1443,6 +1608,12 @@ class App:
             task = api_task.load_task(tid) if tid else None
         if not task:
             messagebox.showinfo("没有可继续的任务", "请先开始一个新任务，或在「任务」下拉里选择历史任务。")
+            return
+        if not task.get("items"):
+            messagebox.showinfo(
+                "任务已清空",
+                "这个任务的知识点已被清空，无法继续生成。\n"
+                "可以点「删除任务」清掉它，或到「选择知识点生成内容」重新选点开始新任务。")
             return
         totals = task.get("totals") or {}
         if totals.get("done", 0) >= totals.get("need", 0):
@@ -1555,6 +1726,8 @@ class App:
             iid = str(idx)
             if self.api_item_tree.exists(iid):
                 status = ev.get("status", "pending")
+                if status == "running" and self._api_pause_pending:
+                    status = "paused"      # 已点暂停，晚到的进度事件别再显示生成中
                 self.api_item_tree.item(
                     iid, values=(self.api_item_tree.item(iid, "values")[0],
                                  f"{ev.get('done', 0)}/{ev.get('need', 0)}",
@@ -1569,13 +1742,17 @@ class App:
                      f"输入 {usage.get('prompt_tokens', 0)} / "
                      f"输出 {usage.get('completion_tokens', 0)} tokens")
         elif kind == "beat":
-            if self.api_runner is not None and self.api_runner.is_alive():
+            if self.api_runner is not None and self.api_runner.is_alive() \
+                    and not self._api_pause_pending:
                 elapsed = int(ev.get("elapsed", 0))
                 limit = int(ev.get("timeout", 90) or 90)
                 self.api_lbl_task.configure(
                     text=f"生成中 · 已等待 {elapsed} 秒（单次超时 {limit} 秒）")
         elif kind == "status":
             status = ev.get("status", "")
+            if status == "running" and self._api_pause_pending:
+                self.api_lbl_task.configure(text="暂停中…")
+                return
             self.api_lbl_task.configure(
                 text=f"任务 {self.api_task.get('id', '') if self.api_task else ''} · "
                      f"{api_task.STATUS_LABELS.get(status, status)}")
@@ -1602,8 +1779,10 @@ class App:
                 self._api_ssl_help(hint)
 
     def _api_on_finished(self, ev):
-        if self.api_runner is not None and self.api_runner.is_alive():
-            return  # 旧任务晚到的收尾事件，别把新任务的按钮放开
+        tid = str(ev.get("task_id") or "")
+        current = str((self.api_task or {}).get("id") or "")
+        if tid and current and tid != current:
+            return  # 旧任务晚到的收尾事件，别动当前任务的界面
         self._api_pause_pending = False
         self._api_set_buttons(running=False)
         status = ev.get("status", "")
@@ -1652,7 +1831,7 @@ class App:
         self.api_task = task
         self._api_render_task(task)
         self.api_refresh_task_choices(select_id=task["id"])
-        self._api_log(f"发现未完成任务：{s['created_at'][5:16].replace('T', ' ')} · "
+        self._api_log(f"发现未完成任务：{s.get('name') or s['id']} · "
                       f"{s['done']}/{s['total']} 题。点「继续」接着生成。")
 
     # ================= 模块四：题库 =================
@@ -1733,7 +1912,9 @@ class App:
         ttk.Button(tools, text="Excel (.xlsx)",
                    command=lambda: self.bank_export("xlsx")).pack(side="left", padx=(0, 6))
         ttk.Button(tools, text="TSV", command=lambda: self.bank_export("tsv")).pack(
-            side="left", padx=(0, 14))
+            side="left", padx=(0, 8))
+        ttk.Button(tools, text="按任务导出 JSON",
+                   command=self.bank_export_by_task).pack(side="left", padx=(0, 14))
         ttk.Button(tools, text="删除所选", command=self.bank_delete).pack(
             side="left", padx=(0, 6))
         ttk.Button(tools, text="清空题库", command=self.bank_clear).pack(
@@ -1788,7 +1969,14 @@ class App:
         self.bank_preview.insert("end", f"{rec.get('topic_name', '')}\n", ("title",))
         self.bank_preview.insert(
             "end", f"题目ID: {rec.get('id', '')}    知识点ID: {rec.get('topic_id', '')}    "
-                   f"册: {rec.get('volume_title', '')}\n\n")
+                   f"册: {rec.get('volume_title', '')}\n")
+        tid = str(rec.get("task_id") or "")
+        if tid:
+            origin = api_task.load_task(tid)
+            task_name = (origin or {}).get("name") or f"{tid}（任务已删除）"
+        else:
+            task_name = "未标记任务"
+        self.bank_preview.insert("end", f"任务: {task_name}\n\n")
         self.bank_preview.insert("end", f"【题干】{rec.get('stem', '')}\n")
         for i, opt in enumerate(rec.get("options") or []):
             self.bank_preview.insert("end", f"{'ABCD'[i]}. {opt}\n")
@@ -1828,6 +2016,46 @@ class App:
             return
         self.bank_lbl_msg.configure(text=f"已导出 {n} 题 → {os.path.basename(path)}")
         self.toast(f"题库已导出：{os.path.basename(path)}")
+
+    def bank_export_by_task(self):
+        """一个任务一个 JSON，文件名就是任务名（重名自动加序号）。"""
+        rows = self.bank_rows
+        if not rows:
+            messagebox.showinfo("没有题目", "当前筛选结果为空。可先点「刷新」，或先去「大模型API生成」产出题目。")
+            return
+        folder = filedialog.askdirectory(
+            parent=self.root, title="选择导出文件夹（每个任务一个 JSON 文件）",
+            initialdir=os.path.expanduser("~/Desktop"))
+        if not folder:
+            return
+        names = {t["id"]: (t.get("name") or t["id"])
+                 for t in api_task.list_tasks(limit=0)}
+        groups = {}
+        for rec in rows:
+            groups.setdefault(str(rec.get("task_id") or ""), []).append(rec)
+        used = set()
+        files = total = failed = 0
+        for tid, recs in groups.items():
+            base = api_bank.safe_filename(names.get(tid) or "", "")
+            if not base:
+                base = "未标记任务" if not tid else f"任务-{tid[-6:]}"
+            name, i = base, 2
+            while name.casefold() in used:
+                name = f"{base} ({i})"
+                i += 1
+            used.add(name.casefold())
+            try:
+                n = api_bank.export(os.path.join(folder, name + ".json"), "json", recs)
+            except Exception:  # noqa: BLE001 —— 一个任务写失败不影响其他任务
+                failed += 1
+                continue
+            files += 1
+            total += n
+        msg = f"已导出 {files} 个任务 / {total} 题"
+        if failed:
+            msg += f"（{failed} 个写失败）"
+        self.bank_lbl_msg.configure(text=msg)
+        self.toast(msg + f" → {folder}")
 
     def bank_delete(self):
         sel = list(self.bank_tree.selection())
@@ -2400,26 +2628,37 @@ class App:
     难度怎么分配（来自模块二），点「去选择知识点」可回去修改。
 13. 点「开始生成」后，软件按知识点逐个调用接口，进度条、明细表和日志实时刷新，
     同时统计请求次数与输入/输出 tokens。
-14. 「暂停」「停止」立即生效（当前在途请求直接放弃，半秒内停下）；已完成的题目都保留，
-    直接关掉软件也不会丢进度。下次打开会提示未完成任务，选中后点「继续」即从断点接着生成。
-15. 网络错误/限流会自动退避重试，每次重试都写进日志（第几次、多久后重试），
+14. 任务名按「时间 · 年级学科 · 知识点数 × 题数」自动生成，点「重命名」可以改成
+    好记的名字；任务名同时用作该任务 JSON 存档的文件名。
+15. 「暂停」「停止」立即生效（当前在途请求直接放弃，半秒内停下）；暂停时明细和
+    任务状态都会显示「已暂停」。已完成的题目都保留，直接关掉软件也不会丢进度，
+    下次打开会显示「已暂停」，选中后点「继续」即从断点接着生成。
+16. 进度明细里选中知识点行，点「删除选中」可把它从本次任务移除（按住 Command 可多选）；
+    「清空明细」移除当前任务的全部知识点。两者都只改任务，不动已经生成的题目。
+    任务下拉旁的「删除任务」会删掉任务进度和它的 JSON 存档，题库里的题目保留。
+17. 每个任务在数据目录 exports/ 下有一份独立 JSON（文件名 = 任务名），每入库一批就更新；
+    「题库」页的「按任务导出 JSON」可以把筛选结果按任务拆成多个文件。
+18. 网络错误/限流会自动退避重试，每次重试都写进日志（第几次、多久后重试），
     等待模型响应时状态栏会显示「已等待 N 秒」，不会有长时间没反应的错觉。
     输出上限设得很大（如 32000+）时，超时会自动放宽到够用的秒数并在日志里说明。
-16. Key 无效、模型不存在、证书校验失败会立即中止并给出处理步骤；
+19. Key 无效、模型不存在、证书校验失败会立即中止并给出处理步骤；
     返回的题目会自动校验选项、答案、解析与难度，重复题干按 id 去重，不会重复入库。
-17. 生成结果直接写入「题库」，可以继续筛选、预览、删除与导出。
+20. 生成结果直接写入「题库」，可以继续筛选、预览、删除与导出。
 
 【模块四 · 题库】
-18. 列表最新在前，可按关键词 / 学科 / 年级 / 难度筛选；选中即可看完整题目与解析。
-19. 导出当前筛选结果：JSON / JSONL / CSV / Excel(.xlsx) / TSV，
+21. 列表最新在前，可按关键词 / 学科 / 年级 / 难度筛选；选中即可看完整题目与解析，
+    预览里会写明这道题来自哪个任务。
+22. 导出当前筛选结果：JSON / JSONL / CSV / Excel(.xlsx) / TSV，
     默认文件名 K12题库_日期，适合给其他程序或表格工具调用。
-20. 「删除所选」「清空题库」前都会自动备份到数据目录 backups/，可手动找回。
-21. 数据位置：菜单「文件 → 打开 API 数据目录」。其中 config.json 是接口配置，
-    questions.jsonl 是题库，tasks/ 是任务进度。
+    「按任务导出 JSON」选一个文件夹，会为每个任务写一份「任务名.json」。
+23. 「删除所选」「清空题库」前都会自动备份到数据目录 backups/，可手动找回。
+24. 数据位置：菜单「文件 → 打开 API 数据目录」。其中 config.json 是接口配置，
+    questions.jsonl 是题库，tasks/ 是任务进度，exports/ 是每个任务的 JSON 存档
+    （也可用「文件 → 打开任务 JSON 目录」直接打开）。
 
 【其它】
-22. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
-23. volumes/ 是 data/*.py 生成的产物；要永久固化修改，请同步回源文件再运行
+25. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
+26. volumes/ 是 data/*.py 生成的产物；要永久固化修改，请同步回源文件再运行
     build_volumes.py。""")
 
     def about_dialog(self):
