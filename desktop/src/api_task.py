@@ -523,7 +523,7 @@ class Runner(threading.Thread):
         client = self.client
         if client is None:
             return
-        limit = int(getattr(client, "max_tokens", 4096) or 4096)
+        limit = int(getattr(client, "max_tokens", 8192) or 8192)
         # 按 200 tokens/秒的保守下限估算生成耗时，再留 60 秒给排队与传输
         need = int(min(240, max(90, 60 + limit / 200)))
         if client.timeout < need:

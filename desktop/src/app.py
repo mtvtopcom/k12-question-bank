@@ -26,7 +26,7 @@ import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.7.0"
+VERSION = "1.8.0"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -121,6 +121,67 @@ def _diff_label(value) -> str:
         return DIFFICULTY_LABEL.get(int(text), text)
     except (TypeError, ValueError):
         return text
+
+
+class HelpDot(tk.Label):
+    """小问号：鼠标停留给一句白话，点一下弹窗讲清楚这项是干什么的。"""
+
+    def __init__(self, master, title: str, brief: str, detail: str, **kw):
+        super().__init__(master, text="?", width=2, anchor="center",
+                         font=("", 11, "bold"), foreground="#2F6FEB",
+                         background=LIGHT_BG, cursor="pointinghand", **kw)
+        self._title, self._brief, self._detail = title, brief, detail
+        self._tip = None
+        self._timer = None
+        self.bind("<Enter>", self._on_enter)
+        self.bind("<Leave>", self._on_leave)
+        self.bind("<Button-1>", self._on_click)
+
+    # ---- 悬停 ----
+    def _on_enter(self, _evt=None):
+        self.configure(foreground="#0B4F8A")
+        self._timer = self.after(350, self._show_tip)
+
+    def _on_leave(self, _evt=None):
+        self.configure(foreground="#2F6FEB")
+        if self._timer is not None:
+            try:
+                self.after_cancel(self._timer)
+            except tk.TclError:
+                pass
+            self._timer = None
+        self._hide_tip()
+
+    def _show_tip(self):
+        self._timer = None
+        if self._tip is not None or not self.winfo_ismapped():
+            return
+        tip = tk.Toplevel(self)
+        tip.wm_overrideredirect(True)
+        tip.configure(background="#2B2B30")
+        tk.Label(tip, text=self._brief, justify="left", background="#2B2B30",
+                 foreground="#FFFFFF", font=("", 11), wraplength=340,
+                 padx=10, pady=7).pack()
+        tip.wm_geometry(f"+{self.winfo_rootx() + 18}+{self.winfo_rooty() + 20}")
+        try:
+            tip.attributes("-topmost", True)
+        except tk.TclError:
+            pass
+        self._tip = tip
+
+    def _hide_tip(self):
+        if self._tip is not None:
+            try:
+                self._tip.destroy()
+            except tk.TclError:
+                pass
+            self._tip = None
+
+    # ---- 点击 ----
+    def _on_click(self, _evt=None):
+        self._hide_tip()
+        messagebox.showinfo(self._title, self._detail,
+                            parent=self.winfo_toplevel())
 
 
 # 全局固定浅色配色（不做昼夜模式，始终使用白天的默认色）
@@ -914,35 +975,40 @@ class App:
         parent.columnconfigure(0, weight=1)
         parent.rowconfigure(5, weight=1)
 
-        cfg = ttk.LabelFrame(parent, text="大模型接口（Key 只保存在本机，文件权限 600）",
+        cfg = ttk.LabelFrame(parent, text="大模型接口（Key 只保存在本机，不会上传）",
                              padding=(10, 6))
         cfg.grid(row=0, column=0, sticky="ew", pady=(0, 6))
-        cfg.columnconfigure(5, weight=1)
+        cfg.columnconfigure(0, weight=1)
 
         self.api_var_provider = tk.StringVar(
             value=api_config.PROVIDER_LABELS.get(self.api_cfg.get("provider", "openai"),
                                                  "OpenAI 兼容"))
-        ttk.Label(cfg, text="协议").grid(row=0, column=0, sticky="w")
-        ClickCombo(cfg, self.api_var_provider,
+        top = ttk.Frame(cfg)
+        top.grid(row=0, column=0, sticky="ew")
+        ttk.Label(top, text="协议").pack(side="left")
+        ClickCombo(top, self.api_var_provider,
                    list(api_config.PROVIDER_LABELS.values()), width=15,
-                   command=self.api_on_provider_change).grid(
-            row=0, column=1, sticky="w", padx=(4, 12))
-        ttk.Label(cfg, text="预设").grid(row=0, column=2, sticky="w")
+                   command=self.api_on_provider_change).pack(
+            side="left", padx=(4, 18))
+        ttk.Label(top, text="预设").pack(side="left")
         self.api_var_preset = tk.StringVar(value="自定义")
-        self.api_cmb_preset = ClickCombo(cfg, self.api_var_preset, ["自定义"],
+        self.api_cmb_preset = ClickCombo(top, self.api_var_preset, ["自定义"],
                                          width=20, command=self.api_on_preset_change)
-        self.api_cmb_preset.grid(row=0, column=3, sticky="w", padx=(4, 12))
-        ttk.Label(cfg, text="Base URL").grid(row=0, column=4, sticky="w")
-        self.api_var_base = tk.StringVar()
-        ttk.Entry(cfg, textvariable=self.api_var_base).grid(
-            row=0, column=5, sticky="ew", padx=(4, 12))
-        ttk.Label(cfg, text="模型").grid(row=0, column=6, sticky="w")
+        self.api_cmb_preset.pack(side="left", padx=(4, 18))
+        ttk.Label(top, text="模型").pack(side="left")
         self.api_var_model = tk.StringVar()
-        ttk.Entry(cfg, textvariable=self.api_var_model, width=22).grid(
-            row=0, column=7, sticky="w", padx=(4, 0))
+        ttk.Entry(top, textvariable=self.api_var_model, width=28).pack(
+            side="left", padx=(4, 0))
+
+        base_row = ttk.Frame(cfg)
+        base_row.grid(row=1, column=0, sticky="ew", pady=(6, 0))
+        ttk.Label(base_row, text="Base URL").pack(side="left")
+        self.api_var_base = tk.StringVar()
+        ttk.Entry(base_row, textvariable=self.api_var_base).pack(
+            side="left", fill="x", expand=True, padx=(4, 0))
 
         row = ttk.Frame(cfg)
-        row.grid(row=1, column=0, columnspan=8, sticky="ew", pady=(8, 0))
+        row.grid(row=2, column=0, sticky="ew", pady=(6, 0))
         ttk.Label(row, text="API Key").pack(side="left")
         self.api_var_key = tk.StringVar()
         self.api_ent_key = ttk.Entry(row, textvariable=self.api_var_key, width=34,
@@ -950,34 +1016,106 @@ class App:
         self.api_ent_key.pack(side="left", padx=(4, 4))
         self.api_var_show_key = tk.BooleanVar(value=False)
         ttk.Checkbutton(row, text="显示", variable=self.api_var_show_key,
-                        command=self.api_toggle_key).pack(side="left", padx=(0, 12))
+                        command=self.api_toggle_key).pack(side="left", padx=(0, 14))
+        ttk.Button(row, text="测试连接", command=self.api_test).pack(
+            side="left", padx=(0, 6))
+        ttk.Button(row, text="保存配置", command=self.api_save_config_clicked).pack(
+            side="left")
+        self.api_lbl_probe = ttk.Label(row, text="", style="Hint.TLabel",
+                                       wraplength=560, justify="left")
+        self.api_lbl_probe.pack(side="left", padx=(10, 0))
 
-        def small(label, var, width=5):
-            ttk.Label(row, text=label).pack(side="left")
-            ttk.Entry(row, textvariable=var, width=width).pack(side="left", padx=(3, 8))
+        # 高级设置：平时收起，点开才出现 6 个技术参数，每项旁边有 ? 讲人话
+        adv_head = ttk.Frame(cfg)
+        adv_head.grid(row=3, column=0, sticky="ew", pady=(8, 0))
+        self.api_btn_adv = ttk.Button(adv_head, text="▶ 高级设置（一般不用改）",
+                                      command=self.api_toggle_advanced)
+        self.api_btn_adv.pack(side="left")
+        self.api_lbl_adv = ttk.Label(adv_head, text="", style="Hint.TLabel")
+        self.api_lbl_adv.pack(side="left", padx=(10, 0))
+
+        self.api_adv = ttk.Frame(cfg)
+        self.api_adv.grid(row=4, column=0, sticky="ew", pady=(8, 0))
 
         self.api_var_temp = tk.StringVar()
         self.api_var_max_tokens = tk.StringVar()
         self.api_var_timeout = tk.StringVar()
         self.api_var_interval = tk.StringVar()
         self.api_var_batch = tk.StringVar()
-        small("温度", self.api_var_temp)
-        small("最大输出", self.api_var_max_tokens, 6)
-        small("超时(s)", self.api_var_timeout)
-        small("间隔(s)", self.api_var_interval)
-        small("单次题数", self.api_var_batch, 4)
         self.api_var_json = tk.BooleanVar(value=True)
-        ttk.Checkbutton(row, text="JSON 模式", variable=self.api_var_json).pack(
-            side="left", padx=(0, 10))
 
-        actions = ttk.Frame(cfg)
-        actions.grid(row=2, column=0, columnspan=8, sticky="ew", pady=(6, 0))
-        ttk.Button(actions, text="测试连接", command=self.api_test).pack(
-            side="left", padx=(0, 6))
-        ttk.Button(actions, text="保存配置", command=self.api_save_config_clicked).pack(
-            side="left", padx=(0, 12))
-        self.api_lbl_probe = ttk.Label(actions, text="", style="Hint.TLabel")
-        self.api_lbl_probe.pack(side="left")
+        def adv_item(label, var, width, title, brief, detail):
+            cell = ttk.Frame(self.api_adv)
+            cell.pack(side="left", padx=(0, 16))
+            ttk.Label(cell, text=label).pack(side="left")
+            ttk.Entry(cell, textvariable=var, width=width).pack(
+                side="left", padx=(4, 2))
+            HelpDot(cell, title, brief, detail).pack(side="left")
+
+        adv_item(
+            "灵活度", self.api_var_temp, 5, "灵活度（温度）",
+            "回答的随机程度：越低越稳，越高越发散。0.6~1.0 最适合出题。",
+            "灵活度（专业叫法：温度 / temperature）\n\n"
+            "它决定模型回答有多「放得开」：\n"
+            "· 0        几乎每次都给最标准的答案，题目容易重复\n"
+            "· 0.7~1.0  有变化但不跑偏（推荐 0.8，默认值）\n"
+            "· 1.5 以上 很发散，可能出怪题、跑题\n\n"
+            "出题建议 0.6 ~ 1.0。范围 0 ~ 2，不知道就保持 0.8。")
+        adv_item(
+            "输出上限", self.api_var_max_tokens, 6, "输出上限（max_tokens）",
+            "模型一次最多能写多少内容。太小会被截断，默认 8192 够出 6 题。",
+            "输出上限（专业叫法：max_tokens）\n\n"
+            "模型一次回答最多能写多少内容。这里按 token 算，1 个汉字大约 1~2 个 token。\n"
+            "· 太小（如 2000）：一批 10 题会被截断，拿不到完整结果\n"
+            "· 推荐 8000 ~ 16000：够一次写 6~10 道带解析的题；40960 更保险\n"
+            "· 填得大不会多花钱，费用只按实际写出来的内容算\n\n"
+            "如果日志出现「输出被截断」，就把它调大，或把「每次题数」调小。")
+        adv_item(
+            "等待上限(秒)", self.api_var_timeout, 5, "等待上限（超时）",
+            "等多久还没回应就判定超时并自动重试。默认 90 秒。",
+            "等待上限（超时时间，单位秒）\n\n"
+            "一次请求最多等多久。超过这个时间没收到回应，就当作超时，自动重试。\n"
+            "· 网络正常：默认 90 秒够用\n"
+            "· 输出上限很大或模型很慢：可调到 180 ~ 300 秒\n\n"
+            "说明：软件会按「输出上限」自动放宽超时（最多 240 秒），\n"
+            "所以这里填小了也不会把长回答掐断，日志里会写明实际等了多久。")
+        adv_item(
+            "请求间隔(秒)", self.api_var_interval, 5, "请求间隔",
+            "两次请求之间歇多久，防止被服务商限流。默认 0.8 秒。",
+            "请求间隔（单位秒）\n\n"
+            "每生成完一批，等这么久再发下一次请求。\n"
+            "· 默认 0.8 秒，基本不会被限流\n"
+            "· 遇到「请求太频繁 / 429」：调到 2 ~ 3 秒\n"
+            "· 想跑得更快：调到 0.2 ~ 0.3 秒，但更容易被限流")
+        adv_item(
+            "每次题数", self.api_var_batch, 4, "每次题数（batch）",
+            "一次请求让模型出几题。越小越稳，越大越快。默认 6。",
+            "每次题数（一次请求生成几道题）\n\n"
+            "软件会把每个知识点的题数拆成几批去请求：\n"
+            "· 6 ~ 10 题：速度和稳定性比较平衡（推荐）\n"
+            "· 1 ~ 3 题：最稳，不容易被截断或漏题，但请求次数多\n"
+            "· 15 题以上：更快，但模型容易写崩、格式出错\n\n"
+            "提示：单次题数越多，「输出上限」也要相应给够。")
+
+        json_cell = ttk.Frame(self.api_adv)
+        json_cell.pack(side="left")
+        ttk.Checkbutton(json_cell, text="固定格式（JSON）",
+                        variable=self.api_var_json).pack(side="left")
+        HelpDot(
+            json_cell, "固定格式（JSON）",
+            "让模型按固定格式回答。出题必须打开，否则软件读不懂。",
+            "固定格式（JSON 模式）\n\n"
+            "打开后，会要求模型用 JSON 这种「程序能读懂」的格式回答。\n"
+            "· 打开（推荐）：软件能直接解析出题干、选项、答案、解析\n"
+            "· 关闭：回答变成一段普通文字，软件多半读不懂，会报「解析失败」\n\n"
+            "除非你在调试接口，否则请保持打开。"
+        ).pack(side="left", padx=(2, 0))
+
+        for _var in (self.api_var_temp, self.api_var_max_tokens,
+                     self.api_var_timeout, self.api_var_interval,
+                     self.api_var_batch, self.api_var_json):
+            _var.trace_add("write", lambda *_: self._api_refresh_adv_summary())
+        self.api_adv.grid_remove()
 
         # 生成来源：勾选、题数、难度都在模块二设置，这里只读不重复设置
         src = ttk.LabelFrame(parent, text="生成内容（来自「选择知识点生成内容」页）",
@@ -1100,6 +1238,7 @@ class App:
         self._api_initializing = True
         self.api_on_provider_change()
         self._api_initializing = False
+        self._api_refresh_adv_summary()
         # 上次退出时线程被直接掐断，任务文件会停在 running；软件刚启动不可能在跑
         fixed = api_task.normalize_interrupted()
         api_task.normalize_names()
@@ -1135,7 +1274,7 @@ class App:
             "model": model,
             "api_key": self.api_var_key.get().strip(),
             "temperature": num(self.api_var_temp, float, 0.8),
-            "max_tokens": num(self.api_var_max_tokens, int, 4096),
+            "max_tokens": num(self.api_var_max_tokens, int, 8192),
             "timeout": num(self.api_var_timeout, int, 90),
             "interval": num(self.api_var_interval, float, 0.8),
             "batch": num(self.api_var_batch, int, 6),
@@ -1185,7 +1324,7 @@ class App:
         self.api_var_model.set(str(prof.get("model") or ""))
         self.api_var_key.set(str(prof.get("api_key") or ""))
         self.api_var_temp.set(str(prof.get("temperature", 0.8)))
-        self.api_var_max_tokens.set(str(prof.get("max_tokens", 4096)))
+        self.api_var_max_tokens.set(str(prof.get("max_tokens", 8192)))
         self.api_var_timeout.set(str(prof.get("timeout", 90)))
         self.api_var_interval.set(str(prof.get("interval", 0.8)))
         self.api_var_batch.set(str(prof.get("batch", 6)))
@@ -1193,6 +1332,42 @@ class App:
 
     def api_toggle_key(self):
         self.api_ent_key.configure(show="" if self.api_var_show_key.get() else "•")
+
+    def api_toggle_advanced(self):
+        """高级设置默认收起，需要时再展开。"""
+        open_ = not getattr(self, "_api_adv_open", False)
+        self._api_adv_open = open_
+        self.api_btn_adv.configure(
+            text=("▼ 高级设置（一般不用改）" if open_
+                  else "▶ 高级设置（一般不用改）"))
+        if open_:
+            self.api_adv.grid()
+            self.api_lbl_adv.configure(text="点每项旁边的 ? 看白话说明")
+        else:
+            self.api_adv.grid_remove()
+            self._api_refresh_adv_summary()
+
+    def _api_refresh_adv_summary(self):
+        """收起状态下，用一句话显示当前的高级参数。"""
+        if getattr(self, "_api_adv_open", False):
+            return
+        if not hasattr(self, "api_lbl_adv"):
+            return
+
+        def val(var, default):
+            try:
+                text = str(var.get()).strip()
+            except Exception:  # noqa: BLE001
+                return default
+            return text or default
+
+        self.api_lbl_adv.configure(
+            text=(f"当前：灵活度 {val(self.api_var_temp, '0.8')} · "
+                  f"输出上限 {val(self.api_var_max_tokens, '8192')} · "
+                  f"等待 {val(self.api_var_timeout, '90')} 秒 · "
+                  f"间隔 {val(self.api_var_interval, '0.8')} 秒 · "
+                  f"每次 {val(self.api_var_batch, '6')} 题 · "
+                  f"固定格式{'开' if self.api_var_json.get() else '关'}"))
 
     def api_collect_profile(self) -> dict:
         provider = api_config.LABEL_TO_PROVIDER.get(self.api_var_provider.get(), "openai")
@@ -1222,11 +1397,11 @@ class App:
             "base_url": base,
             "model": model,
             "api_key": key,
-            "temperature": number(self.api_var_temp, "温度", float, 0.0, 2.0),
-            "max_tokens": number(self.api_var_max_tokens, "最大输出", int, 64, 64000),
-            "timeout": number(self.api_var_timeout, "超时", int, 10, 900),
-            "interval": number(self.api_var_interval, "请求间隔", float, 0.0, 120.0),
-            "batch": number(self.api_var_batch, "每次请求题数", int, 1, 10),
+            "temperature": number(self.api_var_temp, "灵活度", float, 0.0, 2.0),
+            "max_tokens": number(self.api_var_max_tokens, "输出上限", int, 64, 64000),
+            "timeout": number(self.api_var_timeout, "等待上限（秒）", int, 10, 900),
+            "interval": number(self.api_var_interval, "请求间隔（秒）", float, 0.0, 120.0),
+            "batch": number(self.api_var_batch, "每次题数", int, 1, 10),
             "json_mode": bool(self.api_var_json.get()),
         }
 
@@ -2683,6 +2858,9 @@ class App:
     Anthropic Claude / Google Gemini，在「预设」里选一家会一键填好 Base URL
     和模型，再粘贴你自己的 API Key。点「测试连接」确认可用；
     配置自动保存在本机（文件权限 600，不会上传）。
+    中间的「高级设置」平时是收起的：灵活度、输出上限、等待上限、请求间隔、
+    每次题数、固定格式（JSON）都在里面，每项旁边有个蓝色 ?，鼠标停一下看一句话，
+    点一下看完整白话说明。不懂就保持默认，不影响正常出题。
 12. 生成内容不在本页设置：页面上方会显示当前已选多少个知识点、每点几题、
     难度怎么分配（来自模块二），点「去选择知识点」可回去修改。
 13. 点「开始生成」后，软件按知识点逐个调用接口，进度条、明细表和日志实时刷新，

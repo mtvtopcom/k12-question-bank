@@ -52,7 +52,7 @@ DEFAULT_PROFILE: Dict[str, Any] = {
     "model": "",
     "api_key": "",
     "temperature": 0.8,
-    "max_tokens": 4096,
+    "max_tokens": 8192,
     "timeout": 90,
     "interval": 0.8,       # 两次请求之间的最小间隔（秒），避免触发限流
     "json_mode": True,     # 支持 JSON 模式的服务会返回更稳定的结构
