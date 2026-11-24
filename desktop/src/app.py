@@ -14,6 +14,7 @@ import sys
 import threading
 import time
 import tkinter as tk
+import traceback
 from tkinter import ttk, messagebox, filedialog, scrolledtext
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.4.2"
+VERSION = "1.4.3"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -197,6 +198,10 @@ class App:
         self._api_initializing = False
         self._api_poll_id = None
         self._api_hint_id = None
+
+        # Tk 回调里的异常默认只打到 stdout（打包后看不到），
+        # 统一收集到 crash.log，避免界面无声卡住还查不到原因
+        self.root.report_callback_exception = self._on_tk_error
 
         self._build_style()
         self._build_menu()
@@ -1638,23 +1643,66 @@ class App:
 
     # ---- API 模块：事件循环 ----
     def _poll_api_events(self):
+        """把后台事件搬到界面。任何单个事件出错都不能让整个泵停掉。"""
         if self._closing:
             return
         try:
             while True:
-                self._api_handle_event(self.api_events.get_nowait())
-        except queue.Empty:
-            pass
+                try:
+                    ev = self.api_events.get_nowait()
+                except queue.Empty:
+                    break
+                try:
+                    self._api_handle_event(ev)
+                except tk.TclError:
+                    raise
+                except Exception as exc:  # noqa: BLE001 —— 一个事件画不出来，别拖死后面所有事件
+                    self._crash_note(f"处理事件 {ev.get('type')}", exc)
+            self._poll_watchdog()
         except tk.TclError:
             return
-        # 兜底：线程已经结束但收尾事件丢了，别把四个按钮一直锁死
-        if (self.api_runner is not None and not self.api_runner.is_alive()
-                and not self._closing):
-            start_btn = self._api_buttons.get("start")
-            if start_btn is not None and str(start_btn.cget("state")) == "disabled":
-                self._api_set_buttons(running=False)
-                self._api_pause_pending = False
-        self._api_poll_id = self.root.after(150, self._poll_api_events)
+        finally:
+            self._reschedule_poll()
+
+    def _reschedule_poll(self):
+        if self._closing:
+            return
+        try:
+            self._api_poll_id = self.root.after(150, self._poll_api_events)
+        except tk.TclError:
+            pass
+
+    def _poll_watchdog(self):
+        """线程已经结束但收尾事件丢了，别把四个按钮一直锁死。"""
+        runner = self.api_runner
+        if runner is None or runner.is_alive() or self._closing:
+            return
+        start_btn = self._api_buttons.get("start")
+        if start_btn is None or str(start_btn.cget("state")) != "disabled":
+            return
+        self._api_set_buttons(running=False)
+        self._api_pause_pending = False
+        self._api_log("任务线程已结束，按钮已复位；进度未更新的任务可点「继续」接着生成")
+
+    def _crash_note(self, where: str, exc: BaseException):
+        text = "".join(traceback.format_exception(type(exc), exc, exc.__traceback__))
+        path = ""
+        try:
+            path = os.path.join(api_config.data_dir(), "crash.log")
+            with open(path, "a", encoding="utf-8") as f:
+                f.write(f"\n[{time.strftime('%Y-%m-%d %H:%M:%S')}] {where}\n{text}")
+        except OSError:
+            path = ""
+        try:
+            if hasattr(self, "api_log"):
+                self._api_log(f"内部错误（{where}）：{exc}")
+                if path:
+                    self._api_log(f"  详情已写入 {path}")
+        except Exception:  # noqa: BLE001
+            pass
+
+    def _on_tk_error(self, exc, val, tb):
+        self._crash_note("界面回调", val if val is not None else exc)
 
     def _api_handle_event(self, ev):
         kind = ev.get("type")
@@ -1678,6 +1726,12 @@ class App:
                 text=f"请求 {usage.get('requests', 0)} 次 · "
                      f"输入 {usage.get('prompt_tokens', 0)} / "
                      f"输出 {usage.get('completion_tokens', 0)} tokens")
+        elif kind == "beat":
+            if self.api_runner is not None and self.api_runner.is_alive():
+                elapsed = int(ev.get("elapsed", 0))
+                limit = int(ev.get("timeout", 90) or 90)
+                self.api_lbl_task.configure(
+                    text=f"生成中 · 已等待 {elapsed} 秒（单次超时 {limit} 秒）")
         elif kind == "status":
             status = ev.get("status", "")
             self.api_lbl_task.configure(
@@ -1706,6 +1760,8 @@ class App:
                 self._api_ssl_help(hint)
 
     def _api_on_finished(self, ev):
+        if self.api_runner is not None and self.api_runner.is_alive():
+            return  # 旧任务晚到的收尾事件，别把新任务的按钮放开
         self._api_pause_pending = False
         self._api_set_buttons(running=False)
         status = ev.get("status", "")
@@ -2499,21 +2555,24 @@ class App:
     同时统计请求次数与输入/输出 tokens。
 14. 「暂停」「停止」立即生效（当前在途请求直接放弃，半秒内停下）；已完成的题目都保留，
     直接关掉软件也不会丢进度。下次打开会提示未完成任务，选中后点「继续」即从断点接着生成。
-15. 网络错误/限流会自动退避重试；Key 无效、模型不存在会立即中止并给出提示。
+15. 网络错误/限流会自动退避重试，每次重试都写进日志（第几次、多久后重试），
+    等待模型响应时状态栏会显示「已等待 N 秒」，不会有长时间没反应的错觉。
+    输出上限设得很大（如 32000+）时，超时会自动放宽到够用的秒数并在日志里说明。
+16. Key 无效、模型不存在、证书校验失败会立即中止并给出处理步骤；
     返回的题目会自动校验选项、答案、解析与难度，重复题干按 id 去重，不会重复入库。
-16. 生成结果直接写入「题库」，可以继续筛选、预览、删除与导出。
+17. 生成结果直接写入「题库」，可以继续筛选、预览、删除与导出。
 
 【模块四 · 题库】
-17. 列表最新在前，可按关键词 / 学科 / 年级 / 难度筛选；选中即可看完整题目与解析。
-18. 导出当前筛选结果：JSON / JSONL / CSV / Excel(.xlsx) / TSV，
+18. 列表最新在前，可按关键词 / 学科 / 年级 / 难度筛选；选中即可看完整题目与解析。
+19. 导出当前筛选结果：JSON / JSONL / CSV / Excel(.xlsx) / TSV，
     默认文件名 K12题库_日期，适合给其他程序或表格工具调用。
-19. 「删除所选」「清空题库」前都会自动备份到数据目录 backups/，可手动找回。
-20. 数据位置：菜单「文件 → 打开 API 数据目录」。其中 config.json 是接口配置，
+20. 「删除所选」「清空题库」前都会自动备份到数据目录 backups/，可手动找回。
+21. 数据位置：菜单「文件 → 打开 API 数据目录」。其中 config.json 是接口配置，
     questions.jsonl 是题库，tasks/ 是任务进度。
 
 【其它】
-21. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
-22. volumes/ 是 data/*.py 生成的产物；要永久固化修改，请同步回源文件再运行
+22. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
+23. volumes/ 是 data/*.py 生成的产物；要永久固化修改，请同步回源文件再运行
     build_volumes.py。""")
 
     def about_dialog(self):

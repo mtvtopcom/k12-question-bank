@@ -246,24 +246,55 @@ class Runner(threading.Thread):
             time.sleep(min(0.2, max(0.0, deadline - time.time())))
 
     def _chat(self, system: str, user: str, json_mode: bool = True) -> Any:
-        """发请求；把等待切成 0.25 秒一片，暂停/停止时立即放弃在途请求。"""
+        """发请求；把等待切成 0.25 秒一片，暂停/停止时立即放弃在途请求。
+
+        等待期间每 5 秒发一次心跳，界面据此显示「已等待 N 秒」，
+        避免长时间请求看起来像卡死。
+        """
         box: Dict[str, Any] = {}
 
         def work():
             try:
-                box["reply"] = self.client.chat(system, user, json_mode=json_mode)
+                box["reply"] = self.client.chat(
+                    system, user, json_mode=json_mode, cancel=self._cancelled)
             except BaseException as exc:  # noqa: BLE001 —— 原样抛回调用方
                 box["error"] = exc
 
         th = threading.Thread(target=work, daemon=True, name="api-request")
         th.start()
+        started = time.time()
+        beat = 0
         while th.is_alive():
             if self._cancelled():
                 raise _Aborted()
             th.join(0.25)
+            elapsed = time.time() - started
+            if th.is_alive() and int(elapsed) // 5 > beat:
+                beat = int(elapsed) // 5
+                self._emit(type="beat", elapsed=int(elapsed),
+                           timeout=int(getattr(self.client, "timeout", 90) or 90))
         if "error" in box:
-            raise box["error"]
+            err = box["error"]
+            # 放弃请求时客户端会抛 cancelled，这种情况要算「被暂停」而不是失败
+            if isinstance(err, api_client.LLMError) and err.kind == "cancelled":
+                raise _Aborted()
+            raise err
         return box.get("reply")
+
+    def _check_timeout(self) -> None:
+        """输出上限放得很大时，90 秒超时必然掐断长回答；本次运行先放宽并说明。"""
+        client = self.client
+        if client is None:
+            return
+        limit = int(getattr(client, "max_tokens", 4096) or 4096)
+        # 按 200 tokens/秒的保守下限估算生成耗时，再留 60 秒给排队与传输
+        need = int(min(240, max(90, 60 + limit / 200)))
+        if client.timeout < need:
+            old = int(client.timeout)
+            client.timeout = need
+            self._log(f"超时 {old} 秒对当前输出上限（{limit} tokens）偏短："
+                      f"本次运行按 {need} 秒等待")
+            self._log("  可在上方「超时(秒)」改成同样数值后点「保存配置」，下次就不用再调")
 
     # ---- 主循环 ----
     def run(self) -> None:  # noqa: C901
@@ -279,8 +310,10 @@ class Runner(threading.Thread):
             self._log(f"任务开始：{task['totals']['topics']} 个知识点 / "
                       f"共 {task['totals']['need']} 题")
             self.client = api_client.build_client(self.profile)
+            self.client.log = self._log          # 重试过程写进界面日志
             label = api_config.PROVIDER_LABELS.get(self.profile.get("provider", ""), "")
             self._log(f"接口：{label} · {self.profile.get('model', '')}")
+            self._check_timeout()
             if (task.get("model") and task.get("model") != self.profile.get("model")) or \
                     (task.get("provider") and task.get("provider") != self.profile.get("provider")):
                 self._log(f"配置已变更：原 {task.get('provider_label')} / {task.get('model')} "

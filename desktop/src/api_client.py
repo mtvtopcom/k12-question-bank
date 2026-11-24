@@ -18,12 +18,12 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Callable, Dict, Optional, Tuple
 
 import api_config
 import api_ssl
 
-USER_AGENT = "K12QuestionBank/1.4.2 (+https://github.com/mtvtopcom/k12-question-bank)"
+USER_AGENT = "K12QuestionBank/1.4.3 (+https://github.com/mtvtopcom/k12-question-bank)"
 
 _SSL_STATE: Dict[str, Any] = {"ctx": None, "note": ""}
 
@@ -221,7 +221,7 @@ def _post_json(url: str, headers: Dict[str, str], payload: Dict[str, Any],
         raise _error_from_http(exc.code, body, exc.headers) from None
     except (TimeoutError, socket.timeout):
         raise LLMError(f"请求超时（{int(timeout)} 秒）", kind="network", retryable=True,
-                       hint="可在配置里调大超时，或减少每次请求题数") from None
+                       hint="把「超时(秒)」调到 180–300，或减少每次请求题数 / 调小输出上限") from None
     except urllib.error.URLError as exc:
         reason = getattr(exc, "reason", exc)
         if _is_cert_error(reason):
@@ -266,8 +266,30 @@ class _BaseClient:
         self.supports_json_mode = self.json_mode
         self.max_retries = _as_int(self.profile.get("retries"), 3, 1, 6)
         self._last_call = 0.0
+        # 由调用方注入（Runner 接到界面日志）。重试必须可见，
+        # 否则一次 90 秒超时 + 静默重试会让界面看起来完全卡死
+        self.log: Optional[Callable[[str], None]] = None
         if not self.api_key:
             raise LLMError("还没有填写 API Key", kind="config", hint="在上方「API Key」输入框粘贴")
+
+    _KIND_LABELS = {"rate": "触发限流", "server": "服务端错误", "network": "网络异常",
+                    "parse": "返回内容无法解析", "api": "接口返回错误"}
+
+    def _retry_text(self, exc: "LLMError") -> str:
+        """重试日志里用中文说明原因，别把裸的 HTTP 文本甩给用户。"""
+        text = str(exc)
+        label = self._KIND_LABELS.get(exc.kind, "")
+        if label and not text.startswith(("请求", "网络", "返回")):
+            return f"{label}（{text}）"
+        return text
+
+    def _note(self, text: str) -> None:
+        if self.log is None:
+            return
+        try:
+            self.log(text)
+        except Exception:  # noqa: BLE001 —— 日志失败不影响请求
+            pass
 
     def _throttle(self) -> None:
         if self.interval <= 0:
@@ -281,11 +303,16 @@ class _BaseClient:
         raise NotImplementedError
 
     def chat(self, system: str, user: str, json_mode: bool = True,
-             max_tokens: Optional[int] = None) -> Reply:
-        """发一次对话请求；自动重试与参数降级。"""
+             max_tokens: Optional[int] = None,
+             cancel: Optional[Callable[[], bool]] = None) -> Reply:
+        """发一次对话请求；自动重试与参数降级。
+
+        cancel：返回 True 表示调用方已暂停/停止，重试链立刻放弃。
+        否则被放弃的旧请求会在后台继续重试，既耗额度又可能触发并发限流。
+        """
         payload = self._payload(system, user, json_mode, max_tokens)
         try:
-            return self._call(payload, self._headers())
+            return self._call(payload, self._headers(), cancel)
         except LLMError as exc:
             # 个别服务不支持 response_format / temperature，400 时去掉再试一次
             if exc.status == 400:
@@ -304,7 +331,7 @@ class _BaseClient:
                     payload["max_completion_tokens"] = payload.pop("max_tokens")
                     changed = True
                 if changed:
-                    return self._call(payload, self._headers())
+                    return self._call(payload, self._headers(), cancel)
             raise
 
     def _headers(self) -> Dict[str, str]:
@@ -343,10 +370,13 @@ class OpenAICompatClient(_BaseClient):
             payload["response_format"] = {"type": "json_object"}
         return payload
 
-    def _call(self, payload: Dict[str, Any], headers: Dict[str, str]) -> Reply:
+    def _call(self, payload: Dict[str, Any], headers: Dict[str, str],
+              cancel: Optional[Callable[[], bool]] = None) -> Reply:
         url = self._url()
         last: Optional[LLMError] = None
         for attempt in range(self.max_retries):
+            if cancel is not None and cancel():
+                raise LLMError("已暂停，本次请求已放弃", kind="cancelled")
             self._throttle()
             try:
                 data = _post_json(url, headers, payload, self.timeout)
@@ -355,7 +385,14 @@ class OpenAICompatClient(_BaseClient):
                 last = exc
                 if not exc.retryable or attempt >= self.max_retries - 1:
                     raise
-                time.sleep(_backoff(attempt, exc))
+                wait = _backoff(attempt, exc)
+                self._note(f"  {self._retry_text(exc)}；{wait:.0f} 秒后重试"
+                           f"（第 {attempt + 2}/{self.max_retries} 次，可点暂停中止）")
+                end = time.time() + wait
+                while time.time() < end:
+                    if cancel is not None and cancel():
+                        raise LLMError("已暂停，本次请求已放弃", kind="cancelled")
+                    time.sleep(min(0.2, max(0.0, end - time.time())))
         raise last or LLMError("请求失败", kind="api")
 
 
@@ -384,10 +421,13 @@ class AnthropicClient(_BaseClient):
             "max_tokens": int(max_tokens or self.max_tokens),
         }
 
-    def _call(self, payload: Dict[str, Any], headers: Dict[str, str]) -> Reply:
+    def _call(self, payload: Dict[str, Any], headers: Dict[str, str],
+              cancel: Optional[Callable[[], bool]] = None) -> Reply:
         url = self._url()
         last: Optional[LLMError] = None
         for attempt in range(self.max_retries):
+            if cancel is not None and cancel():
+                raise LLMError("已暂停，本次请求已放弃", kind="cancelled")
             self._throttle()
             try:
                 data = _post_json(url, headers, payload, self.timeout)
@@ -396,7 +436,14 @@ class AnthropicClient(_BaseClient):
                 last = exc
                 if not exc.retryable or attempt >= self.max_retries - 1:
                     raise
-                time.sleep(_backoff(attempt, exc))
+                wait = _backoff(attempt, exc)
+                self._note(f"  {self._retry_text(exc)}；{wait:.0f} 秒后重试"
+                           f"（第 {attempt + 2}/{self.max_retries} 次，可点暂停中止）")
+                end = time.time() + wait
+                while time.time() < end:
+                    if cancel is not None and cancel():
+                        raise LLMError("已暂停，本次请求已放弃", kind="cancelled")
+                    time.sleep(min(0.2, max(0.0, end - time.time())))
         raise last or LLMError("请求失败", kind="api")
 
 
@@ -425,10 +472,13 @@ class GeminiClient(_BaseClient):
             "generationConfig": gen,
         }
 
-    def _call(self, payload: Dict[str, Any], headers: Dict[str, str]) -> Reply:
+    def _call(self, payload: Dict[str, Any], headers: Dict[str, str],
+              cancel: Optional[Callable[[], bool]] = None) -> Reply:
         url = self._url()
         last: Optional[LLMError] = None
         for attempt in range(self.max_retries):
+            if cancel is not None and cancel():
+                raise LLMError("已暂停，本次请求已放弃", kind="cancelled")
             self._throttle()
             try:
                 data = _post_json(url, headers, payload, self.timeout)
@@ -437,7 +487,14 @@ class GeminiClient(_BaseClient):
                 last = exc
                 if not exc.retryable or attempt >= self.max_retries - 1:
                     raise
-                time.sleep(_backoff(attempt, exc))
+                wait = _backoff(attempt, exc)
+                self._note(f"  {self._retry_text(exc)}；{wait:.0f} 秒后重试"
+                           f"（第 {attempt + 2}/{self.max_retries} 次，可点暂停中止）")
+                end = time.time() + wait
+                while time.time() < end:
+                    if cancel is not None and cancel():
+                        raise LLMError("已暂停，本次请求已放弃", kind="cancelled")
+                    time.sleep(min(0.2, max(0.0, end - time.time())))
         raise last or LLMError("请求失败", kind="api")
 
 
