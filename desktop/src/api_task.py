@@ -12,6 +12,7 @@ import datetime as dt
 import glob
 import json
 import os
+import re
 import threading
 import time
 import uuid
@@ -60,13 +61,6 @@ def _read_raw(path: str) -> Optional[Dict[str, Any]]:
     return obj if isinstance(obj, dict) and isinstance(obj.get("items"), list) else None
 
 
-def _parse_when(value: Any) -> dt.datetime:
-    try:
-        return dt.datetime.fromisoformat(str(value))
-    except (TypeError, ValueError):
-        return dt.datetime.now()
-
-
 def _as_n(value: Any) -> int:
     try:
         return max(1, int(value or 1))
@@ -76,10 +70,11 @@ def _as_n(value: Any) -> int:
 
 def auto_name(items: Sequence[Dict[str, Any]], n: int,
               when: Any = None) -> str:
-    """自动任务名：时间 + 年级学科范围 + 知识点数 × 每点题数。"""
+    """自动任务名：年级 + 学科 + 知识点，够认就行（题数在进度里看）。"""
     grades: List[str] = []
     stages: List[str] = []
     subjects: List[str] = []
+    topics: List[str] = []
     for it in items or []:
         grade = str(it.get("grade_label") or "")
         if grade and grade not in grades:
@@ -91,6 +86,9 @@ def auto_name(items: Sequence[Dict[str, Any]], n: int,
                                           str(it.get("subject") or ""))
         if subject and subject not in subjects:
             subjects.append(subject)
+        topic = str(it.get("topic_name") or "").strip()
+        if topic and topic not in topics:
+            topics.append(topic)
     if len(grades) == 1:
         g = grades[0]
     elif not grades:
@@ -103,10 +101,14 @@ def auto_name(items: Sequence[Dict[str, Any]], n: int,
         s = "/".join(subjects)
     else:
         s = f"{len(subjects)}科"
-    topics = len(items or [])
-    stamp = _parse_when(when).strftime("%m-%d %H:%M")
-    return " · ".join(x for x in (stamp, " ".join(x for x in (g, s) if x),
-                                  f"{topics}点×{_as_n(n)}题") if x)
+    head = " ".join(x for x in (g, s) if x)
+    if not topics:
+        tail = f"{len(items or [])}个知识点"
+    elif len(topics) == 1:
+        tail = topics[0]
+    else:
+        tail = f"{topics[0]} 等 {len(topics)} 点"
+    return " · ".join(x for x in (head, tail) if x)
 
 
 def _name_taken(name: str, exclude_id: str = "") -> bool:
@@ -138,6 +140,11 @@ def _task_name(task: Dict[str, Any]) -> str:
         return name
     return auto_name(task.get("items") or [], _as_n(task.get("n_per_point")),
                      task.get("created_at"))
+
+
+def name_of(task: Dict[str, Any]) -> str:
+    """对外暴露任务名（没有名字的旧任务现算一个）。"""
+    return _task_name(task or {})
 
 
 # ---- 每个任务的独立 JSON 存档 ----
@@ -236,6 +243,28 @@ def normalize_interrupted() -> int:
         save_task(task)
         fixed += 1
     return fixed
+
+
+_OLD_AUTO = re.compile(r"^\d{2}-\d{2} \d{2}:\d{2} · .* · \d+点×\d+题$")
+
+
+def normalize_names() -> int:
+    """把旧版自动名（时间 · 年级学科 · N点×M题）收短成「年级学科 · 知识点」。"""
+    changed = 0
+    for path in _task_files():
+        task = _read_raw(path)
+        if not task:
+            continue
+        name = str(task.get("name") or "")
+        if name and not _OLD_AUTO.match(name):
+            continue           # 用户自己起的名字不动
+        new = auto_name(task.get("items") or [], _as_n(task.get("n_per_point")),
+                        task.get("created_at"))
+        if not new or new == name:
+            continue
+        rename_task(task, new)
+        changed += 1
+    return changed
 
 
 def new_task(pairs: Sequence[Tuple[Dict[str, Any], Dict[str, Any]]], n: int,

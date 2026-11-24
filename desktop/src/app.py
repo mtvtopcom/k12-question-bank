@@ -26,7 +26,7 @@ import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.6.0"
+VERSION = "1.7.0"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -220,6 +220,8 @@ class App:
         st.configure("Sub.TLabel", foreground="#555555")
         st.configure("Head.TLabel", font=("", 11, "bold"))
         st.configure("Hint.TLabel", foreground="#6B6B70", font=("", 10))
+        st.configure("SourceSub.TLabel", foreground="#3F4A5A", font=("", 11))
+        st.configure("Status.TLabel", foreground="#2F3B4A", font=("", 11))
         st.configure("TLabelframe", background=LIGHT_BG, bordercolor="#D6D6DA",
                      relief="solid", borderwidth=1)
         st.configure("TLabelframe.Label", background=LIGHT_BG, foreground="#4A4A4F",
@@ -891,13 +893,15 @@ class App:
         n = self._ai_current_n()
         if pairs:
             self.api_lbl_source.configure(
-                text=(f"已选 {len(pairs)} 个知识点 · 每点 {n} 题 · "
-                      f"预计 {len(pairs) * n} 题"),
-                foreground=LIGHT_TEXT)
+                text=f"已选 {len(pairs)} 个知识点 · 每点 {n} 题",
+                foreground="#0B4F8A")
+            self.api_lbl_source_total.configure(
+                text=f"　预计 {len(pairs) * n} 题", foreground="#C0392B")
         else:
             self.api_lbl_source.configure(
                 text="还没有勾选知识点 —— 请到「选择知识点生成内容」页选择要生成的内容",
                 foreground="#B3261E")
+            self.api_lbl_source_total.configure(text="")
         mix = self._ai_mix() or dict(AI_PRESETS["基础为主"])
         alloc = prompt_mod.allocate_difficulty(n, mix)
         self.api_lbl_source2.configure(
@@ -908,7 +912,7 @@ class App:
 
     def _build_api_tab(self, parent):
         parent.columnconfigure(0, weight=1)
-        parent.rowconfigure(4, weight=1)
+        parent.rowconfigure(5, weight=1)
 
         cfg = ttk.LabelFrame(parent, text="大模型接口（Key 只保存在本机，文件权限 600）",
                              padding=(10, 6))
@@ -980,40 +984,63 @@ class App:
                              padding=(10, 6))
         src.grid(row=1, column=0, sticky="ew", pady=(0, 6))
         src.columnconfigure(0, weight=1)
-        self.api_lbl_source = ttk.Label(src, text="", style="Hint.TLabel")
-        self.api_lbl_source.grid(row=0, column=0, sticky="w")
+        band = tk.Frame(src, background="#EDF4FE", highlightthickness=1,
+                        highlightbackground="#C4D9F6")
+        band.grid(row=0, column=0, sticky="ew")
+        self.api_lbl_source = tk.Label(
+            band, text="", background="#EDF4FE", foreground="#0B4F8A",
+            font=("", 15, "bold"), anchor="w", padx=12, pady=7)
+        self.api_lbl_source.pack(side="left")
+        self.api_lbl_source_total = tk.Label(
+            band, text="", background="#EDF4FE", foreground="#C0392B",
+            font=("", 16, "bold"), anchor="w", pady=7)
+        self.api_lbl_source_total.pack(side="left")
         ttk.Button(src, text="去选择知识点", command=self.api_goto_prompt).grid(
-            row=0, column=1, sticky="e")
-        self.api_lbl_source2 = ttk.Label(src, text="", style="Hint.TLabel")
-        self.api_lbl_source2.grid(row=1, column=0, columnspan=2, sticky="w", pady=(4, 0))
+            row=0, column=1, sticky="e", padx=(8, 0))
+        self.api_lbl_source2 = ttk.Label(src, text="", style="SourceSub.TLabel")
+        self.api_lbl_source2.grid(row=1, column=0, columnspan=2, sticky="w", pady=(5, 0))
 
-        # 任务控制
+        # 任务控制：生成按钮 + 任务操作（第一行），任务下拉与状态各占满宽（第二行）
         ops = ttk.Frame(parent)
         ops.grid(row=2, column=0, sticky="ew", pady=(2, 2))
+        ops.columnconfigure(1, weight=1)
+        act = ttk.Frame(ops)
+        act.grid(row=0, column=0, sticky="w")
         for text, cmd, key in [
             ("开始生成", self.api_start, "start"),
             ("暂停", self.api_pause, "pause"),
             ("继续", self.api_resume, "resume"),
             ("停止", self.api_stop, "stop"),
         ]:
-            btn = ttk.Button(ops, text=text, command=cmd, style="Toolbar.TButton")
+            btn = ttk.Button(act, text=text, command=cmd, style="Toolbar.TButton")
             btn.pack(side="left", padx=(0, 8))
             self._api_buttons[key] = btn
-        ttk.Label(ops, text="任务").pack(side="left", padx=(12, 0))
-        self.api_var_task = tk.StringVar(value="（暂无任务）")
-        self.api_cmb_task = ClickCombo(ops, self.api_var_task, ["（暂无任务）"],
-                                       width=38, command=self.api_on_task_pick)
-        self.api_cmb_task.pack(side="left", padx=(4, 6))
-        ttk.Button(ops, text="重命名", command=self.api_rename_task).pack(
+
+        task_ops = ttk.Frame(ops)
+        task_ops.grid(row=0, column=2, sticky="e")
+        ttk.Button(task_ops, text="重命名", command=self.api_rename_task).pack(
             side="left", padx=(0, 6))
-        ttk.Button(ops, text="删除任务", command=self.api_delete_task).pack(
-            side="left", padx=(0, 12))
-        self.api_lbl_task = ttk.Label(ops, text="", style="Hint.TLabel")
-        self.api_lbl_task.pack(side="right")
+        ttk.Button(task_ops, text="删除任务", command=self.api_delete_task).pack(
+            side="left", padx=(0, 6))
+        ttk.Button(task_ops, text="打开生成文件夹",
+                   command=lambda: subprocess_open(api_config.exports_dir())).pack(
+            side="left")
+
+        task_row = ttk.Frame(parent)
+        task_row.grid(row=3, column=0, sticky="ew", pady=(0, 2))
+        task_row.columnconfigure(1, weight=1)
+        ttk.Label(task_row, text="当前任务").grid(row=0, column=0, sticky="w")
+        self.api_var_task = tk.StringVar(value="（暂无任务）")
+        self.api_cmb_task = ClickCombo(task_row, self.api_var_task, ["（暂无任务）"],
+                                       width=24, command=self.api_on_task_pick)
+        self.api_cmb_task.grid(row=0, column=1, sticky="ew", padx=(6, 10))
+        self.api_lbl_task = ttk.Label(task_row, text="", style="Status.TLabel",
+                                      anchor="e")
+        self.api_lbl_task.grid(row=0, column=2, sticky="e")
 
         # 进度
         prog = ttk.Frame(parent)
-        prog.grid(row=3, column=0, sticky="ew", pady=(2, 0))
+        prog.grid(row=4, column=0, sticky="ew", pady=(0, 0))
         self.api_pb = ttk.Progressbar(prog, mode="determinate", maximum=100)
         self.api_pb.pack(side="left", fill="x", expand=True)
         self.api_lbl_progress = ttk.Label(prog, text="0 / 0 题", width=20, anchor="e")
@@ -1023,14 +1050,13 @@ class App:
 
         # 进度明细 + 运行日志
         pane = ttk.PanedWindow(parent, orient="horizontal")
-        pane.grid(row=4, column=0, sticky="nsew", pady=(6, 0))
+        pane.grid(row=5, column=0, sticky="nsew", pady=(6, 0))
         left = ttk.Frame(pane)
         left.columnconfigure(0, weight=1)
         left.rowconfigure(1, weight=1)
         it_head = ttk.Frame(left)
         it_head.grid(row=0, column=0, columnspan=2, sticky="ew", pady=(0, 4))
-        ttk.Label(it_head, text="进度明细（双击跳到该知识点）",
-                  style="Head.TLabel").pack(side="left")
+        ttk.Label(it_head, text="进度明细", style="Head.TLabel").pack(side="left")
         ttk.Button(it_head, text="清空明细", command=self.api_clear_items).pack(
             side="right")
         ttk.Button(it_head, text="删除选中", command=self.api_delete_items).pack(
@@ -1057,8 +1083,11 @@ class App:
         right = ttk.Frame(pane)
         right.columnconfigure(0, weight=1)
         right.rowconfigure(1, weight=1)
-        ttk.Label(right, text="运行日志", style="Head.TLabel").grid(
-            row=0, column=0, sticky="w", pady=(0, 4))
+        log_head = ttk.Frame(right)
+        log_head.grid(row=0, column=0, sticky="ew", pady=(0, 4))
+        ttk.Label(log_head, text="运行日志", style="Head.TLabel").pack(side="left")
+        ttk.Button(log_head, text="清空日志", command=self.api_clear_log).pack(
+            side="right")
         self.api_log = scrolledtext.ScrolledText(right, height=6, wrap="none",
                                                  font=("Menlo", 10),
                                                  background=LIGHT_PANEL,
@@ -1073,6 +1102,7 @@ class App:
         self._api_initializing = False
         # 上次退出时线程被直接掐断，任务文件会停在 running；软件刚启动不可能在跑
         fixed = api_task.normalize_interrupted()
+        api_task.normalize_names()
         self.api_refresh_task_choices()
         self._api_set_buttons(running=False)
         self._api_refresh_source()
@@ -1292,12 +1322,21 @@ class App:
         except tk.TclError:
             pass
 
+    def api_clear_log(self):
+        """清空运行日志（不影响任务进度与题库）。"""
+        try:
+            self.api_log.configure(state="normal")
+            self.api_log.delete("1.0", "end")
+            self.api_log.configure(state="disabled")
+        except tk.TclError:
+            pass
+
     def api_refresh_task_choices(self, select_id: str = ""):
         labels = []
         self.api_task_map = {}
         for s in api_task.list_tasks():
             name = s.get("name") or s["id"]
-            label = (f"{name} · {s['done']}/{s['total']} 题 · "
+            label = (f"{name} · "
                      f"{api_task.STATUS_LABELS.get(s['status'], s['status'])}")
             base = label
             i = 2
@@ -1367,10 +1406,29 @@ class App:
         status = task.get("status", "")
         if status == "running" and not live:
             status = "paused"
-        label = api_task.STATUS_LABELS.get(status, status)
-        self.api_lbl_task.configure(
-            text=f"任务 {task.get('id', '')} · {label}"
-                 + (f" · {task.get('error')}" if task.get("error") else ""))
+        self.api_lbl_task.configure(text=self._api_status_text(task, status, live))
+
+    def _api_status_text(self, task, status, live=False) -> str:
+        """任务行右侧提示：只写「现在该做什么」，任务名与状态在左边下拉里。"""
+        totals = task.get("totals") or {}
+        done = int(totals.get("done", 0))
+        need = int(totals.get("need", 0))
+        remain = max(0, need - done)
+        if task.get("error"):
+            return str(task["error"])
+        if status == "running":
+            return "生成中 · 正在等模型返回…" if live else "已中断，点「继续」接着跑"
+        if status in ("paused", "stopped", "partial"):
+            if remain:
+                return f"还有 {remain} 题未生成 · 点「继续」接着跑"
+            return f"{done} 题已全部生成"
+        if status == "done":
+            return f"{done} 题已全部入库"
+        if status == "empty":
+            return "明细已清空，可删除该任务"
+        if status == "error":
+            return "已中止，请查看运行日志"
+        return "点「开始生成」开跑"
 
     def _api_update_progress(self, done: int, need: int):
         need = int(need)
@@ -1754,8 +1812,7 @@ class App:
                 self.api_lbl_task.configure(text="暂停中…")
                 return
             self.api_lbl_task.configure(
-                text=f"任务 {self.api_task.get('id', '') if self.api_task else ''} · "
-                     f"{api_task.STATUS_LABELS.get(status, status)}")
+                text=api_task.STATUS_LABELS.get(status, status))
         elif kind == "finished":
             self._api_on_finished(ev)
         elif kind == "test":
@@ -1792,14 +1849,16 @@ class App:
             self.api_refresh_task_choices(select_id=self.api_task.get("id", ""))
         self._api_update_progress(done, need)
         label = api_task.STATUS_LABELS.get(status, status)
+        remain = max(0, need - done)
         if status in ("paused", "stopped"):
-            text = f"{label} · {done}/{need} 题"
-            if done < need:
-                text += " · 点「继续」接着生成"
+            text = (f"还有 {remain} 题未生成 · 点「继续」接着跑" if remain
+                    else f"{done} 题已全部生成")
         elif status == "done":
-            text = f"全部完成 · {done}/{need} 题"
+            text = f"{done} 题已全部入库"
+        elif status == "partial":
+            text = f"部分完成 · 还有 {remain} 题，点「继续」重试"
         else:
-            text = f"任务结束 · {label} · {done}/{need} 题"
+            text = f"{label} · {done}/{need} 题"
         self.api_lbl_task.configure(text=text)
         self._update_status()
         if status == "error":
@@ -2628,8 +2687,8 @@ class App:
     难度怎么分配（来自模块二），点「去选择知识点」可回去修改。
 13. 点「开始生成」后，软件按知识点逐个调用接口，进度条、明细表和日志实时刷新，
     同时统计请求次数与输入/输出 tokens。
-14. 任务名按「时间 · 年级学科 · 知识点数 × 题数」自动生成，点「重命名」可以改成
-    好记的名字；任务名同时用作该任务 JSON 存档的文件名。
+14. 任务名按「年级 学科 · 知识点」自动生成（多个知识点显示「首个 等 N 点」），
+    点「重命名」可以改；任务名同时用作该任务 JSON 存档的文件名。
 15. 「暂停」「停止」立即生效（当前在途请求直接放弃，半秒内停下）；暂停时明细和
     任务状态都会显示「已暂停」。已完成的题目都保留，直接关掉软件也不会丢进度，
     下次打开会显示「已暂停」，选中后点「继续」即从断点接着生成。
@@ -2637,28 +2696,30 @@ class App:
     「清空明细」移除当前任务的全部知识点。两者都只改任务，不动已经生成的题目。
     任务下拉旁的「删除任务」会删掉任务进度和它的 JSON 存档，题库里的题目保留。
 17. 每个任务在数据目录 exports/ 下有一份独立 JSON（文件名 = 任务名），每入库一批就更新；
-    「题库」页的「按任务导出 JSON」可以把筛选结果按任务拆成多个文件。
+    点「打开生成文件夹」直接打开这个目录；「题库」页的「按任务导出 JSON」
+    可以把筛选结果按任务拆成多个文件。
+18. 「清空日志」只清空右侧的日志显示，不影响任务进度、题库和已生成的题目。
 18. 网络错误/限流会自动退避重试，每次重试都写进日志（第几次、多久后重试），
     等待模型响应时状态栏会显示「已等待 N 秒」，不会有长时间没反应的错觉。
     输出上限设得很大（如 32000+）时，超时会自动放宽到够用的秒数并在日志里说明。
 19. Key 无效、模型不存在、证书校验失败会立即中止并给出处理步骤；
     返回的题目会自动校验选项、答案、解析与难度，重复题干按 id 去重，不会重复入库。
-20. 生成结果直接写入「题库」，可以继续筛选、预览、删除与导出。
+21. 生成结果直接写入「题库」，可以继续筛选、预览、删除与导出。
 
 【模块四 · 题库】
-21. 列表最新在前，可按关键词 / 学科 / 年级 / 难度筛选；选中即可看完整题目与解析，
+22. 列表最新在前，可按关键词 / 学科 / 年级 / 难度筛选；选中即可看完整题目与解析，
     预览里会写明这道题来自哪个任务。
-22. 导出当前筛选结果：JSON / JSONL / CSV / Excel(.xlsx) / TSV，
+23. 导出当前筛选结果：JSON / JSONL / CSV / Excel(.xlsx) / TSV，
     默认文件名 K12题库_日期，适合给其他程序或表格工具调用。
     「按任务导出 JSON」选一个文件夹，会为每个任务写一份「任务名.json」。
-23. 「删除所选」「清空题库」前都会自动备份到数据目录 backups/，可手动找回。
-24. 数据位置：菜单「文件 → 打开 API 数据目录」。其中 config.json 是接口配置，
+24. 「删除所选」「清空题库」前都会自动备份到数据目录 backups/，可手动找回。
+25. 数据位置：菜单「文件 → 打开 API 数据目录」。其中 config.json 是接口配置，
     questions.jsonl 是题库，tasks/ 是任务进度，exports/ 是每个任务的 JSON 存档
     （也可用「文件 → 打开任务 JSON 目录」直接打开）。
 
 【其它】
-25. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
-26. volumes/ 是 data/*.py 生成的产物；要永久固化修改，请同步回源文件再运行
+26. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
+27. volumes/ 是 data/*.py 生成的产物；要永久固化修改，请同步回源文件再运行
     build_volumes.py。""")
 
     def about_dialog(self):
