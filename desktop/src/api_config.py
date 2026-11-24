@@ -58,6 +58,7 @@ DEFAULT_PROFILE: Dict[str, Any] = {
     "json_mode": True,     # 支持 JSON 模式的服务会返回更稳定的结构
     "batch": 6,            # 单次请求最多生成几道题
     "concurrency": 4,      # 同时生成的知识点数（并行请求数）
+    "no_thinking": True,   # 关闭推理模型的"深度思考"，大幅提速；不支持的服务自动忽略
 }
 DEFAULT_GENERATION: Dict[str, Any] = {
     "n": "5",

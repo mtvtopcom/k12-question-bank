@@ -632,6 +632,9 @@ class Runner(threading.Thread):
             self.client.log = self._log          # 重试过程写进界面日志
             label = api_config.PROVIDER_LABELS.get(self.profile.get("provider", ""), "")
             self._log(f"接口：{label} · {self.profile.get('model', '')}")
+            if self.client.no_thinking:
+                self._log("已关闭深度思考（更快更省）"
+                          " · 若发现题目变简单，可在「高级设置」里取消勾选")
             self._check_timeout()
             if (task.get("model") and task.get("model") != self.profile.get("model")) or \
                     (task.get("provider") and task.get("provider") != self.profile.get("provider")):

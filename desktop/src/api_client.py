@@ -23,7 +23,7 @@ from typing import Any, Callable, Dict, Optional, Tuple
 import api_config
 import api_ssl
 
-USER_AGENT = "K12QuestionBank/1.5.0 (+https://github.com/mtvtopcom/k12-question-bank)"
+USER_AGENT = "K12QuestionBank/1.10.0 (+https://github.com/mtvtopcom/k12-question-bank)"
 
 _SSL_STATE: Dict[str, Any] = {"ctx": None, "note": ""}
 
@@ -265,6 +265,9 @@ class _BaseClient:
         self.json_mode = bool(self.profile.get("json_mode", True))
         self.supports_json_mode = self.json_mode
         self.max_retries = _as_int(self.profile.get("retries"), 3, 1, 6)
+        # 关思考：各家字段名不同，0=thinking 1=enable_thinking 2=已放弃（服务不支持）
+        self.no_thinking = bool(self.profile.get("no_thinking", True))
+        self._thinking_step = 0
         self._last_call = 0.0
         # 由调用方注入（Runner 接到界面日志）。重试必须可见，
         # 否则一次 90 秒超时 + 静默重试会让界面看起来完全卡死
@@ -311,13 +314,22 @@ class _BaseClient:
         否则被放弃的旧请求会在后台继续重试，既耗额度又可能触发并发限流。
         """
         payload = self._payload(system, user, json_mode, max_tokens)
-        try:
-            return self._call(payload, self._headers(), cancel)
-        except LLMError as exc:
-            # 个别服务不支持 response_format / temperature，400 时去掉再试一次
-            if exc.status == 400:
+        # 400 降级要能连续退让（thinking → enable_thinking → 无），所以用循环而非递归
+        for _ in range(4):
+            try:
+                return self._call(payload, self._headers(), cancel)
+            except LLMError as exc:
+                if exc.status != 400:
+                    raise
                 body = (exc.body or "").lower()
                 changed = False
+                # 关思考是各家的非标准字段，最可能触发 400。
+                # 只有当错误明确指向别的字段时才跳过它，否则优先降级它。
+                blamed_elsewhere = any(k in body for k in (
+                    "response_format", "temperature", "max_tokens",
+                    "max_completion_tokens"))
+                if self.no_thinking and self._thinking_step < 2 and not blamed_elsewhere:
+                    changed = self._pop_no_thinking(payload) or changed
                 if "response_format" in payload and "response_format" in body:
                     payload.pop("response_format", None)
                     self.supports_json_mode = False
@@ -330,9 +342,18 @@ class _BaseClient:
                         and "max_completion_tokens" in body):
                     payload["max_completion_tokens"] = payload.pop("max_tokens")
                     changed = True
-                if changed:
-                    return self._call(payload, self._headers(), cancel)
-            raise
+                if not changed:
+                    raise
+        raise LLMError("多次调整请求参数后仍被拒绝", kind="bad_request", status=400,
+                       hint="请检查模型名与该服务支持的参数")
+
+    def _apply_no_thinking(self, payload: Dict[str, Any]) -> None:
+        """关思考参数（各协议写法不同，由子类实现）。"""
+        return
+
+    def _pop_no_thinking(self, payload: Dict[str, Any]) -> bool:
+        """400 时退让一级；返回 True 表示 payload 已改动、可以重试。"""
+        return False
 
     def _headers(self) -> Dict[str, str]:
         return {"Content-Type": "application/json", "Accept-Encoding": "identity",
@@ -368,7 +389,30 @@ class OpenAICompatClient(_BaseClient):
         }
         if json_mode and self.supports_json_mode:
             payload["response_format"] = {"type": "json_object"}
+        self._apply_no_thinking(payload)
         return payload
+
+    def _apply_no_thinking(self, payload: Dict[str, Any]) -> None:
+        """主流国产服务（豆包 / DeepSeek / GLM / Kimi）都用 thinking.type=disabled。"""
+        if not self.no_thinking or self._thinking_step >= 2:
+            return
+        if self._thinking_step == 0:
+            payload["thinking"] = {"type": "disabled"}
+        else:
+            payload["enable_thinking"] = False        # 通义千问等用这个写法
+
+    def _pop_no_thinking(self, payload: Dict[str, Any]) -> bool:
+        if self._thinking_step == 0:
+            payload.pop("thinking", None)
+            self._thinking_step = 1
+            self._apply_no_thinking(payload)      # 换成 enable_thinking 再试
+            return True
+        if self._thinking_step == 1:
+            payload.pop("enable_thinking", None)
+            self._thinking_step = 2
+            self._note("  该模型不支持关闭深度思考，已改回默认方式（会慢一些）")
+            return True
+        return False
 
     def _call(self, payload: Dict[str, Any], headers: Dict[str, str],
               cancel: Optional[Callable[[], bool]] = None) -> Reply:
@@ -413,13 +457,29 @@ class AnthropicClient(_BaseClient):
         if not self.model:
             raise LLMError("模型名不能为空", kind="config", hint="例：claude-sonnet-4-5")
         # Claude 的 system 是顶层字段，不是 messages 里的一条
-        return {
+        payload = {
             "model": self.model,
             "system": system,
             "messages": [{"role": "user", "content": user}],
             "temperature": self.temperature,
             "max_tokens": int(max_tokens or self.max_tokens),
         }
+        self._apply_no_thinking(payload)
+        return payload
+
+    def _apply_no_thinking(self, payload: Dict[str, Any]) -> None:
+        """Claude 默认就不思考，显式声明一次，避免某些模型默认开思考。"""
+        if not self.no_thinking or self._thinking_step >= 2:
+            return
+        if self._thinking_step == 0:
+            payload["thinking"] = {"type": "disabled"}
+
+    def _pop_no_thinking(self, payload: Dict[str, Any]) -> bool:
+        if self._thinking_step == 0:
+            payload.pop("thinking", None)
+            self._thinking_step = 2
+            return True
+        return False
 
     def _call(self, payload: Dict[str, Any], headers: Dict[str, str],
               cancel: Optional[Callable[[], bool]] = None) -> Reply:
@@ -466,11 +526,30 @@ class GeminiClient(_BaseClient):
         }
         if json_mode and self.supports_json_mode:
             gen["responseMimeType"] = "application/json"
-        return {
+        payload: Dict[str, Any] = {
             "system_instruction": {"parts": [{"text": system}]},
             "contents": [{"role": "user", "parts": [{"text": user}]}],
             "generationConfig": gen,
         }
+        self._apply_no_thinking(payload)
+        return payload
+
+    def _apply_no_thinking(self, payload: Dict[str, Any]) -> None:
+        """Gemini 用 thinkingBudget=0 表示不思考；超范围模型会忽略该字段。"""
+        if not self.no_thinking or self._thinking_step >= 2:
+            return
+        if self._thinking_step == 0:
+            gen = payload.setdefault("generationConfig", {})
+            gen["thinkingConfig"] = {"thinkingBudget": 0}
+
+    def _pop_no_thinking(self, payload: Dict[str, Any]) -> bool:
+        if self._thinking_step == 0:
+            gen = payload.get("generationConfig") or {}
+            gen.pop("thinkingConfig", None)
+            self._thinking_step = 2
+            self._note("  该模型不支持 thinkingBudget=0，已改回默认方式")
+            return True
+        return False
 
     def _call(self, payload: Dict[str, Any], headers: Dict[str, str],
               cancel: Optional[Callable[[], bool]] = None) -> Reply:
