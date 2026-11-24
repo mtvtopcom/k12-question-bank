@@ -25,7 +25,7 @@ import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.4.1"
+VERSION = "1.4.2"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -189,6 +189,7 @@ class App:
         self._api_task_loading = False
         self._api_buttons = {}
         self._api_probe_pending = False
+        self._api_pause_pending = False        # 已点暂停/停止，等线程收尾
         self.bank_rows = []                    # 题库页当前筛选结果
         self._bank_by_id = {}
         self._closing = False
@@ -1511,6 +1512,7 @@ class App:
                       f"{task['totals']['need']} 题 ——")
         self.api_runner = api_task.Runner(task, profile, self.api_events.put)
         self.api_runner.start()
+        self._api_pause_pending = False
         self._api_set_buttons(running=True)
         self.api_lbl_task.configure(text="生成中…")
         return True
@@ -1563,20 +1565,30 @@ class App:
     def api_pause(self):
         if self.api_runner is None or not self.api_runner.is_alive():
             return
+        if self._api_pause_pending:
+            return
+        self._api_pause_pending = True
         self.api_runner.pause()
-        self._api_log("已请求暂停：当前请求结束后停止，进度会保存。")
+        self._api_set_buttons(running=False)
+        self._api_log("已暂停：当前请求已放弃，进度保存在断点处。")
         self.api_lbl_task.configure(text="正在暂停…")
 
     def api_stop(self):
         if self.api_runner is None or not self.api_runner.is_alive():
             return
+        if self._api_pause_pending:
+            return
         if not messagebox.askyesno("停止任务", "停止后已生成的题目会保留，可稍后「继续」。确定停止？"):
             return
+        self._api_pause_pending = True
         self.api_runner.stop()
-        self._api_log("已请求停止：当前请求结束后停止。")
+        self._api_set_buttons(running=False)
+        self._api_log("已停止：当前请求已放弃，已生成的题目都保留。")
+        self.api_lbl_task.configure(text="正在停止…")
 
     def api_resume(self):
         if self.api_runner is not None and self.api_runner.is_alive():
+            self.api_lbl_task.configure(text="上一个请求正在收尾，稍等再点…")
             return
         task = self.api_task
         if task is None:
@@ -1635,6 +1647,13 @@ class App:
             pass
         except tk.TclError:
             return
+        # 兜底：线程已经结束但收尾事件丢了，别把四个按钮一直锁死
+        if (self.api_runner is not None and not self.api_runner.is_alive()
+                and not self._closing):
+            start_btn = self._api_buttons.get("start")
+            if start_btn is not None and str(start_btn.cget("state")) == "disabled":
+                self._api_set_buttons(running=False)
+                self._api_pause_pending = False
         self._api_poll_id = self.root.after(150, self._poll_api_events)
 
     def _api_handle_event(self, ev):
@@ -1687,15 +1706,24 @@ class App:
                 self._api_ssl_help(hint)
 
     def _api_on_finished(self, ev):
+        self._api_pause_pending = False
         self._api_set_buttons(running=False)
         status = ev.get("status", "")
         done, need = ev.get("done", 0), ev.get("need", 0)
-        self._api_update_progress(done, need)
-        self.api_lbl_task.configure(
-            text=f"任务结束 · {api_task.STATUS_LABELS.get(status, status)} · {done}/{need} 题")
         if self.api_task:
-            self._api_render_task(self.api_task)
+            self._api_render_task(self.api_task)      # 先刷明细，最后再写状态文字
             self.api_refresh_task_choices(select_id=self.api_task.get("id", ""))
+        self._api_update_progress(done, need)
+        label = api_task.STATUS_LABELS.get(status, status)
+        if status in ("paused", "stopped"):
+            text = f"{label} · {done}/{need} 题"
+            if done < need:
+                text += " · 点「继续」接着生成"
+        elif status == "done":
+            text = f"全部完成 · {done}/{need} 题"
+        else:
+            text = f"任务结束 · {label} · {done}/{need} 题"
+        self.api_lbl_task.configure(text=text)
         self._update_status()
         if status == "error":
             messagebox.showerror("生成中止", ev.get("error") or "任务出错，请查看运行日志。")
@@ -2469,8 +2497,8 @@ class App:
 12. 选知识点：点行勾选，Shift 连选；设定每点题数与难度占比。
 13. 点「开始生成」后，软件按知识点逐个调用接口，进度条、明细表和日志实时刷新，
     同时统计请求次数与输入/输出 tokens。
-14. 「暂停」在当前请求结束后生效；「停止」保留已完成题目；直接关掉软件也不会丢进度。
-    下次打开会提示未完成任务，选中后点「继续」即从断点接着生成。
+14. 「暂停」「停止」立即生效（当前在途请求直接放弃，半秒内停下）；已完成的题目都保留，
+    直接关掉软件也不会丢进度。下次打开会提示未完成任务，选中后点「继续」即从断点接着生成。
 15. 网络错误/限流会自动退避重试；Key 无效、模型不存在会立即中止并给出提示。
     返回的题目会自动校验选项、答案、解析与难度，重复题干按 id 去重，不会重复入库。
 16. 生成结果直接写入「题库」，可以继续筛选、预览、删除与导出。

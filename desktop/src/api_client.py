@@ -23,7 +23,7 @@ from typing import Any, Dict, Optional, Tuple
 import api_config
 import api_ssl
 
-USER_AGENT = "K12QuestionBank/1.4.1 (+https://github.com/mtvtopcom/k12-question-bank)"
+USER_AGENT = "K12QuestionBank/1.4.2 (+https://github.com/mtvtopcom/k12-question-bank)"
 
 _SSL_STATE: Dict[str, Any] = {"ctx": None, "note": ""}
 

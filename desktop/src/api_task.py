@@ -13,6 +13,7 @@ import glob
 import json
 import os
 import threading
+import time
 import uuid
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
 
@@ -193,6 +194,10 @@ def resume_task(task: Dict[str, Any]) -> Dict[str, Any]:
 
 
 # ---------------- 执行器 ----------------
+class _Aborted(Exception):
+    """暂停 / 停止时主动放弃当前在途请求（不等它返回）。"""
+
+
 class Runner(threading.Thread):
     """后台单线程任务执行器；通过 emit 回调把事件交给界面线程。"""
 
@@ -229,9 +234,36 @@ class Runner(threading.Thread):
     def _log(self, text: str) -> None:
         self._emit(type="log", text=text)
 
+    def _cancelled(self) -> bool:
+        return self._stop_evt.is_set() or self._pause_evt.is_set()
+
     def _sleep(self, seconds: float) -> None:
-        if seconds > 0:
-            self._stop_evt.wait(seconds)
+        """退避等待，暂停/停止能立刻打断，不必等满。"""
+        deadline = time.time() + max(0.0, seconds)
+        while time.time() < deadline:
+            if self._cancelled():
+                return
+            time.sleep(min(0.2, max(0.0, deadline - time.time())))
+
+    def _chat(self, system: str, user: str, json_mode: bool = True) -> Any:
+        """发请求；把等待切成 0.25 秒一片，暂停/停止时立即放弃在途请求。"""
+        box: Dict[str, Any] = {}
+
+        def work():
+            try:
+                box["reply"] = self.client.chat(system, user, json_mode=json_mode)
+            except BaseException as exc:  # noqa: BLE001 —— 原样抛回调用方
+                box["error"] = exc
+
+        th = threading.Thread(target=work, daemon=True, name="api-request")
+        th.start()
+        while th.is_alive():
+            if self._cancelled():
+                raise _Aborted()
+            th.join(0.25)
+        if "error" in box:
+            raise box["error"]
+        return box.get("reply")
 
     # ---- 主循环 ----
     def run(self) -> None:  # noqa: C901
@@ -265,7 +297,7 @@ class Runner(threading.Thread):
             save_task(task)
 
             for idx, item in enumerate(task["items"]):
-                if self._stop_evt.is_set() or self._pause_evt.is_set():
+                if self._cancelled():
                     break
                 if int(item.get("done", 0)) >= int(item.get("need", 0)):
                     item["status"] = "done"
@@ -299,8 +331,11 @@ class Runner(threading.Thread):
                 final_status = "partial"
             task["status"] = final_status
             save_task(task)
-            msg = (f"任务结束：{STATUS_LABELS.get(final_status, final_status)} · "
-                   f"{totals['done']}/{totals['need']} 题")
+            label = STATUS_LABELS.get(final_status, final_status)
+            if final_status in ("paused", "stopped"):
+                msg = f"{label} · {totals['done']}/{totals['need']} 题（可点「继续」接着生成）"
+            else:
+                msg = f"任务结束：{label} · {totals['done']}/{totals['need']} 题"
             if totals["failed"]:
                 msg += f" · {totals['failed']} 个知识点出错"
             self._log(msg)
@@ -342,7 +377,7 @@ class Runner(threading.Thread):
         max_requests = need * 2 + 10
         requests = 0
         while int(item["done"]) < need:
-            if self._stop_evt.is_set() or self._pause_evt.is_set():
+            if self._cancelled():
                 break
             if requests >= max_requests:
                 item["error"] = "多次请求仍未获得足够合格题目"
@@ -357,8 +392,15 @@ class Runner(threading.Thread):
                                                output_format="json")
                 self._log(f"  请求 {n_req} 题（第 {requests} 次，"
                           f"剩余 {remaining}）…")
-                reply = self.client.chat(SYSTEM_PROMPT, text, json_mode=True) if self.client \
+                reply = self._chat(SYSTEM_PROMPT, text, json_mode=True) if self.client \
                     else None
+            except _Aborted:
+                # 暂停/停止时主动放弃在途请求，不再等它跑完
+                item["status"] = "paused" if self._pause_evt.is_set() else "pending"
+                self._emit(type="item", index=idx, done=item["done"],
+                           need=need, status=item["status"])
+                self._log("  已中断当前请求，这一批没有计入进度，下次会重新请求")
+                return
             except api_client.LLMError as exc:
                 item["failed"] = int(item.get("failed", 0)) + 1
                 if exc.kind in ("auth", "config", "not_found", "ssl"):
@@ -386,12 +428,32 @@ class Runner(threading.Thread):
             usage["prompt_tokens"] = int(usage.get("prompt_tokens", 0)) + reply.prompt_tokens
             usage["completion_tokens"] = int(usage.get("completion_tokens", 0)) + reply.completion_tokens
             self._emit(type="usage", usage=dict(usage))
-            if reply.finish_reason in ("length", "max_tokens", "MAX_TOKENS"):
-                self._log("  提示：输出达到长度上限，建议调大「最大输出 tokens」或减少每次请求题数")
-
+            truncated = reply.finish_reason in ("length", "max_tokens", "MAX_TOKENS")
             try:
                 items = api_questions.parse_questions(reply.text)
             except api_questions.ParseError as exc:
+                head = (reply.text or "").strip()
+                if truncated:
+                    # 思考型模型常把额度全花在推理上，输出里连 JSON 的起始括号都没有；
+                    # 或者缩到 1 题还被截断。这两种都是「额度不够」，缩批量没用。
+                    if "[" not in head and "{" not in head:
+                        reason = "模型把输出额度用在了思考过程上，没有产出题目 JSON"
+                        self._log("  输出被思考过程占满：返回的是推理文字，没有题目 JSON")
+                    elif n_req <= 1:
+                        reason = "单道题就被长度上限截断，题目 JSON 不完整"
+                        self._log("  单题输出仍被截断：题目 JSON 不完整")
+                    else:
+                        batch = max(1, n_req // 2)
+                        self._log(f"  输出被长度上限截断：本次请求降为 {batch} 题重试")
+                        continue
+                    item["failed"] = int(item.get("failed", 0)) + 1
+                    item["status"] = "error"
+                    item["error"] = reason
+                    self._log("  已中止任务（换下一题也是同样结果），按提示调整后再点「继续」")
+                    raise api_client.LLMError(
+                        reason, kind="config",
+                        hint="把「最大输出」调到 16000 以上，或换用非思考模型，"
+                             "然后点「继续」接着生成")
                 item["failed"] = int(item.get("failed", 0)) + 1
                 empty_rounds += 1
                 self._log(f"  解析失败：{exc}")
