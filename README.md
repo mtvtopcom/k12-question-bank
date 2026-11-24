@@ -6,7 +6,7 @@
 
 > 仓库标识：`k12-question-bank` · 品牌名称：**K12 题库工厂**（macOS 桌面应用与项目展示名统一）
 >
-> **Open-source K12 knowledge map & AI question-generation prompt builder** — 63 volumes, 1,225 curriculum-aligned knowledge points for Chinese, Math and English (kindergarten to grade 9).
+> **Open-source K12 knowledge map & AI question generator** — 63 volumes, 1,225 curriculum-aligned knowledge points for Chinese, Math and English (kindergarten to grade 9). Build LLM prompts, or generate questions directly through your own OpenAI-compatible / Claude / Gemini API key from the macOS app.
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
@@ -28,11 +28,11 @@
 
 ## 这个项目能做什么
 
-一句话：**把「课标知识点」变成「可直接粘贴给大模型的出题指令」，并附带一套能管、能改、能校验的知识点地图。**
+一句话：**把「课标知识点」变成「可直接粘贴给大模型的出题指令」，或直接在桌面端填自己的 API Key 出题入库；并附带一套能管、能改、能校验的知识点地图。**
 
 | 你是 | 可以怎么用 |
 |---|---|
-| 中小学老师 / 教研员 | 按册次查知识点 → 勾选多个点 → 生成提示词 → 粘贴到 DeepSeek / 元宝 / ChatGPT，一次出 1—100 道带答案与解析的选择题 |
+| 中小学老师 / 教研员 | 按册次查知识点 → 勾选多个点 → 生成提示词粘贴到 DeepSeek / 元宝 / ChatGPT，或在「API 生成」页填自己的 Key 直接出题入库，一次 1—100 道带答案与解析 |
 | 家长 | 按年级定位薄弱知识点，生成同步练习，不用买教辅 |
 | 开发者 / 创业者 | 直接消费 63 册结构化知识点（JSON / JSONL / CSV），接入自己的组卷、测评、错题本产品 |
 | 研究者 / 课程设计者 | 课标领域、认知层级、难度、前置关系齐全，可做知识图谱、学习路径与难度校准研究 |
@@ -219,7 +219,7 @@ v1.2.1 移除元数据题型后容量比 v1.2.0（约 1.3 万）略降，这是�
 
 不写网页，做成双击即开的原生 macOS 桌面窗口（Python 标准库 + 系统 Tcl/Tk，零第三方依赖、无需 Xcode）。
 
-**方式一：直接下载**（推荐给非开发者）——到 [Releases](https://github.com/mtvtopcom/k12-question-bank/releases/latest) 下载 `K12-Question-Bank-v1.3.5-macos.zip`，解压后双击 `K12 题库工厂.app`。首次打开若提示「未验证的开发者」，右键 → 打开即可。
+**方式一：直接下载**（推荐给非开发者）——到 [Releases](https://github.com/mtvtopcom/k12-question-bank/releases/latest) 下载 `K12-Question-Bank-v1.4.0-macos.zip`，解压后双击 `K12 题库工厂.app`。首次打开若提示「未验证的开发者」，右键 → 打开即可。
 
 **方式二：从源码构建**
 
@@ -232,7 +232,7 @@ open "desktop/K12 题库工厂.app"   # 或直接双击
 
 功能：
 
-v1.3.0 起界面分为两个标签页，互不干扰（v1.3.1 统一品牌为「K12 题库工厂」并换用项目 Logo 图标；v1.3.2 优化知识点勾选与排序交互；v1.3.3 勾选框尺寸调协调并固定浅色界面；v1.3.4 支持四种大模型输出格式；v1.3.5 知识点管理页改版并支持一键恢复出厂配置）：
+v1.4.0 起界面分为四个标签页，互不干扰（v1.3.1 统一品牌为「K12 题库工厂」并换用项目 Logo 图标；v1.3.2 优化知识点勾选与排序交互；v1.3.3 勾选框尺寸调协调并固定浅色界面；v1.3.4 支持四种大模型输出格式；v1.3.5 知识点管理页改版并支持一键恢复出厂配置）：
 
 **模块一 · 知识点管理**
 
@@ -252,6 +252,21 @@ v1.3.0 起界面分为两个标签页，互不干扰（v1.3.1 统一品牌为「
 - **使用**：文本框可微调，「复制全部」粘贴到 DeepSeek / 元宝 / ChatGPT，或导出 `.txt` / `.md`
 - **本地模板出题（旧）**：收在「工具 → 本地模板引擎」，用固定模板现场出题，仅作效果对比
 
+**模块三 · API 直连生成（v1.4 新增）**
+
+- **三种协议**：OpenAI 兼容（DeepSeek / 通义千问 / Kimi / 智谱 / 豆包 / OpenAI / Ollama）、Anthropic Claude、Google Gemini。选预设自动填 Base URL 与模型，只需粘贴自己的 API Key
+- **配置安全**：保存在用户数据目录（macOS `~/Library/Application Support/K12题库工厂/config.json`），文件权限 600；「测试连接」验证地址 / Key / 模型是否可用，Key 不写入日志与导出文件
+- **批量生成**：勾选知识点 → 设定每点题数与难度占比 → 逐点调用接口；温度、最大输出、超时、请求间隔、单次请求题数均可调，便于控制成本与限流
+- **进度与断点**：进度条 + 知识点明细 + 运行日志 + token 用量；「暂停」在当前请求结束后生效，「停止」保留已生成题目；关掉软件后重开会提示未完成任务，点「继续」从断点续跑
+- **质量兜底**：自动剥离 ```json 围栏与多余解释，校验 4 个选项、答案唯一、解析非空、难度合法；重复题干按 `topic_id + 题干` 哈希去重，不会重复入库或重复计费；网络错误与 5xx 自动退避重试，401/403/404 立即中止并说明原因
+- **直存入库**：生成结果写入本地题库，可在「题库」页继续筛选、预览与导出
+
+**模块四 · 题库**
+
+- **浏览**：最新在前，按关键词 / 学科 / 年级 / 难度筛选；选中即看完整题干、选项、答案、解析、来源模型与生成时间
+- **导出**：当前筛选结果导出 JSON / JSONL / CSV / Excel `.xlsx` / TSV，默认文件名 `K12题库_日期`，可直接给表格工具或其他程序调用
+- **安全**：删除所选、清空题库前自动备份到数据目录 `backups/`
+
 > 注意：`volumes/` 是 `data/*.py` 经 `build_volumes.py` 生成的产物。桌面端的改动若要永久固化，需同步回 `knowledge-map/data/` 对应源文件，再重新生成；这一约束在 app 的「使用说明」里也有提示。
 
 也可直接运行源码：`python3 desktop/src/app.py`。
@@ -259,7 +274,7 @@ v1.3.0 起界面分为两个标签页，互不干扰（v1.3.1 统一品牌为「
 ## 常见问题（FAQ）
 
 **需要 API key 或联网吗？**
-不需要。桌面端只负责生成提示词，题目由你粘贴到 DeepSeek / 元宝 / ChatGPT 生成；本地模板引擎可完全离线出题。
+用「AI 提示词」与本地模板引擎不需要，完全离线可用。用「API 直连生成」需要你自己的 Key 并联网；Key 只保存在本机配置文件（权限 600），不会上传到任何服务器，也不会写进题库或导出文件。
 
 **数据和教材版本从哪来？**
 以 2022 版义务教育国家课程标准（幼儿园为《3-6 岁儿童学习与发展指南》）为骨架独立梳理，每条知识点标注权威来源；与课标全文逐条机器比对 + 156 条高风险事实点联网复核，结果见 [CROSS_VALIDATION.md](knowledge-map/CROSS_VALIDATION.md)。
@@ -283,10 +298,10 @@ MIT 协议，可自由用于商业产品，保留版权声明即可。知识点�
 - [x] v1.3.3：勾选框尺寸与行高协调；固定浅色界面，不跟随系统深色模式
 - [x] v1.3.4：新增输出格式（JSON / TXT / Excel / CSV），难度预设默认「基础为主」
 - [x] v1.3.5：知识地图默认收起、列表新增学科/年级列、详情改单行紧凑格式、移除引擎提示字段、一键恢复出厂配置（63 册 / 1225 点）
+- [x] v1.4.0：API 直连生成（OpenAI 兼容 / Claude / Gemini）、本地题库与五种格式导出、进度显示与断点续跑
 - [x] 内容感知型模板生成器 v1.2.1（考知识内容而非知识点档案，全库约 1.1 万题容量）
 - [x] 桌面端集成本地出题：单点 / 批量生成、题目预览、JSONL / CSV 导出
-- [ ] 接入 LLM 引擎并抽检语义类题目质量
-- [ ] 补量至 10 万题 + 全库质量报告
+- [ ] 用 API 直连批量补量至 10 万题 + 全库质量报告
 
 ## 版本号说明
 

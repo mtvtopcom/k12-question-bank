@@ -20,6 +20,7 @@
 8. [格式换算与入库](#8-格式换算与入库)
 9. [接入校验清单](#9-接入校验清单)
 10. [版本与兼容性](#10-版本与兼容性)
+11. [题库直出格式（v1.4 API 生成）](#11-题库直出格式v14-api-生成)
 
 ---
 
@@ -462,7 +463,110 @@ jsonschema.validate(json.load(open("docs/samples/questions.json", encoding="utf-
 | 版本 | 变化 |
 |---|---|
 | v1.3.5 | 首次随文档发布 4 种格式规范与 JSON Schema；表格固定 12 列；JSON 固定 9 个字段 |
+| v1.4.0 | 新增「API 直连生成」题库导出格式（JSON / JSONL / CSV / XLSX / TSV），字段见第 11 节 |
 
 - 字段只增不改：后续若增加字段，按「可选」处理，旧解析器可忽略未知字段。
 - `type` 目前固定 `single_choice`；未来支持多选时新增 `multi_choice`，`answer` 可能变成 `"AC"`，解析器请按字符串处理。
 - 文档与代码不一致时，以 [`desktop/src/prompt.py`](../desktop/src/prompt.py) 的 `_format_block()` 为准，并欢迎提 Issue。
+
+---
+
+## 11. 题库直出格式（v1.4 API 生成）
+
+桌面端「API 生成」把模型返回的题目校验、去重后写入本地题库；「题库」页可把**当前筛选结果**导出为 JSON / JSONL / CSV / Excel(.xlsx) / TSV。这是三种数据出口中的第三种：**已入库的成品题**，不需要再解析模型文本。
+
+### 11.1 存储位置
+
+| 系统 | 目录 |
+|---|---|
+| macOS | `~/Library/Application Support/K12题库工厂/questions.jsonl` |
+| Linux | `~/.config/K12题库工厂/questions.jsonl` |
+| Windows | `%APPDATA%\K12题库工厂\questions.jsonl` |
+
+`questions.jsonl` 一行一道题（UTF-8，追加写入）；任务进度在 `tasks/*.json`，接口配置在 `config.json`（权限 600）。可用环境变量 `K12_DATA_DIR` 重定向整个数据目录。
+
+### 11.2 JSON / JSONL 记录字段
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `id` | string | `sha256(topic_id + 去标点题干)[:20]`，同一知识点下题干重复即同一 id，用于去重 |
+| `topic_id` / `topic_name` | string | 来源知识点 ID 与名称 |
+| `volume_id` / `volume_title` | string | 来源册，如 `primary-g3-s1-math` / `三年级上册数学` |
+| `stage` / `subject` / `grade` | string | `kg/primary/junior`、`chinese/math/english`、`g1..g9/k1..k3` |
+| `grade_label` | string | 展示用年级，如 `三年级上册` |
+| `chapter` / `domain` | string | 单元与课标领域 |
+| `stem` | string | 题干 |
+| `options` | array[4] | 四个选项，不含 `A.` 前缀 |
+| `answer` / `answer_text` | string | 正确项字母 A–D 与对应选项原文 |
+| `explanation` | string | 解析 |
+| `difficulty` | int | 1 容易 / 2 中等 / 3 较难 / 4 难 |
+| `bloom` | string | 记忆 / 理解 / 应用 / 分析 / 评价 / 创造 |
+| `type` | string | 目前固定 `single_choice` |
+| `source` | string | 固定 `llm` |
+| `provider` / `model` | string | 生成时使用的协议与模型名（便于质量追溯） |
+| `task_id` | string | 生成任务 ID，可与 `tasks/<id>.json` 对照 |
+| `created_at` | string | 本地时间，ISO 8601（秒） |
+
+示例（JSON 数组中的一个元素；JSONL 每行就是这样一个对象）：
+
+```json
+{
+  "id": "0b88605423b39879aeb5",
+  "topic_id": "primary-g3-s1-math-K018",
+  "topic_name": "长方形、正方形的特征与周长",
+  "volume_id": "primary-g3-s1-math",
+  "volume_title": "三年级上册数学",
+  "stage": "primary",
+  "subject": "math",
+  "grade": "g3",
+  "grade_label": "三年级上册",
+  "chapter": "图形与几何",
+  "domain": "图形与几何",
+  "stem": "一个长方形花坛长 8 米、宽 5 米，绕它走一圈是多少米？",
+  "options": ["26 米", "13 米", "40 米", "21 米"],
+  "answer": "A",
+  "answer_text": "26 米",
+  "explanation": "绕一圈即周长，(8+5)×2=26 米。13 米只是长加宽，忘了乘 2。",
+  "difficulty": 2,
+  "bloom": "应用",
+  "type": "single_choice",
+  "source": "llm",
+  "provider": "openai",
+  "model": "deepseek-chat",
+  "task_id": "20261124-180104-7fc7",
+  "created_at": "2026-11-24T18:01:05"
+}
+```
+
+### 11.3 CSV / Excel / TSV 列
+
+表头固定 19 列（顺序不要改）：
+
+```
+id, topic_id, topic_name, subject, grade, chapter, difficulty, bloom,
+stem, option_a, option_b, option_c, option_d, answer, answer_text,
+explanation, source, model, created_at
+```
+
+- `subject` 用代码（`chinese` / `math` / `english`）；`grade` 用代码（`g3`）；展示用文字在 `grade_label`（仅 JSON 有）。
+- `difficulty` 为 1–4 的数字，便于排序统计。
+- CSV 为 UTF-8 BOM、RFC 4180；TSV 为 Tab 分隔；`.xlsx` 为真正的 Excel 工作簿（首行加粗冻结、列宽自适应）。
+
+### 11.4 读取示例
+
+```python
+import json
+
+rows = [json.loads(line) for line in open("questions.jsonl", encoding="utf-8") if line.strip()]
+print(len(rows), rows[0]["stem"])
+```
+
+```python
+import csv
+
+with open("K12题库_20261124.csv", encoding="utf-8-sig", newline="") as f:
+    for row in csv.DictReader(f):
+        print(row["topic_name"], row["difficulty"], row["stem"][:30])
+```
+
+> 与第 3–6 节的区别：那里是**让大模型按格式输出**的提示词规范（12 列 / 9 字段）；这里是**软件已校验入库后的导出**（19 列 / 完整记录）。两者都保留 `topic_id`、题干、选项、答案、解析与难度，可按 `topic_id` 直接关联。

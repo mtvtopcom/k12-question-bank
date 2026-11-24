@@ -377,7 +377,7 @@ def create_original_snapshot(version: str = "") -> Dict[str, Any]:
     for path in volume_files():
         rel = os.path.relpath(path, VOL_ROOT).replace(os.sep, "/")
         bundle[rel] = _load_json(path)
-    payload = json.dumps(bundle, ensure_ascii=False, sort_keys=True).encode("utf-8")
+    payload = json.dumps(bundle, ensure_ascii=False).encode("utf-8")
     os.makedirs(ORIGINAL_DIR, exist_ok=True)
     tmp = ORIGINAL_ARCHIVE + ".tmp"
     with open(tmp, "wb") as raw:

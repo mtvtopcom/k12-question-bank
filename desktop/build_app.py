@@ -22,7 +22,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(HERE)
 LOGO_SRC = os.path.join(PROJECT_ROOT, "assets", "logo.png")
 APP_NAME = "K12 题库工厂"
-APP_VERSION = "1.3.5"
+APP_VERSION = "1.4.0"
 BUNDLE = os.path.join(HERE, f"{APP_NAME}.app")
 CONTENTS = os.path.join(BUNDLE, "Contents")
 MACOS = os.path.join(CONTENTS, "MacOS")
@@ -50,20 +50,24 @@ def find_python() -> str:
     return "python3"
 
 
-def make_launcher() -> str:
+def make_launcher(release: bool = False) -> str:
     # app.py 在 bundle 外（desktop/src/app.py）。查找顺序：
     # 1) .app 仍在项目 desktop/ 下 → 用项目源码（开发时改代码立即生效）
     # 2) 构建时写入的绝对路径（.app 单独拖到桌面 / Applications 时兜底）
     # 3) bundle 内自带的源码副本（Release 分发用，整个 .app 可独立移动）
+    # Release 构建会跳过第 2 步，避免把打包机器上的绝对路径带进分发包。
     import shlex
-    abs_app_src = shlex.quote(os.path.join(HERE, "src", "app.py"))
+    abs_fallback = ""
+    if not release:
+        abs_fallback = (
+            'if [ ! -f "$APP_SRC" ]; then\n'
+            f'  APP_SRC={shlex.quote(os.path.join(HERE, "src", "app.py"))}\n'
+            "fi\n"
+        )
     return f'''#!/bin/bash
 # 由 build_app.py 生成，请勿手改
 APP_SRC="$(cd "$(dirname "$0")/../../../src" 2>/dev/null && pwd)/app.py"
-if [ ! -f "$APP_SRC" ]; then
-  APP_SRC={abs_app_src}
-fi
-if [ ! -f "$APP_SRC" ]; then
+{abs_fallback}if [ ! -f "$APP_SRC" ]; then
   APP_SRC="$(cd "$(dirname "$0")/../Resources/project/desktop/src" 2>/dev/null && pwd)/app.py"
 fi
 for PY in "$WORKBUDDY_PYTHON" /opt/homebrew/bin/python3 /usr/local/bin/python3 /usr/bin/python3 python3; do
@@ -166,7 +170,7 @@ def bundle_sources():
         raise SystemExit("打包失败，缺少运行数据：" + ", ".join(missing))
 
 
-def build():
+def build(release: bool = False):
     for d in (MACOS, RESOURCES):
         os.makedirs(d, exist_ok=True)
 
@@ -178,7 +182,7 @@ def build():
     py = find_python()
     launcher = os.path.join(MACOS, "launcher")
     with open(launcher, "w", encoding="utf-8") as f:
-        f.write(make_launcher())
+        f.write(make_launcher(release))
     os.chmod(launcher, os.stat(launcher).st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
     info = {
@@ -201,7 +205,7 @@ def build():
     icon_ok = make_icon()
     bundle_sources()
     print(f"已生成 {BUNDLE}")
-    print(f"  版本: {APP_VERSION}")
+    print(f"  版本: {APP_VERSION}{'（Release 构建）' if release else ''}")
     print(f"  构建时探测到可用 Python: {py}（运行时会重新探测）")
     print(f"  图标: {'app.icns' if icon_ok else '无（不影响运行）'}")
     print("  .app 已内置源码与知识点数据，可连同项目或单独移动运行。")
@@ -209,4 +213,4 @@ def build():
 
 
 if __name__ == "__main__":
-    build()
+    build(release="--release" in sys.argv[1:])

@@ -6,17 +6,25 @@
 """
 from __future__ import annotations
 
+import copy
 import os
+import queue
 import sys
+import threading
+import time
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog, scrolledtext
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import store  # noqa: E402
 import prompt as prompt_mod  # noqa: E402
+import api_bank  # noqa: E402
+import api_client  # noqa: E402
+import api_config  # noqa: E402
+import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.3.5"
+VERSION = "1.4.0"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -164,6 +172,30 @@ class App:
         self.ai_sort_sel_desc = None           # 「选」列排序方向：None/True/False
         self.logo_img = None                   # 防止 PhotoImage 被回收
 
+        # API 直连模块独立状态（与 AI 提示词页的选择互不干扰）
+        self.api_cfg = api_config.load()       # 接口配置（含 API Key，仅本机）
+        self.api_rows = []                     # 当前筛选结果 [(kp, vol)]
+        self.api_selected: set = set()         # 勾选的知识点 id
+        self.api_anchor = ""
+        self.api_vars_ratio = {}
+        self.api_var_n_custom = tk.StringVar(
+            value=str(self.api_cfg.get("generation", {}).get("n_custom", "")))
+        self.api_ent_n = None
+        self.api_runner = None                 # 正在运行的任务线程
+        self.api_task = None                   # 当前任务 dict
+        self.api_events = queue.Queue()        # 后台线程 → 界面线程的事件队列
+        self.api_task_map = {}                 # 任务下拉：显示文字 → task_id
+        self._api_task_loading = False
+        self._api_buttons = {}
+        self._api_probe_pending = False
+        self.bank_rows = []                    # 题库页当前筛选结果
+        self._bank_by_id = {}
+        self._closing = False
+        self._api_active_provider = None
+        self._api_initializing = False
+        self._api_poll_id = None
+        self._api_hint_id = None
+
         self._build_style()
         self._build_menu()
         self._build_layout()
@@ -187,6 +219,11 @@ class App:
         st.configure("Title.TLabel", font=("", 15, "bold"))
         st.configure("Sub.TLabel", foreground="#555555")
         st.configure("Head.TLabel", font=("", 11, "bold"))
+        st.configure("Hint.TLabel", foreground="#6B6B70", font=("", 10))
+        st.configure("TLabelframe", background=LIGHT_BG, bordercolor="#D6D6DA",
+                     relief="solid", borderwidth=1)
+        st.configure("TLabelframe.Label", background=LIGHT_BG, foreground="#4A4A4F",
+                     font=("", 11, "bold"))
         # 固定浅色配色：所有面板、列表、标签统一白天色
         st.configure("TFrame", background=LIGHT_BG)
         st.configure("TLabel", background=LIGHT_BG, foreground=LIGHT_TEXT)
@@ -251,7 +288,11 @@ class App:
         m_file.add_command(label="导出当前结果 (CSV)", command=lambda: self.export("csv"))
         m_file.add_command(label="导出当前结果 (JSON)", command=lambda: self.export("json"))
         m_file.add_separator()
+        m_file.add_command(label="导出题库 (Excel)", command=lambda: self.bank_export("xlsx"))
+        m_file.add_command(label="导出题库 (CSV)", command=lambda: self.bank_export("csv"))
+        m_file.add_separator()
         m_file.add_command(label="打开数据目录", command=self.open_data_dir)
+        m_file.add_command(label="打开 API 数据目录", command=lambda: subprocess_open(api_config.data_dir()))
         m_file.add_command(label="打开变更日志", command=self.open_changelog)
         m_file.add_separator()
         m_file.add_command(label="退出", command=self.root.quit)
@@ -266,6 +307,9 @@ class App:
         menubar.add_cascade(label="编辑", menu=m_edit)
 
         m_tools = tk.Menu(menubar, tearoff=0)
+        m_tools.add_command(label="API 直连生成题目", command=lambda: self.nb.select(2))
+        m_tools.add_command(label="题库浏览 / 导出", command=lambda: self.nb.select(3))
+        m_tools.add_separator()
         m_tools.add_command(label="AI 提示词 · 当前知识点", command=self.goto_ai_single)
         m_tools.add_command(label="AI 提示词 · 当前列表", command=self.goto_ai_batch)
         m_tools.add_separator()
@@ -405,6 +449,21 @@ class App:
         self._build_ai_tab(tab_ai)
         self.ai_update_alloc()
         self.ai_refresh()
+
+        # ===== 模块三：API 直连生成 =====
+        tab_api = ttk.Frame(nb, padding=6)
+        nb.add(tab_api, text="API 生成")
+        self._build_api_tab(tab_api)
+
+        # ===== 模块四：题库 =====
+        tab_bank = ttk.Frame(nb, padding=6)
+        nb.add(tab_bank, text="题库")
+        self._build_bank_tab(tab_bank)
+
+        nb.bind("<<NotebookTabChanged>>", self._on_tab_changed)
+        self.root.protocol("WM_DELETE_WINDOW", self._on_close)
+        self._api_poll_id = self.root.after(200, self._poll_api_events)
+        self._api_hint_id = self.root.after(600, self._api_restore_hint)
 
     # ---------------- AI 提示词模块 ----------------
     def _build_ai_tab(self, parent):
@@ -760,6 +819,1114 @@ class App:
         self.ai_reset_filters()
         self.ai_selected = set(ids)
         self._ai_repaint()
+
+    # ================= 模块三：API 直连生成 =================
+    def _build_api_tab(self, parent):
+        parent.columnconfigure(0, weight=1)
+        parent.rowconfigure(3, weight=3)
+        parent.rowconfigure(8, weight=2)
+
+        cfg = ttk.LabelFrame(parent, text="大模型接口（Key 只保存在本机，文件权限 600）",
+                             padding=(10, 6))
+        cfg.grid(row=0, column=0, sticky="ew", pady=(0, 6))
+        cfg.columnconfigure(5, weight=1)
+
+        self.api_var_provider = tk.StringVar(
+            value=api_config.PROVIDER_LABELS.get(self.api_cfg.get("provider", "openai"),
+                                                 "OpenAI 兼容"))
+        ttk.Label(cfg, text="协议").grid(row=0, column=0, sticky="w")
+        ClickCombo(cfg, self.api_var_provider,
+                   list(api_config.PROVIDER_LABELS.values()), width=15,
+                   command=self.api_on_provider_change).grid(
+            row=0, column=1, sticky="w", padx=(4, 12))
+        ttk.Label(cfg, text="预设").grid(row=0, column=2, sticky="w")
+        self.api_var_preset = tk.StringVar(value="自定义")
+        self.api_cmb_preset = ClickCombo(cfg, self.api_var_preset, ["自定义"],
+                                         width=20, command=self.api_on_preset_change)
+        self.api_cmb_preset.grid(row=0, column=3, sticky="w", padx=(4, 12))
+        ttk.Label(cfg, text="Base URL").grid(row=0, column=4, sticky="w")
+        self.api_var_base = tk.StringVar()
+        ttk.Entry(cfg, textvariable=self.api_var_base).grid(
+            row=0, column=5, sticky="ew", padx=(4, 12))
+        ttk.Label(cfg, text="模型").grid(row=0, column=6, sticky="w")
+        self.api_var_model = tk.StringVar()
+        ttk.Entry(cfg, textvariable=self.api_var_model, width=22).grid(
+            row=0, column=7, sticky="w", padx=(4, 0))
+
+        row = ttk.Frame(cfg)
+        row.grid(row=1, column=0, columnspan=8, sticky="ew", pady=(8, 0))
+        ttk.Label(row, text="API Key").pack(side="left")
+        self.api_var_key = tk.StringVar()
+        self.api_ent_key = ttk.Entry(row, textvariable=self.api_var_key, width=34,
+                                     show="•")
+        self.api_ent_key.pack(side="left", padx=(4, 4))
+        self.api_var_show_key = tk.BooleanVar(value=False)
+        ttk.Checkbutton(row, text="显示", variable=self.api_var_show_key,
+                        command=self.api_toggle_key).pack(side="left", padx=(0, 12))
+
+        def small(label, var, width=5):
+            ttk.Label(row, text=label).pack(side="left")
+            ttk.Entry(row, textvariable=var, width=width).pack(side="left", padx=(3, 8))
+
+        self.api_var_temp = tk.StringVar()
+        self.api_var_max_tokens = tk.StringVar()
+        self.api_var_timeout = tk.StringVar()
+        self.api_var_interval = tk.StringVar()
+        self.api_var_batch = tk.StringVar()
+        small("温度", self.api_var_temp)
+        small("最大输出", self.api_var_max_tokens, 6)
+        small("超时(s)", self.api_var_timeout)
+        small("间隔(s)", self.api_var_interval)
+        small("单次题数", self.api_var_batch, 4)
+        self.api_var_json = tk.BooleanVar(value=True)
+        ttk.Checkbutton(row, text="JSON 模式", variable=self.api_var_json).pack(
+            side="left", padx=(0, 10))
+
+        actions = ttk.Frame(cfg)
+        actions.grid(row=2, column=0, columnspan=8, sticky="ew", pady=(6, 0))
+        ttk.Button(actions, text="测试连接", command=self.api_test).pack(
+            side="left", padx=(0, 6))
+        ttk.Button(actions, text="保存配置", command=self.api_save_config_clicked).pack(
+            side="left", padx=(0, 12))
+        self.api_lbl_probe = ttk.Label(actions, text="", style="Hint.TLabel")
+        self.api_lbl_probe.pack(side="left")
+
+        # 筛选
+        flt = ttk.Frame(parent)
+        flt.grid(row=1, column=0, sticky="ew", pady=(2, 6))
+        ttk.Label(flt, text="学段").pack(side="left")
+        self.api_var_stage = tk.StringVar(value="全部")
+        ClickCombo(flt, self.api_var_stage, list(AI_STAGE), width=9,
+                   command=self.api_on_stage_change).pack(side="left", padx=(4, 10))
+        ttk.Label(flt, text="科目").pack(side="left")
+        self.api_var_subject = tk.StringVar(value="全部")
+        ClickCombo(flt, self.api_var_subject, list(AI_SUBJECT), width=8,
+                   command=self.api_refresh).pack(side="left", padx=(4, 10))
+        ttk.Label(flt, text="年级").pack(side="left")
+        self.api_var_grade = tk.StringVar(value="全部")
+        self.api_cmb_grade = ClickCombo(flt, self.api_var_grade,
+                                        ["全部"] + STAGE_GRADE_LABELS[""], width=11,
+                                        command=self.api_refresh)
+        self.api_cmb_grade.pack(side="left", padx=(4, 10))
+        ttk.Label(flt, text="搜索").pack(side="left")
+        self.api_var_q = tk.StringVar()
+        aq = ttk.Entry(flt, textvariable=self.api_var_q, width=22)
+        aq.pack(side="left", padx=(4, 6))
+        aq.bind("<Return>", lambda _: self.api_refresh())
+        ttk.Button(flt, text="筛选", command=self.api_refresh).pack(side="left", padx=(0, 6))
+        ttk.Button(flt, text="重置", command=self.api_reset_filters).pack(side="left")
+
+        # 选点列表
+        lbar = ttk.Frame(parent)
+        lbar.grid(row=2, column=0, sticky="ew")
+        self.api_lbl_list = ttk.Label(lbar, text="知识点", style="Head.TLabel")
+        self.api_lbl_list.pack(side="left")
+        ttk.Button(lbar, text="全选当前", command=self.api_select_all).pack(
+            side="right", padx=(4, 0))
+        ttk.Button(lbar, text="反选", command=self.api_invert).pack(
+            side="right", padx=(4, 0))
+        ttk.Button(lbar, text="清空选择", command=self.api_clear_sel).pack(
+            side="right", padx=(4, 0))
+
+        if not hasattr(self, "_chk_off"):
+            self._chk_off, self._chk_on = self._make_check_images()
+        cols = ("id", "name", "subject", "grade", "domain", "difficulty", "bloom")
+        self.api_list = ttk.Treeview(parent, columns=cols, show="tree headings",
+                                     selectmode="none", takefocus=False,
+                                     style="AI.Treeview", height=6)
+        heads = {"id": "ID", "name": "知识点", "subject": "学科", "grade": "年级",
+                 "domain": "课标领域", "difficulty": "难度", "bloom": "认知层级"}
+        widths = {"id": 165, "name": 250, "subject": 55, "grade": 74,
+                  "domain": 150, "difficulty": 60, "bloom": 78}
+        self.api_list.heading("#0", text="选")
+        self.api_list.column("#0", width=48, minwidth=48, stretch=False, anchor="center")
+        for c in cols:
+            self.api_list.heading(c, text=heads[c])
+            self.api_list.column(c, width=widths[c],
+                                 anchor="center" if c in ("subject", "difficulty", "bloom") else "w")
+        self.api_list.tag_configure("sel", background="#C9DEFF", foreground="#0B3D6B")
+        self.api_list.grid(row=3, column=0, sticky="nsew")
+        sb = ttk.Scrollbar(parent, orient="vertical", command=self.api_list.yview)
+        sb.grid(row=3, column=1, sticky="ns")
+        self.api_list.configure(yscrollcommand=sb.set)
+        self.api_list.bind("<Button-1>", self.api_on_click)
+
+        # 参数：题数 + 难度预设
+        p1 = ttk.Frame(parent)
+        p1.grid(row=4, column=0, sticky="ew", pady=(6, 2))
+        ttk.Label(p1, text="每知识点题数").pack(side="left")
+        nf = ttk.Frame(p1)
+        nf.pack(side="left", padx=(4, 14))
+        count_values = ["1", "3", "5", "10", "15", "20", "50", "100", "自定义"]
+        saved_n = str(self.api_cfg.get("generation", {}).get("n", "5"))
+        if saved_n not in count_values:
+            if saved_n.isdigit() and not self.api_var_n_custom.get():
+                self.api_var_n_custom.set(saved_n)
+            saved_n = "自定义"
+        self.api_var_n = tk.StringVar(value=saved_n)
+        ClickCombo(nf, self.api_var_n, count_values, width=9,
+                   command=self.api_on_n_change).pack(side="left")
+        self.api_ent_n = ttk.Entry(nf, textvariable=self.api_var_n_custom, width=6)
+        self.api_ent_n.bind("<KeyRelease>", lambda _: self.api_update_alloc())
+        ttk.Label(p1, text="难度预设").pack(side="left")
+        self.api_var_diffpreset = tk.StringVar(
+            value=str(self.api_cfg.get("generation", {}).get("preset", "基础为主")))
+        ClickCombo(p1, self.api_var_diffpreset, list(AI_PRESETS), width=11,
+                   command=self.api_apply_diff_preset).pack(side="left", padx=(4, 14))
+        self.api_lbl_alloc = ttk.Label(p1, text="", foreground="#0F6E56")
+        self.api_lbl_alloc.pack(side="left")
+
+        # 参数：四级占比
+        p2 = ttk.Frame(parent)
+        p2.grid(row=5, column=0, sticky="ew", pady=(0, 2))
+        saved_ratios = self.api_cfg.get("generation", {}).get("ratios", {})
+        for d in (1, 2, 3, 4):
+            ttk.Label(p2, text=f"{DIFFICULTY_LABEL[d]}%").pack(side="left")
+            var = tk.StringVar(value=str(saved_ratios.get(str(d), AI_PRESETS["基础为主"][d])))
+            ent = ttk.Entry(p2, textvariable=var, width=5)
+            ent.pack(side="left", padx=(3, 10))
+            ent.bind("<KeyRelease>", lambda _: self.api_update_alloc())
+            self.api_vars_ratio[d] = var
+        ttk.Button(p2, text="刷新分配", command=self.api_update_alloc).pack(
+            side="left", padx=(0, 10))
+        self.api_lbl_total = ttk.Label(p2, text="", style="Hint.TLabel")
+        self.api_lbl_total.pack(side="left")
+
+        # 任务控制
+        ops = ttk.Frame(parent)
+        ops.grid(row=6, column=0, sticky="ew", pady=(2, 2))
+        for text, cmd, key in [
+            ("开始生成", self.api_start, "start"),
+            ("暂停", self.api_pause, "pause"),
+            ("继续", self.api_resume, "resume"),
+            ("停止", self.api_stop, "stop"),
+        ]:
+            btn = ttk.Button(ops, text=text, command=cmd, style="Toolbar.TButton")
+            btn.pack(side="left", padx=(0, 8))
+            self._api_buttons[key] = btn
+        ttk.Label(ops, text="任务").pack(side="left", padx=(12, 0))
+        self.api_var_task = tk.StringVar(value="（暂无任务）")
+        self.api_cmb_task = ClickCombo(ops, self.api_var_task, ["（暂无任务）"],
+                                       width=32, command=self.api_on_task_pick)
+        self.api_cmb_task.pack(side="left", padx=(4, 8))
+        ttk.Button(ops, text="打开数据目录",
+                   command=lambda: subprocess_open(api_config.data_dir())).pack(side="left")
+        self.api_lbl_task = ttk.Label(ops, text="", style="Hint.TLabel")
+        self.api_lbl_task.pack(side="right")
+
+        # 进度
+        prog = ttk.Frame(parent)
+        prog.grid(row=7, column=0, sticky="ew", pady=(2, 0))
+        self.api_pb = ttk.Progressbar(prog, mode="determinate", maximum=100)
+        self.api_pb.pack(side="left", fill="x", expand=True)
+        self.api_lbl_progress = ttk.Label(prog, text="0 / 0 题", width=20, anchor="e")
+        self.api_lbl_progress.pack(side="left", padx=(10, 0))
+        self.api_lbl_usage = ttk.Label(prog, text="", style="Hint.TLabel")
+        self.api_lbl_usage.pack(side="left", padx=(12, 0))
+
+        # 进度明细 + 运行日志
+        pane = ttk.PanedWindow(parent, orient="horizontal")
+        pane.grid(row=8, column=0, sticky="nsew", pady=(6, 0))
+        left = ttk.Frame(pane)
+        left.columnconfigure(0, weight=1)
+        left.rowconfigure(1, weight=1)
+        ttk.Label(left, text="进度明细（双击跳到该知识点）",
+                  style="Head.TLabel").grid(row=0, column=0, sticky="w", pady=(0, 4))
+        cols2 = ("topic", "progress", "status")
+        self.api_item_tree = ttk.Treeview(left, columns=cols2, show="headings",
+                                          selectmode="browse", height=4)
+        for c, title, w in (("topic", "知识点", 260), ("progress", "进度", 80),
+                            ("status", "状态", 80)):
+            self.api_item_tree.heading(c, text=title)
+            self.api_item_tree.column(c, width=w,
+                                      anchor="w" if c == "topic" else "center")
+        self.api_item_tree.tag_configure("done", foreground="#0F6E56")
+        self.api_item_tree.tag_configure("error", foreground="#B3261E")
+        self.api_item_tree.tag_configure("running", foreground="#185FA5")
+        self.api_item_tree.tag_configure("paused", foreground="#8A6D00")
+        self.api_item_tree.grid(row=1, column=0, sticky="nsew")
+        isb = ttk.Scrollbar(left, orient="vertical", command=self.api_item_tree.yview)
+        isb.grid(row=1, column=1, sticky="ns")
+        self.api_item_tree.configure(yscrollcommand=isb.set)
+        self.api_item_tree.bind("<Double-1>", self.api_jump_item)
+        pane.add(left, weight=3)
+
+        right = ttk.Frame(pane)
+        right.columnconfigure(0, weight=1)
+        right.rowconfigure(1, weight=1)
+        ttk.Label(right, text="运行日志", style="Head.TLabel").grid(
+            row=0, column=0, sticky="w", pady=(0, 4))
+        self.api_log = scrolledtext.ScrolledText(right, height=4, wrap="none",
+                                                 font=("Menlo", 10),
+                                                 background=LIGHT_PANEL,
+                                                 foreground=LIGHT_TEXT,
+                                                 insertbackground=LIGHT_TEXT)
+        self.api_log.grid(row=1, column=0, sticky="nsew")
+        self.api_log.configure(state="disabled")
+        pane.add(right, weight=2)
+
+        self._api_initializing = True
+        self.api_on_provider_change()
+        self._api_initializing = False
+        self.api_on_n_change()
+        self.api_refresh()
+        self.api_refresh_task_choices()
+        self._api_set_buttons(running=False)
+        self.api_update_alloc()
+
+    # ---- API 模块：接口配置 ----
+    def _api_stash_profile(self):
+        """切换协议前把当前表单值暂存到内存配置，避免来回切换丢失输入。"""
+        if self._api_initializing or not self._api_active_provider:
+            return
+        provider = self._api_active_provider
+        if provider not in api_config.PROVIDER_LABELS:
+            return
+        def num(var, cast, default):
+            try:
+                return cast(var.get())
+            except (TypeError, ValueError):
+                return default
+        base = self.api_var_base.get().strip()
+        model = self.api_var_model.get().strip()
+        preset = self.api_var_preset.get()
+        values = api_config.preset_values(provider, preset)
+        if values and (values[0] != base or values[1] != model):
+            preset = "自定义"
+        self.api_cfg.setdefault("profiles", {})[provider] = {
+            "preset": preset,
+            "base_url": base,
+            "model": model,
+            "api_key": self.api_var_key.get().strip(),
+            "temperature": num(self.api_var_temp, float, 0.8),
+            "max_tokens": num(self.api_var_max_tokens, int, 4096),
+            "timeout": num(self.api_var_timeout, int, 90),
+            "interval": num(self.api_var_interval, float, 0.8),
+            "batch": num(self.api_var_batch, int, 6),
+            "json_mode": bool(self.api_var_json.get()),
+        }
+
+    def api_on_provider_change(self):
+        if getattr(self, "_api_loading_profile", False):
+            return
+        provider = api_config.LABEL_TO_PROVIDER.get(self.api_var_provider.get(), "openai")
+        if (not self._api_initializing and self._api_active_provider
+                and provider != self._api_active_provider):
+            self._api_stash_profile()
+        prof = api_config.profile(self.api_cfg, provider)
+        self._api_loading_profile = True
+        try:
+            names = api_config.preset_names(provider)
+            self.api_cmb_preset.set_values(names or ["自定义"], keep=False)
+            preset = str(prof.get("preset") or "")
+            if preset not in names:
+                preset = names[-1] if names else "自定义"
+            values = api_config.preset_values(provider, preset)
+            if values and (values[0] != str(prof.get("base_url") or "")
+                           or values[1] != str(prof.get("model") or "")):
+                preset = "自定义"
+            self.api_var_preset.set(preset)
+            self._api_fill_profile(prof)
+        finally:
+            self._api_loading_profile = False
+        self._api_active_provider = provider
+
+    def api_on_preset_change(self):
+        if getattr(self, "_api_loading_profile", False):
+            return
+        provider = api_config.LABEL_TO_PROVIDER.get(self.api_var_provider.get(), "openai")
+        values = api_config.preset_values(provider, self.api_var_preset.get())
+        if not values:
+            return
+        base, model = values
+        if base:
+            self.api_var_base.set(base)
+        if model:
+            self.api_var_model.set(model)
+
+    def _api_fill_profile(self, prof):
+        self.api_var_base.set(str(prof.get("base_url") or ""))
+        self.api_var_model.set(str(prof.get("model") or ""))
+        self.api_var_key.set(str(prof.get("api_key") or ""))
+        self.api_var_temp.set(str(prof.get("temperature", 0.8)))
+        self.api_var_max_tokens.set(str(prof.get("max_tokens", 4096)))
+        self.api_var_timeout.set(str(prof.get("timeout", 90)))
+        self.api_var_interval.set(str(prof.get("interval", 0.8)))
+        self.api_var_batch.set(str(prof.get("batch", 6)))
+        self.api_var_json.set(bool(prof.get("json_mode", True)))
+
+    def api_toggle_key(self):
+        self.api_ent_key.configure(show="" if self.api_var_show_key.get() else "•")
+
+    def api_collect_profile(self) -> dict:
+        provider = api_config.LABEL_TO_PROVIDER.get(self.api_var_provider.get(), "openai")
+
+        def number(var, label, cast, low, high):
+            raw = var.get().strip()
+            try:
+                value = cast(raw)
+            except (TypeError, ValueError):
+                raise ValueError(f"「{label}」需要填写数字，当前是：{raw or '空'}")
+            return max(low, min(high, value))
+
+        base = self.api_var_base.get().strip()
+        model = self.api_var_model.get().strip()
+        key = self.api_var_key.get().strip()
+        if not base:
+            raise ValueError("请填写 Base URL（可在「预设」里选一家自动填入）")
+        if not model:
+            raise ValueError("请填写模型名（例如 deepseek-chat）")
+        if not key and ("localhost" in base or "127.0.0.1" in base):
+            key = "local"          # 本地 Ollama / LM Studio 通常不校验 Key
+        if not key:
+            raise ValueError("请填写 API Key")
+        return {
+            "provider": provider,
+            "preset": self.api_var_preset.get(),
+            "base_url": base,
+            "model": model,
+            "api_key": key,
+            "temperature": number(self.api_var_temp, "温度", float, 0.0, 2.0),
+            "max_tokens": number(self.api_var_max_tokens, "最大输出", int, 64, 64000),
+            "timeout": number(self.api_var_timeout, "超时", int, 10, 900),
+            "interval": number(self.api_var_interval, "请求间隔", float, 0.0, 120.0),
+            "batch": number(self.api_var_batch, "每次请求题数", int, 1, 10),
+            "json_mode": bool(self.api_var_json.get()),
+        }
+
+    def _api_mix(self):
+        try:
+            mix = {d: max(0, int(self.api_vars_ratio[d].get() or 0)) for d in (1, 2, 3, 4)}
+        except (ValueError, KeyError):
+            return None
+        return mix if sum(mix.values()) > 0 else None
+
+    def api_save_config(self, silent: bool = False) -> bool:
+        try:
+            prof = self.api_collect_profile()
+        except ValueError as exc:
+            if not silent:
+                messagebox.showwarning("配置不完整", str(exc))
+            return False
+        provider = prof.pop("provider")
+        cfg = copy.deepcopy(self.api_cfg)
+        cfg["provider"] = provider
+        cfg.setdefault("profiles", {})[provider] = prof
+        cfg["generation"] = {
+            "n": self.api_var_n.get(),
+            "n_custom": self.api_var_n_custom.get().strip(),
+            "preset": self.api_var_diffpreset.get(),
+            "ratios": {str(d): self.api_vars_ratio[d].get() for d in (1, 2, 3, 4)},
+        }
+        try:
+            api_config.save(cfg)
+        except OSError as exc:
+            if not silent:
+                messagebox.showerror("保存失败", f"无法写入配置文件：{exc}")
+            return False
+        self.api_cfg = cfg
+        if not silent:
+            self.api_lbl_probe.configure(text="已保存到本机 ✓", foreground="#0F6E56")
+        return True
+
+    def api_save_config_clicked(self):
+        if self.api_save_config():
+            self.toast("接口配置已保存（仅本机，权限 600）")
+
+    def api_test(self):
+        try:
+            prof = self.api_collect_profile()
+        except ValueError as exc:
+            messagebox.showwarning("配置不完整", str(exc))
+            return
+        if self._api_probe_pending:
+            return
+        self._api_probe_pending = True
+        self.api_lbl_probe.configure(text="正在测试连接…", foreground="#185FA5")
+
+        def work():
+            result = api_client.test_connection(prof)
+            self.api_events.put({"type": "test", "result": result})
+
+        threading.Thread(target=work, daemon=True).start()
+
+    # ---- API 模块：知识点勾选 ----
+    def api_on_stage_change(self):
+        stage = AI_STAGE.get(self.api_var_stage.get(), "")
+        labels = STAGE_GRADE_LABELS.get(stage, STAGE_GRADE_LABELS[""])
+        self.api_cmb_grade.set_values(["全部"] + labels, keep=False)
+        self.api_refresh()
+
+    def api_refresh(self):
+        rows = store.query(
+            q=self.api_var_q.get(),
+            stage=AI_STAGE.get(self.api_var_stage.get(), ""),
+            subject=AI_SUBJECT.get(self.api_var_subject.get(), ""),
+            grade=AI_GRADE.get(self.api_var_grade.get(), ""),
+        )
+        self.api_rows = rows
+        self.api_anchor = ""
+        self.api_list.delete(*self.api_list.get_children())
+        for kp, v in rows:
+            selected = kp["id"] in self.api_selected
+            self.api_list.insert(
+                "", "end", iid=kp["id"],
+                image=self._chk_on if selected else self._chk_off,
+                values=(kp["id"], kp["name"],
+                        store.SUBJECT_NAMES.get(v.get("subject", ""), v.get("subject", "")),
+                        store._grade_label(v["grade"]),
+                        kp.get("domain", ""), _diff_label(kp.get("difficulty", "")),
+                        kp.get("bloom", "")),
+                tags=("sel",) if selected else ())
+        self._api_count()
+
+    def api_reset_filters(self):
+        self.api_var_stage.set("全部")
+        self.api_var_subject.set("全部")
+        self.api_var_grade.set("全部")
+        self.api_cmb_grade.set_values(["全部"] + STAGE_GRADE_LABELS[""], keep=False)
+        self.api_var_q.set("")
+        self.api_refresh()
+
+    def _api_count(self):
+        self.api_lbl_list.configure(
+            text=(f"知识点 · 已勾选 {len(self.api_selected)} / {len(self.api_rows)}"
+                  "（点行勾选 · Shift 连选）"))
+
+    def _api_apply_row_states(self, rows=None):
+        for iid in (rows if rows is not None else self.api_list.get_children()):
+            selected = iid in self.api_selected
+            self.api_list.item(iid, image=self._chk_on if selected else self._chk_off,
+                               tags=("sel",) if selected else ())
+
+    def api_on_click(self, event):
+        if self.api_list.identify("region", event.x, event.y) not in ("cell", "tree"):
+            return
+        iid = self.api_list.identify_row(event.y)
+        if not iid:
+            return
+        children = list(self.api_list.get_children())
+        if iid not in children:
+            return
+        if event.state & 0x0001 and self.api_anchor in children:
+            start, end = sorted((children.index(self.api_anchor), children.index(iid)))
+            span = children[start:end + 1]
+            self.api_selected.update(span)
+            self._api_apply_row_states(span)
+        else:
+            if iid in self.api_selected:
+                self.api_selected.discard(iid)
+            else:
+                self.api_selected.add(iid)
+            self._api_apply_row_states([iid])
+            self.api_anchor = iid
+        self._api_count()
+        self.api_update_alloc()
+        return "break"
+
+    def api_select_all(self):
+        self.api_selected.update(kp["id"] for kp, _ in self.api_rows)
+        self._api_apply_row_states()
+        self._api_count()
+        self.api_update_alloc()
+
+    def api_clear_sel(self):
+        self.api_selected.clear()
+        self._api_apply_row_states()
+        self._api_count()
+        self.api_update_alloc()
+
+    def api_invert(self):
+        ids = {kp["id"] for kp, _ in self.api_rows}
+        self.api_selected = ids - self.api_selected
+        self._api_apply_row_states()
+        self._api_count()
+        self.api_update_alloc()
+
+    def api_on_n_change(self):
+        if self.api_var_n.get() == "自定义":
+            self.api_ent_n.pack(side="left", padx=(4, 2))
+        else:
+            self.api_ent_n.pack_forget()
+        self.api_update_alloc()
+
+    def _api_current_n(self) -> int:
+        raw = self.api_var_n_custom.get().strip() if self.api_var_n.get() == "自定义" \
+            else self.api_var_n.get()
+        try:
+            return max(1, min(100, int(raw)))
+        except (TypeError, ValueError):
+            return 5
+
+    def api_apply_diff_preset(self):
+        mix = AI_PRESETS.get(self.api_var_diffpreset.get())
+        if mix:
+            for d in (1, 2, 3, 4):
+                self.api_vars_ratio[d].set(str(mix[d]))
+        self.api_update_alloc()
+
+    def api_update_alloc(self):
+        n = self._api_current_n()
+        mix = self._api_mix()
+        alloc = prompt_mod.allocate_difficulty(n, mix)
+        self.api_lbl_alloc.configure(
+            text="每点分配：" + " / ".join(
+                f"{DIFFICULTY_LABEL[d]} {alloc[d]}" for d in (1, 2, 3, 4)))
+        total = sum(mix.values()) if mix else 0
+        selected = len(self.api_selected)
+        self.api_lbl_total.configure(
+            text=(f"占比 {total}%" + ("" if total == 100 else "（按比例归一）")
+                  + (f" ｜ 已选 {selected} 点 × {n} 题 ≈ {selected * n} 题" if selected else "")))
+
+    # ---- API 模块：任务控制 ----
+    def _api_set_buttons(self, running: bool):
+        states = {"start": not running, "pause": running,
+                  "resume": not running, "stop": running}
+        for key, enabled in states.items():
+            btn = self._api_buttons.get(key)
+            if btn is not None:
+                btn.configure(state="normal" if enabled else "disabled")
+
+    def _api_log(self, text: str):
+        try:
+            self.api_log.configure(state="normal")
+            self.api_log.insert("end", f"[{time.strftime('%H:%M:%S')}] {text}\n")
+            lines = int(self.api_log.index("end-1c").split(".")[0])
+            if lines > 800:
+                self.api_log.delete("1.0", f"{lines - 800}.0")
+            self.api_log.see("end")
+            self.api_log.configure(state="disabled")
+        except tk.TclError:
+            pass
+
+    def api_refresh_task_choices(self, select_id: str = ""):
+        labels = []
+        self.api_task_map = {}
+        for s in api_task.list_tasks():
+            created = str(s.get("created_at", ""))[5:16].replace("T", " ")
+            label = (f"{created} · {s['done']}/{s['total']} 题 · "
+                     f"{api_task.STATUS_LABELS.get(s['status'], s['status'])}")
+            base = label
+            i = 2
+            while label in self.api_task_map:
+                label = f"{base} ({i})"
+                i += 1
+            labels.append(label)
+            self.api_task_map[label] = s["id"]
+        if not labels:
+            labels = ["（暂无任务）"]
+        self._api_task_loading = True
+        try:
+            self.api_cmb_task.set_values(labels, keep=False)
+            target = next((l for l, tid in self.api_task_map.items() if tid == select_id), "")
+            if target:
+                self.api_var_task.set(target)
+        finally:
+            self._api_task_loading = False
+
+    def api_on_task_pick(self):
+        if self._api_task_loading:
+            return
+        if self.api_runner is not None and self.api_runner.is_alive():
+            messagebox.showinfo("任务进行中", "请先「暂停」或「停止」当前任务，再切换查看其他任务。")
+            target = ""
+            if self.api_task:
+                target = next((l for l, tid in self.api_task_map.items()
+                               if tid == self.api_task.get("id")), "")
+            self._api_task_loading = True
+            try:
+                if target:
+                    self.api_var_task.set(target)
+            finally:
+                self._api_task_loading = False
+            return
+        tid = self.api_task_map.get(self.api_var_task.get())
+        if not tid:
+            return
+        task = api_task.load_task(tid)
+        if not task:
+            messagebox.showwarning("任务不存在", "任务文件已被删除或损坏。")
+            return
+        self.api_task = task
+        self._api_render_task(task)
+        usage = task.get("usage") or {}
+        self.api_lbl_usage.configure(
+            text=f"累计请求 {usage.get('requests', 0)} 次 · "
+                 f"输入 {usage.get('prompt_tokens', 0)} / 输出 {usage.get('completion_tokens', 0)} tokens")
+
+    def _api_render_task(self, task):
+        self.api_item_tree.delete(*self.api_item_tree.get_children())
+        for idx, item in enumerate(task.get("items") or []):
+            status = item.get("status", "pending")
+            self.api_item_tree.insert(
+                "", "end", iid=str(idx),
+                values=(item.get("topic_name", ""),
+                        f"{item.get('done', 0)}/{item.get('need', 0)}",
+                        api_task.STATUS_LABELS.get(status, status)),
+                tags=(status,))
+        totals = task.get("totals") or {}
+        self._api_update_progress(totals.get("done", 0), totals.get("need", 0))
+        self.api_lbl_task.configure(
+            text=f"任务 {task.get('id', '')} · "
+                 f"{api_task.STATUS_LABELS.get(task.get('status', ''), task.get('status', ''))}"
+                 + (f" · {task.get('error')}" if task.get("error") else ""))
+
+    def _api_update_progress(self, done: int, need: int):
+        need = max(1, int(need))
+        done = int(done)
+        self.api_pb.configure(maximum=need, value=min(done, need))
+        self.api_lbl_progress.configure(
+            text=f"{done} / {need} 题 · {round(done * 100 / need)}%")
+
+    def _api_spawn(self, task, profile) -> bool:
+        if self.api_runner is not None and self.api_runner.is_alive():
+            messagebox.showinfo("任务进行中", "已有任务在运行，请先暂停或停止。")
+            return False
+        api_task.save_task(task)
+        self.api_task = task
+        self._api_render_task(task)
+        self._api_log(f"—— 任务 {task['id']} · {len(task['items'])} 个知识点 / "
+                      f"{task['totals']['need']} 题 ——")
+        self.api_runner = api_task.Runner(task, profile, self.api_events.put)
+        self.api_runner.start()
+        self._api_set_buttons(running=True)
+        self.api_lbl_task.configure(text="生成中…")
+        return True
+
+    def _api_selected_pairs(self):
+        vols = store.load_all_volumes()
+        pairs = []
+        for vol in vols:
+            for kp in vol.get("knowledge_points") or []:
+                if kp.get("id") in self.api_selected:
+                    pairs.append((kp, vol))
+        return pairs
+
+    def api_start(self):
+        if self.api_runner is not None and self.api_runner.is_alive():
+            messagebox.showinfo("任务进行中", "已有任务在运行，请先暂停或停止。")
+            return
+        if not self.api_selected:
+            messagebox.showinfo("请先选择知识点", "在列表里点一行即可勾选（Shift 可连选）。")
+            return
+        if self.api_task and self.api_task.get("totals", {}).get("done", 0) < \
+                self.api_task.get("totals", {}).get("need", 0) and \
+                self.api_task.get("status") != "error":
+            t = self.api_task["totals"]
+            if messagebox.askyesno(
+                    "发现未完成任务",
+                    f"当前任务还有 {t['need'] - t['done']} 题未完成。\n\n"
+                    "点「是」继续原任务；点「否」用当前选择新建任务（原任务保留）。"):
+                self.api_resume()
+                return
+        try:
+            profile = self.api_collect_profile()
+        except ValueError as exc:
+            messagebox.showwarning("接口配置不完整", str(exc))
+            return
+        pairs = self._api_selected_pairs()
+        if not pairs:
+            messagebox.showwarning("提示", "选中的知识点已不存在，请刷新后重选。")
+            return
+        n = self._api_current_n()
+        mix = self._api_mix() or dict(AI_PRESETS["基础为主"])
+        self.api_save_config(silent=True)
+        task = api_task.new_task(pairs, n, mix, profile)
+        self._api_log(f"新建任务：{len(pairs)} 个知识点 × {n} 题，"
+                      f"难度 " + "/".join(f"{DIFFICULTY_LABEL[d]}{mix.get(d, 0)}%"
+                                          for d in (1, 2, 3, 4)))
+        if self._api_spawn(task, profile):
+            self.api_refresh_task_choices(select_id=task["id"])
+
+    def api_pause(self):
+        if self.api_runner is None or not self.api_runner.is_alive():
+            return
+        self.api_runner.pause()
+        self._api_log("已请求暂停：当前请求结束后停止，进度会保存。")
+        self.api_lbl_task.configure(text="正在暂停…")
+
+    def api_stop(self):
+        if self.api_runner is None or not self.api_runner.is_alive():
+            return
+        if not messagebox.askyesno("停止任务", "停止后已生成的题目会保留，可稍后「继续」。确定停止？"):
+            return
+        self.api_runner.stop()
+        self._api_log("已请求停止：当前请求结束后停止。")
+
+    def api_resume(self):
+        if self.api_runner is not None and self.api_runner.is_alive():
+            return
+        task = self.api_task
+        if task is None:
+            tid = self.api_task_map.get(self.api_var_task.get())
+            task = api_task.load_task(tid) if tid else None
+        if not task:
+            messagebox.showinfo("没有可继续的任务", "请先开始一个新任务，或在「任务」下拉里选择历史任务。")
+            return
+        totals = task.get("totals") or {}
+        if totals.get("done", 0) >= totals.get("need", 0):
+            messagebox.showinfo("任务已完成", "这个任务已经生成完了，可以新建任务或去「题库」导出。")
+            return
+        try:
+            profile = self.api_collect_profile()
+        except ValueError as exc:
+            messagebox.showwarning("接口配置不完整", str(exc))
+            return
+        api_task.resume_task(task)
+        self.api_save_config(silent=True)
+        if self._api_spawn(task, profile):
+            self.api_refresh_task_choices(select_id=task["id"])
+
+    def api_jump_item(self, _event=None):
+        sel = self.api_item_tree.selection()
+        if not sel or not self.api_task:
+            return
+        try:
+            item = self.api_task["items"][int(sel[0])]
+        except (ValueError, IndexError):
+            return
+        self._select_knowledge(item.get("topic_id", ""))
+
+    def _select_knowledge(self, topic_id: str):
+        found = store.find_point(topic_id)
+        if not found:
+            messagebox.showinfo("找不到知识点", "该知识点可能已被删除。")
+            return
+        kp, vol = found
+        self.current_volume = vol["volume_id"]
+        self._refresh_tree(keep=f"vol::{vol['volume_id']}")
+        self.refresh_list()
+        self.nb.select(0)
+        if self.list.exists(topic_id):
+            self.list.selection_set(topic_id)
+            self.list.see(topic_id)
+            self.on_list_select()
+
+    # ---- API 模块：事件循环 ----
+    def _poll_api_events(self):
+        if self._closing:
+            return
+        try:
+            while True:
+                self._api_handle_event(self.api_events.get_nowait())
+        except queue.Empty:
+            pass
+        except tk.TclError:
+            return
+        self._api_poll_id = self.root.after(150, self._poll_api_events)
+
+    def _api_handle_event(self, ev):
+        kind = ev.get("type")
+        if kind == "log":
+            self._api_log(str(ev.get("text", "")))
+        elif kind == "item":
+            idx = ev.get("index")
+            iid = str(idx)
+            if self.api_item_tree.exists(iid):
+                status = ev.get("status", "pending")
+                self.api_item_tree.item(
+                    iid, values=(self.api_item_tree.item(iid, "values")[0],
+                                 f"{ev.get('done', 0)}/{ev.get('need', 0)}",
+                                 api_task.STATUS_LABELS.get(status, status)),
+                    tags=(status,))
+        elif kind == "progress":
+            self._api_update_progress(ev.get("done", 0), ev.get("need", 0))
+        elif kind == "usage":
+            usage = ev.get("usage") or {}
+            self.api_lbl_usage.configure(
+                text=f"请求 {usage.get('requests', 0)} 次 · "
+                     f"输入 {usage.get('prompt_tokens', 0)} / "
+                     f"输出 {usage.get('completion_tokens', 0)} tokens")
+        elif kind == "status":
+            status = ev.get("status", "")
+            self.api_lbl_task.configure(
+                text=f"任务 {self.api_task.get('id', '') if self.api_task else ''} · "
+                     f"{api_task.STATUS_LABELS.get(status, status)}")
+        elif kind == "finished":
+            self._api_on_finished(ev)
+        elif kind == "test":
+            self._api_probe_pending = False
+            result = ev.get("result") or {}
+            ok = bool(result.get("ok"))
+            self.api_lbl_probe.configure(
+                text=str(result.get("message", "")),
+                foreground="#0F6E56" if ok else "#B3261E")
+            if ok:
+                self.api_save_config(silent=True)
+            self._api_log(("连接测试成功：" if ok else "连接测试失败：")
+                          + str(result.get("message", "")))
+
+    def _api_on_finished(self, ev):
+        self._api_set_buttons(running=False)
+        status = ev.get("status", "")
+        done, need = ev.get("done", 0), ev.get("need", 0)
+        self._api_update_progress(done, need)
+        self.api_lbl_task.configure(
+            text=f"任务结束 · {api_task.STATUS_LABELS.get(status, status)} · {done}/{need} 题")
+        if self.api_task:
+            self._api_render_task(self.api_task)
+            self.api_refresh_task_choices(select_id=self.api_task.get("id", ""))
+        self._update_status()
+        if status == "error":
+            messagebox.showerror("生成中止", ev.get("error") or "任务出错，请查看运行日志。")
+        elif status == "done":
+            self.toast(f"全部完成：共 {done} 题，已存入题库")
+        elif status == "partial":
+            self.toast(f"部分完成：{done}/{need} 题，有 {ev.get('failed', 0)} 个知识点失败，可点「继续」重试")
+        bank_active = self.nb.index(self.nb.select()) == 3
+        if bank_active:
+            self.bank_refresh()
+
+    def _api_restore_hint(self):
+        if self.api_runner is not None and self.api_runner.is_alive():
+            return
+        try:
+            tasks = api_task.list_tasks()
+        except Exception:  # noqa: BLE001
+            return
+        unfinished = [t for t in tasks
+                      if t["status"] in ("paused", "stopped", "partial", "running")
+                      and t["done"] < t["total"]]
+        if not unfinished:
+            return
+        s = unfinished[0]
+        task = api_task.load_task(s["id"])
+        if not task:
+            return
+        self.api_task = task
+        self._api_render_task(task)
+        self.api_refresh_task_choices(select_id=task["id"])
+        self._api_log(f"发现未完成任务：{s['created_at'][5:16].replace('T', ' ')} · "
+                      f"{s['done']}/{s['total']} 题。点「继续」接着生成。")
+
+    # ================= 模块四：题库 =================
+    def _build_bank_tab(self, parent):
+        parent.columnconfigure(0, weight=1)
+        parent.rowconfigure(2, weight=3)
+        parent.rowconfigure(4, weight=2)
+
+        flt = ttk.Frame(parent)
+        flt.grid(row=0, column=0, sticky="ew", pady=(2, 6))
+        ttk.Label(flt, text="搜索").pack(side="left")
+        self.bank_var_q = tk.StringVar()
+        bq = ttk.Entry(flt, textvariable=self.bank_var_q, width=26)
+        bq.pack(side="left", padx=(4, 10))
+        bq.bind("<Return>", lambda _: self.bank_refresh())
+        ttk.Label(flt, text="学科").pack(side="left")
+        self.bank_var_subject = tk.StringVar(value="全部")
+        ClickCombo(flt, self.bank_var_subject, list(AI_SUBJECT), width=8,
+                   command=self.bank_refresh).pack(side="left", padx=(4, 10))
+        ttk.Label(flt, text="年级").pack(side="left")
+        self.bank_var_grade = tk.StringVar(value="全部")
+        ClickCombo(flt, self.bank_var_grade,
+                   ["全部"] + [k for k in AI_GRADE if k != "全部"], width=11,
+                   command=self.bank_refresh).pack(side="left", padx=(4, 10))
+        ttk.Label(flt, text="难度").pack(side="left")
+        self.bank_var_diff = tk.StringVar(value="全部")
+        ClickCombo(flt, self.bank_var_diff,
+                   ["全部"] + [DIFFICULTY_LABEL[d] for d in (1, 2, 3, 4)], width=7,
+                   command=self.bank_refresh).pack(side="left", padx=(4, 10))
+        ttk.Button(flt, text="筛选", command=self.bank_refresh).pack(side="left", padx=(0, 6))
+        ttk.Button(flt, text="重置", command=self.bank_reset_filters).pack(side="left")
+        self.bank_lbl_stats = ttk.Label(flt, text="", foreground="#0F6E56")
+        self.bank_lbl_stats.pack(side="right")
+
+        bar = ttk.Frame(parent)
+        bar.grid(row=1, column=0, sticky="ew")
+        ttk.Label(bar, text="题目列表（最新在前，可多选）", style="Head.TLabel").pack(side="left")
+        ttk.Label(bar, text="双击预览；导出的是当前筛选结果",
+                  style="Hint.TLabel").pack(side="left", padx=12)
+
+        cols = ("subject", "grade", "topic", "stem", "answer", "difficulty", "created")
+        self.bank_tree = ttk.Treeview(parent, columns=cols, show="headings",
+                                      selectmode="extended")
+        heads = {"subject": "学科", "grade": "年级", "topic": "知识点", "stem": "题干",
+                 "answer": "答案", "difficulty": "难度", "created": "生成时间"}
+        widths = {"subject": 58, "grade": 90, "topic": 170, "stem": 520,
+                  "answer": 48, "difficulty": 58, "created": 110}
+        for c in cols:
+            self.bank_tree.heading(c, text=heads[c])
+            self.bank_tree.column(c, width=widths[c],
+                                  anchor="center" if c in ("subject", "answer",
+                                                           "difficulty", "created") else "w")
+        self.bank_tree.grid(row=2, column=0, sticky="nsew")
+        bsb = ttk.Scrollbar(parent, orient="vertical", command=self.bank_tree.yview)
+        bsb.grid(row=2, column=1, sticky="ns")
+        self.bank_tree.configure(yscrollcommand=bsb.set)
+        self.bank_tree.bind("<<TreeviewSelect>>", self.bank_on_select)
+
+        ttk.Label(parent, text="题目预览", style="Head.TLabel").grid(
+            row=3, column=0, sticky="w", pady=(8, 3))
+        self.bank_preview = scrolledtext.ScrolledText(
+            parent, wrap="word", height=8, font=("", 12), background=LIGHT_PANEL,
+            foreground=LIGHT_TEXT, insertbackground=LIGHT_TEXT, padx=10, pady=8)
+        self.bank_preview.grid(row=4, column=0, sticky="nsew", columnspan=2)
+        self.bank_preview.configure(state="disabled")
+        self.bank_preview.tag_configure("title", font=("", 13, "bold"))
+        self.bank_preview.tag_configure("label", font=("", 11, "bold"),
+                                        foreground="#185FA5")
+
+        tools = ttk.Frame(parent, padding=(0, 8))
+        tools.grid(row=5, column=0, columnspan=2, sticky="ew")
+        ttk.Button(tools, text="导出 JSON", command=lambda: self.bank_export("json")).pack(
+            side="left", padx=(0, 6))
+        ttk.Button(tools, text="JSONL", command=lambda: self.bank_export("jsonl")).pack(
+            side="left", padx=(0, 6))
+        ttk.Button(tools, text="CSV", command=lambda: self.bank_export("csv")).pack(
+            side="left", padx=(0, 6))
+        ttk.Button(tools, text="Excel (.xlsx)",
+                   command=lambda: self.bank_export("xlsx")).pack(side="left", padx=(0, 6))
+        ttk.Button(tools, text="TSV", command=lambda: self.bank_export("tsv")).pack(
+            side="left", padx=(0, 14))
+        ttk.Button(tools, text="删除所选", command=self.bank_delete).pack(
+            side="left", padx=(0, 6))
+        ttk.Button(tools, text="清空题库", command=self.bank_clear).pack(
+            side="left", padx=(0, 6))
+        self.bank_lbl_msg = ttk.Label(tools, text="", foreground="#0F6E56")
+        self.bank_lbl_msg.pack(side="right")
+        ttk.Button(tools, text="刷新", command=self.bank_refresh).pack(side="right", padx=(0, 6))
+        ttk.Button(tools, text="打开数据目录",
+                   command=lambda: subprocess_open(api_config.data_dir())).pack(
+            side="right", padx=(0, 6))
+
+        self.bank_refresh()
+
+    def bank_refresh(self):
+        rows = api_bank.query(
+            q=self.bank_var_q.get(),
+            subject=AI_SUBJECT.get(self.bank_var_subject.get(), ""),
+            grade=AI_GRADE.get(self.bank_var_grade.get(), ""),
+            difficulty=DIFFICULTY_CODE.get(self.bank_var_diff.get()))
+        self.bank_rows = rows
+        self._bank_by_id = {r["id"]: r for r in rows}
+        self.bank_tree.delete(*self.bank_tree.get_children())
+        for rec in rows:
+            created = str(rec.get("created_at", ""))[5:16].replace("T", " ")
+            self.bank_tree.insert(
+                "", "end", iid=rec["id"],
+                values=(store.SUBJECT_NAMES.get(rec.get("subject", ""),
+                                                rec.get("subject", "")),
+                        rec.get("grade_label", ""), rec.get("topic_name", ""),
+                        rec.get("stem", "")[:80], rec.get("answer", ""),
+                        _diff_label(rec.get("difficulty", "")), created))
+        s = api_bank.stats()
+        self.bank_lbl_stats.configure(
+            text=f"共 {s['total']} 题 · 覆盖 {s['topics']} 个知识点 · 今日 +{s['today']} ｜ 当前 {len(rows)} 题")
+
+    def bank_reset_filters(self):
+        self.bank_var_q.set("")
+        self.bank_var_subject.set("全部")
+        self.bank_var_grade.set("全部")
+        self.bank_var_diff.set("全部")
+        self.bank_refresh()
+
+    def bank_on_select(self, _event=None):
+        sel = self.bank_tree.selection()
+        if not sel:
+            return
+        rec = self._bank_by_id.get(sel[0])
+        if not rec:
+            return
+        self.bank_preview.configure(state="normal")
+        self.bank_preview.delete("1.0", "end")
+        self.bank_preview.insert("end", f"{rec.get('topic_name', '')}\n", ("title",))
+        self.bank_preview.insert(
+            "end", f"题目ID: {rec.get('id', '')}    知识点ID: {rec.get('topic_id', '')}    "
+                   f"册: {rec.get('volume_title', '')}\n\n")
+        self.bank_preview.insert("end", f"【题干】{rec.get('stem', '')}\n")
+        for i, opt in enumerate(rec.get("options") or []):
+            self.bank_preview.insert("end", f"{'ABCD'[i]}. {opt}\n")
+        self.bank_preview.insert("end", f"\n【答案】{rec.get('answer', '')}. "
+                                       f"{rec.get('answer_text', '')}\n")
+        self.bank_preview.insert("end", f"【解析】{rec.get('explanation', '')}\n\n")
+        self.bank_preview.insert(
+            "end", f"学科: {store.SUBJECT_NAMES.get(rec.get('subject', ''), '')}    "
+                   f"单元: {rec.get('chapter', '')}    "
+                   f"难度: {_diff_label(rec.get('difficulty', ''))}    "
+                   f"认知层级: {rec.get('bloom', '')}\n")
+        self.bank_preview.insert(
+            "end", f"模型: {rec.get('model', '')}    生成时间: {rec.get('created_at', '')}")
+        self.bank_preview.configure(state="disabled")
+
+    def bank_export(self, fmt: str):
+        rows = self.bank_rows
+        if not rows:
+            messagebox.showinfo("没有题目", "当前筛选结果为空。可先点「刷新」，或先去「API 生成」产出题目。")
+            return
+        ext = fmt
+        kinds = {"json": ("JSON 文件", "*.json"), "jsonl": ("JSON Lines", "*.jsonl"),
+                 "csv": ("CSV 文件", "*.csv"), "tsv": ("TSV（Excel 可打开）", "*.tsv"),
+                 "xlsx": ("Excel 工作簿", "*.xlsx")}
+        label, pattern = kinds.get(fmt, ("所有文件", "*.*"))
+        path = filedialog.asksaveasfilename(
+            parent=self.root, title=f"导出题库 {len(rows)} 题",
+            initialdir=os.path.expanduser("~/Desktop"),
+            initialfile=f"K12题库_{time.strftime('%Y%m%d')}.{ext}",
+            defaultextension=f".{ext}", filetypes=[(label, pattern), ("所有文件", "*.*")])
+        if not path:
+            return
+        try:
+            n = api_bank.export(path, fmt, rows)
+        except Exception as exc:  # noqa: BLE001
+            messagebox.showerror("导出失败", f"{type(exc).__name__}: {exc}")
+            return
+        self.bank_lbl_msg.configure(text=f"已导出 {n} 题 → {os.path.basename(path)}")
+        self.toast(f"题库已导出：{os.path.basename(path)}")
+
+    def bank_delete(self):
+        sel = list(self.bank_tree.selection())
+        if not sel:
+            messagebox.showinfo("提示", "请先在列表里选择要删除的题目（可按住 Command 多选）。")
+            return
+        if not messagebox.askyesno("删除题目", f"确定删除选中的 {len(sel)} 道题？\n"
+                                             "删除前会自动备份题库文件。"):
+            return
+        removed = api_bank.delete(sel)
+        self.bank_refresh()
+        self._update_status()
+        self.bank_lbl_msg.configure(text=f"已删除 {removed} 题")
+
+    def bank_clear(self):
+        total = api_bank.stats()["total"]
+        if not total:
+            messagebox.showinfo("提示", "题库已经是空的。")
+            return
+        if not messagebox.askyesno("清空题库", f"将删除全部 {total} 道题，并先备份到数据目录。\n"
+                                             "确定继续？"):
+            return
+        removed = api_bank.clear()
+        self.bank_refresh()
+        self._update_status()
+        self.bank_lbl_msg.configure(text=f"已清空 {removed} 题（已备份）")
+
+    def _on_tab_changed(self, _event=None):
+        try:
+            index = self.nb.index(self.nb.select())
+        except tk.TclError:
+            return
+        if index == 3:
+            self.bank_refresh()
+
+    def _on_close(self):
+        self._closing = True
+        for after_id in (self._api_poll_id, self._api_hint_id):
+            if after_id:
+                try:
+                    self.root.after_cancel(after_id)
+                except tk.TclError:
+                    pass
+        if self.api_runner is not None and self.api_runner.is_alive():
+            if not messagebox.askyesno(
+                    "任务进行中",
+                    "生成任务还在运行。退出前会暂停并保存进度，下次可继续。\n确定退出？"):
+                return
+            self.api_runner.pause()
+            self.api_runner.join(5)
+        self.api_save_config(silent=True)
+        try:
+            self.root.destroy()
+        except tk.TclError:
+            pass
 
     # ---------------- 树 ----------------
     def _tree_open_state(self) -> dict:
@@ -1224,13 +2391,21 @@ class App:
             if found:
                 self._show_detail(*found)
         self.ai_refresh()                 # AI 模块同步最新数据（筛选与勾选保留）
+        if self.api_rows or self.api_selected:
+            self.api_refresh()            # API 模块同步最新数据
         self._update_status()
 
     def _update_status(self):
         s = store.stats()
         parts = [f"{store.STAGE_NAMES[k]} {v.get('chinese',0)+v.get('math',0)+v.get('english',0)}"
                  for k, v in s["by_stage"].items()]
-        self.lbl_stat.configure(text=f"{s['volumes']} 册 · {s['points']} 知识点 · " + " / ".join(parts))
+        try:
+            bank_total = api_bank.stats()["total"]
+        except Exception:  # noqa: BLE001
+            bank_total = 0
+        self.lbl_stat.configure(
+            text=f"{s['volumes']} 册 · {s['points']} 知识点 · 题库 {bank_total} 题 · "
+                 + " / ".join(parts))
 
     def toast(self, msg: str):
         self.lbl_msg.configure(text=msg)
@@ -1247,42 +2422,56 @@ class App:
    恢复前自动整库备份，误操作可再点「撤销」回到恢复前状态。
 5. 「运行校验」调用结构校验 + 字段校验 + 课标交叉校验三套脚本。
 
-【模块二 · AI 提示词】（主推）
-6. 筛选栏的学段 / 科目 / 年级默认均为「全部」；选了学段后年级只显示对应年级
-   （如选小学只列 1—6 年级，不再显示 7/8/9 年级）。点一下下拉菜单展开，
-   再点一下选项即完成选择。列表含学科、认知层级列。
+【模块二 · AI 提示词】
+6. 筛选栏的学段 / 科目 / 年级默认均为「全部」；选了学段后年级只显示对应年级。
+   点一下下拉菜单展开，再点一下选项即完成选择。
 7. 直接点任意一行即可勾选 / 取消（选中的知识点整行变蓝），按住 Shift 再点另一行
-   可连选两行之间的全部数据；点「选」列表头可按已选 / 未选排序，再点切换方向。
-   「全选当前」=全选本页结果，「清空选择」重来。
-8. 「每知识点题数」可选 1/3/5/10/15/20/50/100，或选「自定义」填任意正整数。
-   难度用「容易/中等/较难/难」四档：预设默认「基础为主」（50/30/15/5），
-   也可选均衡/进阶/挑战或直接改四个百分比，实时显示按题数换算的各档题数。
-   「输出格式」可选 JSON / TXT / Excel / CSV：JSON 便于入库，TXT 便于阅读，
-   Excel 输出制表符表格（复制到 Excel 另存 .xlsx），CSV 可直接导入表格。
-9. 点「生成提示词」：勾 1 个出单点提示词，勾多个出批量提示词。
-   提示词含完整知识点档案、年级红线（禁止超出该知识点所属年级水平）、
-   难度分布、题目来源知识点字段（topic_id/topic_name），以及所选输出格式的
-   字段说明与示例。
-10. 生成后可在文本框直接微调，「复制全部」粘贴到 DeepSeek / 元宝 / ChatGPT，
-   或导出 .txt / .md。
+   可连选两行之间的全部数据。
+8. 「每知识点题数」可选 1/3/5/10/15/20/50/100，或选「自定义」；难度用
+   容易/中等/较难/难 四档，预设默认「基础为主」（50/30/15/5），可改四个百分比。
+9. 「输出格式」可选 JSON / TXT / Excel / CSV，生成后复制到 DeepSeek / 元宝 / ChatGPT。
+10. 提示词含完整知识点档案、年级红线、难度分布与来源字段，便于溯源。
+
+【模块三 · API 直连生成】（v1.4）
+11. 先配置接口：协议选 OpenAI 兼容 / Anthropic Claude / Google Gemini，
+    在「预设」里选一家会一键填好 Base URL 和模型，再粘贴你自己的 API Key。
+    点「测试连接」确认可用；配置自动保存在本机（文件权限 600，不会上传）。
+12. 选知识点：点行勾选，Shift 连选；设定每点题数与难度占比。
+13. 点「开始生成」后，软件按知识点逐个调用接口，进度条、明细表和日志实时刷新，
+    同时统计请求次数与输入/输出 tokens。
+14. 「暂停」在当前请求结束后生效；「停止」保留已完成题目；直接关掉软件也不会丢进度。
+    下次打开会提示未完成任务，选中后点「继续」即从断点接着生成。
+15. 网络错误/限流会自动退避重试；Key 无效、模型不存在会立即中止并给出提示。
+    返回的题目会自动校验选项、答案、解析与难度，重复题干按 id 去重，不会重复入库。
+16. 生成结果直接写入「题库」，可以继续筛选、预览、删除与导出。
+
+【模块四 · 题库】
+17. 列表最新在前，可按关键词 / 学科 / 年级 / 难度筛选；选中即可看完整题目与解析。
+18. 导出当前筛选结果：JSON / JSONL / CSV / Excel(.xlsx) / TSV，
+    默认文件名 K12题库_日期，适合给其他程序或表格工具调用。
+19. 「删除所选」「清空题库」前都会自动备份到数据目录 backups/，可手动找回。
+20. 数据位置：菜单「文件 → 打开 API 数据目录」。其中 config.json 是接口配置，
+    questions.jsonl 是题库，tasks/ 是任务进度。
 
 【其它】
-11. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
-12. 注意：volumes/ 是 data/*.py 生成的产物。「恢复原始配置」只还原运行数据；
-    若要永久固化修改，请把改动同步回 knowledge-map/data/ 下的源文件，
-    再运行 build_volumes.py。""")
+21. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
+22. volumes/ 是 data/*.py 生成的产物；要永久固化修改，请同步回源文件再运行
+    build_volumes.py。""")
 
     def about_dialog(self):
         s = store.stats()
         info = store.original_info() or {}
         original = (f"出厂配置：{info.get('volumes')} 册 / {info.get('points')} 知识点\n"
                     if info else "")
+        bank = api_bank.stats()
         messagebox.showinfo(
             "关于",
             f"{APP_TITLE}\nv{VERSION}\n\n"
             f"当前：{s['volumes']} 册 / {s['points']} 知识点\n"
             f"{original}"
-            "内容感知型出题引擎 · Python 标准库 + Tcl/Tk")
+            f"题库：{bank['total']} 题（覆盖 {bank['topics']} 个知识点）\n\n"
+            "出题方式：AI 提示词 / API 直连（OpenAI 兼容 · Claude · Gemini）\n"
+            "内容感知型模板引擎 · Python 标准库 + Tcl/Tk")
 
 
 class PromptDialog:
