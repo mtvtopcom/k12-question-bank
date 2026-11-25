@@ -26,7 +26,7 @@ import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.10.0"
+VERSION = "1.10.1"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -697,6 +697,17 @@ class App:
         self.ai_anchor = ""
         self.ai_sort_sel_desc = None
         self.ai_list.heading("#0", text="选")
+        # 结果集变了：勾选只保留仍在结果里的。
+        # 早先这里是纯累积，切到「语文」还会带着上一次「数学」的 144 个，
+        # 标题就成了「已勾选 300 / 156」，API 页也会按 300 个去生成。
+        visible = {kp["id"] for kp, _ in rows}
+        dropped = len(self.ai_selected - visible)
+        if dropped:
+            self.ai_selected &= visible
+            if hasattr(self, "ai_lbl_status"):
+                self.ai_lbl_status.configure(
+                    text=f"筛选结果变了，原先勾选的 {dropped} 个不在当前列表里，已自动取消",
+                    foreground="#8A5B00")
         self._ai_fill_rows()
 
     def _ai_fill_rows(self):
@@ -726,8 +737,10 @@ class App:
         self.ai_refresh()
 
     def _ai_count(self):
+        # 分子只数当前列表里的：万一某处漏了收窄，也不会出现「300 / 156」
+        cur = sum(1 for kp, _ in self.ai_rows if kp["id"] in self.ai_selected)
         self.ai_lbl_list.configure(
-            text=(f"知识点 · 已勾选 {len(self.ai_selected)} / {len(self.ai_rows)}"
+            text=(f"知识点 · 已勾选 {cur} / {len(self.ai_rows)}"
                   "（点行勾选 · Shift 连选 · 点「选」表头排序）"))
 
     def _ai_apply_row_states(self, rows=None):
@@ -870,7 +883,8 @@ class App:
         self.ai_text.delete("1.0", "end")
         self.ai_text.insert("1.0", text)
         self.ai_lbl_status.configure(
-            text=f"已生成 {len(text)} 字 · {scope} · 每点 {n} 题 · {self.ai_var_format.get()}")
+            text=f"已生成 {len(text)} 字 · {scope} · 每点 {n} 题 · {self.ai_var_format.get()}",
+            foreground="#0F6E56")
 
     def ai_copy(self):
         text = self.ai_text.get("1.0", "end").strip()
@@ -879,7 +893,7 @@ class App:
         self.root.clipboard_clear()
         self.root.clipboard_append(text)
         self.root.update()
-        self.ai_lbl_status.configure(text="已复制到剪贴板 ✓")
+        self.ai_lbl_status.configure(text="已复制到剪贴板 ✓", foreground="#0F6E56")
 
     def ai_export(self, fmt: str):
         text = self.ai_text.get("1.0", "end").strip()
@@ -893,7 +907,8 @@ class App:
             return
         with open(path, "w", encoding="utf-8") as f:
             f.write(text)
-        self.ai_lbl_status.configure(text=f"已导出 → {os.path.basename(path)}")
+        self.ai_lbl_status.configure(text=f"已导出 → {os.path.basename(path)}",
+                                     foreground="#0F6E56")
 
     # ---- 菜单快捷入口：切到 AI 模块并预选 ----
     def goto_ai_single(self):
@@ -904,6 +919,7 @@ class App:
         self.ai_reset_filters()
         self.ai_selected = {self.selected_id}
         self._ai_repaint()
+        self.ai_lbl_status.configure(text="")          # 清掉重置筛选时的旧提示
 
     def goto_ai_batch(self):
         ids = [kp["id"] for kp, _ in self.current_rows]
@@ -914,6 +930,7 @@ class App:
         self.ai_reset_filters()
         self.ai_selected = set(ids)
         self._ai_repaint()
+        self.ai_lbl_status.configure(text="")          # 清掉重置筛选时的旧提示
 
     # ================= 模块三：大模型 API 生成 =================
     def api_goto_prompt(self):
@@ -935,7 +952,7 @@ class App:
                 foreground="#0F6E56")
 
     def _api_selected_pairs(self):
-        """按册顺序取出模块二勾选的知识点（不受当前筛选影响）。"""
+        """按册顺序取出模块二勾选的知识点（勾选已随筛选收窄，与列表一致）。"""
         ids = self.ai_selected
         if not ids:
             return []
