@@ -26,7 +26,7 @@ import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.10.1"
+VERSION = "1.11.0"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -209,6 +209,56 @@ def use_light_appearance(win) -> None:
                     pass
 
     apply()
+
+
+def ask_yes_no_cancel(parent, title: str, message: str):
+    """三选一确认弹框：「是」/「否」/「取消」。
+
+    返回 "yes" / "no"；点「取消」、按 Esc 或直接关窗口返回 None（什么都不做）。
+    """
+    result = {"value": None}
+
+    win = tk.Toplevel(parent)
+    win.title(title)
+    win.resizable(False, False)
+    win.transient(parent)
+    use_light_appearance(win)
+
+    body = ttk.Frame(win, padding=(20, 16))
+    body.pack(fill="both", expand=True)
+    ttk.Label(body, text=message, justify="left",
+              wraplength=340).pack(anchor="w")
+
+    bar = ttk.Frame(win, padding=(20, 4, 20, 14))
+    bar.pack(fill="x")
+    ttk.Button(bar, text="取消", command=lambda: _close_dialog(win, result, None)).pack(
+        side="right", padx=(8, 0))
+    ttk.Button(bar, text="否", command=lambda: _close_dialog(win, result, "no")).pack(
+        side="right", padx=(8, 0))
+    ttk.Button(bar, text="是", command=lambda: _close_dialog(win, result, "yes")).pack(
+        side="right", padx=(8, 0))
+
+    win.protocol("WM_DELETE_WINDOW", lambda: _close_dialog(win, result, None))
+    win.bind("<Escape>", lambda _e: _close_dialog(win, result, None))
+
+    win.update_idletasks()
+    win.grab_set()
+    # 居中到父窗口
+    try:
+        px, py = parent.winfo_rootx(), parent.winfo_rooty()
+        pw, ph = parent.winfo_width(), parent.winfo_height()
+        w, h = win.winfo_reqwidth(), win.winfo_reqheight()
+        win.geometry(f"+{px + (pw - w) // 2}+{py + (ph - h) // 3}")
+    except Exception:
+        pass
+    win.wait_window()
+    return result["value"]
+
+
+def _close_dialog(win, result, value):
+    result["value"] = value
+    win.grab_release()
+    win.destroy()
 
 
 class App:
@@ -963,6 +1013,27 @@ class App:
                     pairs.append((kp, vol))
         return pairs
 
+    def _api_source_detail(self, pairs, n):
+        """把已选知识点按「年级 + 学科」汇总成一行明细，方便核对生成来源。"""
+        if not pairs:
+            return ""
+        stage_order = {"kg": 0, "primary": 1, "junior": 2}
+        subject_order = {"chinese": 0, "math": 1, "english": 2}
+        buckets = {}
+        for _kp, vol in pairs:
+            key = (vol.get("stage") or "", vol.get("grade") or "",
+                   vol.get("subject") or "")
+            buckets[key] = buckets.get(key, 0) + 1
+        items = sorted(buckets.items(),
+                       key=lambda kv: (stage_order.get(kv[0][0], 9),
+                                       store.GRADE_ORDER.get(kv[0][1], 9),
+                                       subject_order.get(kv[0][2], 9),
+                                       kv[0][0], kv[0][1], kv[0][2]))
+        parts = [f"{store._grade_label(grade)}{store.SUBJECT_NAMES.get(subject, subject)} "
+                 f"{cnt} 点 / {cnt * n} 题"
+                 for (_stage, grade, subject), cnt in items]
+        return "明细：" + "　·　".join(parts)
+
     def _api_refresh_source(self):
         """刷新 API 页顶部的「生成内容」摘要。"""
         if not hasattr(self, "api_lbl_source"):
@@ -980,6 +1051,9 @@ class App:
                 text="还没有勾选知识点 —— 请到「选择知识点生成内容」页选择要生成的内容",
                 foreground="#B3261E")
             self.api_lbl_source_total.configure(text="")
+        if hasattr(self, "api_lbl_breakdown"):
+            self.api_lbl_breakdown.configure(
+                text=self._api_source_detail(pairs, n))
         mix = self._ai_mix() or dict(AI_PRESETS["基础为主"])
         alloc = prompt_mod.allocate_difficulty(n, mix)
         self.api_lbl_source2.configure(
@@ -1208,8 +1282,15 @@ class App:
         self.api_lbl_source_total.pack(side="left")
         ttk.Button(src, text="去选择知识点", command=self.api_goto_prompt).grid(
             row=0, column=1, sticky="e", padx=(8, 0))
+        # 明细：按「年级 + 学科」拆开显示点了多少条、预计多少题
+        self.api_lbl_breakdown = ttk.Label(
+            src, text="", style="SourceSub.TLabel", justify="left", anchor="w")
+        self.api_lbl_breakdown.grid(row=1, column=0, columnspan=2, sticky="ew",
+                                    pady=(5, 0))
+        src.bind("<Configure>", lambda e: self.api_lbl_breakdown.configure(
+            wraplength=max(360, e.width - 24)))
         self.api_lbl_source2 = ttk.Label(src, text="", style="SourceSub.TLabel")
-        self.api_lbl_source2.grid(row=1, column=0, columnspan=2, sticky="w", pady=(5, 0))
+        self.api_lbl_source2.grid(row=2, column=0, columnspan=2, sticky="w", pady=(2, 0))
 
         # 任务控制：生成按钮 + 任务操作（第一行），任务下拉与状态各占满宽（第二行）
         ops = ttk.Frame(parent)
@@ -1896,10 +1977,14 @@ class App:
                 self.api_task.get("totals", {}).get("need", 0) and \
                 self.api_task.get("status") != "error":
             t = self.api_task["totals"]
-            if messagebox.askyesno(
-                    "发现未完成任务",
-                    f"当前任务还有 {t['need'] - t['done']} 题未完成。\n\n"
-                    "点「是」继续原任务；点「否」用当前选择新建任务（原任务保留）。"):
+            ans = ask_yes_no_cancel(
+                self.root, "发现未完成任务",
+                f"当前任务还有 {t['need'] - t['done']} 题未完成。\n\n"
+                "点「是」继续原任务；点「否」用当前选择新建任务（原任务保留）；"
+                "点「取消」关闭本弹框，什么都不做。")
+            if ans is None:          # 取消：不做任何操作
+                return
+            if ans == "yes":         # 是：继续原任务
                 self.api_resume()
                 return
         try:
@@ -2981,7 +3066,8 @@ class App:
     每次题数、同时生成、固定格式（JSON）、关闭深度思考 都在里面，每项旁边有个
     蓝色 ?，鼠标停一下看一句话，点一下看完整白话说明。不懂就保持默认。
 12. 生成内容不在本页设置：页面上方会显示当前已选多少个知识点、每点几题、
-    难度怎么分配（来自模块二），点「去选择知识点」可回去修改。
+    「明细」一行按年级 + 学科拆开，写明每个年级学科选了多少条、预计多少题；
+    再下面是难度怎么分配。点「去选择知识点」可回去修改。
 13. 点「开始生成」后，软件会同时跑多个知识点（「同时生成」默认 4 路，可调到 16），
     进度条、明细表和日志实时刷新，同时统计请求次数与输入/输出 tokens。
     进度行会显示「X 题/分」和「约剩多少时间」；批量出题自动使用精简输出格式
