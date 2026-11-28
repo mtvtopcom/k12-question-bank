@@ -8,7 +8,8 @@
 去重：API 库按 id（同一任务重跑不重复入库）；全部题库按「题干 + 选项」的
 内容指纹（同一道题换个 id、换个来源也不会重复进来）。
 
-导出支持 JSON / JSONL / CSV / TSV / XLSX，全部用标准库实现（XLSX 直接写 OOXML）。
+导出支持 JSON / TXT / CSV / TSV / XLSX，全部用标准库实现（XLSX 直接写 OOXML）。
+导出的学科、年级写中文，难度写「容易/中等/较难/难」，本软件导入时能原样读回。
 """
 from __future__ import annotations
 
@@ -30,6 +31,17 @@ BANK_API = "api"
 BANK_ALL = "all"
 BANK_LABELS = {BANK_API: "API 任务题库", BANK_ALL: "全部题库"}
 
+# 导出用的中文名：文件给老师看，直接写「数学 / 五年级 / 中等」比代码好认
+SUBJECT_NAMES = {"chinese": "语文", "math": "数学", "english": "英语"}
+STAGE_NAMES = {"kg": "幼儿园", "primary": "小学", "junior": "初中"}
+GRADE_NAMES = {
+    "k1": "小班", "k2": "中班", "k3": "大班",
+    "g1": "一年级", "g2": "二年级", "g3": "三年级", "g4": "四年级",
+    "g5": "五年级", "g6": "六年级", "g7": "七年级", "g8": "八年级", "g9": "九年级",
+}
+DIFFICULTY_NAMES = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
+TYPE_NAMES = {"single_choice": "单选题"}
+
 # (记录字段, 导出表头)
 TABLE_COLUMNS: List[Tuple[str, str]] = [
     ("id", "题目ID"),
@@ -37,9 +49,13 @@ TABLE_COLUMNS: List[Tuple[str, str]] = [
     ("topic_name", "知识点"),
     ("subject", "学科"),
     ("grade", "年级"),
+    ("stage", "学段"),
+    ("volume_title", "册"),
     ("chapter", "单元"),
-    ("difficulty", "难度(1-4)"),
+    ("domain", "领域"),
+    ("difficulty", "难度"),
     ("bloom", "认知层级"),
+    ("type", "题型"),
     ("stem", "题干"),
     ("option_a", "选项A"),
     ("option_b", "选项B"),
@@ -345,26 +361,49 @@ def _flat(value: Any) -> str:
     return re.sub(r"[\t\r\n]+", " ", str(value)).strip()
 
 
-def to_matrix(rows: Sequence[Dict[str, Any]]) -> List[List[Any]]:
-    matrix: List[List[Any]] = []
+def _field_value(rec: Dict[str, Any], key: str, options: Sequence[Any]) -> str:
+    """导出时把内部代码换成中文，保证文件打开就能看懂。"""
+    if key in ("option_a", "option_b", "option_c", "option_d"):
+        index = "abcd".index(key[-1])
+        return _flat(options[index] if index < len(options) else "")
+    if key == "subject":
+        code = str(rec.get("subject") or "")
+        return SUBJECT_NAMES.get(code, code)
+    if key == "grade":
+        label = str(rec.get("grade_label") or "")
+        return label or GRADE_NAMES.get(str(rec.get("grade") or ""),
+                                        str(rec.get("grade") or ""))
+    if key == "stage":
+        code = stage_of(rec)
+        return STAGE_NAMES.get(code, code)
+    if key == "difficulty":
+        value = rec.get("difficulty")
+        try:
+            return DIFFICULTY_NAMES.get(int(value), str(value if value is not None else ""))
+        except (TypeError, ValueError):
+            return _flat(value)
+    if key == "type":
+        text = str(rec.get("type") or "")
+        return TYPE_NAMES.get(text, text)
+    return _flat(rec.get(key))
+
+
+def to_matrix(rows: Sequence[Dict[str, Any]]) -> List[List[str]]:
+    matrix: List[List[str]] = []
     for rec in rows:
         options = rec.get("options") or []
         if not isinstance(options, (list, tuple)):
             options = []
         options = list(options) + [""] * (4 - len(options))
-        line: List[Any] = []
-        for key, _label in TABLE_COLUMNS:
-            if key in ("option_a", "option_b", "option_c", "option_d"):
-                line.append(options["abcd".index(key[-1])])
-            elif key == "difficulty":
-                try:
-                    line.append(int(rec.get("difficulty") or 0))
-                except (TypeError, ValueError):
-                    line.append("")
-            else:
-                line.append(rec.get(key, ""))
-        matrix.append(line)
+        matrix.append([_field_value(rec, key, options)
+                       for key, _label in TABLE_COLUMNS])
     return matrix
+
+
+def to_dicts(rows: Sequence[Dict[str, Any]]) -> List[Dict[str, str]]:
+    """JSON 导出：一条题一个对象，字段用中文表头，导入时能原样读回。"""
+    labels = [label for _key, label in TABLE_COLUMNS]
+    return [dict(zip(labels, line)) for line in to_matrix(rows)]
 
 
 def to_csv_text(rows: Sequence[Dict[str, Any]], delimiter: str = ",",
@@ -377,6 +416,38 @@ def to_csv_text(rows: Sequence[Dict[str, Any]], delimiter: str = ",",
         writer.writerow([_flat(v) for v in line])
     text = buf.getvalue()
     return ("\ufeff" + text) if bom else text
+
+
+# TXT 里出现的元信息行（顺序固定，一行一项，紧随题干之前，中间不能空行）
+_TXT_META = (("知识点", "topic_name"), ("学科", "subject"), ("年级", "grade"),
+             ("册", "volume_title"), ("单元", "chapter"), ("难度", "difficulty"),
+             ("认知层级", "bloom"), ("题型", "type"), ("来源", "source"),
+             ("模型", "model"))
+
+
+def to_txt_text(rows: Sequence[Dict[str, Any]]) -> str:
+    """TXT 导出：每题一段，段间空行；元信息在题干之前，导入时原样读回。"""
+    blocks: List[str] = []
+    for rec in rows:
+        options = rec.get("options") or []
+        if not isinstance(options, (list, tuple)):
+            options = []
+        lines: List[str] = []
+        for label, key in _TXT_META:
+            value = _field_value(rec, key, list(options) + [""] * 4)
+            if value:
+                lines.append(f"【{label}】{value}")
+        lines.append(_flat(rec.get("stem")))
+        for i, opt in enumerate(list(options)[:4]):
+            lines.append(f"{'ABCD'[i]}. {_flat(opt)}")
+        answer = _flat(rec.get("answer"))
+        if answer:
+            lines.append(f"答案：{answer}")
+        explanation = _flat(rec.get("explanation"))
+        if explanation:
+            lines.append(f"解析：{explanation}")
+        blocks.append("\n".join(line for line in lines if line))
+    return "\n\n".join(blocks) + ("\n" if blocks else "")
 
 
 # ---- 最小 XLSX 写入（OOXML，无第三方依赖） ----
@@ -514,7 +585,10 @@ def write_xlsx(path: str, rows: Sequence[Dict[str, Any]]) -> int:
 
 
 def export(path: str, fmt: str, rows: Sequence[Dict[str, Any]]) -> int:
-    """按格式写文件，返回写入的题目数。"""
+    """按格式写文件，返回写入的题目数。
+
+    支持 JSON / TXT / CSV / TSV / XLSX；不再提供 JSONL（用户反馈用不上）。
+    """
     fmt = (fmt or "json").lower()
     if fmt == "xlsx":
         return write_xlsx(path, rows)
@@ -528,12 +602,11 @@ def export(path: str, fmt: str, rows: Sequence[Dict[str, Any]]) -> int:
         with open(path, "w", encoding="utf-8", newline="") as f:
             f.write(text)
         return len(rows)
-    if fmt == "jsonl":
+    if fmt == "txt":
         with open(path, "w", encoding="utf-8") as f:
-            for rec in rows:
-                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            f.write(to_txt_text(rows))
         return len(rows)
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(list(rows), f, ensure_ascii=False, indent=2)
+        json.dump(to_dicts(rows), f, ensure_ascii=False, indent=2)
         f.write("\n")
     return len(rows)

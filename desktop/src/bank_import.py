@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""题库导入与合并：JSON / JSONL / CSV / TSV / XLSX / TXT → 全部题库。
+"""题库导入与合并：JSON / JSONL / CSV / TSV / XLS(X) / TXT → 全部题库。
 
 三件事：
 1. 解析：按扩展名选解析器，XLSX 用标准库直接读 OOXML，不依赖第三方包；
 2. 归一：中英文表头都能认（题干/question、选项A/option_a…），学科、年级、
-   难度尽量转成内部代码，转不了就原样保留；
+   难度尽量转成内部代码；文件里没有学科/年级时，按知识点 ID 或名称回查知识地图补齐；
 3. 排重：按「题干 + 选项」的内容指纹，与全部题库已有的题、以及本批内部
    互相排重；题干选项相同但答案不同的计为「冲突」，同样过滤掉。
+
+本软件自己导出的 JSON / TXT / CSV / TSV / XLSX 都能再导入：导出的学科、
+年级、难度是中文，这里会转回内部代码；JSON 也用同一套中文表头。
 """
 from __future__ import annotations
 
@@ -19,12 +22,14 @@ import re
 import unicodedata
 import zipfile
 from dataclasses import dataclass, field
+from html.parser import HTMLParser
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 from xml.etree import ElementTree as ET
 
 import api_bank
 
-SUPPORTED_EXTS = (".json", ".jsonl", ".csv", ".tsv", ".txt", ".xlsx", ".xlsm")
+SUPPORTED_EXTS = (".json", ".jsonl", ".csv", ".tsv", ".txt",
+                  ".xlsx", ".xlsm", ".xls")
 
 _MAIN_NS = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
 _REL_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
@@ -59,15 +64,24 @@ DIFFICULTY_TO_CODE = {
     "难": 4, "困难": 4, "4": 4,
     "easy": 1, "medium": 2, "hard": 4,
 }
+STAGE_TO_CODE = {
+    "幼儿园": "kg", "学前": "kg", "kg": "kg",
+    "小学": "primary", "primary": "primary",
+    "初中": "junior", "中学": "junior", "junior": "junior",
+}
 
 # 表头别名（比较前统一转小写、去空格与下划线，全角转半角）
 _ALIASES: Dict[str, Tuple[str, ...]] = {
     "id": ("题目id", "题号", "编号", "id"),
     "topic_id": ("知识点id", "topicid", "pointid"),
     "topic_name": ("知识点", "知识点名称", "考点", "topic", "topicname"),
-    "subject": ("学科", "科目", "subject"),
-    "grade": ("年级", "年级名称", "grade", "gradelabel"),
+    "subject": ("学科", "科目", "学科名称", "科目名称",
+                "subject", "subjectname", "subjectlabel"),
+    "grade": ("年级", "年级名称", "grade", "gradelabel", "gradename"),
+    "stage": ("学段", "学段名称", "stage", "schoolstage"),
     "chapter": ("单元", "章节", "chapter", "unit"),
+    "volume_id": ("册id", "教材id", "卷id", "volumeid", "bookid"),
+    "volume_title": ("册", "教材", "册名", "教材名称", "volumetitle", "booktitle"),
     "difficulty": ("难度", "难度(1-4)", "难度等级", "difficulty", "level"),
     "bloom": ("认知层级", "认知层次", "bloom"),
     "stem": ("题干", "题目", "问题", "试题", "题目内容", "题干内容",
@@ -86,7 +100,6 @@ _ALIASES: Dict[str, Tuple[str, ...]] = {
     "created_at": ("生成时间", "创建时间", "时间", "createdat", "created"),
     "type": ("题型", "type", "questiontype"),
     "domain": ("领域", "domain"),
-    "volume_title": ("册", "教材", "volumetitle"),
 }
 
 _HEADER_LOOKUP: Dict[str, str] = {}
@@ -151,13 +164,18 @@ def _read_text(path: str) -> str:
 
 
 def _answer_key(value: Any) -> str:
-    """答案归一：'A.' '答案是B' → 'A' / 'B'；其他内容原样。"""
+    """答案归一：'A.' '答案是B' 'A. 1/4' → 'A' / 'B'；其他内容原样。"""
     s = _clean(value)
     if not s:
         return ""
     m = re.fullmatch(r"(?:答案[是为:：]?\s*)?[（(]?\s*([A-Da-d])\s*[)）]?[.。、]?", s)
     if m:
         return m.group(1).upper()
+    # 选项字母后面还跟了内容（如「A. 1/4」「答案：A. 1/4」）时只取字母
+    rest = re.sub(r"^(?:正确)?答案[是为:：]?\s*", "", s)
+    if rest and rest[0] in "ABCDabcd" and (
+            len(rest) == 1 or rest[1] in " \t.。、：（(:)）"):
+        return rest[0].upper()
     return s
 
 
@@ -181,8 +199,111 @@ def _split_inline_options(stem: str) -> Tuple[str, List[str]]:
     return stem[:start].strip(), opts
 
 
+# ---------------- 知识地图回查 ----------------
+_TAX_CACHE: Optional[Dict[str, Any]] = None
+
+
+def _taxonomy_index() -> Dict[str, Any]:
+    """按册 / 知识点 ID / 知识点名称建索引，用于补齐文件里缺失的学科年级。
+
+    只读一次，缓存在进程里；导入几万条也不会反复解析 63 册 JSON。
+    """
+    global _TAX_CACHE
+    if _TAX_CACHE is not None:
+        return _TAX_CACHE
+    by_volume: Dict[str, Dict[str, Any]] = {}
+    by_topic: Dict[str, Dict[str, Any]] = {}
+    by_name: Dict[str, List[Dict[str, Any]]] = {}
+    try:
+        import store                      # 与 app 同目录，取知识地图的册与知识点
+        volumes = store.load_all_volumes()
+    except Exception:                     # noqa: BLE001 —— 脱离项目单独用时忽略
+        volumes = []
+    for vol in volumes:
+        subject = str(vol.get("subject") or "")
+        grade = str(vol.get("grade") or "")
+        meta = {
+            "subject": subject,
+            "grade": grade,
+            "stage": str(vol.get("stage") or ""),
+            "volume_title": str(vol.get("title") or ""),
+            "grade_label": (GRADE_LABELS.get(grade, grade) +
+                            {"s1": "上册", "s2": "下册"}.get(
+                                str(vol.get("term") or ""), "")),
+        }
+        vid = str(vol.get("volume_id") or "")
+        if vid:
+            by_volume[vid] = meta
+        for kp in vol.get("knowledge_points") or []:
+            info = dict(meta)
+            info.update({
+                "topic_id": str(kp.get("id") or ""),
+                "topic_name": str(kp.get("name") or ""),
+                "chapter": str(kp.get("unit") or ""),
+                "domain": str(kp.get("domain") or ""),
+                "difficulty": kp.get("difficulty") or "",
+                "bloom": str(kp.get("bloom") or ""),
+            })
+            if info["topic_id"]:
+                by_topic[info["topic_id"]] = info
+            if info["topic_name"]:
+                by_name.setdefault(info["topic_name"], []).append(info)
+    _TAX_CACHE = {"volume": by_volume, "topic": by_topic, "name": by_name}
+    return _TAX_CACHE
+
+
+def _taxonomy_lookup(volume_id: str, topic_id: str,
+                     topic_name: str) -> Optional[Dict[str, Any]]:
+    """先按册、再按知识点 ID、最后按唯一名称回查；找不到返回 None。"""
+    index = _taxonomy_index()
+    if volume_id and volume_id in index["volume"]:
+        return index["volume"][volume_id]
+    if topic_id and topic_id in index["topic"]:
+        return index["topic"][topic_id]
+    if topic_name:
+        hits = index["name"].get(topic_name) or []
+        if len(hits) == 1:
+            return hits[0]
+        if hits:
+            # 同名知识点跨年级重复时，只有学科年级都一致才敢用来补字段
+            keys = {(h["subject"], h["grade"], h["stage"]) for h in hits}
+            if len(keys) == 1:
+                return hits[0]
+    return None
+
+
+def _grade_code(value: Any) -> str:
+    """年级文字 → 内部代码：兼容「七年级上册」「7年级」「g7」「1」等写法。"""
+    text = _clean(value)
+    if not text:
+        return ""
+    key = re.sub(r"[（(].*?[)）]", "", text)
+    key = re.sub(r"(?:上|下)?册?$", "", key).strip() or key
+    code = GRADE_TO_CODE.get(text) or GRADE_TO_CODE.get(key) or ""
+    if not code and text[:1].lower() in ("g", "k") and text[1:].isdigit():
+        code = text.lower()
+    return code
+
+
+def _stage_code(rec: Dict[str, Any]) -> str:
+    """没有学段字段时，用年级前缀推断。"""
+    stage = STAGE_TO_CODE.get(str(rec.get("stage") or "").strip().lower(), "")
+    if stage:
+        return stage
+    grade = str(rec.get("grade") or "")
+    if grade.startswith("k"):
+        return "kg"
+    if grade.startswith("g") and grade[1:].isdigit():
+        return "primary" if int(grade[1:]) <= 6 else "junior"
+    return ""
+
+
 def _to_record(raw: Dict[str, Any], filename: str, now: str) -> Optional[Dict[str, Any]]:
-    """把一行原始数据转成内部记录；缺题干返回 None。"""
+    """把一行原始数据转成内部记录；缺题干返回 None。
+
+    文件里只有知识点 ID / 名称、没有学科年级时，回查知识地图补齐，
+    这样本软件导出的精简 JSON（甚至只带知识点 ID 的题库）导入后也能按学科年级筛选。
+    """
     data: Dict[str, Any] = {}
     for key, value in raw.items():
         canon = _HEADER_LOOKUP.get(_hkey(key))
@@ -217,12 +338,17 @@ def _to_record(raw: Dict[str, Any], filename: str, now: str) -> Optional[Dict[st
     subject_key = re.sub(r"[（(].*?[)）]", "", subject_raw).strip()
     subject = SUBJECT_TO_CODE.get(subject_key,
                                   SUBJECT_TO_CODE.get(subject_key.lower(), subject_raw))
-    grade_raw = _clean(data.get("grade"))
-    grade_key = re.sub(r"[（(].*?[)）]", "", grade_raw)
-    grade_key = re.sub(r"(?:上|下)?册?$", "", grade_key).strip() or grade_raw
-    grade = GRADE_TO_CODE.get(grade_raw, GRADE_TO_CODE.get(grade_key, ""))
-    if not grade and grade_raw.startswith(("g", "k")) and grade_raw[1:].isdigit():
-        grade = grade_raw.lower()
+    grade_label_raw = _clean(data.get("grade_label"))
+    grade = _grade_code(data.get("grade")) or _grade_code(grade_label_raw)
+    stage_raw = _clean(data.get("stage"))
+    stage = STAGE_TO_CODE.get(stage_raw.lower(), STAGE_TO_CODE.get(stage_raw, ""))
+
+    topic_id = _clean(data.get("topic_id"))
+    topic_name = _clean(data.get("topic_name"))
+    chapter = _clean(data.get("chapter"))
+    domain = _clean(data.get("domain"))
+    volume_title = _clean(data.get("volume_title"))
+    bloom = _clean(data.get("bloom"))
 
     diff_raw = _clean(data.get("difficulty")).lower()
     difficulty = DIFFICULTY_TO_CODE.get(diff_raw, "")
@@ -230,26 +356,53 @@ def _to_record(raw: Dict[str, Any], filename: str, now: str) -> Optional[Dict[st
         m = re.search(r"([1-4])", diff_raw)
         difficulty = int(m.group(1)) if m else ""
 
+    # 文件里缺的字段，按 册 ID → 知识点 ID → 知识点名称 回查知识地图补齐
+    meta = _taxonomy_lookup(_clean(data.get("volume_id")), topic_id, topic_name)
+    if meta:
+        subject = subject or meta.get("subject", "")
+        grade = grade or meta.get("grade", "")
+        stage = stage or meta.get("stage", "")
+        topic_name = topic_name or meta.get("topic_name", "")
+        chapter = chapter or meta.get("chapter", "")
+        domain = domain or meta.get("domain", "")
+        volume_title = volume_title or meta.get("volume_title", "")
+        bloom = bloom or meta.get("bloom", "")
+        if not difficulty:
+            try:
+                difficulty = int(meta.get("difficulty") or 0) or ""
+            except (TypeError, ValueError):
+                difficulty = ""
+        if not grade_label_raw:
+            grade_label_raw = str(meta.get("grade_label") or "")
+    stage = stage or _stage_code({"stage": "", "grade": grade})
+
     answer = _answer_key(data.get("answer"))
     if len(options) >= 2 and answer in {"1", "2", "3", "4"}:
         answer = "ABCD"[int(answer) - 1]      # 用 1~4 表示选项的题库
+    answer_text = _clean(data.get("answer_text"))
+    if not answer_text and answer in {"A", "B", "C", "D"}:
+        index = "ABCD".index(answer)
+        if index < len(options):
+            answer_text = options[index]
+
     rec: Dict[str, Any] = {
         "stem": stem,
         "options": options,
         "answer": answer,
-        "answer_text": _clean(data.get("answer_text")),
+        "answer_text": answer_text,
         "explanation": _clean(data.get("explanation")),
         "subject": subject,
         "grade": grade,
-        "grade_label": GRADE_LABELS.get(grade, grade_raw),
-        "topic_id": _clean(data.get("topic_id")),
-        "topic_name": _clean(data.get("topic_name")),
-        "chapter": _clean(data.get("chapter")),
+        "stage": stage,
+        "grade_label": grade_label_raw or GRADE_LABELS.get(grade, ""),
+        "topic_id": topic_id,
+        "topic_name": topic_name,
+        "chapter": chapter,
+        "domain": domain,
         "difficulty": difficulty,
-        "bloom": _clean(data.get("bloom")),
+        "bloom": bloom,
         "type": _clean(data.get("type")),
-        "domain": _clean(data.get("domain")),
-        "volume_title": _clean(data.get("volume_title")),
+        "volume_title": volume_title,
         "source": _clean(data.get("source")) or "导入",
         "model": _clean(data.get("model")),
         "created_at": _clean(data.get("created_at")) or now,
@@ -437,14 +590,86 @@ def parse_xlsx(path: str, now: str) -> Tuple[List[Dict[str, Any]], int]:
     return _rows_from_matrix(matrix, path, now)
 
 
+class _HtmlTableParser(HTMLParser):
+    """把 HTML 表格读成二维数组。很多学校系统导出的「.xls」其实是 HTML。"""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.rows: List[List[str]] = []
+        self._row: Optional[List[str]] = None
+        self._cell: Optional[List[str]] = None
+
+    def handle_starttag(self, tag, attrs):
+        tag = tag.lower()
+        if tag == "tr":
+            self._row = []
+        elif tag in ("td", "th"):
+            if self._row is None:
+                self._row = []
+            self._cell = []
+        elif tag == "br" and self._cell is not None:
+            self._cell.append("\n")
+
+    def handle_endtag(self, tag):
+        tag = tag.lower()
+        if tag in ("td", "th") and self._cell is not None:
+            if self._row is None:
+                self._row = []
+            self._row.append("".join(self._cell).strip())
+            self._cell = None
+        elif tag == "tr" and self._row is not None:
+            self.rows.append(self._row)
+            self._row = None
+
+    def handle_data(self, data):
+        if self._cell is not None:
+            self._cell.append(data)
+
+
+def _spreadsheetml_rows(text: str) -> List[List[str]]:
+    """Excel 2003 XML（SpreadsheetML）→ 二维数组。"""
+    ns = "urn:schemas-microsoft-com:office:spreadsheet"
+    root = ET.fromstring(text)
+    matrix: List[List[str]] = []
+    for row in root.iter(f"{{{ns}}}Row"):
+        cells: List[str] = []
+        for cell in row.findall(f"{{{ns}}}Cell"):
+            data = cell.find(f"{{{ns}}}Data")
+            cells.append("".join(data.itertext()).strip() if data is not None else "")
+        matrix.append(cells)
+    return matrix
+
+
+def parse_xls(path: str, now: str) -> Tuple[List[Dict[str, Any]], int]:
+    """.xls 兜底：HTML 表格 / Excel 2003 XML 都读；二进制老格式给明确提示。"""
+    with open(path, "rb") as f:
+        head = f.read(8)
+    if head == b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1":
+        raise ValueError("这是旧版二进制 .xls，请在 Excel / WPS 里另存为 .xlsx 再导入")
+    text = _read_text(path)
+    probe = text.lstrip()[:4000]
+    if "urn:schemas-microsoft-com:office:spreadsheet" in probe:
+        matrix = _spreadsheetml_rows(text)
+    elif "<table" in probe.lower() or "<html" in probe.lower():
+        parser = _HtmlTableParser()
+        parser.feed(text)
+        matrix = parser.rows
+    else:
+        raise ValueError("无法识别的 .xls 文件，请另存为 .xlsx 再导入")
+    return _rows_from_matrix(matrix, path, now)
+
+
 _ANSWER_LINE = re.compile(
-    r"^\s*[【\[]?\s*(?:正确)?答案\s*[】\]]?\s*"
-    r"(?!解析|与解析|和解析)[：:]?\s*(.+)$")
+    r"^\s*(?:"
+    r"[【\[]\s*(?:正确)?答案\s*[】\]]\s*[：:]?\s*(?P<bracket>.+)"
+    r"|(?:正确)?答案\s*[：:]\s*(?P<colon>.+)"
+    r"|(?:正确)?答案\s+(?P<letter>[A-Da-d1-4])\s*[.。、]?"
+    r")\s*$")
 _EXPLAIN_LINE = re.compile(
     r"^\s*(?:[【\[]\s*(?:解析|答案解析|试题解析|解答|详解|分析)\s*[】\]]\s*[：:]?"
     r"|(?:解析|答案解析|试题解析|解答|详解|分析)\s*[：:])\s*(.*)$")
 _META_LINE = re.compile(
-    r"^\s*[【\[]?\s*(学科|年级|知识点|单元|难度|认知层级|题型|来源|模型)"
+    r"^\s*[【\[]?\s*(学科|年级|学段|知识点|单元|册|教材|难度|认知层级|题型|来源|模型)"
     r"\s*[】\]]?\s*[：:]?\s*(.+)$")
 _OPT_MARK = re.compile(r"^\s*[（(]?([A-Da-d])[)）.．、:：]\s*(.*)$")
 
@@ -485,7 +710,8 @@ def parse_txt(path: str, now: str) -> Tuple[List[Dict[str, Any]], int]:
                     continue
             m = _ANSWER_LINE.match(line)
             if m:
-                answer = m.group(1).strip()
+                answer = (m.group("bracket") or m.group("colon")
+                          or m.group("letter") or "").strip()
                 mode = "answer"
                 continue
             m = _EXPLAIN_LINE.match(line)
@@ -540,10 +766,10 @@ def parse_file(path: str, now: Optional[str] = None) -> Tuple[List[Dict[str, Any
         return parse_tsv(path, now)
     if ext in (".xlsx", ".xlsm"):
         return parse_xlsx(path, now)
+    if ext == ".xls":
+        return parse_xls(path, now)
     if ext == ".txt":
         return parse_txt(path, now)
-    if ext == ".xls":
-        raise ValueError("暂不支持旧版 .xls，请在 Excel/WPS 里另存为 .xlsx 再导入")
     raise ValueError(f"不支持的格式：{ext or '未知'}")
 
 
