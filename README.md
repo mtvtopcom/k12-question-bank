@@ -219,7 +219,7 @@ v1.2.1 移除元数据题型后容量比 v1.2.0（约 1.3 万）略降，这是�
 
 不写网页，做成双击即开的原生 macOS 桌面窗口（Python 标准库 + 系统 Tcl/Tk，零第三方依赖、无需 Xcode）。
 
-**方式一：直接下载**（推荐给非开发者）——到 [Releases](https://github.com/mtvtopcom/k12-question-bank/releases/latest) 下载 `K12-Question-Bank-v1.11.1-macos.zip`，解压后双击 `K12 题库工厂.app`。首次打开若提示「未验证的开发者」，右键 → 打开即可。
+**方式一：直接下载**（推荐给非开发者）——到 [Releases](https://github.com/mtvtopcom/k12-question-bank/releases/latest) 下载 `K12-Question-Bank-v1.13.1-macos.zip`，解压后双击 `K12 题库工厂.app`。首次打开若提示「未验证的开发者」，右键 → 打开即可。
 
 **方式二：从源码构建**
 
