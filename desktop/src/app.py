@@ -26,7 +26,7 @@ import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.11.0"
+VERSION = "1.11.1"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -87,18 +87,22 @@ class ClickCombo(tk.Menubutton):
 
     def _rebuild_menu(self):
         self.menu.delete(0, "end")
+        # 单选项必须绑定到同一个变量：否则 Tk 会给所有下拉共用全局变量
+        # selectedButton，导致勾选停在上一次点过的项上、与实际筛选值不一致。
         for v in self._values:
-            self.menu.add_radiobutton(label=v, command=lambda value=v: self.var.set(value))
+            self.menu.add_radiobutton(label=v, variable=self.var, value=v)
         if self._values and self.var.get() not in self._values:
             self.var.set(self._values[0])
 
     def set_values(self, values, keep=True):
         """更新可选项；keep=False 或当前值不在新列表时回退到第一项。"""
         self._values = [str(v) for v in values]
+        before = self.var.get()
         self._rebuild_menu()
         if not keep and self._values:
             self.var.set(self._values[0])
-        if self._ready and self._command:
+        # 值变了的话 trace 已经回调过 command，这里只在值没变时补一次
+        if self._ready and self._command and self.var.get() == before:
             self._command()
 
     def _on_var_write(self, *_):
@@ -297,6 +301,7 @@ class App:
         self._api_pause_pending = False        # 已点暂停/停止，等线程收尾
         self.bank_rows = []                    # 题库页当前筛选结果
         self._bank_by_id = {}
+        self._bank_refresh_job = None          # 筛选合并刷新的定时器
         self._closing = False
         self._api_active_provider = None
         self._api_initializing = False
@@ -2279,33 +2284,40 @@ class App:
         flt.grid(row=0, column=0, sticky="ew", pady=(2, 6))
         ttk.Label(flt, text="搜索").pack(side="left")
         self.bank_var_q = tk.StringVar()
-        bq = ttk.Entry(flt, textvariable=self.bank_var_q, width=26)
+        bq = ttk.Entry(flt, textvariable=self.bank_var_q, width=22)
         bq.pack(side="left", padx=(4, 10))
         bq.bind("<Return>", lambda _: self.bank_refresh())
+        ttk.Label(flt, text="学段").pack(side="left")
+        self.bank_var_stage = tk.StringVar(value="全部")
+        ClickCombo(flt, self.bank_var_stage, list(AI_STAGE), width=8,
+                   command=self.bank_on_stage_change).pack(side="left", padx=(4, 8))
         ttk.Label(flt, text="学科").pack(side="left")
         self.bank_var_subject = tk.StringVar(value="全部")
         ClickCombo(flt, self.bank_var_subject, list(AI_SUBJECT), width=8,
-                   command=self.bank_refresh).pack(side="left", padx=(4, 10))
+                   command=self.bank_refresh).pack(side="left", padx=(4, 8))
         ttk.Label(flt, text="年级").pack(side="left")
         self.bank_var_grade = tk.StringVar(value="全部")
-        ClickCombo(flt, self.bank_var_grade,
-                   ["全部"] + [k for k in AI_GRADE if k != "全部"], width=11,
-                   command=self.bank_refresh).pack(side="left", padx=(4, 10))
+        self.bank_cmb_grade = ClickCombo(
+            flt, self.bank_var_grade,
+            ["全部"] + [k for k in AI_GRADE if k != "全部"], width=11,
+            command=self.bank_refresh)
+        self.bank_cmb_grade.pack(side="left", padx=(4, 8))
         ttk.Label(flt, text="难度").pack(side="left")
         self.bank_var_diff = tk.StringVar(value="全部")
         ClickCombo(flt, self.bank_var_diff,
                    ["全部"] + [DIFFICULTY_LABEL[d] for d in (1, 2, 3, 4)], width=7,
-                   command=self.bank_refresh).pack(side="left", padx=(4, 10))
+                   command=self.bank_refresh).pack(side="left", padx=(4, 8))
         ttk.Button(flt, text="筛选", command=self.bank_refresh).pack(side="left", padx=(0, 6))
         ttk.Button(flt, text="重置", command=self.bank_reset_filters).pack(side="left")
-        self.bank_lbl_stats = ttk.Label(flt, text="", foreground="#0F6E56")
-        self.bank_lbl_stats.pack(side="right")
 
         bar = ttk.Frame(parent)
         bar.grid(row=1, column=0, sticky="ew")
         ttk.Label(bar, text="题目列表（最新在前，可多选）", style="Head.TLabel").pack(side="left")
         ttk.Label(bar, text="双击预览；导出的是当前筛选结果",
                   style="Hint.TLabel").pack(side="left", padx=12)
+        # 统计放列表标题行右侧：筛选行加了学段后位置不够，放这里不会被挤掉
+        self.bank_lbl_stats = ttk.Label(bar, text="", foreground="#0F6E56")
+        self.bank_lbl_stats.pack(side="right")
 
         cols = ("subject", "grade", "topic", "stem", "answer", "difficulty", "created")
         self.bank_tree = ttk.Treeview(parent, columns=cols, show="headings",
@@ -2363,10 +2375,31 @@ class App:
 
         self.bank_refresh()
 
+    def bank_on_stage_change(self):
+        """学段变化 → 年级下拉只显示对应学段；年级失效则回到「全部」。"""
+        stage = AI_STAGE.get(self.bank_var_stage.get(), "")
+        labels = ["全部"] + STAGE_GRADE_LABELS.get(stage, [])
+        self.bank_cmb_grade.set_values(labels, keep=False)
+        self.bank_refresh()
+
     def bank_refresh(self):
+        """筛选变化先排队 80ms，短时间内的多次改动合并成一次全库查询。"""
+        if getattr(self, "_bank_refresh_job", None) is not None:
+            try:
+                self.root.after_cancel(self._bank_refresh_job)
+            except Exception:
+                pass
+        try:
+            self._bank_refresh_job = self.root.after(80, self._bank_do_refresh)
+        except Exception:
+            self._bank_do_refresh()
+
+    def _bank_do_refresh(self):
+        self._bank_refresh_job = None
         rows = api_bank.query(
             q=self.bank_var_q.get(),
             subject=AI_SUBJECT.get(self.bank_var_subject.get(), ""),
+            stage=AI_STAGE.get(self.bank_var_stage.get(), ""),
             grade=AI_GRADE.get(self.bank_var_grade.get(), ""),
             difficulty=DIFFICULTY_CODE.get(self.bank_var_diff.get()))
         self.bank_rows = rows                       # 导出用完整结果
@@ -2390,7 +2423,9 @@ class App:
 
     def bank_reset_filters(self):
         self.bank_var_q.set("")
+        self.bank_var_stage.set("全部")
         self.bank_var_subject.set("全部")
+        self.bank_cmb_grade.set_values(["全部"] + STAGE_GRADE_LABELS[""], keep=False)
         self.bank_var_grade.set("全部")
         self.bank_var_diff.set("全部")
         self.bank_refresh()
@@ -3098,8 +3133,8 @@ class App:
 21. 生成结果直接写入「题库」，可以继续筛选、预览、删除与导出。
 
 【模块四 · 题库】
-22. 列表最新在前，可按关键词 / 学科 / 年级 / 难度筛选；选中即可看完整题目与解析，
-    预览里会写明这道题来自哪个任务。
+22. 列表最新在前，可按关键词 / 学段 / 学科 / 年级 / 难度筛选（学段选定后年级只
+    列出该学段的年级）；选中即可看完整题目与解析，预览里会写明这道题来自哪个任务。
 23. 导出当前筛选结果：JSON / JSONL / CSV / Excel(.xlsx) / TSV，
     默认文件名 K12题库_日期，适合给其他程序或表格工具调用。
     「按任务导出 JSON」选一个文件夹，会为每个任务写一份「任务名.json」。

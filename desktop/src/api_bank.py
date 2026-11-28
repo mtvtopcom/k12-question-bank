@@ -180,7 +180,23 @@ def clear() -> int:
 
 
 # ---------------- 查询 ----------------
-def query(q: str = "", subject: str = "", grade: str = "",
+def stage_of(rec: Dict[str, Any]) -> str:
+    """题目归属学段：优先用记录里的 stage，老记录按年级前缀推断。"""
+    stage = str(rec.get("stage") or "")
+    if stage:
+        return stage
+    grade = str(rec.get("grade") or "")
+    if grade.startswith("k"):
+        return "kg"
+    if grade.startswith("g"):
+        try:
+            return "primary" if int(grade[1:]) <= 6 else "junior"
+        except ValueError:
+            return ""
+    return ""
+
+
+def query(q: str = "", subject: str = "", grade: str = "", stage: str = "",
           difficulty: Optional[int] = None, topic_id: str = "",
           limit: int = 0) -> List[Dict[str, Any]]:
     """筛选题目，按生成时间倒序（最新在前）。"""
@@ -190,6 +206,8 @@ def query(q: str = "", subject: str = "", grade: str = "",
         if subject and rec.get("subject") != subject:
             continue
         if grade and rec.get("grade") != grade:
+            continue
+        if stage and stage_of(rec) != stage:
             continue
         if difficulty and int(rec.get("difficulty") or 0) != int(difficulty):
             continue
