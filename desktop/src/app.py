@@ -21,12 +21,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import store  # noqa: E402
 import prompt as prompt_mod  # noqa: E402
 import api_bank  # noqa: E402
+import bank_import  # noqa: E402
 import api_client  # noqa: E402
 import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.11.1"
+VERSION = "1.12.0"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -125,6 +126,12 @@ def _diff_label(value) -> str:
         return DIFFICULTY_LABEL.get(int(text), text)
     except (TypeError, ValueError):
         return text
+
+
+def _short_name(name: str, limit: int = 16) -> str:
+    """任务名太长时截断，给列表的来源列用。"""
+    text = str(name or "").strip()
+    return text if len(text) <= limit else text[:limit - 1] + "…"
 
 
 class HelpDot(tk.Label):
@@ -2275,13 +2282,71 @@ class App:
                       f"{s['done']}/{s['total']} 题。点「继续」接着生成。")
 
     # ================= 模块四：题库 =================
+    # ---------------- 题库（API 任务题库 / 全部题库） ----------------
+    def _bank_mode_tab(self, parent, text, value):
+        lbl = tk.Label(parent, text=text, padx=14, pady=5, cursor="hand2",
+                       font=("", 12, "bold"), background="#E8EDF5",
+                       foreground="#334155")
+        lbl.pack(side="left", padx=(0, 6))
+        lbl.bind("<Button-1>", lambda _e, v=value: self.bank_set_mode(v))
+        return lbl
+
+    def bank_set_mode(self, value):
+        if self.bank_var_mode.get() == value:
+            return
+        self.bank_var_mode.set(value)
+        self._bank_apply_mode()
+
+    def _bank_apply_mode(self):
+        """切换两套库：任务下拉、工具栏、列、空库提示跟着变。"""
+        mode = self.bank_var_mode.get()
+        api_mode = mode == api_bank.BANK_API
+        for value, lbl in self._bank_mode_tabs.items():
+            if value == mode:
+                lbl.configure(background="#1E5FA8", foreground="#FFFFFF")
+            else:
+                lbl.configure(background="#E8EDF5", foreground="#334155")
+        if api_mode:
+            self.bank_task_lbl.pack(side="left", before=self.bank_lbl_head)
+            self.bank_cmb_task.pack(side="left", padx=(4, 12),
+                                    before=self.bank_lbl_head)
+            self.bank_tools_all.grid_remove()
+            self.bank_tools_api.grid()
+            self.bank_tree.configure(displaycolumns=self.bank_cols_api)
+            self.bank_lbl_head.configure(text="题目列表（按任务查看，最新在前）")
+        else:
+            self.bank_task_lbl.pack_forget()
+            self.bank_cmb_task.pack_forget()
+            self.bank_tools_api.grid_remove()
+            self.bank_tools_all.grid()
+            self.bank_tree.configure(displaycolumns=self.bank_cols_all)
+            self.bank_lbl_head.configure(text="全部题库（导入 + 合并，最新在前）")
+        self.root.after_idle(self._bank_fit_columns)
+        self.bank_refresh()
+
     def _build_bank_tab(self, parent):
         parent.columnconfigure(0, weight=1)
-        parent.rowconfigure(2, weight=3)
-        parent.rowconfigure(4, weight=2)
+        parent.rowconfigure(3, weight=3)
+        parent.rowconfigure(5, weight=2)
 
+        # 第一行：两套库的切换
+        switch = ttk.Frame(parent)
+        switch.grid(row=0, column=0, sticky="ew", pady=(2, 6))
+        self.bank_var_mode = tk.StringVar(value=api_bank.BANK_API)
+        self._bank_mode_tabs = {
+            api_bank.BANK_API: self._bank_mode_tab(switch, "API 任务题库",
+                                                   api_bank.BANK_API),
+            api_bank.BANK_ALL: self._bank_mode_tab(switch, "全部题库",
+                                                   api_bank.BANK_ALL),
+        }
+        self.bank_lbl_mode_hint = ttk.Label(
+            switch, text="API 生成的题按任务管理；导入的题统一进「全部题库」",
+            style="Hint.TLabel")
+        self.bank_lbl_mode_hint.pack(side="left", padx=(8, 0))
+
+        # 第二行：筛选
         flt = ttk.Frame(parent)
-        flt.grid(row=0, column=0, sticky="ew", pady=(2, 6))
+        flt.grid(row=1, column=0, sticky="ew", pady=(0, 6))
         ttk.Label(flt, text="搜索").pack(side="left")
         self.bank_var_q = tk.StringVar()
         bq = ttk.Entry(flt, textvariable=self.bank_var_q, width=22)
@@ -2310,69 +2375,148 @@ class App:
         ttk.Button(flt, text="筛选", command=self.bank_refresh).pack(side="left", padx=(0, 6))
         ttk.Button(flt, text="重置", command=self.bank_reset_filters).pack(side="left")
 
+        # 第三行：任务下拉 + 列表标题 + 统计
         bar = ttk.Frame(parent)
-        bar.grid(row=1, column=0, sticky="ew")
-        ttk.Label(bar, text="题目列表（最新在前，可多选）", style="Head.TLabel").pack(side="left")
-        ttk.Label(bar, text="双击预览；导出的是当前筛选结果",
-                  style="Hint.TLabel").pack(side="left", padx=12)
-        # 统计放列表标题行右侧：筛选行加了学段后位置不够，放这里不会被挤掉
+        bar.grid(row=2, column=0, sticky="ew")
+        self.bank_var_task = tk.StringVar(value="全部任务")
+        self._bank_task_labels = {"全部任务": ""}
+        self.bank_task_lbl = ttk.Label(bar, text="任务")
+        self.bank_cmb_task = ClickCombo(bar, self.bank_var_task, ["全部任务"],
+                                        width=28, command=self.bank_refresh)
+        self.bank_lbl_head = ttk.Label(bar, text="题目列表（最新在前，可多选）",
+                                       style="Head.TLabel")
+        self.bank_lbl_head.pack(side="left")
         self.bank_lbl_stats = ttk.Label(bar, text="", foreground="#0F6E56")
         self.bank_lbl_stats.pack(side="right")
 
-        cols = ("subject", "grade", "topic", "stem", "answer", "difficulty", "created")
+        # 第四行：题目列表
+        cols = ("subject", "grade", "topic", "stem", "answer",
+                "difficulty", "origin", "created")
+        self.bank_cols_api = ("subject", "grade", "topic", "stem", "answer",
+                              "difficulty", "created")
+        self.bank_cols_all = ("subject", "grade", "topic", "stem", "answer",
+                              "difficulty", "origin")
         self.bank_tree = ttk.Treeview(parent, columns=cols, show="headings",
+                                      displaycolumns=self.bank_cols_api,
                                       selectmode="extended")
         heads = {"subject": "学科", "grade": "年级", "topic": "知识点", "stem": "题干",
-                 "answer": "答案", "difficulty": "难度", "created": "生成时间"}
-        widths = {"subject": 58, "grade": 90, "topic": 170, "stem": 520,
-                  "answer": 48, "difficulty": 58, "created": 110}
+                 "answer": "答案", "difficulty": "难度", "origin": "来源",
+                 "created": "生成时间"}
+        widths = {"subject": 52, "grade": 84, "topic": 140, "stem": 430,
+                  "answer": 44, "difficulty": 52, "origin": 220, "created": 100}
         for c in cols:
             self.bank_tree.heading(c, text=heads[c])
-            self.bank_tree.column(c, width=widths[c],
+            self.bank_tree.column(c, width=widths[c], stretch=False,
                                   anchor="center" if c in ("subject", "answer",
-                                                           "difficulty", "created") else "w")
-        self.bank_tree.grid(row=2, column=0, sticky="nsew")
+                                                           "difficulty", "created")
+                                  else "w")
+        self.bank_tree.grid(row=3, column=0, sticky="nsew")
         bsb = ttk.Scrollbar(parent, orient="vertical", command=self.bank_tree.yview)
-        bsb.grid(row=2, column=1, sticky="ns")
+        bsb.grid(row=3, column=1, sticky="ns")
         self.bank_tree.configure(yscrollcommand=bsb.set)
         self.bank_tree.bind("<<TreeviewSelect>>", self.bank_on_select)
+        self.bank_tree.bind("<Configure>", self._bank_fit_columns)
 
-        ttk.Label(parent, text="题目预览", style="Head.TLabel").grid(
-            row=3, column=0, sticky="w", pady=(8, 3))
+        ttk.Label(parent, text="题目预览（双击列表项查看完整题目）",
+                  style="Head.TLabel").grid(row=4, column=0, sticky="w", pady=(8, 3))
         self.bank_preview = scrolledtext.ScrolledText(
             parent, wrap="word", height=8, font=("", 12), background=LIGHT_PANEL,
             foreground=LIGHT_TEXT, insertbackground=LIGHT_TEXT, padx=10, pady=8)
-        self.bank_preview.grid(row=4, column=0, sticky="nsew", columnspan=2)
+        self.bank_preview.grid(row=5, column=0, sticky="nsew", columnspan=2)
         self.bank_preview.configure(state="disabled")
         self.bank_preview.tag_configure("title", font=("", 13, "bold"))
         self.bank_preview.tag_configure("label", font=("", 11, "bold"),
                                         foreground="#185FA5")
 
-        tools = ttk.Frame(parent, padding=(0, 8))
-        tools.grid(row=5, column=0, columnspan=2, sticky="ew")
-        ttk.Button(tools, text="导出 JSON", command=lambda: self.bank_export("json")).pack(
+        # 第六行：API 任务题库的工具栏
+        self.bank_tools_api = ttk.Frame(parent, padding=(0, 8))
+        self.bank_tools_api.grid(row=6, column=0, columnspan=2, sticky="ew")
+        t = self.bank_tools_api
+        self._bank_export_button(t).pack(side="left", padx=(0, 10))
+        ttk.Button(t, text="按任务导出", command=self.bank_export_by_task).pack(
+            side="left", padx=(0, 10))
+        ttk.Button(t, text="合并到全部题库",
+                   command=self.bank_merge_api).pack(side="left", padx=(0, 10))
+        ttk.Button(t, text="删除本任务题目",
+                   command=self.bank_delete_task).pack(side="left", padx=(0, 6))
+        ttk.Button(t, text="删除所选", command=self.bank_delete).pack(
             side="left", padx=(0, 6))
-        ttk.Button(tools, text="JSONL", command=lambda: self.bank_export("jsonl")).pack(
-            side="left", padx=(0, 6))
-        ttk.Button(tools, text="CSV", command=lambda: self.bank_export("csv")).pack(
-            side="left", padx=(0, 6))
-        ttk.Button(tools, text="Excel (.xlsx)",
-                   command=lambda: self.bank_export("xlsx")).pack(side="left", padx=(0, 6))
-        ttk.Button(tools, text="TSV", command=lambda: self.bank_export("tsv")).pack(
-            side="left", padx=(0, 8))
-        ttk.Button(tools, text="按任务导出 JSON",
-                   command=self.bank_export_by_task).pack(side="left", padx=(0, 14))
-        ttk.Button(tools, text="删除所选", command=self.bank_delete).pack(
-            side="left", padx=(0, 6))
-        ttk.Button(tools, text="清空题库", command=self.bank_clear).pack(
-            side="left", padx=(0, 6))
-        self.bank_lbl_msg = ttk.Label(tools, text="", foreground="#0F6E56")
+        ttk.Button(t, text="清空 API 题库", command=self.bank_clear).pack(side="left")
+        self.bank_lbl_msg = ttk.Label(t, text="", foreground="#0F6E56")
         self.bank_lbl_msg.pack(side="right")
-        ttk.Button(tools, text="刷新", command=self.bank_refresh).pack(side="right", padx=(0, 6))
-        ttk.Button(tools, text="打开数据目录",
+        ttk.Button(t, text="刷新", command=self.bank_refresh_tasks).pack(
+            side="right", padx=(0, 6))
+        ttk.Button(t, text="数据目录",
                    command=lambda: subprocess_open(api_config.data_dir())).pack(
             side="right", padx=(0, 6))
 
+        # 第七行：全部题库的工具栏（与上面同一位置，切换时显示其中一个）
+        self.bank_tools_all = ttk.Frame(parent, padding=(0, 8))
+        self.bank_tools_all.grid(row=6, column=0, columnspan=2, sticky="ew")
+        t2 = self.bank_tools_all
+        ttk.Button(t2, text="导入题库…", command=self.bank_import_files).pack(
+            side="left", padx=(0, 8))
+        ttk.Button(t2, text="从 API 题库合并…",
+                   command=self.bank_merge_api).pack(side="left", padx=(0, 12))
+        self._bank_export_button(t2).pack(side="left", padx=(0, 10))
+        ttk.Button(t2, text="删除所选", command=self.bank_delete).pack(
+            side="left", padx=(0, 6))
+        ttk.Button(t2, text="清空全部题库", command=self.bank_clear).pack(side="left")
+        self.bank_lbl_msg_all = ttk.Label(t2, text="", foreground="#0F6E56")
+        self.bank_lbl_msg_all.pack(side="right")
+        ttk.Button(t2, text="刷新", command=self.bank_refresh).pack(
+            side="right", padx=(0, 6))
+        ttk.Button(t2, text="数据目录",
+                   command=lambda: subprocess_open(api_config.data_dir())).pack(
+            side="right", padx=(0, 6))
+        self.bank_tools_all.grid_remove()
+
+        self.bank_refresh_tasks()
+        self._bank_apply_mode()
+
+    # ---- 模式 / 任务下拉 ----
+    def _bank_mode(self) -> str:
+        return self.bank_var_mode.get()
+
+    def _bank_task_id(self) -> str:
+        return self._bank_task_labels.get(self.bank_var_task.get(), "")
+
+    def _bank_task_names(self) -> Dict[str, str]:
+        try:
+            tasks = api_task.list_tasks(limit=0)
+        except Exception:  # noqa: BLE001
+            tasks = []
+        return {t["id"]: (t.get("name") or t["id"]) for t in tasks}
+
+    def bank_refresh_tasks(self):
+        """重建任务下拉：任务名 + 该任务已生成题数，尽量保留当前选择。"""
+        counts = api_bank.task_counts()
+        labels = ["全部任务"]
+        mapping = {"全部任务": ""}
+        used = {"全部任务"}
+        try:
+            tasks = api_task.list_tasks(limit=0)
+        except Exception:  # noqa: BLE001
+            tasks = []
+        for t in tasks:
+            name = (t.get("name") or t["id"]).strip()
+            short = name if len(name) <= 16 else name[:15] + "…"
+            label = f"{short} · {counts.get(t['id'], 0)} 题"
+            while label in used:
+                label += " "
+            used.add(label)
+            labels.append(label)
+            mapping[label] = t["id"]
+        current_id = self._bank_task_labels.get(self.bank_var_task.get(), None)
+        self._bank_task_labels = mapping
+        keep = next((lbl for lbl, tid in mapping.items() if tid == current_id),
+                    "全部任务")
+        self._bank_syncing = True
+        try:
+            self.bank_cmb_task.set_values(labels, keep=True)
+            self.bank_var_task.set(keep)
+        finally:
+            self._bank_syncing = False
         self.bank_refresh()
 
     def bank_on_stage_change(self):
@@ -2384,6 +2528,8 @@ class App:
 
     def bank_refresh(self):
         """筛选变化先排队 80ms，短时间内的多次改动合并成一次全库查询。"""
+        if getattr(self, "_bank_syncing", False):
+            return
         if getattr(self, "_bank_refresh_job", None) is not None:
             try:
                 self.root.after_cancel(self._bank_refresh_job)
@@ -2394,32 +2540,144 @@ class App:
         except Exception:
             self._bank_do_refresh()
 
+    def _bank_fit_columns(self, _event=None):
+        """题干列吃掉剩余宽度：窗口再窄也不会把最后一列挤出屏幕。"""
+        try:
+            mode = self._bank_mode()
+            cols = (self.bank_cols_api if mode == api_bank.BANK_API
+                    else self.bank_cols_all)
+            others = sum(int(self.bank_tree.column(c, "width"))
+                         for c in cols if c != "stem")
+            avail = self.bank_tree.winfo_width() - others - 2
+            if avail < 160:
+                return
+            if abs(int(self.bank_tree.column("stem", "width")) - avail) > 2:
+                self.bank_tree.column("stem", width=avail)
+        except Exception:  # noqa: BLE001 —— 界面还没就绪时忽略
+            pass
+
+    def _bank_today(self, bank: str) -> int:
+        today = time.strftime("%Y-%m-%d")
+        key = "imported_at" if bank == api_bank.BANK_ALL else "created_at"
+        return sum(1 for r in api_bank.load(bank)
+                   if str(r.get(key, "")).startswith(today))
+
     def _bank_do_refresh(self):
         self._bank_refresh_job = None
+        mode = self._bank_mode()
+        api_mode = mode == api_bank.BANK_API
+        if api_mode:
+            self._bank_sync_task_labels()
         rows = api_bank.query(
             q=self.bank_var_q.get(),
             subject=AI_SUBJECT.get(self.bank_var_subject.get(), ""),
             stage=AI_STAGE.get(self.bank_var_stage.get(), ""),
             grade=AI_GRADE.get(self.bank_var_grade.get(), ""),
-            difficulty=DIFFICULTY_CODE.get(self.bank_var_diff.get()))
+            difficulty=DIFFICULTY_CODE.get(self.bank_var_diff.get()),
+            task_id=self._bank_task_id() if api_mode else "",
+            bank=mode)
         self.bank_rows = rows                       # 导出用完整结果
-        self._bank_by_id = {r["id"]: r for r in rows}
+        self._bank_by_id = {}
+        names = self._bank_task_names()
         shown = rows[:2000]                         # 列表只渲染最近 2000 行
         self.bank_tree.delete(*self.bank_tree.get_children())
-        for rec in shown:
+        used_iid = set()
+        for row_index, rec in enumerate(shown):
             created = str(rec.get("created_at", ""))[5:16].replace("T", " ")
+            tid = str(rec.get("task_id") or "")
+            if rec.get("origin") == "api" and mode == api_bank.BANK_ALL:
+                origin = "API · " + _short_name(names.get(
+                    str(rec.get("origin_task_id") or tid), "任务"), 12)
+            elif mode == api_bank.BANK_ALL:
+                origin = "导入 · " + _short_name(
+                    os.path.basename(str(rec.get("origin_file") or "文件")), 14)
+            else:
+                origin = _short_name(names.get(tid, "未标记任务"))
+            iid = str(rec.get("id") or f"row-{row_index}")
+            base_iid, n = iid, 2
+            while iid in used_iid:                  # 极少数脏数据会撞 id
+                iid = f"{base_iid}#{n}"
+                n += 1
+            used_iid.add(iid)
+            self._bank_by_id[iid] = rec
             self.bank_tree.insert(
-                "", "end", iid=rec["id"],
+                "", "end", iid=iid,
                 values=(store.SUBJECT_NAMES.get(rec.get("subject", ""),
                                                 rec.get("subject", "")),
                         rec.get("grade_label", ""), rec.get("topic_name", ""),
                         rec.get("stem", "")[:80], rec.get("answer", ""),
-                        _diff_label(rec.get("difficulty", "")), created))
-        s = api_bank.stats()
-        extra = f" ｜ 列表显示最近 {len(shown)} 题" if len(rows) > len(shown) else ""
-        self.bank_lbl_stats.configure(
-            text=f"共 {s['total']} 题 · 覆盖 {s['topics']} 个知识点 · 今日 +{s['today']}"
-                 f" ｜ 当前 {len(rows)} 题{extra}")
+                        _diff_label(rec.get("difficulty", "")), origin, created))
+
+        api_n = api_bank.stats(api_bank.BANK_API)["total"]
+        all_n = api_bank.stats(api_bank.BANK_ALL)["total"]
+        self._bank_mode_tabs[api_bank.BANK_API].configure(
+            text=f"API 任务题库 · {api_n:,}")
+        self._bank_mode_tabs[api_bank.BANK_ALL].configure(
+            text=f"全部题库 · {all_n:,}")
+
+        s = api_bank.stats(mode)
+        today = self._bank_today(mode)
+        extra = f" · 仅显示最近 {len(shown)} 题" if len(rows) > len(shown) else ""
+        if not api_mode and s["total"] == 0:
+            self.bank_lbl_stats.configure(
+                text="全部题库还是空的 —— 点「导入题库…」或「从 API 题库合并…」开始")
+        else:
+            self.bank_lbl_stats.configure(
+                text=f"共 {s['total']} 题 · {s['topics']} 知识点 · "
+                     f"今日 +{today} ｜ 当前 {len(rows)} 题{extra}")
+        if not rows:
+            self._bank_show_hint()
+
+    def _bank_sync_task_labels(self):
+        """任务名后面的题数会随生成变化，静默刷新选项（不动当前选择）。"""
+        counts = api_bank.task_counts()
+        mapping = {"全部任务": ""}
+        labels = ["全部任务"]
+        used = {"全部任务"}
+        for tid, name in self._bank_task_names().items():
+            short = name if len(name) <= 16 else name[:15] + "…"
+            label = f"{short} · {counts.get(tid, 0)} 题"
+            while label in used:
+                label += " "
+            used.add(label)
+            labels.append(label)
+            mapping[label] = tid
+        if labels == list(self._bank_task_labels.keys()):
+            return                                   # 选项没变就不重建菜单
+        current_id = self._bank_task_id()
+        self._bank_task_labels = mapping
+        keep = next((lbl for lbl, tid in mapping.items() if tid == current_id),
+                    "全部任务")
+        self._bank_syncing = True
+        try:
+            self.bank_cmb_task.set_values(labels, keep=True)
+            self.bank_var_task.set(keep)
+        finally:
+            self._bank_syncing = False
+
+    def _bank_show_hint(self):
+        self.bank_preview.configure(state="normal")
+        self.bank_preview.delete("1.0", "end")
+        if self._bank_mode() == api_bank.BANK_ALL:
+            self.bank_preview.insert(
+                "end", "「全部题库」还没有题目\n\n", ("title",))
+            self.bank_preview.insert(
+                "end", "1. 点「导入题库…」把 JSON / JSONL / CSV / TSV / Excel / TXT "
+                       "题库合并进来；\n2. 或点「从 API 题库合并…」把大模型生成的题一键并进来。\n\n"
+                       "导入时会按题干 + 选项自动排重，重复题直接过滤，不用手工核对。")
+        else:
+            total = api_bank.stats(api_bank.BANK_API)["total"]
+            self.bank_preview.insert(
+                "end", "当前没有题目\n\n", ("title",))
+            if total:
+                self.bank_preview.insert(
+                    "end", "这个任务 / 当前筛选下没有题。换个任务，或清空搜索词、点「重置」；"
+                           "如果任务还没跑，去「大模型API生成」点「继续」。")
+            else:
+                self.bank_preview.insert(
+                    "end", "API 题库还是空的 —— 先去「大模型API生成」跑一个任务，"
+                           "生成结果会自动进入这里。")
+        self.bank_preview.configure(state="disabled")
 
     def bank_reset_filters(self):
         self.bank_var_q.set("")
@@ -2428,6 +2686,7 @@ class App:
         self.bank_cmb_grade.set_values(["全部"] + STAGE_GRADE_LABELS[""], keep=False)
         self.bank_var_grade.set("全部")
         self.bank_var_diff.set("全部")
+        self.bank_var_task.set("全部任务")
         self.bank_refresh()
 
     def bank_on_select(self, _event=None):
@@ -2437,6 +2696,7 @@ class App:
         rec = self._bank_by_id.get(sel[0])
         if not rec:
             return
+        names = self._bank_task_names()
         self.bank_preview.configure(state="normal")
         self.bank_preview.delete("1.0", "end")
         self.bank_preview.insert("end", f"{rec.get('topic_name', '')}\n", ("title",))
@@ -2444,12 +2704,20 @@ class App:
             "end", f"题目ID: {rec.get('id', '')}    知识点ID: {rec.get('topic_id', '')}    "
                    f"册: {rec.get('volume_title', '')}\n")
         tid = str(rec.get("task_id") or "")
-        if tid:
-            origin = api_task.load_task(tid)
-            task_name = (origin or {}).get("name") or f"{tid}（任务已删除）"
+        if rec.get("origin") == "api":
+            src_tid = str(rec.get("origin_task_id") or tid)
+            origin = "从 API 题库合并 · " + names.get(src_tid, f"{src_tid}（任务已删除）")
+        elif rec.get("origin") == "import":
+            origin = "导入 · " + str(rec.get("origin_file") or "未知文件")
+        elif tid:
+            origin = "API 生成 · " + names.get(tid, f"{tid}（任务已删除）")
         else:
-            task_name = "未标记任务"
-        self.bank_preview.insert("end", f"任务: {task_name}\n\n")
+            origin = "未标记来源"
+        self.bank_preview.insert("end", f"来源: {origin}\n")
+        if rec.get("imported_at"):
+            self.bank_preview.insert(
+                "end", f"入库时间: {rec.get('imported_at', '')}\n")
+        self.bank_preview.insert("end", "\n")
         self.bank_preview.insert("end", f"【题干】{rec.get('stem', '')}\n")
         for i, opt in enumerate(rec.get("options") or []):
             self.bank_preview.insert("end", f"{'ABCD'[i]}. {opt}\n")
@@ -2465,20 +2733,87 @@ class App:
             "end", f"模型: {rec.get('model', '')}    生成时间: {rec.get('created_at', '')}")
         self.bank_preview.configure(state="disabled")
 
+    # ---- 导入 / 合并 ----
+    def _bank_busy(self, busy: bool, text: str = ""):
+        self.root.configure(cursor="watch" if busy else "")
+        if text:
+            self.lbl_msg.configure(text=text)
+        self.root.update_idletasks()
+
+    def bank_import_files(self):
+        paths = filedialog.askopenfilenames(
+            parent=self.root, title="导入题库到「全部题库」（可多选）",
+            initialdir=os.path.expanduser("~/Desktop"),
+            filetypes=[("题库文件", "*.json *.jsonl *.csv *.tsv *.txt *.xlsx *.xlsm"),
+                       ("JSON", "*.json *.jsonl"), ("表格", "*.csv *.tsv *.xlsx *.xlsm"),
+                       ("文本", "*.txt"), ("所有文件", "*.*")])
+        if not paths:
+            return
+        self._bank_busy(True, "正在导入并排重…")
+        try:
+            result = bank_import.import_paths(list(paths))
+        except Exception as exc:  # noqa: BLE001
+            self._bank_busy(False)
+            messagebox.showerror("导入失败", f"{type(exc).__name__}: {exc}")
+            return
+        finally:
+            self._bank_busy(False)
+        self.bank_refresh_tasks()
+        self.bank_lbl_msg_all.configure(
+            text=f"导入完成：+{result.added} 题，过滤重复 {result.duplicate} 题")
+        self._update_status()
+        messagebox.showinfo("导入结果", result.summary(f"导入 {result.files} 个文件"))
+
+    def bank_merge_api(self):
+        mode = self._bank_mode()
+        task_id = self._bank_task_id() if mode == api_bank.BANK_API else ""
+        if task_id:
+            scope = f"任务「{self.bank_var_task.get().split(' · ')[0]}」"
+            total = len(api_bank.rows_for_task(task_id))
+        else:
+            scope = "API 题库的全部题"
+            total = api_bank.stats(api_bank.BANK_API)["total"]
+        if not total:
+            messagebox.showinfo("没有可合并的题",
+                                "API 题库还是空的，先去「大模型API生成」跑一个任务。")
+            return
+        if not messagebox.askyesno(
+                "合并到全部题库",
+                f"把{scope}（{total} 题）合并进「全部题库」？\n\n"
+                "题干和选项都相同的题会自动跳过，不会重复入库。\n"
+                "两边互不影响：之后在任一库删除，都不会动另一个库。"):
+            return
+        self._bank_busy(True, "正在合并并排重…")
+        try:
+            result = bank_import.merge_from_api(task_id)
+        except Exception as exc:  # noqa: BLE001
+            self._bank_busy(False)
+            messagebox.showerror("合并失败", f"{type(exc).__name__}: {exc}")
+            return
+        finally:
+            self._bank_busy(False)
+        self.bank_refresh_tasks()
+        label = self.bank_lbl_msg_all if mode == api_bank.BANK_ALL else self.bank_lbl_msg
+        label.configure(text=f"合并完成：+{result.added} 题，跳过重复 {result.duplicate} 题")
+        self._update_status()
+        messagebox.showinfo("合并结果", result.summary("合并到全部题库"))
+
+    # ---- 导出 / 删除 ----
     def bank_export(self, fmt: str):
         rows = self.bank_rows
         if not rows:
-            messagebox.showinfo("没有题目", "当前筛选结果为空。可先点「刷新」，或先去「API 生成」产出题目。")
+            messagebox.showinfo("没有题目", "当前筛选结果为空。可先点「刷新」，或换个筛选条件。")
             return
         ext = fmt
         kinds = {"json": ("JSON 文件", "*.json"), "jsonl": ("JSON Lines", "*.jsonl"),
                  "csv": ("CSV 文件", "*.csv"), "tsv": ("TSV（Excel 可打开）", "*.tsv"),
                  "xlsx": ("Excel 工作簿", "*.xlsx")}
         label, pattern = kinds.get(fmt, ("所有文件", "*.*"))
+        bank_name = "API题库" if self._bank_mode() == api_bank.BANK_API else "全部题库"
         path = filedialog.asksaveasfilename(
-            parent=self.root, title=f"导出题库 {len(rows)} 题",
+            parent=self.root, title=f"导出{bank_name} {len(rows)} 题",
             initialdir=os.path.expanduser("~/Desktop"),
-            initialfile=f"K12题库_{time.strftime('%Y%m%d')}.{ext}",
+            initialfile=f"K12{bank_name}_{time.strftime('%Y%m%d')}.{ext}",
             defaultextension=f".{ext}", filetypes=[(label, pattern), ("所有文件", "*.*")])
         if not path:
             return
@@ -2487,8 +2822,32 @@ class App:
         except Exception as exc:  # noqa: BLE001
             messagebox.showerror("导出失败", f"{type(exc).__name__}: {exc}")
             return
-        self.bank_lbl_msg.configure(text=f"已导出 {n} 题 → {os.path.basename(path)}")
-        self.toast(f"题库已导出：{os.path.basename(path)}")
+        msg = f"已导出 {n} 题 → {os.path.basename(path)}"
+        self._bank_msg_label().configure(text=msg)
+        self.toast(f"{bank_name}已导出：{os.path.basename(path)}")
+
+    def _bank_export_button(self, parent):
+        """一个「导出 ▾」按钮，点开选格式，比排五个按钮省地方。"""
+        btn = ttk.Button(parent, text="导出 ▾")
+        btn.configure(command=lambda: self._bank_export_popup(btn))
+        return btn
+
+    def _bank_export_popup(self, btn):
+        menu = tk.Menu(self.root, tearoff=0)
+        for label, fmt in (("JSON", "json"), ("JSONL", "jsonl"), ("CSV", "csv"),
+                           ("Excel (.xlsx)", "xlsx"), ("TSV", "tsv")):
+            menu.add_command(label=label,
+                             command=lambda f=fmt: self.bank_export(f))
+        try:
+            menu.tk_popup(btn.winfo_rootx(),
+                          btn.winfo_rooty() + btn.winfo_height())
+        finally:
+            menu.grab_release()
+            menu.destroy()
+
+    def _bank_msg_label(self):
+        return (self.bank_lbl_msg if self._bank_mode() == api_bank.BANK_API
+                else self.bank_lbl_msg_all)
 
     def bank_export_by_task(self):
         """一个任务一个 JSON，文件名就是任务名（重名自动加序号）。"""
@@ -2535,26 +2894,54 @@ class App:
         if not sel:
             messagebox.showinfo("提示", "请先在列表里选择要删除的题目（可按住 Command 多选）。")
             return
-        if not messagebox.askyesno("删除题目", f"确定删除选中的 {len(sel)} 道题？\n"
-                                             "删除前会自动备份题库文件。"):
+        bank_name = api_bank.BANK_LABELS[self._bank_mode()]
+        if not messagebox.askyesno("删除题目", f"确定从「{bank_name}」删除选中的 {len(sel)} 道题？\n"
+                                             "删除前会自动备份题库文件，另一个库不受影响。"):
             return
-        removed = api_bank.delete(sel)
-        self.bank_refresh()
+        ids = [str((self._bank_by_id.get(i) or {}).get("id") or i) for i in sel]
+        removed = api_bank.delete(ids, bank=self._bank_mode())
+        self.bank_refresh_tasks() if self._bank_mode() == api_bank.BANK_API else self.bank_refresh()
+        self._update_status()
+        self._bank_msg_label().configure(text=f"已删除 {removed} 题")
+
+    def bank_delete_task(self):
+        task_id = self._bank_task_id()
+        if not task_id:
+            messagebox.showinfo("先选任务",
+                                "当前是「全部任务」。请先在任务下拉里选一个具体任务，再点这个按钮。")
+            return
+        n = len(api_bank.rows_for_task(task_id))
+        if not n:
+            messagebox.showinfo("提示", "这个任务还没有生成任何题目。")
+            return
+        if not messagebox.askyesno(
+                "删除本任务题目",
+                f"从「API 任务题库」删除这个任务的全部 {n} 道题？\n\n"
+                "任务本身与进度记录保留（可以继续生成）；「全部题库」里的题不受影响。\n"
+                "删除前会自动备份。"):
+            return
+        removed = api_bank.delete_by_task(task_id)
+        self.bank_refresh_tasks()
         self._update_status()
         self.bank_lbl_msg.configure(text=f"已删除 {removed} 题")
 
     def bank_clear(self):
-        total = api_bank.stats()["total"]
+        bank = self._bank_mode()
+        bank_name = api_bank.BANK_LABELS[bank]
+        total = api_bank.stats(bank)["total"]
         if not total:
-            messagebox.showinfo("提示", "题库已经是空的。")
+            messagebox.showinfo("提示", f"「{bank_name}」已经是空的。")
             return
-        if not messagebox.askyesno("清空题库", f"将删除全部 {total} 道题，并先备份到数据目录。\n"
-                                             "确定继续？"):
+        extra = ("\n「全部题库」里的题不受影响。" if bank == api_bank.BANK_API
+                 else "\nAPI 任务题库不受影响。")
+        if not messagebox.askyesno(f"清空{bank_name}",
+                                   f"将删除「{bank_name}」全部 {total} 道题，并先备份到数据目录。"
+                                   f"{extra}\n确定继续？"):
             return
-        removed = api_bank.clear()
-        self.bank_refresh()
+        removed = api_bank.clear(bank)
+        self.bank_refresh_tasks() if bank == api_bank.BANK_API else self.bank_refresh()
         self._update_status()
-        self.bank_lbl_msg.configure(text=f"已清空 {removed} 题（已备份）")
+        self._bank_msg_label().configure(text=f"已清空 {removed} 题（已备份）")
 
     def _on_tab_changed(self, _event=None):
         try:
@@ -3058,11 +3445,13 @@ class App:
         parts = [f"{store.STAGE_NAMES[k]} {v.get('chinese',0)+v.get('math',0)+v.get('english',0)}"
                  for k, v in s["by_stage"].items()]
         try:
-            bank_total = api_bank.stats()["total"]
+            api_total = api_bank.stats(api_bank.BANK_API)["total"]
+            all_total = api_bank.stats(api_bank.BANK_ALL)["total"]
         except Exception:  # noqa: BLE001
-            bank_total = 0
+            api_total = all_total = 0
         self.lbl_stat.configure(
-            text=f"{s['volumes']} 册 · {s['points']} 知识点 · 题库 {bank_total} 题 · "
+            text=f"{s['volumes']} 册 · {s['points']} 知识点 · "
+                 f"题库 {api_total}（API）+ {all_total}（全部） · "
                  + " / ".join(parts))
 
     def toast(self, msg: str):
@@ -3130,22 +3519,29 @@ class App:
 20. Key 无效、模型不存在、证书校验失败会立即中止全部并发并给出处理步骤；
     单题解析失败只影响该批，不会拖垮整个任务。返回的题目会自动校验选项、答案、
     解析与难度，重复题干按 id 去重，不会重复入库。
-21. 生成结果直接写入「题库」，可以继续筛选、预览、删除与导出。
+21. 生成结果直接写入「API 任务题库」，可以继续筛选、预览、删除与导出。
 
 【模块四 · 题库】
-22. 列表最新在前，可按关键词 / 学段 / 学科 / 年级 / 难度筛选（学段选定后年级只
-    列出该学段的年级）；选中即可看完整题目与解析，预览里会写明这道题来自哪个任务。
-23. 导出当前筛选结果：JSON / JSONL / CSV / Excel(.xlsx) / TSV，
-    默认文件名 K12题库_日期，适合给其他程序或表格工具调用。
-    「按任务导出 JSON」选一个文件夹，会为每个任务写一份「任务名.json」。
-24. 「删除所选」「清空题库」前都会自动备份到数据目录 backups/，可手动找回。
-25. 数据位置：菜单「文件 → 打开 API 数据目录」。其中 config.json 是接口配置，
-    questions.jsonl 是题库，tasks/ 是任务进度，exports/ 是每个任务的 JSON 存档
-    （也可用「文件 → 打开任务 JSON 目录」直接打开）。
+22. 题库分两套，页面顶部切换：
+    · API 任务题库：大模型生成的题，按任务管理。任务下拉选「全部任务」看全部，
+      选某个任务只看该任务生成的题；「删除本任务题目」只删题，任务与进度保留。
+    · 全部题库：导入的题与从 API 题库合并来的题，统一在这里管理。
+23. 「全部题库」支持导入 JSON / JSONL / CSV / TSV / Excel(.xlsx) / TXT，可一次多选；
+    表头中英文都认（题干 / question、选项A / option_a…）。导入按「题干 + 选项」
+    自动排重，重复题过滤；题干选项相同但答案不同的算冲突，同样过滤并报数。
+    TXT 按空行分块：题干 / A. B. C. D. / 答案：X / 解析：…
+24. 「合并到全部题库」把当前任务（或全部任务）的题一键并进全部题库，同样排重。
+    两套库互相独立：在一边删除不影响另一边。
+25. 导出当前筛选结果：JSON / JSONL / CSV / Excel(.xlsx) / TSV，文件名带库名与日期。
+    「按任务导出」为每个任务写一份「任务名.json」。
+26. 「删除所选」「清空题库」前都会自动备份到数据目录 backups/，可手动找回。
+27. 数据位置：菜单「文件 → 打开 API 数据目录」。config.json 是接口配置，
+    questions.jsonl 是 API 任务题库，all_questions.jsonl 是全部题库，
+    tasks/ 是任务进度，exports/ 是每个任务的 JSON 存档。
 
 【其它】
-26. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
-27. volumes/ 是 data/*.py 生成的产物；要永久固化修改，请同步回源文件再运行
+28. 工具菜单的「本地模板引擎（旧）」保留旧的内容感知直接出题，仅作对比。
+29. volumes/ 是 data/*.py 生成的产物；要永久固化修改，请同步回源文件再运行
     build_volumes.py。""")
 
     def about_dialog(self):
@@ -3153,13 +3549,15 @@ class App:
         info = store.original_info() or {}
         original = (f"出厂配置：{info.get('volumes')} 册 / {info.get('points')} 知识点\n"
                     if info else "")
-        bank = api_bank.stats()
+        bank = api_bank.stats(api_bank.BANK_API)
+        all_bank = api_bank.stats(api_bank.BANK_ALL)
         messagebox.showinfo(
             "关于",
             f"{APP_TITLE}\nv{VERSION}\n\n"
             f"当前：{s['volumes']} 册 / {s['points']} 知识点\n"
             f"{original}"
-            f"题库：{bank['total']} 题（覆盖 {bank['topics']} 个知识点）\n\n"
+            f"API 任务题库：{bank['total']} 题（覆盖 {bank['topics']} 个知识点）\n"
+            f"全部题库：{all_bank['total']} 题（覆盖 {all_bank['topics']} 个知识点）\n\n"
             "出题方式：生成提示词 / 大模型 API 生成（OpenAI 兼容 · Claude · Gemini）\n"
             "内容感知型模板引擎 · Python 标准库 + Tcl/Tk")
 

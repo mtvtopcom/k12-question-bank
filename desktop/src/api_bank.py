@@ -1,22 +1,34 @@
 #!/usr/bin/env python3
 """本地题库：JSONL 追加存储、去重、筛选、多格式导出。
 
-题库文件位于用户数据目录（questions.jsonl），一行一道题，便于外部程序流式读取。
+两套独立的库，各占一个 JSONL 文件，一行一道题，便于外部程序流式读取：
+- ``api``：大模型 API 任务生成的题，每条带 task_id，可按任务切换查看；
+- ``all``：全部题库，只装用户导入的题和从 API 库一键合并过来的题。
+
+去重：API 库按 id（同一任务重跑不重复入库）；全部题库按「题干 + 选项」的
+内容指纹（同一道题换个 id、换个来源也不会重复进来）。
+
 导出支持 JSON / JSONL / CSV / TSV / XLSX，全部用标准库实现（XLSX 直接写 OOXML）。
 """
 from __future__ import annotations
 
 import csv
 import datetime as dt
+import hashlib
 import io
 import json
 import os
 import re
 import shutil
+import unicodedata
 import zipfile
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 import api_config
+
+BANK_API = "api"
+BANK_ALL = "all"
+BANK_LABELS = {BANK_API: "API 任务题库", BANK_ALL: "全部题库"}
 
 # (记录字段, 导出表头)
 TABLE_COLUMNS: List[Tuple[str, str]] = [
@@ -41,9 +53,15 @@ TABLE_COLUMNS: List[Tuple[str, str]] = [
     ("created_at", "生成时间"),
 ]
 
-_cache: Dict[str, Any] = {"key": None, "rows": []}
+_cache: Dict[str, Dict[str, Any]] = {}
+_fp_cache: Dict[str, Any] = {"key": {}, "set": {}}
 
 _BAD_FILENAME = re.compile(r'[\\/:*?"<>|\x00-\x1f]+')
+
+# 归一化时去掉的标点（保留 + - * / = 等算式符号，避免「3-1」与「31」误判重复）
+_NORM_DROP = re.compile(
+    "[\u3000\\s,，。.、;；:：!！?？'\"“”‘’()（）\\[\\]【】{}《》〈〉"
+    "—－_·…]+")
 
 
 def safe_filename(name: Any, fallback: str = "任务") -> str:
@@ -53,9 +71,31 @@ def safe_filename(name: Any, fallback: str = "任务") -> str:
     return (text[:80].strip().strip(".") or fallback)
 
 
+# ---------------- 去重指纹 ----------------
+def _norm_text(value: Any) -> str:
+    """题干 / 选项归一化：全角转半角、小写、去空白与句读标点。"""
+    text = unicodedata.normalize("NFKC", str(value or "")).lower()
+    return _NORM_DROP.sub("", text)
+
+
+def fingerprint(rec: Dict[str, Any]) -> str:
+    """内容指纹 = 归一化题干 + 归一化选项（按 A~D 顺序）。"""
+    options = rec.get("options") or []
+    if not isinstance(options, (list, tuple)):
+        options = []
+    parts = [_norm_text(rec.get("stem"))]
+    parts += [_norm_text(o) for o in list(options)[:4]]
+    raw = "\x1f".join(parts)
+    return hashlib.sha1(raw.encode("utf-8")).hexdigest()[:16]
+
+
 # ---------------- 读写 ----------------
-def _key() -> Optional[Tuple[int, int]]:
-    path = api_config.bank_path()
+def _path(bank: str) -> str:
+    return api_config.bank_path(bank)
+
+
+def _key(bank: str) -> Optional[Tuple[int, int]]:
+    path = _path(bank)
     try:
         st = os.stat(path)
     except OSError:
@@ -63,13 +103,14 @@ def _key() -> Optional[Tuple[int, int]]:
     return (st.st_mtime_ns, st.st_size)
 
 
-def load(force: bool = False) -> List[Dict[str, Any]]:
-    """按文件顺序返回全部题目（旧 → 新）；解析失败的行跳过。"""
-    key = _key()
-    if not force and key == _cache["key"]:
-        return list(_cache["rows"])
+def load(bank: str = BANK_API, force: bool = False) -> List[Dict[str, Any]]:
+    """按文件顺序返回某个库的全部题目（旧 → 新）；解析失败的行跳过。"""
+    slot = _cache.setdefault(bank, {"key": None, "rows": []})
+    key = _key(bank)
+    if not force and key == slot["key"]:
+        return list(slot["rows"])
     rows: List[Dict[str, Any]] = []
-    path = api_config.bank_path()
+    path = _path(bank)
     if key is not None:
         with open(path, encoding="utf-8") as f:
             for line in f:
@@ -82,52 +123,86 @@ def load(force: bool = False) -> List[Dict[str, Any]]:
                     continue
                 if isinstance(obj, dict) and obj.get("stem"):
                     rows.append(obj)
-    _cache["key"] = key
-    _cache["rows"] = rows
+    slot["key"] = key
+    slot["rows"] = rows
     return list(rows)
 
 
-def existing_ids(force: bool = False) -> set:
-    return {r.get("id", "") for r in load(force=force) if r.get("id")}
+def existing_ids(bank: str = BANK_API, force: bool = False) -> set:
+    return {r.get("id", "") for r in load(bank, force=force) if r.get("id")}
+
+
+def existing_fingerprints(bank: str = BANK_ALL,
+                          force: bool = False) -> Set[str]:
+    """某库已有的内容指纹集合（按文件 mtime/size 缓存，避免重复计算）。"""
+    key = _key(bank)
+    if not force and _fp_cache["key"].get(bank) == key and _fp_cache["set"].get(bank):
+        return set(_fp_cache["set"][bank])
+    fps = {fingerprint(r) for r in load(bank, force=force)}
+    _fp_cache["key"][bank] = key
+    _fp_cache["set"][bank] = fps
+    return set(fps)
 
 
 def rows_for_task(task_id: str) -> List[Dict[str, Any]]:
-    """某个任务生成的全部题目（文件顺序，旧 → 新）。"""
+    """某个任务生成的全部题目（API 库，文件顺序，旧 → 新）。"""
     if not task_id:
         return []
-    return [r for r in load() if r.get("task_id") == task_id]
+    return [r for r in load(BANK_API) if r.get("task_id") == task_id]
 
 
-def append(records: Sequence[Dict[str, Any]], known: Optional[set] = None) -> int:
-    """追加题目，按 id 去重；known 可传入已知 id 集合避免重复读文件。"""
+def append(records: Sequence[Dict[str, Any]], known: Optional[set] = None,
+           bank: str = BANK_API, known_fps: Optional[Set[str]] = None) -> int:
+    """追加题目并去重；known / known_fps 可传入已知集合，避免重复读文件。
+
+    API 库按 id 去重；全部题库同时按内容指纹去重（同一道题不同来源只留一份）。
+    """
     if not records:
         return 0
-    known_ids = existing_ids() if known is None else known
-    fresh = [r for r in records if r.get("id") and r["id"] not in known_ids]
+    known_ids = existing_ids(bank) if known is None else set(known)
+    if known_fps is not None:
+        known_fps = set(known_fps)
+    elif bank == BANK_ALL:
+        known_fps = existing_fingerprints(bank)
+    else:
+        known_fps = set()
+    fresh: List[Dict[str, Any]] = []
+    for r in records:
+        rid = r.get("id")
+        if not rid or rid in known_ids:
+            continue
+        fp = fingerprint(r)
+        if bank == BANK_ALL and fp in known_fps:
+            continue
+        known_ids.add(rid)
+        known_fps.add(fp)
+        fresh.append(r)
     if not fresh:
         return 0
-    path = api_config.bank_path()
+    path = _path(bank)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "a", encoding="utf-8") as f:
         for rec in fresh:
             f.write(json.dumps(rec, ensure_ascii=False) + "\n")
         f.flush()
         os.fsync(f.fileno())
-    _cache["key"] = None
+    _cache[bank] = {"key": None, "rows": []}
+    _fp_cache["key"][bank] = None
     return len(fresh)
 
 
-def _backup() -> str:
-    """破坏性操作前备份题库，最多保留 20 份。"""
-    path = api_config.bank_path()
+def _backup(bank: str = BANK_API) -> str:
+    """破坏性操作前备份题库，每个库最多保留 20 份。"""
+    path = _path(bank)
     if not os.path.exists(path):
         return ""
     folder = os.path.join(api_config.data_dir(), "backups")
     os.makedirs(folder, exist_ok=True)
     stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S-%f")
-    dest = os.path.join(folder, f"questions-{stamp}.jsonl")
+    prefix = "all-questions" if bank == BANK_ALL else "questions"
+    dest = os.path.join(folder, f"{prefix}-{stamp}.jsonl")
     shutil.copy2(path, dest)
-    old = sorted(f for f in os.listdir(folder) if f.startswith("questions-"))
+    old = sorted(f for f in os.listdir(folder) if f.startswith(prefix + "-"))
     for name in old[:-20]:
         try:
             os.remove(os.path.join(folder, name))
@@ -136,8 +211,8 @@ def _backup() -> str:
     return dest
 
 
-def _rewrite(rows: Iterable[Dict[str, Any]]) -> None:
-    path = api_config.bank_path()
+def _rewrite(rows: Iterable[Dict[str, Any]], bank: str = BANK_API) -> None:
+    path = _path(bank)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     tmp = path + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
@@ -146,36 +221,49 @@ def _rewrite(rows: Iterable[Dict[str, Any]]) -> None:
         f.flush()
         os.fsync(f.fileno())
     os.replace(tmp, path)
-    _cache["key"] = None
-    _cache["rows"] = []
+    _cache[bank] = {"key": None, "rows": []}
+    _fp_cache["key"][bank] = None
 
 
-def delete(ids: Iterable[str]) -> int:
+def delete(ids: Iterable[str], bank: str = BANK_API) -> int:
     """删除指定 id 的题目；返回删除条数。"""
     targets = {str(i) for i in ids}
     if not targets:
         return 0
-    rows = load(force=True)
+    rows = load(bank, force=True)
     keep = [r for r in rows if r.get("id") not in targets]
     removed = len(rows) - len(keep)
     if removed:
-        _backup()
-        _rewrite(keep)
+        _backup(bank)
+        _rewrite(keep, bank)
     return removed
 
 
-def clear() -> int:
-    rows = load(force=True)
+def delete_by_task(task_id: str) -> int:
+    """删除某个 API 任务生成的全部题目（只动 API 库）。"""
+    if not task_id:
+        return 0
+    rows = load(BANK_API, force=True)
+    keep = [r for r in rows if r.get("task_id") != task_id]
+    removed = len(rows) - len(keep)
+    if removed:
+        _backup(BANK_API)
+        _rewrite(keep, BANK_API)
+    return removed
+
+
+def clear(bank: str = BANK_API) -> int:
+    rows = load(bank, force=True)
     if not rows:
         return 0
-    _backup()
-    path = api_config.bank_path()
+    _backup(bank)
+    path = _path(bank)
     try:
         os.remove(path)
     except OSError:
-        _rewrite([])
-    _cache["key"] = None
-    _cache["rows"] = []
+        _rewrite([], bank)
+    _cache[bank] = {"key": None, "rows": []}
+    _fp_cache["key"][bank] = None
     return len(rows)
 
 
@@ -198,11 +286,14 @@ def stage_of(rec: Dict[str, Any]) -> str:
 
 def query(q: str = "", subject: str = "", grade: str = "", stage: str = "",
           difficulty: Optional[int] = None, topic_id: str = "",
+          task_id: str = "", bank: str = BANK_API,
           limit: int = 0) -> List[Dict[str, Any]]:
     """筛选题目，按生成时间倒序（最新在前）。"""
     text = (q or "").strip().lower()
     rows = []
-    for rec in reversed(load()):
+    for rec in reversed(load(bank)):
+        if task_id and str(rec.get("task_id") or "") != task_id:
+            continue
         if subject and rec.get("subject") != subject:
             continue
         if grade and rec.get("grade") != grade:
@@ -224,18 +315,27 @@ def query(q: str = "", subject: str = "", grade: str = "", stage: str = "",
     return rows
 
 
-def stats() -> Dict[str, Any]:
-    rows = load()
+def stats(bank: str = BANK_API) -> Dict[str, Any]:
+    rows = load(bank)
     today = dt.date.today().isoformat()
     by_subject: Dict[str, int] = {}
+    by_task: Dict[str, int] = {}
     topics = set()
     for rec in rows:
         by_subject[rec.get("subject", "")] = by_subject.get(rec.get("subject", ""), 0) + 1
+        tid = str(rec.get("task_id") or "")
+        if tid:
+            by_task[tid] = by_task.get(tid, 0) + 1
         if rec.get("topic_id"):
             topics.add(rec["topic_id"])
     return {"total": len(rows), "topics": len(topics),
             "today": sum(1 for r in rows if str(r.get("created_at", "")).startswith(today)),
-            "by_subject": by_subject}
+            "by_subject": by_subject, "by_task": by_task}
+
+
+def task_counts() -> Dict[str, int]:
+    """API 库里每个任务的题目数（任务 id → 题数）。"""
+    return dict(stats(BANK_API)["by_task"])
 
 
 # ---------------- 导出 ----------------

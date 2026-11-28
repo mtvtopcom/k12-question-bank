@@ -93,8 +93,10 @@ def config_path() -> str:
     return os.path.join(data_dir(), "config.json")
 
 
-def bank_path() -> str:
-    return os.path.join(data_dir(), "questions.jsonl")
+def bank_path(bank: str = "api") -> str:
+    """题库文件：api = 大模型生成的任务题库；all = 导入合并后的全部题库。"""
+    name = "all_questions.jsonl" if bank == "all" else "questions.jsonl"
+    return os.path.join(data_dir(), name)
 
 
 def tasks_dir() -> str:
