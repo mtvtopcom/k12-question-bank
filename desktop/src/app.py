@@ -27,7 +27,7 @@ import api_config  # noqa: E402
 import api_task  # noqa: E402
 
 APP_TITLE = "K12 题库工厂"
-VERSION = "1.13.0"
+VERSION = "1.13.1"
 
 # 难度 1-4 的文字描述（界面统一显示，不再写「难度1」）
 DIFFICULTY_LABEL = {1: "容易", 2: "中等", 3: "较难", 4: "难"}
@@ -196,7 +196,9 @@ class HelpDot(tk.Label):
 
 
 # 全局固定浅色配色（不做昼夜模式，始终使用白天的默认色）
-LIGHT_BG = "#F5F5F7"
+# ECECEC 与 macOS 浅色窗口背景（windowBackgroundColor）一致：ttk 控件的底色由
+# 系统绘制、改不了，只有取同一个值才不会在窗口里看到一块块色差。
+LIGHT_BG = "#ECECEC"
 LIGHT_PANEL = "#FFFFFF"
 LIGHT_TEXT = "#1D1D1F"
 
@@ -220,6 +222,50 @@ def use_light_appearance(win) -> None:
                     pass
 
     apply()
+
+
+def force_light_theme() -> None:
+    """把整个 App 固定为浅色（Aqua）外观，彻底不跟随 macOS 深色模式。
+
+    Tk 自带的 tk::unsupported::MacWindowStyle 只能逐窗口设置外观，系统原生
+    的提示框、下拉菜单、标题栏仍会跟着系统变黑。这里直接调 AppKit 把
+    NSApp 的 appearance 设成 Aqua，一次覆盖全部原生绘制。
+    """
+    if sys.platform != "darwin":
+        return
+    try:
+        import ctypes
+        import ctypes.util
+
+        objc = ctypes.cdll.LoadLibrary(ctypes.util.find_library("objc") or "libobjc")
+        ctypes.cdll.LoadLibrary("/System/Library/Frameworks/AppKit.framework/AppKit")
+        objc.objc_getClass.restype = ctypes.c_void_p
+        objc.objc_getClass.argtypes = [ctypes.c_char_p]
+        objc.sel_registerName.restype = ctypes.c_void_p
+        objc.sel_registerName.argtypes = [ctypes.c_char_p]
+
+        proto0 = ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p)
+        proto1 = ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p,
+                                  ctypes.c_void_p)
+        send0 = proto0(("objc_msgSend", objc))
+        send1 = proto1(("objc_msgSend", objc))
+
+        def cls(name: str):
+            return objc.objc_getClass(name.encode())
+
+        def sel(name: str):
+            return objc.sel_registerName(name.encode())
+
+        app = send0(cls("NSApplication"), sel("sharedApplication"))
+        if not app:
+            return
+        idea = send1(cls("NSString"), sel("stringWithUTF8String:"),
+                     b"NSAppearanceNameAqua")
+        aqua = send1(cls("NSAppearance"), sel("appearanceNamed:"), idea)
+        if aqua:
+            send1(app, sel("setAppearance:"), aqua)
+    except Exception:
+        pass
 
 
 def ask_yes_no_cancel(parent, title: str, message: str):
@@ -279,6 +325,7 @@ class App:
         self.root.geometry("1360x860")
         self.root.minsize(1080, 700)
         self.root.configure(background=LIGHT_BG)
+        force_light_theme()                      # 整个 App 固定白天外观
         use_light_appearance(self.root)          # 固定浅色，不跟随系统深色模式
 
         self.tax = store.load_taxonomy()
@@ -3625,14 +3672,19 @@ class BankPage:
         win.configure(background=LIGHT_BG)
         win.transient(self.root)
         win.resizable(False, False)
+        use_light_appearance(win)               # 固定白天外观，不跟随系统深色模式
         ttk.Label(win, text="选择要合并的范围（合并后按题干 + 选项自动排重）：",
                   style="Head.TLabel").pack(anchor="w", padx=14, pady=(12, 6))
         box = tk.Frame(win, background=LIGHT_BG)
         box.pack(fill="both", expand=True, padx=14)
-        lb = tk.Listbox(box, height=min(12, max(3, len(entries))),
+        lb = tk.Listbox(box, height=min(12, max(4, len(entries))), width=54,
                         font=("", 12), activestyle="none",
+                        background=LIGHT_PANEL, foreground=LIGHT_TEXT,
+                        disabledforeground="#9A9AA0",
                         selectbackground="#2F6FEB", selectforeground="#FFFFFF",
-                        borderwidth=1, highlightthickness=0)
+                        borderwidth=0, relief="flat",
+                        highlightthickness=1, highlightbackground="#D6D6DA",
+                        highlightcolor="#2F6FEB")
         for _tid, label, n in entries:
             lb.insert("end", f"{label} · {n} 题")
         lb.pack(side="left", fill="both", expand=True)
